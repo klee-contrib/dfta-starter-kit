@@ -1,0 +1,5 @@
+locale
+node_modules
+model
+services
+*.css.d.ts

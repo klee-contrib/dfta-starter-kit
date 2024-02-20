@@ -1,0 +1,29 @@
+.header {
+    --input-on-main-color: white;
+    --input-on-secondary-color: var(--header-toprow-background);
+    --focus-ring-color: white;
+    --input-outline-color: white;
+    --input-text-color: white;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.item > span {
+    margin-right: 6px;
+}
+
+.item strong {
+    white-space: nowrap;
+}
+
+.item--user strong {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.button:not([disabled]) {
+    color: rgb(var(--header-color));
+}

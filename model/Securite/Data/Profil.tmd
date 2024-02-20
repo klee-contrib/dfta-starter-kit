@@ -1,0 +1,61 @@
+---
+module: Securite
+tags:
+  - back
+uses:
+  - decorators
+  - Securite/References
+
+---
+class:
+  name: Profil
+  trigram: PRO
+  label: Profil
+  comment: Profil des utilisateurs
+  decorators:
+    - EntityListeners
+
+  properties:
+    - name: Id
+      label: Id technique du profil
+      primaryKey: true
+      domain: DO_ID
+      comment: Id technique
+
+    - name: Libelle
+      label: Libellé du profil
+      domain: DO_LIBELLE
+      required: true
+      comment: Libellé du profil.
+
+  mappers:
+    to:
+      - class: Profil
+        mappings:
+          Id: false
+          DateCreation: false
+          DateModification: false
+  values:
+   Profil1: {Id: 1, Libelle: "Profil 1", DateCreation: now}
+   Profil2: {Id: 2, Libelle: "Profil 2", DateCreation: now}
+   Profil3: {Id: 3, Libelle: "Profil 3", DateCreation: now}
+   Profil4: {Id: 4, Libelle: "Profil 4", DateCreation: now}
+---
+class:
+  name: DroitProfil
+  trigram: DPR
+  comment: N-N droits - profils
+
+  properties:
+    - association: Droit
+      primaryKey: true
+      comment: Droit.
+
+    - association: Profil
+      primaryKey: true
+      comment: Profil.
+  values:
+    DroitProfil1 : { DroitCode: "CREATE", ProfilId: "1"}
+    DroitProfil2 : { DroitCode: "READ", ProfilId: "2"}
+    DroitProfil3 : { DroitCode: "UPDATE", ProfilId: "3"}
+    DroitProfil4 : { DroitCode: "DELETE", ProfilId: "4"}

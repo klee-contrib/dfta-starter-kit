@@ -1,0 +1,26 @@
+:root {
+    --preferred-font: Manrope;
+    --color-primary: var(--palette-purple-400);
+    --color-primary-light: var(--palette-purple-100);
+    --color-accent: var(--palette-purple-300);
+    --button-accent-hover-opacity: 0.09;
+    --button-line-height-delta: -1px;
+
+    --header-toprow-background: rgb(var(--palette-purple-400));
+    --header-color: white;
+
+    --main-menu-item-height: 80px;
+}
+
+:root[dark] {
+    --color-primary: var(--palette-purple-300);
+    --color-primary-light: var(--palette-purple-800);
+    --color-accent: var(--palette-purple-200);
+    --button-primary-secondary-color: rgba(var(--color-black), 0.9);
+    --button-accent-hover-opacity: 0.18;
+}
+
+a {
+    color: rgb(var(--color-primary));
+    font-weight: 500;
+}

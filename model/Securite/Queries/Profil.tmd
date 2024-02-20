@@ -1,0 +1,72 @@
+---
+module: Securite
+tags:
+  - back-queries
+  - front
+uses:
+  - Securite/Data/Profil
+  - Securite/Queries/Utilisateur
+  - Securite/References
+
+---
+class:
+  name: ProfilItem
+  comment: Détail d'un profil en liste.
+
+  properties:
+    - alias:
+        class: Profil
+        include:
+          - Id
+          - Libelle
+
+    - name: NombreUtilisateurs
+      label: Nombre d'utilisateurs affectés
+      domain: DO_ENTIER
+      required: true
+      comment: Nombre d'utilisateurs affectés au profil.
+  
+  mappers:
+    from:
+      - params:
+          - class: Profil
+    to:
+      - class: Profil
+---
+class:
+  name: ProfilRead
+  comment: Détail d'un profil en lecture.
+
+  properties:
+    - alias:
+        class: Profil
+        exclude:
+          - DateCreation
+          - DateModification
+
+    - alias:
+        class: Profil
+        include:
+          - DateCreation
+          - DateModification
+      defaultValue: null
+      domain: DO_DATE_HEURE
+
+    - alias:
+        class: Droit
+        property: Code
+      as: list
+      prefix: true
+      suffix: s
+
+    - composition: UtilisateurItem
+      name: Utilisateurs
+      domain: DO_LISTE
+      comment: Utilisateurs ayant ce profil.
+
+  mappers:
+    from:
+      - params:
+          - class: Profil
+    to:
+      - class: Profil

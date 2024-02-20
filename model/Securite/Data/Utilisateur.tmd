@@ -1,0 +1,79 @@
+---
+module: Securite
+tags:
+  - back
+uses:
+  - decorators
+  - Securite/Data/Profil
+  - Securite/References
+
+---
+class:
+  name: Utilisateur
+  trigram: UTI
+  comment: Utilisateur de l'application
+  decorators:
+    - EntityListeners
+
+  properties:
+    - name: Id
+      label: Id technique
+      primaryKey: true
+      domain: DO_ID
+      comment: Id de l'utilisateur
+
+    - name: Nom
+      domain: DO_LIBELLE
+      required: true
+      comment: Nom de l'utilisateur
+
+    - name: Prenom
+      label: Prénom
+      domain: DO_LIBELLE
+      required: true
+      comment: Nom de l'utilisateur
+
+    - name: Email
+      label: Adresse email
+      domain: DO_EMAIL
+      required: true
+      comment: Email de l'utilisateur
+
+    - name: DateNaissance
+      label: Date de naissance
+      domain: DO_DATE
+      comment: Age de l'utilisateur
+
+    - name: Adresse
+      label: Adresse
+      domain: DO_LIBELLE
+      comment: Adresse de l'utilisateur
+
+    - name: Actif
+      domain: DO_BOOLEEN
+      required: true
+      defaultValue: true
+      comment: Si l'utilisateur est actif
+
+    - association: Profil
+      label: Profil
+      required: true
+      comment: Profil de l'utilisateur
+
+    - association: TypeUtilisateur
+      label: Type d'utilisateur
+      required: true
+      defaultValue: GEST
+      comment: Type d'utilisateur
+
+  unique:
+    - [Email]
+  values:
+    user1: {Id: 1, Nom: "Jean", Prenom: "Michel", Actif: true, ProfilId: 1, TypeUtilisateurCode: "ADMIN", Email: "test1@test.com", DateCreation: now}
+    user2: {Id: 2, Nom: "Gerard", Prenom: "Jugnos", Actif: true, ProfilId: 2, TypeUtilisateurCode: "GEST", Email: "test2@test.com", DateCreation: now}
+    user3: {Id: 3, Nom: "Gad", Prenom: "El", Actif: true, ProfilId: 3, TypeUtilisateurCode: "CLIENT", Email: "test3@test.com", DateCreation: now}
+    user4: {Id: 4, Nom: "Bernard", Prenom: "Bruno", Actif: true, ProfilId: 4, TypeUtilisateurCode: "ADMIN", Email: "test4@test.com", DateCreation: now}
+    user5: {Id: 5, Nom: "Sisi", Prenom: "Brindacier", Actif: true, ProfilId: 1, TypeUtilisateurCode: "GEST", Email: "test5@test.com", DateCreation: now}
+    user6: {Id: 6, Nom: "Bibi", Prenom: "Baba", Actif: true, ProfilId: 2, TypeUtilisateurCode: "CLIENT", Email: "test6@test.com", DateCreation: now}
+    user7: {Id: 7, Nom: "Dédé", Prenom: "Dédé", Actif: true, ProfilId: 3, TypeUtilisateurCode: "GEST", Email: "test7@test.com", DateCreation: now}
+    user8: {Id: 8, Nom: "Ran", Prenom: "Tanplan", Actif: true, ProfilId: 4, TypeUtilisateurCode: "ADMIN", Email: "test8@test.com", DateCreation: now}

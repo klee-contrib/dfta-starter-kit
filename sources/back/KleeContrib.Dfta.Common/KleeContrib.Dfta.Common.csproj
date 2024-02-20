@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Kinetix.Modeling" Version="1.0.6" />
+		<PackageReference Include="Kinetix.Services.Annotations" Version="1.0.1" />
+	</ItemGroup>
+
+</Project>

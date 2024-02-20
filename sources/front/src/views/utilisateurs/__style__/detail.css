@@ -1,0 +1,14 @@
+.link {
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.link > div {
+    text-decoration: underline;
+}
+
+.link > span {
+    font-size: 18px;
+    margin-left: 4px;
+    line-height: var(--text-field-height);
+}

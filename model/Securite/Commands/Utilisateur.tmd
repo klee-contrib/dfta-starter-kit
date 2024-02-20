@@ -1,0 +1,23 @@
+---
+module: Securite
+tags:
+  - back-commands
+  - front
+uses:
+  - Securite/Data/Utilisateur
+
+---
+class:
+  name: UtilisateurWrite
+  comment: Détail d'un utilisateur en écriture.
+  properties:
+    - alias:
+        class: Utilisateur
+        exclude:
+          - Id
+          - DateCreation
+          - DateModification
+
+  mappers:
+    to:
+      - class: Utilisateur

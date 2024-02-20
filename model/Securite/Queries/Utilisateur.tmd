@@ -1,0 +1,51 @@
+---
+module: Securite
+tags:
+  - back-queries
+  - front
+uses:
+  - Securite/Data/Utilisateur
+
+---
+class:
+  name: UtilisateurItem
+  comment: Détail d'un utilisateur en liste.
+
+  properties:
+    - alias:
+        class: Utilisateur
+        include:
+          - Id
+          - Nom
+          - Prenom
+          - Email
+          - TypeUtilisateurCode
+  mappers:
+    from:
+      - params:
+          - class: Utilisateur
+---
+class:
+  name: UtilisateurRead
+  comment: Détail d'un utilisateur en lecture.
+
+  properties:
+    - alias:
+        class: Utilisateur
+        exclude:
+          - DateCreation
+          - DateModification
+
+    - alias:
+        class: Utilisateur
+        include:
+          - DateCreation
+          - DateModification
+      defaultValue: null
+
+  mappers:
+    from:
+      - params:
+          - class: Utilisateur
+    to:
+      - class: Utilisateur

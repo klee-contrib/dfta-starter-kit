@@ -1,0 +1,82 @@
+---
+module: Securite
+tags:
+  - back
+  - front
+
+---
+class:
+  name: TypeUtilisateur
+  trigram: TUT
+  reference: true
+  comment: Type d'utilisateur
+
+  properties:
+    - name: Code
+      label: Type d'utilisateur
+      domain: DO_CODE
+      primaryKey: true
+      comment: Code du type d'utilisateur
+
+    - name: Libelle
+      domain: DO_LIBELLE
+      required: true
+      comment: Libellé du type d'utilisateur
+
+  values:
+    Admin: { Code: ADMIN, Libelle: Administrateur }
+    Gestionnaire: { Code: GEST, Libelle: Gestionnaire }
+    Client: { Code: CLIENT, Libelle: Client }
+---
+class:
+  name: TypeDroit
+  trigram: TDR
+  reference: true
+  comment: Type de droit
+
+  properties:
+    - name: Code
+      label: Type de droit
+      domain: DO_CODE
+      primaryKey: true
+      comment: Code du type de droit
+
+    - name: Libelle
+      domain: DO_LIBELLE
+      required: true
+      comment: Libellé du type de droit
+
+  values:
+    Read: { Code: READ, Libelle: Lecture }
+    Write: { Code: WRITE, Libelle: Ecriture }
+    Admin: { Code: ADMIN, Libelle: Administration }
+---
+class:
+  name: Droit
+  trigram: DRO
+  reference: true
+  orderProperty: Code
+  comment: Droits de l'application
+
+  properties:
+    - name: Code
+      label: Droit
+      domain: DO_CODE
+      primaryKey: true
+      comment: Code du droit
+
+    - name: Libelle
+      label: Droit
+      domain: DO_LIBELLE
+      required: true
+      comment: Libellé du droit
+
+    - association: TypeDroit
+      required: true
+      comment: Type de profil pouvant faire l'action
+
+  values:
+    Create: { Code: CREATE, Libelle: Création, TypeDroitCode: WRITE }
+    Read: { Code: READ, Libelle: Lecture, TypeDroitCode: READ }
+    Update: { Code: UPDATE, Libelle: Mise à jour, TypeDroitCode: WRITE }
+    Delete: { Code: DELETE, Libelle: Suppression, TypeDroitCode: ADMIN }

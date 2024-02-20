@@ -1,0 +1,45 @@
+.line {
+    display: flex;
+    align-items: center;
+    color: rgb(var(--palette-grey-500));
+    position: relative;
+    text-decoration: none;
+    background: rgb(var(--color-white));
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 50px;
+    box-shadow: var(--action-bar-shadow);
+    border-radius: var(--action-bar-border-radius);
+    transition: background-color 0.2s ease-out;
+}
+
+.line:hover {
+    background: rgb(var(--palette-grey-200));
+}
+
+.line--profil {
+    background: none;
+    box-shadow: none;
+    padding: 12px 10px;
+    margin: 0;
+}
+
+.icon {
+    font-size: 32px;
+    margin-right: 16px;
+    color: rgb(var(--color-accent));
+}
+
+.text {
+    padding: 2px 0;
+    color: rgb(var(--color-black));
+}
+
+.text--title {
+    font-weight: 600;
+    color: rgb(var(--color-primary));
+}
+
+.text--sub {
+    color: rgb(var(--color-accent));
+    font-style: italic;
+}

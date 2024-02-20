@@ -1,0 +1,15 @@
+{
+    "bracketSpacing": false,
+    "arrowParens": "avoid",
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "printWidth": 120,
+    "overrides": [
+        {
+            "files": ["package.json", "package-lock.json", "app/model/**", "app/services/**"],
+            "options": {
+                "printWidth": 50000
+            }
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+---
+module: Securite
+tags:
+  - back-commands
+  - front
+uses:
+  - Securite/Data/Profil
+  - Securite/References
+
+---
+class:
+  name: ProfilWrite
+  comment: Détail d'un profil en écriture.
+  properties:
+    - alias:
+        class: Profil
+        property: Libelle
+
+    - alias:
+        class: Droit
+        property: Code
+      as: list
+      prefix: true
+      suffix: s
+
+  mappers:
+    to:
+      - class: Profil

@@ -1,0 +1,44 @@
+{
+    "name": "dfta-starter-kit-front",
+    "version": "0.0.0",
+    "description": "Adaptation du starter kit Focus pour l'intégrer dans un starter kit full stack.",
+    "repository": "https://github.com/klee-contrib/dfta-starter-kit",
+    "main": "src/index.ts",
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "cssgen": "focus4 cssgen src",
+        "eslint": "eslint --ext .ts,.tsx src",
+        "preview": "vite preview",
+        "start": "vite"
+    },
+    "dependencies": {
+        "@azure/msal-browser": "3.10.0",
+        "focus4": "11.15.4"
+    },
+    "devDependencies": {
+        "@focus4/tooling": "11.15.0"
+    },
+    "peerDependencies": {
+        "@focus4/collections": "*",
+        "@focus4/core": "*",
+        "@focus4/forms": "*",
+        "@focus4/layout": "*",
+        "@focus4/stores": "*",
+        "@focus4/styling": "*",
+        "@focus4/toolbox": "*",
+        "framer-motion": "*",
+        "i18next": "*",
+        "lodash": "*",
+        "luxon": "*",
+        "mobx": "*",
+        "mobx-react": "7",
+        "numeral": "*",
+        "react": "*",
+        "react-dnd": "*",
+        "react-dnd-html5-backend": "*",
+        "react-dom": "*"
+    },
+    "author": "KleeGroup",
+    "license": "MIT"
+}

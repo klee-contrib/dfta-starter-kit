@@ -1,0 +1,40 @@
+version: "3"
+services:
+  api:
+    image: api:dev
+    entrypoint: dotnet --additionalProbingPath /root/.nuget/fallbackpackages /app/bin/Debug/KleeContrib.Dfta.Api.dll | tee /dev/console
+    build:
+      dockerfile: KleeContrib.Dfta.Api/Dockerfile
+      context: back
+    environment:
+      Database__Server: bdd
+      Database__Password: dfta_app
+      Database__Ssl_Mode: Disable
+
+      AzureAd__ClientId: ""
+      AzureAd__Audience: api://dfta-dev
+
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      DOTNET_USE_POLLING_FILE_WATCHER: 1
+      NUGET_PACKAGES: /root/.nuget/fallbackpackages
+    ports:
+      - 2468:80
+    volumes:
+      - ~/.nuget/packages/:/root/.nuget/fallbackpackages
+      - ~/vsdbg/vs2017u5:/remote_debugger:rw
+      - ./back/KleeContrib.Dfta.Api:/app:rw
+      - ./back:/src
+  bdd:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root5432
+      - POSTGRES_DB=kleecontrib_dfta
+    volumes:
+      - bdd-data:/var/lib/postgresql/data
+
+volumes:
+  bdd-data:

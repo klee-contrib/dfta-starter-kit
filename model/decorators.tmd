@@ -1,0 +1,26 @@
+---
+module: Common
+tags:
+  - entity
+
+---
+decorator:
+  name: EntityListeners
+  description: Date création
+  properties:
+    - name: DateCreation
+      label: Date de création
+      required: true
+      defaultValue: now
+      domain: DO_DATE_HEURE
+      comment: Date de création de l'utilisateur.
+
+    - name: DateModification
+      label: Date de modification
+      defaultValue: now
+      domain: DO_DATE_HEURE
+      comment: Date de modification de l'utilisateur.
+---
+decorator:
+  name: Security
+  description: Ajoute une annotation de sécurité sur un endpoint.

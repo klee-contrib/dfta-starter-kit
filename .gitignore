@@ -1,0 +1,7 @@
+.vs
+.env
+.terraform
+dist
+node_modules
+bin
+obj
