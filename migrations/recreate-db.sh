@@ -10,8 +10,8 @@ function query() {
 }
 
 echo "Ensuring Users..."
-query postgres "DO \$\$ BEGIN CREATE USER dfta_app WITH PASSWORD '$database_dfta_app_secret'; EXCEPTION WHEN duplicate_object THEN ALTER ROLE dfta_app WITH PASSWORD '$database_dfta_app_secret'; END \$\$"
-query postgres "DO \$\$ BEGIN CREATE USER dfta_read WITH PASSWORD '$database_dfta_read_secret'; EXCEPTION WHEN duplicate_object THEN ALTER ROLE dfta_read WITH PASSWORD '$database_dfta_read_secret'; END \$\$"
+query postgres "DO \$\$ BEGIN CREATE USER dfta_app WITH PASSWORD '$database_app_secret'; EXCEPTION WHEN duplicate_object THEN ALTER ROLE dfta_app WITH PASSWORD '$database_app_secret'; END \$\$"
+query postgres "DO \$\$ BEGIN CREATE USER dfta_read WITH PASSWORD '$database_read_secret'; EXCEPTION WHEN duplicate_object THEN ALTER ROLE dfta_read WITH PASSWORD '$database_read_secret'; END \$\$"
 query postgres "GRANT pg_signal_backend TO $database_admin_userid"
 echo "Users OK."
 

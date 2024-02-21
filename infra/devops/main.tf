@@ -7,11 +7,6 @@ terraform {
   }
 }
 
-provider "azuredevops" {
-  org_service_url       = "https://dev.azure.com/${var.organisation}"
-  personal_access_token = var.pat
-}
-
 resource "azuredevops_project" "project" {
   name = var.project_name
 }
@@ -21,25 +16,69 @@ data "azurerm_subscription" "current" {}
 
 resource "azuredevops_serviceendpoint_azurerm" "azure" {
   project_id                             = azuredevops_project.project.id
-  service_endpoint_name                  = "${var.project_name}-${data.azurerm_client_config.current.subscription_id}"
+  service_endpoint_name                  = "${var.project_name}-dev"
   service_endpoint_authentication_scheme = "WorkloadIdentityFederation"
   azurerm_spn_tenantid                   = data.azurerm_client_config.current.tenant_id
   azurerm_subscription_id                = data.azurerm_client_config.current.subscription_id
   azurerm_subscription_name              = data.azurerm_subscription.current.display_name
 }
 
-data "azuread_service_principal" "devops" {
-  display_name = "${var.organisation}-${var.project_name}-${data.azurerm_client_config.current.subscription_id}"
-  depends_on   = [azuredevops_serviceendpoint_azurerm.azure]
+data "azuredevops_git_repository" "default" {
+  name       = var.project_name
+  project_id = azuredevops_project.project.id
+  depends_on = [azuredevops_project.project]
 }
 
-resource "azurerm_key_vault_access_policy" "devops" {
-  key_vault_id = var.vault_id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = data.azuread_service_principal.devops.object_id
+resource "azuredevops_build_definition" "ci" {
+  project_id = azuredevops_project.project.id
+  name       = "CI"
 
-  secret_permissions = [
-    "List",
-    "Get"
-  ]
+  ci_trigger {
+    use_yaml = true
+  }
+
+  variable {
+    name           = "version"
+    value          = "0.1"
+    allow_override = true
+  }
+
+  repository {
+    repo_type   = "TfsGit"
+    repo_id     = data.azuredevops_git_repository.default.id
+    branch_name = "refs/heads/main"
+    yml_path    = "pipelines/build-ci.yml"
+  }
+
+  lifecycle {
+    ignore_changes = [variable]
+  }
+}
+
+resource "azuredevops_build_definition" "pipelines" {
+  for_each = {
+    "PR"       = "pipelines/build-pr.yml"
+    "Reset DB" = "pipelines/reset-db.yml"
+    "Recette"  = "pipelines/deploy-recette.yml"
+  }
+
+  project_id = azuredevops_project.project.id
+  name       = each.key
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type   = "TfsGit"
+    repo_id     = data.azuredevops_git_repository.default.id
+    branch_name = "refs/heads/main"
+    yml_path    = each.value
+  }
+}
+
+resource "azuredevops_pipeline_authorization" "azure" {
+  project_id  = azuredevops_project.project.id
+  resource_id = azuredevops_serviceendpoint_azurerm.azure.id
+  type        = "endpoint"
 }

@@ -1,0 +1,25 @@
+trigger: none
+
+parameters:
+  - name: env
+    type: string
+    displayName: Environnement
+    default: dev
+    values:
+      - dev
+      - recette
+
+resources:
+  pipelines:
+    - pipeline: CI
+      source: CI
+      branch: main
+
+jobs:
+  - template: templates/deploy-db.yml
+    parameters:
+      azureSub: DFTA-dev
+      env: ${{parameters.env}}
+      version: $(resources.pipeline.CI.runName)
+      pipeline: CI
+      reset_db: yes

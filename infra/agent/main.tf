@@ -9,12 +9,6 @@ terraform {
 
 locals {
   admin_user = "admin-${var.app_name}"
-  devops_url = "https://dev.azure.com/${var.devops_organisation}"
-}
-
-provider "azuredevops" {
-  org_service_url       = local.devops_url
-  personal_access_token = var.devops_pat
 }
 
 data "azuredevops_project" "project" {
@@ -50,7 +44,7 @@ data "template_cloudinit_config" "agent" {
     content_type = "text/x-shellscript"
     content = templatefile("${path.module}/files/install.sh", {
       admin_user                    = local.admin_user
-      azure_devops_organization_url = local.devops_url
+      azure_devops_organization_url = "https://dev.azure.com/${var.devops_organisation}"
       agent_name                    = "${terraform.workspace}-001"
       pool_name                     = azuredevops_agent_pool.pool.name
       pat_token                     = var.devops_pat

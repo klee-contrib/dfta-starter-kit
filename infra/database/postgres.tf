@@ -5,7 +5,7 @@ resource "random_password" "app" {
 
 resource "azurerm_key_vault_secret" "database_app_secret" {
   key_vault_id = var.vault_id
-  name         = "database-${var.app_name}-app-secret"
+  name         = "database-app-secret"
   value        = random_password.app.result
 }
 
@@ -16,6 +16,6 @@ resource "random_password" "read" {
 
 resource "azurerm_key_vault_secret" "database_read_secret" {
   key_vault_id = var.vault_id
-  name         = "database-${var.app_name}-read-secret"
+  name         = "database-read-secret"
   value        = random_password.read.result
 }

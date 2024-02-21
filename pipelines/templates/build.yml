@@ -1,0 +1,97 @@
+parameters:
+  publish: false
+
+stages:
+  - stage: Build
+    jobs:
+      - job: build
+        displayName: Build
+        pool:
+          vmImage: ubuntu-latest
+
+        steps:
+          - task: UseDotNet@2
+            displayName: .NET 8
+            inputs:
+              version: 8.x
+
+          - script: echo "##vso[task.setvariable variable=modgen_version]$(cat model/topmodel.lock | awk 'NR == 5' | sed 's/\r//g' | cut -c 10-)"
+            displayName: Récupération de la version de modgen
+
+          - script: dotnet tool install --tool-path $(Build.SourcesDirectory) TopModel.Generator --version $(modgen_version)
+            displayName: dotnet install modgen
+
+          - script: $(Build.SourcesDirectory)/modgen -f model/topmodel.config --check
+            displayName: modgen --check
+
+          - task: DotNetCoreCLI@2
+            displayName: Build API
+            inputs:
+              command: build
+              projects: sources/back/KleeContrib.Dfta.Api/KleeContrib.Dfta.Api.csproj
+
+          - ${{if eq(parameters.publish, true)}}:
+              - task: DotNetCoreCLI@2
+                displayName: Publish API
+                inputs:
+                  command: publish
+                  publishWebProjects: false
+                  zipAfterPublish: true
+                  projects: sources/back/KleeContrib.Dfta.Api/KleeContrib.Dfta.Api.csproj
+                  arguments: -o $(Build.ArtifactStagingDirectory)/API /p:Version=$(Build.BuildNumber)
+
+              - publish: $(Build.ArtifactStagingDirectory)/API
+                displayName: Publish Artifact
+                artifact: API
+
+          - script: dotnet tool install --tool-path $(Build.SourcesDirectory) dotnet-ef
+            displayName: dotnet install dotnet-ef
+
+          - script: $(Build.SourcesDirectory)/dotnet-ef migrations bundle -o $(Build.ArtifactStagingDirectory)/DB/efbundle
+            displayName: Migration Bundle
+            workingDirectory: migrations
+
+          - ${{if eq(parameters.publish, true)}}:
+              - task: CopyFiles@2
+                displayName: Copy recreate script
+                inputs:
+                  Contents: migrations/recreate-db.sh
+                  TargetFolder: $(Build.ArtifactStagingDirectory)/DB
+                  flattenFolders: true
+
+              - task: CopyFiles@2
+                displayName: Copy check script
+                inputs:
+                  Contents: migrations/check-migrations.sh
+                  TargetFolder: $(Build.ArtifactStagingDirectory)/DB
+                  flattenFolders: true
+
+              - task: CopyFiles@2
+                displayName: Copy migration files
+                inputs:
+                  Contents: migrations/Migrations/**
+                  TargetFolder: $(Build.ArtifactStagingDirectory)/DB/Migrations
+                  flattenFolders: true
+
+              - publish: $(Build.ArtifactStagingDirectory)/DB
+                displayName: Publish DB Artifact
+                artifact: DB
+
+          - task: Npm@1
+            displayName: npm install
+            inputs:
+              command: custom
+              customCommand: ci
+              workingDir: sources/front
+
+          - task: Npm@1
+            displayName: Build Front
+            inputs:
+              command: custom
+              customCommand: run build
+              workingDir: sources/front
+
+          - ${{if eq(parameters.publish, true)}}:
+              - publish: sources/front/dist/
+                displayName: Publish Front Artifact
+                artifact: Front

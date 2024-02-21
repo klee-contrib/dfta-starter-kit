@@ -1,3 +1,5 @@
+data "azuread_client_config" "current" {}
+
 resource "azurerm_service_plan" "back" {
   name                = "${var.app_name}-api-${terraform.workspace}"
   resource_group_name = var.rg_name
@@ -27,8 +29,9 @@ resource "azurerm_linux_web_app" "back" {
 
     ApplicationInsights__InstrumentationKey = var.ai_key
 
-    AzureAd__ClientId = var.aad_client_id
     AzureAd__Audience = var.aad_audience
+    AzureAd__ClientId = var.aad_client_id
+    AzureAd__TenantId = data.azuread_client_config.current.tenant_id
 
     Database__Server   = var.database_server_name
     Database__Password = var.database_app_secret

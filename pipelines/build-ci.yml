@@ -1,0 +1,22 @@
+name: $(version)$(rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - sources
+      - migrations
+
+stages:
+  - template: templates/build.yml
+    parameters:
+      publish: true
+
+  - template: templates/deploy.yml
+    parameters:
+      azureSub: DFTA-dev
+      env: dev
+      version: $(Build.BuildNumber)

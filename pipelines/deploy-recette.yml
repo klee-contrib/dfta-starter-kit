@@ -1,0 +1,16 @@
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: CI
+      source: CI
+      branch: main
+
+stages:
+  - template: templates/deploy.yml
+    parameters:
+      azureSub: DFTA-dev
+      env: recette
+      pipeline: CI
+      version: $(resources.pipeline.CI.runName)
+      reset_db: no

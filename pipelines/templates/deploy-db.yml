@@ -1,0 +1,79 @@
+parameters:
+  azureSub: ""
+  env: ""
+  pipeline: current
+  version: ""
+  reset_db: no
+
+jobs:
+  - job: DB
+    displayName: Deploy DB to ${{parameters.env}}
+
+    variables:
+      database-server: dfta-db-${{parameters.env}}.postgres.database.azure.com
+      database-name: kleecontrib_dfta
+      database-admin-userid: dfta_root
+
+    pool: DFTA-${{parameters.env}}
+    workspace:
+      clean: all
+
+    steps:
+      - checkout: none
+
+      - task: AzureKeyVault@2
+        displayName: Get secrets
+        inputs:
+          connectedServiceName: ${{parameters.azureSub}}
+          keyVaultName: dfta-vault-${{parameters.env}}
+          secretsFilter: database-admin-secret,database-app-secret,database-read-secret
+          runAsPreJob: true
+
+      - download: ${{parameters.pipeline}}
+        displayName: Download DB
+        artifact: DB
+
+      - ${{if ne(parameters.reset_db, 'yes')}}:
+          - task: ShellScript@2
+            displayName: Check migrations
+            continueOnError: ${{eq(parameters.reset_db, 'optional')}}
+            env:
+              database_server: $(database-server)
+              database_name: $(database-name)
+              database_admin_userid: $(database-admin-userid)
+              database_admin_secret: $(database-admin-secret)
+            inputs:
+              ${{if eq(parameters.pipeline, 'current')}}:
+                scriptPath: $(Pipeline.Workspace)/DB/check-migrations.sh
+                workingDirectory: $(Pipeline.Workspace)/DB
+              ${{else}}:
+                scriptPath: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB/check-migrations.sh
+                workingDirectory: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB
+
+      - task: ShellScript@2
+        displayName: Recreate ${{parameters.env}}
+        condition: or(eq(variables['Agent.JobStatus'], 'SucceededWithIssues'), ${{eq(parameters.reset_db, 'yes')}})
+        env:
+          database_server: $(database-server)
+          database_name: $(database-name)
+          database_admin_userid: $(database-admin-userid)
+          database_admin_secret: $(database-admin-secret)
+          database_app_secret: $(database-app-secret)
+          database_read_secret: $(database-read-secret)
+        inputs:
+          ${{if eq(parameters.pipeline, 'current')}}:
+            scriptPath: $(Pipeline.Workspace)/DB/recreate-db.sh
+          ${{else}}:
+            scriptPath: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB/recreate-db.sh
+
+      - script: chmod u+x efbundle && ./efbundle
+        displayName: Update ${{parameters.env}}
+        ${{if eq(parameters.pipeline, 'current')}}:
+          workingDirectory: $(Pipeline.Workspace)/DB
+        ${{else}}:
+          workingDirectory: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB
+        env:
+          database_server: $(database-server)
+          database_name: $(database-name)
+          database_admin_userid: $(database-admin-userid)
+          database_admin_secret: $(database-admin-secret)

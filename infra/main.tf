@@ -1,9 +1,31 @@
+terraform {
+  required_providers {
+    azuredevops = {
+      source  = "microsoft/azuredevops"
+      version = ">= 0.1.0"
+    }
+  }
+}
+
 provider "azurerm" {
   subscription_id = var.subscription_id
   features {}
 }
 
 provider "azuread" {}
+
+provider "azuredevops" {
+  org_service_url       = "https://dev.azure.com/${var.devops_organisation}"
+  personal_access_token = var.devops_pat
+}
+
+module "devops" {
+  count  = terraform.workspace == "dev" ? 1 : 0
+  source = "./devops"
+
+  organisation = var.devops_organisation
+  project_name = var.devops_project_name
+}
 
 resource "azurerm_resource_group" "rg" {
   name     = terraform.workspace
@@ -13,9 +35,13 @@ resource "azurerm_resource_group" "rg" {
 module "vault" {
   source = "./vault"
 
-  app_name = var.app_name
-  region   = var.region
-  rg_name  = azurerm_resource_group.rg.name
+  app_name            = var.app_name
+  devops_organisation = var.devops_organisation
+  devops_project_name = var.devops_project_name
+  region              = var.region
+  rg_name             = azurerm_resource_group.rg.name
+
+  depends_on = [module.devops]
 }
 
 module "vnet" {
@@ -82,15 +108,7 @@ module "aad" {
 
   app_name  = var.app_name
   front_url = module.front.url
-}
-
-module "devops" {
-  source = "./devops"
-
-  organisation = var.devops_organisation
-  pat          = var.devops_pat
-  project_name = var.devops_project_name
-  vault_id     = module.vault.id
+  vault_id  = module.vault.id
 }
 
 module "agent" {
@@ -105,4 +123,6 @@ module "agent" {
   snet_id             = module.vnet.snet_agent_id
   size                = var.agent_size
   vault_id            = module.vault.id
+
+  depends_on = [module.devops]
 }

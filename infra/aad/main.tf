@@ -79,3 +79,15 @@ resource "azuread_application_pre_authorized" "front" {
   authorized_client_id = azuread_application.front.client_id
   permission_ids       = [random_uuid.aad_scope_id.result]
 }
+
+resource "azurerm_key_vault_secret" "front_client_id" {
+  key_vault_id = var.vault_id
+  name         = "front-client-id"
+  value        = azuread_application.front.client_id
+}
+
+resource "azurerm_key_vault_secret" "tenant_id" {
+  key_vault_id = var.vault_id
+  name         = "tenant-id"
+  value        = data.azuread_client_config.current.tenant_id
+}

@@ -49,3 +49,7 @@ _Remarque : Le tenant choisi doit être celui dans lequel l'abonnement se trouve
 ## Utilisation en local
 
 Certaines ressources crées par Terraform pour un environnement de développement/usine peuvent être également utilisées pour un environnement de développement local, par exemple les enregistrements d'application Azure AD. Le script `get-env.sh` permet de récupérer les infos nécessaires depuis le state terraform et renseigne les fichiers correspondant pour que les applications les utilisent (le fichier `sources/.env` pour le back, et `sources/front/public/config.json` pour le front).
+
+## Environnements
+
+Un environnement correspond à un workspace terraform. Ce repo est conçu pour gérer par défaut deux environnements `dev` et `recette` (en particulier côté CI). Utiliser `terraform workspace new dev` et `terraform workspace new recette` pour les créer, puis `select` à la place de `new` pour changer. Pensez à supprimer le workspace `default` par défaut.

@@ -23,3 +23,18 @@ resource "azurerm_key_vault_access_policy" "terraform" {
     "Purge"
   ]
 }
+
+data "azuread_service_principal" "devops" {
+  display_name = "${var.devops_organisation}-${var.devops_project_name}-${data.azurerm_client_config.current.subscription_id}"
+}
+
+resource "azurerm_key_vault_access_policy" "devops" {
+  key_vault_id = azurerm_key_vault.vault.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = data.azuread_service_principal.devops.object_id
+
+  secret_permissions = [
+    "List",
+    "Get"
+  ]
+}

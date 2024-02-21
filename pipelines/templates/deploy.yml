@@ -1,0 +1,89 @@
+parameters:
+  azureSub: ""
+  env: ""
+  pipeline: current
+  version: ""
+
+stages:
+  - stage: Deploy${{parameters.env}}
+    displayName: Deployment to ${{parameters.env}}
+    jobs:
+      - job: API
+        displayName: Deploy API
+        dependsOn: DB
+
+        pool:
+          vmImage: ubuntu-latest
+
+        steps:
+          - checkout: none
+
+          - download: ${{parameters.pipeline}}
+            displayName: Download API
+            artifact: API
+
+          - task: AzureRmWebAppDeployment@4
+            displayName: Deploy to App Service
+            inputs:
+              ConnectionType: AzureRM
+              azureSubscription: ${{parameters.azureSub}}
+              appType: webAppLinux
+              WebAppName: dfta-api-${{parameters.env}}
+              RuntimeStack: DOTNETCORE|8.0
+              ${{if eq(parameters.pipeline, 'current')}}:
+                packageForLinux: $(Pipeline.Workspace)/API/*.zip
+              ${{else}}:
+                packageForLinux: $(Pipeline.Workspace)/${{parameters.pipeline}}/API/*.zip
+
+      - template: deploy-db.yml
+        parameters:
+          azureSub: ${{parameters.azureSub}}
+          env: ${{parameters.env}}
+          pipeline: ${{parameters.pipeline}}
+          version: ${{parameters.version}}
+          ${{if eq(parameters.env, 'dev')}}:
+            reset_db: optional
+          ${{else}}:
+            reset_db: no
+
+      - job: Front
+        displayName: Deploy Front
+        dependsOn: DB
+
+        pool:
+          vmImage: ubuntu-latest
+
+        variables:
+          version: ${{parameters.version}}
+          audience: api://dfta-${{parameters.env}}
+
+        steps:
+          - download: ${{parameters.pipeline}}
+            displayName: Download Front
+            artifact: Front
+
+          - task: AzureKeyVault@2
+            displayName: Get Front secrets
+            inputs:
+              connectedServiceName: ${{parameters.azureSub}}
+              keyVaultName: dfta-vault-${{parameters.env}}
+              runAsPreJob: true
+              secretsFilter: front-api-key,front-client-id,tenant-id
+
+          - script: 'echo "{\"environment\": \"${{parameters.env}}\", \"version\": \"${{parameters.version}}\", \"clientId\": \"$(front-client-id)\", \"tenantId\": \"$(tenant-id)\", \"audience\": \"api://dfta-back-${{parameters.env}}\"}" > Front/config.json'
+            displayName: Prepare config file
+            ${{if eq(parameters.pipeline, 'current')}}:
+              workingDirectory: $(Pipeline.Workspace)/
+            ${{else}}:
+              workingDirectory: $(Pipeline.Workspace)/${{parameters.pipeline}}/
+
+          - task: AzureStaticWebApp@0
+            displayName: Deploy to Static Web App
+            inputs:
+              ${{if eq(parameters.pipeline, 'current')}}:
+                workingDirectory: $(Pipeline.Workspace)/
+              ${{else}}:
+                workingDirectory: $(Pipeline.Workspace)/${{parameters.pipeline}}/
+              app_location: /Front
+              azure_static_web_apps_api_token: $(front-api-key)
+              skip_app_build: true

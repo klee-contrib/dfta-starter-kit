@@ -4,5 +4,5 @@ export database_server=localhost
 export database_admin_userid=root
 export database_name=kleecontrib_dfta
 export database_admin_secret=root5432
-export database_dfta_app_secret=dfta_app
-export database_dfta_read_secret=dfta_read
+export database_app_secret=dfta_app
+export database_read_secret=dfta_read

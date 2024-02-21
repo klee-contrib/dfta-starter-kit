@@ -10,7 +10,7 @@ resource "azurerm_static_site" "front" {
 
 resource "azurerm_key_vault_secret" "front" {
   key_vault_id = var.vault_id
-  name         = "${var.app_name}-front-api-key"
+  name         = "front-api-key"
   value        = azurerm_static_site.front.api_key
 }
 

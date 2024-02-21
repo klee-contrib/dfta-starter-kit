@@ -1,0 +1,6 @@
+name: $(SourceBranchName)-$(Date:yyyyMMdd)$(rev:-r)
+
+trigger: none
+
+stages:
+  - template: templates/build.yml
