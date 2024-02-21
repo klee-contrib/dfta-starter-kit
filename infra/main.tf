@@ -1,63 +1,3 @@
-variable "subscription_id" {
-  type     = string
-  nullable = false
-}
-
-variable "app_name" {
-  type     = string
-  nullable = false
-}
-
-variable "region" {
-  type     = string
-  nullable = false
-}
-
-variable "front_region" {
-  type     = string
-  nullable = false
-}
-
-variable "app_insights_quota" {
-  type     = number
-  nullable = false
-}
-
-variable "vnet_cidr" {
-  type     = string
-  nullable = false
-}
-
-variable "database_storage_mb" {
-  type     = number
-  nullable = false
-}
-
-variable "database_sku_name" {
-  type     = string
-  nullable = false
-}
-
-variable "database_pg_version" {
-  type     = number
-  nullable = false
-}
-
-variable "database_zone" {
-  type     = number
-  nullable = false
-}
-
-variable "back_sku_name" {
-  type     = string
-  nullable = false
-}
-
-# variable "devops_pat" {
-#   type     = string
-#   nullable = false
-# }
-
 provider "azurerm" {
   subscription_id = var.subscription_id
   features {}
@@ -144,16 +84,25 @@ module "aad" {
   front_url = module.front.url
 }
 
-# module "devops" {
-#   source   = "./devops"
-#   pat      = var.devops_pat
-#   vault_id = module.vault.id
-# }
+module "devops" {
+  source = "./devops"
 
-# module "agent" {
-#   source   = "./agent"
-#   snet_id  = module.vnet.snet_agent_id
-#   vault_id = module.vault.id
-#   rg_name  = azurerm_resource_group.rg.name
-#   pat      = var.devops_pat
-# }
+  organisation = var.devops_organisation
+  pat          = var.devops_pat
+  project_name = var.devops_project_name
+  vault_id     = module.vault.id
+}
+
+module "agent" {
+  source = "./agent"
+
+  app_name            = var.app_name
+  devops_organisation = var.devops_organisation
+  devops_pat          = var.devops_pat
+  devops_project_name = var.devops_project_name
+  region              = var.region
+  rg_name             = azurerm_resource_group.rg.name
+  snet_id             = module.vnet.snet_agent_id
+  size                = var.agent_size
+  vault_id            = module.vault.id
+}
