@@ -40,8 +40,6 @@ module "vault" {
   devops_project_name = var.devops_project_name
   region              = var.region
   rg_name             = azurerm_resource_group.rg.name
-
-  depends_on = [module.devops]
 }
 
 module "vnet" {
@@ -123,6 +121,4 @@ module "agent" {
   snet_id             = module.vnet.snet_agent_id
   size                = var.agent_size
   vault_id            = module.vault.id
-
-  depends_on = [module.devops]
 }
