@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Kinetix.EFCore;
 using Kinetix.Monitoring.Core;
+using Kinetix.Monitoring.Insights;
 using Kinetix.Services;
 using Kinetix.Web;
 using Kinetix.Web.Filters;
@@ -14,7 +15,18 @@ using Microsoft.Identity.Web;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-services.AddLogging(l => l.AddSimpleConsole());
+services
+    .AddLogging(l => l.AddSimpleConsole())
+    .AddApplicationInsightsTelemetry(o =>
+    {
+        o.AddAutoCollectedMetricExtractor = false;
+        o.EnableDiagnosticsTelemetryModule = false;
+        o.EnableEventCounterCollectionModule = false;
+        o.EnablePerformanceCounterCollectionModule = false;
+        o.EnableQuickPulseMetricStream = false;
+    })
+    .AddApplicationInsightsTelemetryProcessor<MonitoringTelemetryFilter>()
+    .AddApplicationInsightsTelemetryProcessor<DbCommandTelemetryProcessorExt>();
 
 services
     .AddAuthentication()
@@ -38,7 +50,7 @@ services
         .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
 services
-.AddWeb()
+    .AddWeb()
     .AddControllers(a =>
     {
         a.Filters.AddService<CultureFilter>();
