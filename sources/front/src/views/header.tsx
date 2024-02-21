@@ -5,8 +5,7 @@ import {HeaderItem, HeaderScrolling, HeaderTopRow} from "@focus4/layout";
 import {colorScheme, toBem} from "@focus4/styling";
 import {IconButton, Switch} from "@focus4/toolbox";
 
-import {userStore} from "../server/msal";
-import {signOut} from "../server/server";
+import {signOut, userStore} from "../server";
 
 import css from "./__style__/header.css";
 

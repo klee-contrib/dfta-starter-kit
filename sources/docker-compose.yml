@@ -11,8 +11,9 @@ services:
       Database__Password: dfta_app
       Database__Ssl_Mode: Disable
 
-      AzureAd__ClientId: ""
-      AzureAd__Audience: api://dfta-back-dev
+      AzureAd__ClientId: ${back_client_id}
+      AzureAd__TenantId: ${tenant_id}
+      AzureAd__Audience: ${audience}
 
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:80

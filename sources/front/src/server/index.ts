@@ -1,13 +1,15 @@
 import {coreFetch} from "@focus4/core";
 
+import {getTokenRedirect} from "./msal";
+
+export {ensureSignedIn, signOut, userStore} from "./msal";
+
 export async function fetch(
     method: "DELETE" | "GET" | "POST" | "PUT",
     url: string,
     {body, query}: {body?: {}; query?: {}} = {},
     options: RequestInit = {}
 ) {
-    /* @vite-ignore */
-    const {getTokenRedirect} = await import("./msal");
     const auth = await getTokenRedirect();
     if (auth) {
         options.headers = {

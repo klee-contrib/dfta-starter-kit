@@ -7,3 +7,4 @@ dist
 node_modules
 bin
 obj
+sources/front/public/config.json

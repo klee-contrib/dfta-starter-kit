@@ -1,1 +1,0 @@
-echo "COMPOSE_PROJECT_NAME='kleecontrib-dfta'" > .env
