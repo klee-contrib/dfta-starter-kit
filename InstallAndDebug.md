@@ -4,6 +4,8 @@
 
 - [Visual Studio 2022 Pro (en incluant l'installation .NET 8)](https://visualstudio.microsoft.com/fr/downloads/)
 - [Visual Studio Code](https://code.visualstudio.com/Download)
+- [Installation de Terraform](https://www.terraform.io/downloads)
+- [Installation d'AzureCli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
 - [Installer puis ouvrir docker desktop](https://www.docker.com/products/docker-desktop/)
   > si besoin (un message à l'ouverture de docker le spécifiera), suivre le tuto
   > https://docs.microsoft.com/fr-fr/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package

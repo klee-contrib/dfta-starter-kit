@@ -2,5 +2,5 @@
     "version": "dev",
     "clientId": "",
     "tenantId": "",
-    "audience": "dfta-dev"
+    "audience": "dfta-back-dev"
 }

@@ -1,6 +1,8 @@
 .vs
 .env
 .terraform
+*.auto.tfvars
+backend.tf
 dist
 node_modules
 bin

@@ -12,7 +12,7 @@ services:
       Database__Ssl_Mode: Disable
 
       AzureAd__ClientId: ""
-      AzureAd__Audience: api://dfta-dev
+      AzureAd__Audience: api://dfta-back-dev
 
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:80
