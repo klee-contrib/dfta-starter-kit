@@ -5,7 +5,7 @@ import {HeaderItem, HeaderScrolling, HeaderTopRow} from "@focus4/layout";
 import {colorScheme, toBem} from "@focus4/styling";
 import {IconButton, Switch} from "@focus4/toolbox";
 
-import {signOut, userStore} from "../server";
+import {config, signOut, userStore} from "../server";
 
 import css from "./__style__/header.css";
 
@@ -16,7 +16,10 @@ export function Header({children}: {children?: ReactNode}) {
         <HeaderScrolling canDeploy={false} theme={{scrolling: theme.header()}}>
             <HeaderTopRow>
                 <HeaderItem theme={{item: theme.item()}}>
-                    <strong>Starter Kit Focus v4</strong>
+                    <strong>Starter Kit .NET - Focus - TopModel - Azure</strong>
+                    <span>
+                        {config.environment} / {config.version}
+                    </span>
                 </HeaderItem>
                 <HeaderItem fillWidth theme={{item: theme.item()}}>
                     {children}

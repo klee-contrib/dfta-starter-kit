@@ -2,7 +2,7 @@ import {coreFetch} from "@focus4/core";
 
 import {getTokenRedirect} from "./msal";
 
-export {ensureSignedIn, signOut, userStore} from "./msal";
+export {config, ensureSignedIn, signOut, userStore} from "./msal";
 
 export async function fetch(
     method: "DELETE" | "GET" | "POST" | "PUT",

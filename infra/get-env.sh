@@ -3,6 +3,8 @@
 
 echo "COMPOSE_PROJECT_NAME='kleecontrib-dfta'" > ../sources/.env
 
+terraform workspace select dev
+
 state=$(terraform show -json)
 
 tenant_id=$(echo $state | jq -r '.values.root_module.child_modules[] | select(.address == "module.aad") | .resources[] | select(.address == "module.aad.data.azuread_client_config.current") | .values.tenant_id')
@@ -16,4 +18,4 @@ echo "back_client_id='$back_client_id'" >> ../sources/.env
 echo "audience='$audience'" >> ../sources/.env
 
 mkdir -p ../sources/front/public
-echo "{\"environment\": \"dev\", \"clientId\": \""$front_client_id"\", \"tenantId\": \""$tenant_id"\", \"audience\": \""$audience"\"}" > ../sources/front/public/config.json
+echo "{\"environment\": \"local\", \"version\": \"main\", \"clientId\": \""$front_client_id"\", \"tenantId\": \""$tenant_id"\", \"audience\": \""$audience"\"}" > ../sources/front/public/config.json

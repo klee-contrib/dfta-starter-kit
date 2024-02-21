@@ -12,7 +12,8 @@ export const config = {
     version: "",
     clientId: "",
     tenantId: "",
-    audience: ""
+    audience: "",
+    environment: ""
 };
 
 let msal: PublicClientApplication;

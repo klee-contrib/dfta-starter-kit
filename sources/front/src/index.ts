@@ -4,8 +4,7 @@ import {initColorScheme} from "@focus4/styling";
 import {getProfils} from "./services/securite/profil";
 
 import {router} from "./router";
-import {ensureSignedIn} from "./server";
-import {config} from "./server/msal";
+import {config, ensureSignedIn} from "./server";
 
 initColorScheme();
 
