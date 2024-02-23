@@ -76,6 +76,7 @@ resource "azuredevops_git_permissions" "main" {
   principal  = data.azuredevops_group.contributors.id
 
   permissions = {
+    "ForcePush" = "Deny"
     "PolicyExempt" = "Allow"
   }
 }
