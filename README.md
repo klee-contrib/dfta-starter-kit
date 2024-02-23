@@ -17,7 +17,9 @@ Pour démarrer un projet avec ce starter kit, vous avez besoin :
 - D'un abonnement Azure. Vous pouvez utiliser des crédits gratuits ou bien les crédits lié à votre abonnement MSDN, si vous en avez un, pour commencer.
 - D'une organisation Azure DevOps. Vous pouvez la créer gratuitement [par ici](https://azure.microsoft.com/fr-fr/products/devops/). Le niveau gratuit inclus 5 utilisateurs (sans compter ceux qui ont un abonnement MSDN qui ont une licence incluse) et 30h de build par mois.
 
-Vous pouvez ensuite cloner le projet, lancer le terraform qui va créer le projet Azure DevOps et un environnement de dev, puis push le code sur votre nouveau repository sur DevOps.
+Vous pouvez ensuite cloner le projet. Le script `rename-project.fsx` (qui se lance avec la commande `dotnet fsi rename-project.fsx {client} {projet} {application}`) vous permettra de renommer les différents fichiers du projet pour mettre ce que vous voulez à la place de "KleeContrib" ou "DFTA".
+
+Vous pouvez ensuite lancer le terraform qui va créer le projet Azure DevOps et un environnement de dev, puis push le code sur votre nouveau repository sur DevOps.
 
 ## Rubriques
 

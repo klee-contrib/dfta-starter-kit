@@ -4,7 +4,7 @@ Les mises à jour de base de données sont gérées par Entity Framework, via l'
 
 Le projet C# courant (`KleeContrib.Dfta.Migrations`) a pour but de gérer ces migrations séparément de l'applicatif back. Il référence le DbContext et l'utilise pour générer les migrations.
 
-La commande `dotnet ef migrations add XXXXX` permet de créer une nouvelle migration à partir de l'état de la base de données après la dernière migration générée (conservé dans `Migrations/KleeContribDFTADbContextModelSnapshot.cs`). La commande `dotnet ef database update` permet ensuite de jouer cette migration en base de données.
+La commande `dotnet ef migrations add XXXXX` permet de créer une nouvelle migration à partir de l'état de la base de données après la dernière migration générée (conservé dans `Migrations/KleeContribDftaDbContextModelSnapshot.cs`). La commande `dotnet ef database update` permet ensuite de jouer cette migration en base de données.
 
 L'exécutable est configuré pour récupérer les infos de connexion depuis les variables d'environnement. Pour le dev local, elles sont toutes définies dans le fichier `env.sh`. Pour l'utiliser, dans la console Git Bash, il faut faire un `source env.sh` avant de lancer les commandes `dotnet ef`.
 
