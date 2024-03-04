@@ -9,7 +9,7 @@ import {StarterMenu} from "./menu";
 import {Profils} from "./profils";
 import {Utilisateurs} from "./utilisateurs";
 
-import "./__style__/main.css";
+import "../main.css";
 
 export function Main() {
     return useObserver(() => (

@@ -7,7 +7,7 @@ import {baseConfig, cssAutoModules} from "@focus4/tooling";
 export default defineConfig({
     ...baseConfig,
     base: "",
-    plugins: [cssAutoModules(/^\/src/), react(), checker({typescript: true})],
+    plugins: [cssAutoModules(/^\/src\/(.+)\//), react(), checker({typescript: true})],
     server: {
         port: 1357,
         proxy: {

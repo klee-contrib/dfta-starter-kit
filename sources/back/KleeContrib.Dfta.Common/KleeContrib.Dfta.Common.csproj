@@ -6,8 +6,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Kinetix.Modeling" Version="1.0.6" />
-		<PackageReference Include="Kinetix.Services.Annotations" Version="1.0.1" />
+		<PackageReference Include="Kinetix.Modeling" Version="8.0.0" />
+		<PackageReference Include="Kinetix.Services.Annotations" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>
