@@ -14,7 +14,7 @@
 	  <PackageReference Include="Kinetix.Services" Version="1.1.5" />
 	  <PackageReference Include="Kinetix.Web" Version="1.1.1" />
 	  <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
-	  <PackageReference Include="Microsoft.Identity.Web" Version="2.17.0" />
+	  <PackageReference Include="Microsoft.Identity.Web" Version="2.17.1" />
 	</ItemGroup>
 
 	<ItemGroup>
