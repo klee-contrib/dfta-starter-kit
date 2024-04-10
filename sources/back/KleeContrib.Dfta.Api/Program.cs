@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using Azure.Core;
+using Azure.Identity;
 using Kinetix.EFCore;
 using Kinetix.Monitoring.Core;
 using Kinetix.Monitoring.Insights;
@@ -11,6 +13,7 @@ using KleeContrib.Dfta.Clients.Db.Securite.Profils;
 using KleeContrib.Dfta.Securite.Commands.Implementations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -38,6 +41,20 @@ services
         options.FallbackPolicy = options.DefaultPolicy;
     });
 
+var dataSourceBuilder = new NpgsqlDataSourceBuilder(builder.Configuration.GetDatabaseConnectionString());
+
+if (string.IsNullOrWhiteSpace(builder.Configuration["Database:Password"]))
+{
+    var credential = new DefaultAzureCredential();
+
+    dataSourceBuilder.UsePeriodicPasswordProvider(
+        async (settings, ct) => (await credential.GetTokenAsync(new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct)).Token,
+        TimeSpan.FromMinutes(5),
+        TimeSpan.FromSeconds(5));
+}
+
+await using var dataSource = dataSourceBuilder.Build();
+
 services
     .AddMonitoring()
     .AddServices("KleeContrib.Dfta", o =>
@@ -46,7 +63,7 @@ services
         o.AddAssemblies(typeof(ProfilCommands).Assembly);
     })
     .AddEFCore<KleeContribDftaDbContext>(o => o
-        .UseNpgsql(builder.Configuration.GetDatabaseConnectionString())
+        .UseNpgsql(dataSource)
         .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
 services

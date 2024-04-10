@@ -23,11 +23,6 @@ variable "database_server_name" {
   nullable = false
 }
 
-variable "database_app_secret" {
-  type     = string
-  nullable = false
-}
-
 variable "region" {
   type     = string
   nullable = false

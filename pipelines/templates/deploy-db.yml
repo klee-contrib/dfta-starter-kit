@@ -12,7 +12,6 @@ jobs:
     variables:
       database-server: dfta-db-${{parameters.env}}.postgres.database.azure.com
       database-name: kleecontrib_dfta
-      database-admin-userid: dfta_root
 
     pool: DFTA-${{parameters.env}}
     workspace:
@@ -21,13 +20,16 @@ jobs:
     steps:
       - checkout: none
 
-      - task: AzureKeyVault@2
-        displayName: Get secrets
+      - task: AzureCLI@2
+        displayName: Get Azure PGSQL Credentials
         inputs:
-          connectedServiceName: ${{parameters.azureSub}}
-          keyVaultName: dfta-vault-${{parameters.env}}
-          secretsFilter: database-admin-secret,database-app-secret,database-read-secret
-          runAsPreJob: true
+          addSpnToEnvironment: true
+          scriptType: bash
+          azureSubscription: ${{parameters.azureSub}}
+          scriptLocation: inlineScript
+          inlineScript: |
+            echo "##vso[task.setvariable variable=database-admin-userid]$(az ad sp show --id $servicePrincipalId --query [displayName][0] -o tsv)"
+            echo "##vso[task.setvariable variable=database-admin-secret;issecret=true]$(az account get-access-token --resource-type oss-rdbms --query '[accessToken]' -o tsv)"
 
       - download: ${{parameters.pipeline}}
         displayName: Download DB
@@ -58,8 +60,7 @@ jobs:
           database_name: $(database-name)
           database_admin_userid: $(database-admin-userid)
           database_admin_secret: $(database-admin-secret)
-          database_app_secret: $(database-app-secret)
-          database_read_secret: $(database-read-secret)
+          database_app_userid: dfta-api-${{parameters.env}}
         inputs:
           ${{if eq(parameters.pipeline, 'current')}}:
             scriptPath: $(Pipeline.Workspace)/DB/recreate-db.sh

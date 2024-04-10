@@ -1,3 +1,10 @@
+data "azurerm_client_config" "current" {
+}
+
+data "azuread_user" "current" {
+  object_id = data.azurerm_client_config.current.object_id
+}
+
 resource "azurerm_private_dns_zone" "dns_zone" {
   name                = "${terraform.workspace}.${var.app_name}.private.postgres.database.azure.com"
   resource_group_name = var.rg_name
@@ -11,26 +18,47 @@ resource "azurerm_private_dns_zone_virtual_network_link" "link" {
   registration_enabled  = true
 }
 
-resource "random_password" "root" {
-  length  = 32
-  special = false
-}
-
 resource "azurerm_postgresql_flexible_server" "database" {
   resource_group_name = var.rg_name
   name                = "${var.app_name}-db-${terraform.workspace}"
   location            = var.region
 
-  administrator_login    = "${var.app_name}_root"
-  administrator_password = random_password.root.result
-  sku_name               = var.sku_name
-  storage_mb             = var.storage_mb
-  version                = var.pg_version
-  zone                   = var.zone
+  sku_name   = var.sku_name
+  storage_mb = var.storage_mb
+  version    = var.pg_version
+  zone       = var.zone
 
   delegated_subnet_id = var.snet_id
   private_dns_zone_id = azurerm_private_dns_zone.dns_zone.id
   depends_on          = [azurerm_private_dns_zone_virtual_network_link.link]
+
+  authentication {
+    active_directory_auth_enabled = true
+    password_auth_enabled         = false
+    tenant_id                     = data.azurerm_client_config.current.tenant_id
+  }
+}
+
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "terraform" {
+  server_name         = azurerm_postgresql_flexible_server.database.name
+  resource_group_name = var.rg_name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = data.azurerm_client_config.current.object_id
+  principal_name      = data.azuread_user.current.mail
+  principal_type      = "User"
+}
+
+data "azuread_service_principal" "devops" {
+  display_name = "${var.devops_organisation}-${var.devops_project_name}-${data.azurerm_client_config.current.subscription_id}"
+}
+
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "devops" {
+  server_name         = azurerm_postgresql_flexible_server.database.name
+  resource_group_name = var.rg_name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = data.azuread_service_principal.devops.object_id
+  principal_name      = data.azuread_service_principal.devops.display_name
+  principal_type      = "ServicePrincipal"
 }
 
 resource "azurerm_postgresql_flexible_server_configuration" "lc_monetary" {
@@ -55,10 +83,4 @@ resource "azurerm_postgresql_flexible_server_configuration" "extensions" {
   server_id = azurerm_postgresql_flexible_server.database.id
   name      = "azure.extensions"
   value     = "unaccent,uuid-ossp"
-}
-
-resource "azurerm_key_vault_secret" "database_admin_secret" {
-  key_vault_id = var.vault_id
-  name         = "database-admin-secret"
-  value        = azurerm_postgresql_flexible_server.database.administrator_password
 }

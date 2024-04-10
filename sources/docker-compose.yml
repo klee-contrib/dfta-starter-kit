@@ -8,7 +8,8 @@ services:
       context: back
     environment:
       Database__Server: bdd
-      Database__Password: dfta_app
+      Database__User_Id: dfta-api-local
+      Database__Password: local
       Database__Ssl_Mode: Disable
 
       AzureAd__ClientId: ${back_client_id}

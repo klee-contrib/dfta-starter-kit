@@ -63,16 +63,18 @@ module "monitoring" {
 module "database" {
   source = "./database"
 
-  app_name   = var.app_name
-  pg_version = var.database_pg_version
-  region     = var.region
-  rg_name    = azurerm_resource_group.rg.name
-  sku_name   = var.database_sku_name
-  storage_mb = var.database_storage_mb
-  snet_id    = module.vnet.snet_db_id
-  vault_id   = module.vault.id
-  vnet_id    = module.vnet.vnet_id
-  zone       = var.database_zone
+  app_name            = var.app_name
+  devops_organisation = var.devops_organisation
+  devops_project_name = var.devops_project_name
+  pg_version          = var.database_pg_version
+  region              = var.region
+  rg_name             = azurerm_resource_group.rg.name
+  sku_name            = var.database_sku_name
+  storage_mb          = var.database_storage_mb
+  snet_id             = module.vnet.snet_db_id
+  vault_id            = module.vault.id
+  vnet_id             = module.vnet.vnet_id
+  zone                = var.database_zone
 }
 
 module "back" {
@@ -82,7 +84,6 @@ module "back" {
   aad_audience         = module.aad.audience
   ai_key               = module.monitoring.instrumentation_key
   app_name             = var.app_name
-  database_app_secret  = module.database.app_secret
   database_server_name = module.database.server_name
   region               = var.region
   rg_name              = azurerm_resource_group.rg.name

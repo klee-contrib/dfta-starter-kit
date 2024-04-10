@@ -24,6 +24,10 @@ resource "azurerm_linux_web_app" "back" {
   site_config {
   }
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   app_settings = {
     ASPNETCORE_ENVIRONMENT = title(terraform.workspace)
 
@@ -33,7 +37,7 @@ resource "azurerm_linux_web_app" "back" {
     AzureAd__ClientId = var.aad_client_id
     AzureAd__TenantId = data.azuread_client_config.current.tenant_id
 
-    Database__Server   = var.database_server_name
-    Database__Password = var.database_app_secret
+    Database__Server  = var.database_server_name
+    Database__User_Id = "${var.app_name}-api-${terraform.workspace}"
   }
 }
