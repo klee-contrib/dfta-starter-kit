@@ -13,11 +13,11 @@
         "start": "vite"
     },
     "dependencies": {
-        "@azure/msal-browser": "3.11.0",
-        "focus4": "11.16.4"
+        "@azure/msal-browser": "3.14.0",
+        "focus4": "11.17.7"
     },
     "devDependencies": {
-        "@focus4/tooling": "11.16.4"
+        "@focus4/tooling": "11.17.5"
     },
     "peerDependencies": {
         "@focus4/collections": "*",
