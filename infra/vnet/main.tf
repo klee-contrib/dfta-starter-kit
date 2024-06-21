@@ -32,21 +32,6 @@ resource "azurerm_subnet" "db" {
   resource_group_name  = var.rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [cidrsubnet(var.cidr, 8, 2)]
-
-  service_endpoints = [
-    "Microsoft.Storage"
-  ]
-
-  delegation {
-    name = "pgsql-server"
-
-    service_delegation {
-      name = "Microsoft.DBforPostgreSQL/flexibleServers"
-      actions = [
-        "Microsoft.Network/virtualNetworks/subnets/join/action",
-      ]
-    }
-  }
 }
 
 resource "azurerm_subnet" "agent" {

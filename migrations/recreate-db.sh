@@ -16,7 +16,7 @@ then
     query postgres "DO \$\$ BEGIN CREATE USER \"$database_app_userid\" WITH PASSWORD 'local'; EXCEPTION WHEN duplicate_object THEN null; END \$\$"
 else
     echo 'Service principal'
-    query postgres "DO \$\$ BEGIN select * from pgaadauth_create_principal('$database_app_userid', false, false); EXCEPTION WHEN duplicate_object THEN null; END \$\$"
+    query postgres "DO \$\$ BEGIN PERFORM pgaadauth_create_principal('$database_app_userid', false, false); EXCEPTION WHEN duplicate_object THEN null; END \$\$"
 fi
 
 query postgres "GRANT pg_signal_backend TO \"$database_admin_userid\""

@@ -6,7 +6,7 @@ data "azuread_user" "current" {
 }
 
 resource "azurerm_private_dns_zone" "dns_zone" {
-  name                = "${terraform.workspace}.${var.app_name}.private.postgres.database.azure.com"
+  name                = "privatelink.postgres.database.azure.com"
   resource_group_name = var.rg_name
 }
 
@@ -23,19 +23,37 @@ resource "azurerm_postgresql_flexible_server" "database" {
   name                = "${var.app_name}-db-${terraform.workspace}"
   location            = var.region
 
+  public_network_access_enabled = false
+
   sku_name   = var.sku_name
   storage_mb = var.storage_mb
   version    = var.pg_version
   zone       = var.zone
 
-  delegated_subnet_id = var.snet_id
-  private_dns_zone_id = azurerm_private_dns_zone.dns_zone.id
-  depends_on          = [azurerm_private_dns_zone_virtual_network_link.link]
 
   authentication {
     active_directory_auth_enabled = true
     password_auth_enabled         = false
     tenant_id                     = data.azurerm_client_config.current.tenant_id
+  }
+}
+
+resource "azurerm_private_endpoint" "database" {
+  name                = "${var.app_name}-db-${terraform.workspace}-pe"
+  location            = var.region
+  resource_group_name = var.rg_name
+  subnet_id           = var.snet_id
+
+  private_service_connection {
+    name                           = "database"
+    private_connection_resource_id = azurerm_postgresql_flexible_server.database.id
+    subresource_names              = ["postgresqlServer"]
+    is_manual_connection           = false
+  }
+
+  private_dns_zone_group {
+    name                 = "database"
+    private_dns_zone_ids = [azurerm_private_dns_zone.dns_zone.id]
   }
 }
 

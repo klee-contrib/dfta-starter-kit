@@ -74,6 +74,11 @@
           "type": "boolean",
           "description": "Si les libellés des listes de références doivent être traduits.",
           "default": "true"
+        },
+        "translateProperties": {
+          "type": "boolean",
+          "description": "Si les libellés des propriétés doivent être traduits.",
+          "default": "true"
         }
       }
     },
@@ -162,6 +167,16 @@
           "outputDirectory": {
             "type": "string",
             "description": "Racine du répertoire de génération."
+          },
+          "translateReferences": {
+            "type": "boolean",
+            "description": "Si les libellés des listes de références doivent être traduits.",
+            "default": "true"
+          },
+          "translateProperties": {
+            "type": "boolean",
+            "description": "Si les libellés des propriétés doivent être traduits.",
+            "default": "true"
           },
           "ignoreDefaultValues": {
             "type": "boolean",
@@ -411,8 +426,8 @@
           },
           "apiClientFilePath": {
             "type": "string",
-            "description": "Chemin vers lequel sont créés les fichiers d'endpoints générés, relatif à la racine de l'API.",
-            "default": "{module}"
+            "description": "Chemin vers lequel sont créés les fichiers d'endpoints générés, relatif à la racine de l'API. En mode Angular, la valeur par défaut est `{module}/{fileName}.service`",
+            "default": "{module}/{fileName}"
           },
           "fetchPath": {
             "type": "string",
@@ -429,6 +444,7 @@
             "default": "focus",
             "enum": [
               "angular",
+              "angular_promise",
               "vanilla",
               "nuxt"
             ]
@@ -458,6 +474,11 @@
           "translateReferences": {
             "type": "boolean",
             "description": "Si les listes de référence doivent être traduites",
+            "default": "true"
+          },
+          "translateProperties": {
+            "type": "boolean",
+            "description": "Si les libellés des propriétés doivent être traduits",
             "default": "true"
           },
           "generateComments": {
@@ -547,6 +568,16 @@
             "type": "string",
             "description": "Racine du répertoire de génération."
           },
+          "translateReferences": {
+            "type": "boolean",
+            "description": "Si les libellés des listes de références doivent être traduits.",
+            "default": "true"
+          },
+          "translateProperties": {
+            "type": "boolean",
+            "description": "Si les libellés des propriétés doivent être traduits.",
+            "default": "true"
+          },
           "ignoreDefaultValues": {
             "type": "boolean",
             "description": "Désactive la génération des valeurs par défaut des propriétés dans les classes et endpoints générés avec cette configuration."
@@ -611,6 +642,15 @@
           "resourcesPath": {
             "type": "string",
             "description": "Localisation des ressources, relative au répertoire de génération."
+          },
+          "resourcesEncoding": {
+            "type": "string",
+            "description": "Encodage des fichiers de resource.",
+            "default": "Latin1",
+            "enum": [
+              "Latin1",
+              "UTF8"
+            ]
           },
           "useJdbc": {
             "type": "boolean",
@@ -763,6 +803,20 @@
             "type": "string",
             "description": "Racine du répertoire de génération."
           },
+          "translateReferences": {
+            "type": "boolean",
+            "description": "Si les libellés des listes de références doivent être traduits.",
+            "default": "true"
+          },
+          "translateProperties": {
+            "type": "boolean",
+            "description": "Si les libellés des propriétés doivent être traduits.",
+            "default": "true"
+          },
+          "resourcesTableName": {
+            "type": "string",
+            "description": "Nom de la table dans laquelle doivent être insérées les traductions."
+          },
           "ignoreDefaultValues": {
             "type": "boolean",
             "description": "Désactive la génération des valeurs par défaut des propriétés dans les classes et endpoints générés avec cette configuration."
@@ -799,6 +853,10 @@
               "commentFile": {
                 "type": "string",
                 "description": "Emplacement du fichier de création des commentaires."
+              },
+              "resourceFile": {
+                "type": "string",
+                "description": "Emplacement du fichier d'insertion des resources (libellés traduits)."
               },
               "initListFile": {
                 "type": "string",
@@ -900,6 +958,16 @@
           "outputDirectory": {
             "type": "string",
             "description": "Racine du répertoire de génération."
+          },
+          "translateReferences": {
+            "type": "boolean",
+            "description": "Si les libellés des listes de références doivent être traduits.",
+            "default": "true"
+          },
+          "translateProperties": {
+            "type": "boolean",
+            "description": "Si les libellés des propriétés doivent être traduits.",
+            "default": "true"
           },
           "ignoreDefaultValues": {
             "type": "boolean",
