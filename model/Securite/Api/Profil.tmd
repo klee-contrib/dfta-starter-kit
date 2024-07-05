@@ -4,7 +4,6 @@ tags:
   - back
   - front
 uses:
-  - decorators
   - Securite/Commands/Profil
   - Securite/Data/Profil
   - Securite/Queries/Profil
@@ -15,8 +14,6 @@ endpoint:
   method: POST
   route: api/profils
   description: Ajoute un Profil
-  decorators:
-    - Security: ["hasRole('CREATE')"]
   params:
     - composition: ProfilWrite
       comment: Profil à sauvegarder
@@ -31,8 +28,6 @@ endpoint:
   method: GET
   route: api/profils/{proId}
   description: Charge le détail d'un Profil
-  decorators:
-    - Security: ["hasRole('READ')"]
   # Liste des paramètres du endpoint. Ce sont des propriétés de modèle comme pour les classes. Il peut ne pas y en avoir.
   params:
     - alias:
@@ -49,8 +44,6 @@ endpoint:
   method: GET
   route: api/profils
   description: Liste tous les Profils
-  decorators:
-    - Security: ["hasRole('READ')"]
   returns:
     composition: ProfilItem
     name: ProfilList
@@ -62,8 +55,6 @@ endpoint:
   method: PUT
   route: api/profils/{proId}
   description: Sauvegarde un Profil
-  decorators:
-    - Security: ["hasRole('UPDATE')"]
   params:
     - alias:
         class: Profil

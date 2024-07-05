@@ -36,10 +36,10 @@ class:
           DateCreation: false
           DateModification: false
   values:
-   Profil1: {Id: 1, Libelle: "Profil 1", DateCreation: now}
-   Profil2: {Id: 2, Libelle: "Profil 2", DateCreation: now}
-   Profil3: {Id: 3, Libelle: "Profil 3", DateCreation: now}
-   Profil4: {Id: 4, Libelle: "Profil 4", DateCreation: now}
+    Profil1: { Id: 1, Libelle: "Profil 1", DateCreation: now }
+    Profil2: { Id: 2, Libelle: "Profil 2", DateCreation: now }
+    Profil3: { Id: 3, Libelle: "Profil 3", DateCreation: now }
+    Profil4: { Id: 4, Libelle: "Profil 4", DateCreation: now }
 ---
 class:
   name: DroitProfil
@@ -55,7 +55,7 @@ class:
       primaryKey: true
       comment: Profil.
   values:
-    DroitProfil1 : { DroitCode: "CREATE", ProfilId: "1"}
-    DroitProfil2 : { DroitCode: "READ", ProfilId: "2"}
-    DroitProfil3 : { DroitCode: "UPDATE", ProfilId: "3"}
-    DroitProfil4 : { DroitCode: "DELETE", ProfilId: "4"}
+    DroitProfil1: { DroitCode: "CREATE", ProfilId: "1" }
+    DroitProfil2: { DroitCode: "READ", ProfilId: "2" }
+    DroitProfil3: { DroitCode: "UPDATE", ProfilId: "3" }
+    DroitProfil4: { DroitCode: "DELETE", ProfilId: "4" }

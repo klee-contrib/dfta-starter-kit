@@ -47,5 +47,3 @@ class:
     from:
       - params:
           - class: Utilisateur
-    to:
-      - class: Utilisateur

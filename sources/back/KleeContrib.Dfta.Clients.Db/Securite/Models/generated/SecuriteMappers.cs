@@ -13,40 +13,6 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
 public static class SecuriteMappers
 {
     /// <summary>
-    /// Crée une nouvelle instance de 'ProfilItem'.
-    /// </summary>
-    /// <param name="profil">Instance de 'Profil'.</param>
-    /// <returns>Une nouvelle instance de 'ProfilItem'.</returns>
-    public static ProfilItem CreateProfilItem(Profil profil)
-    {
-        ArgumentNullException.ThrowIfNull(profil);
-
-        return new ProfilItem
-        {
-            Id = profil.Id,
-            Libelle = profil.Libelle
-        };
-    }
-
-    /// <summary>
-    /// Crée une nouvelle instance de 'ProfilRead'.
-    /// </summary>
-    /// <param name="profil">Instance de 'Profil'.</param>
-    /// <returns>Une nouvelle instance de 'ProfilRead'.</returns>
-    public static ProfilRead CreateProfilRead(Profil profil)
-    {
-        ArgumentNullException.ThrowIfNull(profil);
-
-        return new ProfilRead
-        {
-            Id = profil.Id,
-            Libelle = profil.Libelle,
-            DateCreation = profil.DateCreation,
-            DateModification = profil.DateModification
-        };
-    }
-
-    /// <summary>
     /// Crée une nouvelle instance de 'UtilisateurItem'.
     /// </summary>
     /// <param name="utilisateur">Instance de 'Utilisateur'.</param>
@@ -94,42 +60,24 @@ public static class SecuriteMappers
     /// Mappe 'Profil' vers 'Profil'.
     /// </summary>
     /// <param name="source">Instance de 'Profil'.</param>
-    /// <param name="dest">Instance pré-existante de 'Profil'. Une nouvelle instance sera créée si non spécifié.</param>
-    /// <returns>Une instance de 'Profil'.</returns>
-    public static Profil ToProfil(this Profil source, Profil dest = null)
+    /// <returns>Une nouvelle instance de 'Profil'.</returns>
+    public static Profil ToProfil(this Profil source)
     {
-        dest ??= new Profil();
-        dest.Libelle = source.Libelle;
-        return dest;
+        return new Profil
+        {
+            Libelle = source.Libelle
+        };
     }
 
     /// <summary>
-    /// Mappe 'ProfilItem' vers 'Profil'.
+    /// Mappe 'Profil' vers 'Profil'.
     /// </summary>
-    /// <param name="source">Instance de 'ProfilItem'.</param>
-    /// <param name="dest">Instance pré-existante de 'Profil'. Une nouvelle instance sera créée si non spécifié.</param>
-    /// <returns>Une instance de 'Profil'.</returns>
-    public static Profil ToProfil(this ProfilItem source, Profil dest = null)
+    /// <param name="source">Instance de 'Profil'.</param>
+    /// <param name="dest">Instance pré-existante de 'Profil'.</param>
+    /// <returns>L'instance pré-existante de 'Profil'.</returns>
+    public static Profil ToProfil(this Profil source, Profil dest)
     {
-        dest ??= new Profil();
-        dest.Id = source.Id;
         dest.Libelle = source.Libelle;
-        return dest;
-    }
-
-    /// <summary>
-    /// Mappe 'ProfilRead' vers 'Profil'.
-    /// </summary>
-    /// <param name="source">Instance de 'ProfilRead'.</param>
-    /// <param name="dest">Instance pré-existante de 'Profil'. Une nouvelle instance sera créée si non spécifié.</param>
-    /// <returns>Une instance de 'Profil'.</returns>
-    public static Profil ToProfil(this ProfilRead source, Profil dest = null)
-    {
-        dest ??= new Profil();
-        dest.Id = source.Id;
-        dest.Libelle = source.Libelle;
-        dest.DateCreation = source.DateCreation;
-        dest.DateModification = source.DateModification;
         return dest;
     }
 
@@ -137,35 +85,28 @@ public static class SecuriteMappers
     /// Mappe 'ProfilWrite' vers 'Profil'.
     /// </summary>
     /// <param name="source">Instance de 'ProfilWrite'.</param>
-    /// <param name="dest">Instance pré-existante de 'Profil'. Une nouvelle instance sera créée si non spécifié.</param>
-    /// <returns>Une instance de 'Profil'.</returns>
-    public static Profil ToProfil(this ProfilWrite source, Profil dest = null)
+    /// <returns>Une nouvelle instance de 'Profil'.</returns>
+    public static Profil ToProfil(this ProfilWrite source)
     {
-        dest ??= new Profil();
-        dest.Libelle = source.Libelle;
-        return dest;
+        ArgumentNullException.ThrowIfNull(source.Libelle);
+
+        return new Profil
+        {
+            Libelle = source.Libelle
+        };
     }
 
     /// <summary>
-    /// Mappe 'UtilisateurRead' vers 'Utilisateur'.
+    /// Mappe 'ProfilWrite' vers 'Profil'.
     /// </summary>
-    /// <param name="source">Instance de 'UtilisateurRead'.</param>
-    /// <param name="dest">Instance pré-existante de 'Utilisateur'. Une nouvelle instance sera créée si non spécifié.</param>
-    /// <returns>Une instance de 'Utilisateur'.</returns>
-    public static Utilisateur ToUtilisateur(this UtilisateurRead source, Utilisateur dest = null)
+    /// <param name="source">Instance de 'ProfilWrite'.</param>
+    /// <param name="dest">Instance pré-existante de 'Profil'.</param>
+    /// <returns>L'instance pré-existante de 'Profil'.</returns>
+    public static Profil ToProfil(this ProfilWrite source, Profil dest)
     {
-        dest ??= new Utilisateur();
-        dest.Id = source.Id;
-        dest.Nom = source.Nom;
-        dest.Prenom = source.Prenom;
-        dest.Email = source.Email;
-        dest.DateNaissance = source.DateNaissance;
-        dest.Adresse = source.Adresse;
-        dest.Actif = source.Actif;
-        dest.ProfilId = source.ProfilId;
-        dest.TypeUtilisateurCode = source.TypeUtilisateurCode;
-        dest.DateCreation = source.DateCreation;
-        dest.DateModification = source.DateModification;
+        ArgumentNullException.ThrowIfNull(source.Libelle);
+
+        dest.Libelle = source.Libelle;
         return dest;
     }
 
@@ -173,19 +114,52 @@ public static class SecuriteMappers
     /// Mappe 'UtilisateurWrite' vers 'Utilisateur'.
     /// </summary>
     /// <param name="source">Instance de 'UtilisateurWrite'.</param>
-    /// <param name="dest">Instance pré-existante de 'Utilisateur'. Une nouvelle instance sera créée si non spécifié.</param>
-    /// <returns>Une instance de 'Utilisateur'.</returns>
-    public static Utilisateur ToUtilisateur(this UtilisateurWrite source, Utilisateur dest = null)
+    /// <returns>Une nouvelle instance de 'Utilisateur'.</returns>
+    public static Utilisateur ToUtilisateur(this UtilisateurWrite source)
     {
-        dest ??= new Utilisateur();
+        ArgumentNullException.ThrowIfNull(source.Nom);
+        ArgumentNullException.ThrowIfNull(source.Prenom);
+        ArgumentNullException.ThrowIfNull(source.Email);
+        ArgumentNullException.ThrowIfNull(source.Actif);
+        ArgumentNullException.ThrowIfNull(source.ProfilId);
+        ArgumentNullException.ThrowIfNull(source.TypeUtilisateurCode);
+
+        return new Utilisateur
+        {
+            Nom = source.Nom,
+            Prenom = source.Prenom,
+            Email = source.Email,
+            DateNaissance = source.DateNaissance,
+            Adresse = source.Adresse,
+            Actif = source.Actif.Value,
+            ProfilId = source.ProfilId.Value,
+            TypeUtilisateurCode = source.TypeUtilisateurCode.Value
+        };
+    }
+
+    /// <summary>
+    /// Mappe 'UtilisateurWrite' vers 'Utilisateur'.
+    /// </summary>
+    /// <param name="source">Instance de 'UtilisateurWrite'.</param>
+    /// <param name="dest">Instance pré-existante de 'Utilisateur'.</param>
+    /// <returns>L'instance pré-existante de 'Utilisateur'.</returns>
+    public static Utilisateur ToUtilisateur(this UtilisateurWrite source, Utilisateur dest)
+    {
+        ArgumentNullException.ThrowIfNull(source.Nom);
+        ArgumentNullException.ThrowIfNull(source.Prenom);
+        ArgumentNullException.ThrowIfNull(source.Email);
+        ArgumentNullException.ThrowIfNull(source.Actif);
+        ArgumentNullException.ThrowIfNull(source.ProfilId);
+        ArgumentNullException.ThrowIfNull(source.TypeUtilisateurCode);
+
         dest.Nom = source.Nom;
         dest.Prenom = source.Prenom;
         dest.Email = source.Email;
         dest.DateNaissance = source.DateNaissance;
         dest.Adresse = source.Adresse;
-        dest.Actif = source.Actif;
-        dest.ProfilId = source.ProfilId;
-        dest.TypeUtilisateurCode = source.TypeUtilisateurCode;
+        dest.Actif = source.Actif.Value;
+        dest.ProfilId = source.ProfilId.Value;
+        dest.TypeUtilisateurCode = source.TypeUtilisateurCode.Value;
         return dest;
     }
 }

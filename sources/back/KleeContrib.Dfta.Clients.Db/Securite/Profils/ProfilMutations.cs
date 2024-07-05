@@ -22,7 +22,7 @@ public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutation
         await context.Profils.AddAsync(profilDb);
         await context.SaveChangesAsync();
 
-        await context.DroitProfils.AddRangeAsync(profil.DroitCodes.Select(x => new DroitProfil
+        await context.DroitProfils.AddRangeAsync((profil.DroitCodes ?? []).Select(x => new DroitProfil
         {
             DroitCode = x,
             ProfilId = profilDb.Id
@@ -30,7 +30,7 @@ public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutation
 
         await context.SaveChangesAsync();
 
-        return profilDb.Id.Value;
+        return profilDb.Id;
     }
 
     /// <inheritdoc cref="IProfilMutations.UpdateProfil" />
@@ -38,10 +38,11 @@ public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutation
     {
         var profilDb = await context.Profils.AsTracking().SingleAsync(x => x.Id == proId);
         profilDb = profil.ToProfil(profilDb);
+        profilDb.DateModification = DateTime.UtcNow;
 
         context.DroitProfils.RemoveRange(context.DroitProfils.Where(x => x.ProfilId == proId));
 
-        await context.DroitProfils.AddRangeAsync(profil.DroitCodes.Select(x => new DroitProfil
+        await context.DroitProfils.AddRangeAsync((profil.DroitCodes ?? []).Select(x => new DroitProfil
         {
             DroitCode = x,
             ProfilId = profilDb.Id

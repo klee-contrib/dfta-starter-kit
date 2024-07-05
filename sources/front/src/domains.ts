@@ -20,6 +20,7 @@ export const DO_DATE = domain({
     InputComponent: InputDate,
     inputProps: {
         inputFormat: "dd/MM/yyyy",
+        ISOStringFormat: "date-only",
         inputProps: {icon: "calendar_month"}
     }
 });

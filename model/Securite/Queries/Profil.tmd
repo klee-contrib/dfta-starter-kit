@@ -25,13 +25,6 @@ class:
       domain: DO_ENTIER
       required: true
       comment: Nombre d'utilisateurs affectés au profil.
-  
-  mappers:
-    from:
-      - params:
-          - class: Profil
-    to:
-      - class: Profil
 ---
 class:
   name: ProfilRead
@@ -63,10 +56,3 @@ class:
       name: Utilisateurs
       domain: DO_LISTE
       comment: Utilisateurs ayant ce profil.
-
-  mappers:
-    from:
-      - params:
-          - class: Profil
-    to:
-      - class: Profil

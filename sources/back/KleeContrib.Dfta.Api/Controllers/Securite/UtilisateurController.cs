@@ -66,7 +66,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// <param name="typeUtilisateurCode">Type d'utilisateur</param>
     /// <returns>Utilisateurs matchant les critères</returns>
     [HttpGet("api/utilisateurs")]
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string nom = null, string prenom = null, string email = null, DateOnly? dateNaissance = null, string adresse = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
+    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, string? adresse = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
         return await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode);
     }

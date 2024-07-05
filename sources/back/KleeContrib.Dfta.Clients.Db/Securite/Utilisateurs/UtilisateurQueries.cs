@@ -21,7 +21,7 @@ public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateur
     }
 
     /// <inheritdoc cref="IUtilisateurQueries.SearchUtilisateur" />
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string nom = null, string prenom = null, string email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
+    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
         return await context.Utilisateurs.Where(x =>
             (string.IsNullOrEmpty(nom) || x.Nom == nom) &&

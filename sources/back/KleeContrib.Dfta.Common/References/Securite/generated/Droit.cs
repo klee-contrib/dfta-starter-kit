@@ -50,7 +50,7 @@ public partial record Droit
     [Column("dro_code")]
     [Domain(Domains.Code)]
     [Key]
-    public Codes? Code { get; set; }
+    public required Codes Code { get; set; }
 
     /// <summary>
     /// Libellé du droit.
@@ -59,7 +59,7 @@ public partial record Droit
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Libelle { get; set; }
+    public required string Libelle { get; set; }
 
     /// <summary>
     /// Type de profil pouvant faire l'action.
@@ -68,5 +68,5 @@ public partial record Droit
     [Required]
     [ReferencedType(typeof(TypeDroit))]
     [Domain(Domains.Code)]
-    public TypeDroit.Codes? TypeDroitCode { get; set; }
+    public required TypeDroit.Codes TypeDroitCode { get; set; }
 }

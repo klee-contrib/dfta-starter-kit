@@ -19,7 +19,7 @@ public partial record UtilisateurRead
     /// </summary>
     [Required]
     [Domain(Domains.Id)]
-    public int? Id { get; set; }
+    public required int Id { get; set; }
 
     /// <summary>
     /// Nom de l'utilisateur.
@@ -27,7 +27,7 @@ public partial record UtilisateurRead
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Nom { get; set; }
+    public required string Nom { get; set; }
 
     /// <summary>
     /// Nom de l'utilisateur.
@@ -35,14 +35,14 @@ public partial record UtilisateurRead
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Prenom { get; set; }
+    public required string Prenom { get; set; }
 
     /// <summary>
     /// Email de l'utilisateur.
     /// </summary>
     [Required]
     [Domain(Domains.Email)]
-    public string Email { get; set; }
+    public required string Email { get; set; }
 
     /// <summary>
     /// Age de l'utilisateur.
@@ -55,21 +55,21 @@ public partial record UtilisateurRead
     /// </summary>
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Adresse { get; set; }
+    public string? Adresse { get; set; }
 
     /// <summary>
     /// Si l'utilisateur est actif.
     /// </summary>
     [Required]
     [Domain(Domains.Booleen)]
-    public bool? Actif { get; set; } = true;
+    public bool Actif { get; set; } = true;
 
     /// <summary>
     /// Profil de l'utilisateur.
     /// </summary>
     [Required]
     [Domain(Domains.Id)]
-    public int? ProfilId { get; set; }
+    public required int ProfilId { get; set; }
 
     /// <summary>
     /// Type d'utilisateur.
@@ -77,14 +77,14 @@ public partial record UtilisateurRead
     [Required]
     [ReferencedType(typeof(TypeUtilisateur))]
     [Domain(Domains.Code)]
-    public TypeUtilisateur.Codes? TypeUtilisateurCode { get; set; } = TypeUtilisateur.Codes.GEST;
+    public TypeUtilisateur.Codes TypeUtilisateurCode { get; set; } = TypeUtilisateur.Codes.GEST;
 
     /// <summary>
     /// Date de création de l'utilisateur.
     /// </summary>
     [Required]
     [Domain(Domains.DateHeure)]
-    public DateTime? DateCreation { get; set; }
+    public required DateTime DateCreation { get; set; }
 
     /// <summary>
     /// Date de modification de l'utilisateur.

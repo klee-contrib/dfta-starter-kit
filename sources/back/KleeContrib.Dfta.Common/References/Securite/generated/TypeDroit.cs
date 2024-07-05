@@ -45,7 +45,7 @@ public partial record TypeDroit
     [Column("tdr_code")]
     [Domain(Domains.Code)]
     [Key]
-    public Codes? Code { get; set; }
+    public required Codes Code { get; set; }
 
     /// <summary>
     /// Libellé du type de droit.
@@ -54,5 +54,5 @@ public partial record TypeDroit
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Libelle { get; set; }
+    public required string Libelle { get; set; }
 }

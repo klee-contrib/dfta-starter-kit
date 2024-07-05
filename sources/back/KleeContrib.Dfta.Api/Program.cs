@@ -102,7 +102,7 @@ app.MapGet("api/adresses", async (string query) =>
 
     var client = new HttpClient();
     var response = await client.GetFromJsonAsync<Result>($"https://api-adresse.data.gouv.fr/search/?q={query}&limit=10");
-    return response.Features.Select(f => new { Key = f.Properties.Label, f.Properties.Label });
+    return response!.Features.Select(f => new { Key = f.Properties.Label, f.Properties.Label });
 });
 app.Run();
 

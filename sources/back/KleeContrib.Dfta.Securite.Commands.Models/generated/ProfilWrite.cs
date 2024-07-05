@@ -20,7 +20,7 @@ public partial record ProfilWrite
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Libelle { get; set; }
+    public string? Libelle { get; set; }
 
     /// <summary>
     /// Code du droit.
@@ -28,5 +28,5 @@ public partial record ProfilWrite
     [Required]
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.CodeListe)]
-    public Droit.Codes[] DroitCodes { get; set; }
+    public Droit.Codes[]? DroitCodes { get; set; }
 }

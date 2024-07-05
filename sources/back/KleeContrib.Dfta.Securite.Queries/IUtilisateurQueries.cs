@@ -25,5 +25,5 @@ public interface IUtilisateurQueries
     /// <param name="profilId">Profil de l'utilisateur</param>
     /// <param name="typeUtilisateurCode">Type d'utilisateur</param>
     /// <returns>Utilisateurs matchant les critères</returns>
-    Task<ICollection<UtilisateurItem>> SearchUtilisateur(string nom = null, string prenom = null, string email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null);
+    Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null);
 }

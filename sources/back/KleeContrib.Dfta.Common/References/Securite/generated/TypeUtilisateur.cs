@@ -45,7 +45,7 @@ public partial record TypeUtilisateur
     [Column("tut_code")]
     [Domain(Domains.Code)]
     [Key]
-    public Codes? Code { get; set; }
+    public required Codes Code { get; set; }
 
     /// <summary>
     /// Libellé du type d'utilisateur.
@@ -54,5 +54,5 @@ public partial record TypeUtilisateur
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Libelle { get; set; }
+    public required string Libelle { get; set; }
 }

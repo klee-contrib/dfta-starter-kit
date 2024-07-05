@@ -21,7 +21,7 @@ public partial record Profil
     [Column("pro_id")]
     [Domain(Domains.Id)]
     [Key]
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// Libellé du profil.
@@ -30,7 +30,7 @@ public partial record Profil
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Libelle { get; set; }
+    public required string Libelle { get; set; }
 
     /// <summary>
     /// Date de création de l'utilisateur.
@@ -38,12 +38,12 @@ public partial record Profil
     [Column("pro_date_creation")]
     [Required]
     [Domain(Domains.DateHeure)]
-    public DateTime? DateCreation { get; set; } = DateTime.UtcNow;
+    public DateTime DateCreation { get; set; } = DateTime.UtcNow;
 
     /// <summary>
     /// Date de modification de l'utilisateur.
     /// </summary>
     [Column("pro_date_modification")]
     [Domain(Domains.DateHeure)]
-    public DateTime? DateModification { get; set; } = DateTime.UtcNow;
+    public DateTime? DateModification { get; set; }
 }

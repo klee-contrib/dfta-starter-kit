@@ -21,11 +21,12 @@ public class ProfilQueries(KleeContribDftaDbContext context) : IProfilQueries
             where profil.Id == proId
             select new ProfilRead
             {
-                DroitCodes = context.DroitProfils.Where(x => x.ProfilId == proId).Select(d => d.DroitCode.Value).ToArray(),
+                DroitCodes = context.DroitProfils.Where(x => x.ProfilId == proId).Select(d => d.DroitCode).ToArray(),
                 Id = profil.Id,
                 Libelle = profil.Libelle,
                 Utilisateurs = context.Utilisateurs.Where(x => x.ProfilId == proId).Select(x => CreateUtilisateurItem(x)).ToList(),
-                DateCreation = profil.DateCreation
+                DateCreation = profil.DateCreation,
+                DateModification = profil.DateModification
             }).SingleAsync();
     }
 

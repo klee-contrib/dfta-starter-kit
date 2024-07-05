@@ -3,18 +3,19 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<Version>0</Version>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Kinetix.EFCore" Version="8.0.0" />
-	  <PackageReference Include="Kinetix.Monitoring.Insights" Version="8.0.0" />
-	  <PackageReference Include="Kinetix.Services" Version="8.0.0" />
-	  <PackageReference Include="Kinetix.Web" Version="8.0.0" />
-	  <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
-	  <PackageReference Include="Microsoft.Identity.Web" Version="2.17.4" />
+		<PackageReference Include="Kinetix.EFCore" Version="8.0.0" />
+		<PackageReference Include="Kinetix.Monitoring.Insights" Version="8.0.0" />
+		<PackageReference Include="Kinetix.Services" Version="8.0.0" />
+		<PackageReference Include="Kinetix.Web" Version="8.0.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.20.0" />
 	</ItemGroup>
 
 	<ItemGroup>

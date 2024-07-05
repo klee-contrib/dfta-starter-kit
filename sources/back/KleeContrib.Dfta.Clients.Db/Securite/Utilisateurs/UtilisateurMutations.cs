@@ -19,12 +19,12 @@ public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisate
         var utilisateurDb = utilisateur.ToUtilisateur();
         await context.Utilisateurs.AddAsync(utilisateurDb);
         await context.SaveChangesAsync();
-        return utilisateurDb.Id.Value;
+        return utilisateurDb.Id;
     }
 
     public async Task DeleteUtilisateur(int utiId)
     {
-        var utilisateur = await context.Utilisateurs.FindAsync(utiId);
+        var utilisateur = await context.Utilisateurs.SingleAsync(uti => uti.Id == utiId);
         context.Remove(utilisateur);
         await context.SaveChangesAsync();
     }
@@ -33,6 +33,7 @@ public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisate
     {
         var utilisateurDb = await context.Utilisateurs.AsTracking().SingleAsync(x => x.Id == utiId);
         utilisateurDb = utilisateur.ToUtilisateur(utilisateurDb);
+        utilisateurDb.DateModification = DateTime.UtcNow;
         await context.SaveChangesAsync();
     }
 }

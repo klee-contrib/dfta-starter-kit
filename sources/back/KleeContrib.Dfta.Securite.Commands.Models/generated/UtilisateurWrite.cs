@@ -20,7 +20,7 @@ public partial record UtilisateurWrite
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Nom { get; set; }
+    public string? Nom { get; set; }
 
     /// <summary>
     /// Nom de l'utilisateur.
@@ -28,14 +28,14 @@ public partial record UtilisateurWrite
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Prenom { get; set; }
+    public string? Prenom { get; set; }
 
     /// <summary>
     /// Email de l'utilisateur.
     /// </summary>
     [Required]
     [Domain(Domains.Email)]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// Age de l'utilisateur.
@@ -48,7 +48,7 @@ public partial record UtilisateurWrite
     /// </summary>
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Adresse { get; set; }
+    public string? Adresse { get; set; }
 
     /// <summary>
     /// Si l'utilisateur est actif.

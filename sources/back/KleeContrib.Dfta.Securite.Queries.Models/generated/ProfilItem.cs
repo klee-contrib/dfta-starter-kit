@@ -18,7 +18,7 @@ public partial record ProfilItem
     /// </summary>
     [Required]
     [Domain(Domains.Id)]
-    public int? Id { get; set; }
+    public required int Id { get; set; }
 
     /// <summary>
     /// Libellé du profil.
@@ -26,12 +26,12 @@ public partial record ProfilItem
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Libelle { get; set; }
+    public required string Libelle { get; set; }
 
     /// <summary>
     /// Nombre d'utilisateurs affectés au profil.
     /// </summary>
     [Required]
     [Domain(Domains.Entier)]
-    public long? NombreUtilisateurs { get; set; }
+    public required long NombreUtilisateurs { get; set; }
 }

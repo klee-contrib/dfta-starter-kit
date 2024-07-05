@@ -135,10 +135,10 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "pro_id", "pro_date_creation", "pro_date_modification", "pro_libelle" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5754), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5752), "Profil 1" },
-                    { 2, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5757), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5756), "Profil 2" },
-                    { 3, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5759), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5758), "Profil 3" },
-                    { 4, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5761), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5760), "Profil 4" }
+                    { 1, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3860), null, "Profil 1" },
+                    { 2, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3861), null, "Profil 2" },
+                    { 3, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3862), null, "Profil 3" },
+                    { 4, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3863), null, "Profil 4" }
                 });
 
             migrationBuilder.InsertData(
@@ -177,14 +177,14 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "uti_id", "uti_actif", "uti_adresse", "uti_date_creation", "uti_date_modification", "uti_date_naissance", "uti_email", "uti_nom", "uti_prenom", "pro_id", "tut_code" },
                 values: new object[,]
                 {
-                    { 1, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5833), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5828), null, "test1@test.com", "Jean", "Michel", 1, "ADMIN" },
-                    { 2, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5836), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5834), null, "test2@test.com", "Gerard", "Jugnos", 2, "GEST" },
-                    { 3, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5839), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5838), null, "test3@test.com", "Gad", "El", 3, "CLIENT" },
-                    { 4, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5843), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5841), null, "test4@test.com", "Bernard", "Bruno", 4, "ADMIN" },
-                    { 5, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5846), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5844), null, "test5@test.com", "Sisi", "Brindacier", 1, "GEST" },
-                    { 6, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5849), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5847), null, "test6@test.com", "Bibi", "Baba", 2, "CLIENT" },
-                    { 7, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5852), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5850), null, "test7@test.com", "Dédé", "Dédé", 3, "GEST" },
-                    { 8, true, null, new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5854), new DateTime(2024, 2, 20, 14, 35, 13, 479, DateTimeKind.Utc).AddTicks(5853), null, "test8@test.com", "Ran", "Tanplan", 4, "ADMIN" }
+                    { 1, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3928), null, null, "test1@test.com", "Jean", "Michel", 1, "ADMIN" },
+                    { 2, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3931), null, null, "test2@test.com", "Gerard", "Jugnos", 2, "GEST" },
+                    { 3, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3933), null, null, "test3@test.com", "Gad", "El", 3, "CLIENT" },
+                    { 4, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3935), null, null, "test4@test.com", "Bernard", "Bruno", 4, "ADMIN" },
+                    { 5, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3937), null, null, "test5@test.com", "Sisi", "Brindacier", 1, "GEST" },
+                    { 6, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3938), null, null, "test6@test.com", "Bibi", "Baba", 2, "CLIENT" },
+                    { 7, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3940), null, null, "test7@test.com", "Dédé", "Dédé", 3, "GEST" },
+                    { 8, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3942), null, null, "test8@test.com", "Ran", "Tanplan", 4, "ADMIN" }
                 });
 
             migrationBuilder.InsertData(

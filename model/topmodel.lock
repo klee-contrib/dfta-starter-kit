@@ -2,7 +2,7 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 1.43.1
+version: 1.49.0
 generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/ProfilController.cs
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/UtilisateurController.cs

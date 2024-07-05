@@ -4,7 +4,6 @@ tags:
   - back
   - front
 uses:
-  - decorators
   - Securite/Commands/Utilisateur
   - Securite/Data/Utilisateur
   - Securite/Queries/Utilisateur
@@ -15,8 +14,6 @@ endpoint:
   method: POST
   route: api/utilisateurs
   description: Ajoute un utilisateur
-  decorators:
-    - Security: ["hasRole('CREATE')"]
   params:
     - composition: UtilisateurWrite
       comment: Utilisateur à sauvegarder
@@ -31,8 +28,6 @@ endpoint:
   method: DELETE
   route: api/utilisateurs/{utiId}
   description: Supprime un utilisateur
-  decorators:
-    - Security: ["hasRole('DELETE')"]
   params:
     - alias:
         class: Utilisateur
@@ -43,8 +38,6 @@ endpoint:
   method: GET
   route: api/utilisateurs/{utiId}
   description: Charge le détail d'un utilisateur
-  decorators:
-    - Security: ["hasRole('READ')"]
   # Liste des paramètres du endpoint. Ce sont des propriétés de modèle comme pour les classes. Il peut ne pas y en avoir.
   params:
     - alias:
@@ -61,8 +54,6 @@ endpoint:
   method: GET
   route: api/utilisateurs
   description: Recherche des utilisateurs
-  decorators:
-    - Security: ["hasRole('READ')"]
   params:
     - alias:
         class: Utilisateur
@@ -82,8 +73,6 @@ endpoint:
   method: PUT
   route: api/utilisateurs/{utiId}
   description: Sauvegarde un utilisateur
-  decorators:
-    - Security: ["hasRole('UPDATE')"]
   params:
     - alias:
         class: Utilisateur

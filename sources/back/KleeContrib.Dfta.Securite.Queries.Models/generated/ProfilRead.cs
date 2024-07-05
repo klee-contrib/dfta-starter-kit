@@ -20,7 +20,7 @@ public partial record ProfilRead
     /// </summary>
     [Required]
     [Domain(Domains.Id)]
-    public int? Id { get; set; }
+    public required int Id { get; set; }
 
     /// <summary>
     /// Libellé du profil.
@@ -28,14 +28,14 @@ public partial record ProfilRead
     [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string Libelle { get; set; }
+    public required string Libelle { get; set; }
 
     /// <summary>
     /// Date de création de l'utilisateur.
     /// </summary>
     [Required]
     [Domain(Domains.DateHeure)]
-    public DateTime? DateCreation { get; set; }
+    public required DateTime DateCreation { get; set; }
 
     /// <summary>
     /// Date de modification de l'utilisateur.
@@ -49,7 +49,7 @@ public partial record ProfilRead
     [Required]
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.CodeListe)]
-    public Droit.Codes[] DroitCodes { get; set; }
+    public required Droit.Codes[] DroitCodes { get; set; }
 
     /// <summary>
     /// Utilisateurs ayant ce profil.
