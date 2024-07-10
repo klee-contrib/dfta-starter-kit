@@ -1,4 +1,3 @@
-version: "3"
 services:
   api:
     image: api:dev
@@ -17,11 +16,10 @@ services:
       AzureAd__Audience: ${audience}
 
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: http://+:80
       DOTNET_USE_POLLING_FILE_WATCHER: 1
       NUGET_PACKAGES: /root/.nuget/fallbackpackages
     ports:
-      - 2468:80
+      - 2468:8080
     volumes:
       - ~/.nuget/packages/:/root/.nuget/fallbackpackages
       - ~/vsdbg/vs2017u5:/remote_debugger:rw
