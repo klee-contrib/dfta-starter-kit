@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Azure.Core;
 using Azure.Identity;
 using Kinetix.EFCore;
@@ -104,8 +104,12 @@ app.MapGet("api/adresses", async (string query) =>
     var response = await client.GetFromJsonAsync<Result>($"https://api-adresse.data.gouv.fr/search/?q={query}&limit=10");
     return response!.Features.Select(f => new { Key = f.Properties.Label, f.Properties.Label });
 });
-app.Run();
+await app.RunAsync();
+
+#pragma warning disable
 
 record Result(Feature[] Features);
+
 record Feature(Properties Properties);
+
 record Properties(string Label);

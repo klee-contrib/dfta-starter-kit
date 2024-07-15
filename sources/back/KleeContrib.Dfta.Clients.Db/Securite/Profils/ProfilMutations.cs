@@ -8,9 +8,8 @@ using static KleeContrib.Dfta.Clients.Db.Securite.Models.SecuriteMappers;
 namespace KleeContrib.Dfta.Clients.Db.Securite.Profils;
 
 /// <summary>
-/// Profils mutations.
+/// Implémentation de IProfilMutations.
 /// </summary>
-/// <param name="context">DbContext injecté.</param>
 [RegisterImpl]
 public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutations
 {

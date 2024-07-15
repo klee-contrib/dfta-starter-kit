@@ -10,10 +10,10 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Utilisateurs;
 /// <summary>
 /// Utilisateurs mutations.
 /// </summary>
-/// <param name="context">DbContext injecté.</param>
 [RegisterImpl]
 public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisateurMutations
 {
+    /// <inheritdoc cref="IUtilisateurMutations.AddUtilisateur" />
     public async Task<int> AddUtilisateur(UtilisateurWrite utilisateur)
     {
         var utilisateurDb = utilisateur.ToUtilisateur();
@@ -22,6 +22,7 @@ public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisate
         return utilisateurDb.Id;
     }
 
+    /// <inheritdoc cref="IUtilisateurMutations.DeleteUtilisateur" />
     public async Task DeleteUtilisateur(int utiId)
     {
         var utilisateur = await context.Utilisateurs.SingleAsync(uti => uti.Id == utiId);
@@ -29,6 +30,7 @@ public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisate
         await context.SaveChangesAsync();
     }
 
+    /// <inheritdoc cref="IUtilisateurMutations.UpdateUtilisateur" />
     public async Task UpdateUtilisateur(int utiId, UtilisateurWrite utilisateur)
     {
         var utilisateurDb = await context.Utilisateurs.AsTracking().SingleAsync(x => x.Id == utiId);

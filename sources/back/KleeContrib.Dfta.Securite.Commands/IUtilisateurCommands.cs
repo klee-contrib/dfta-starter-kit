@@ -3,6 +3,9 @@ using KleeContrib.Dfta.Securite.Commands.Models;
 
 namespace KleeContrib.Dfta.Securite.Commands;
 
+/// <summary>
+/// Commandes autour de l'utilisateur.
+/// </summary>
 [RegisterContract]
 public interface IUtilisateurCommands
 {

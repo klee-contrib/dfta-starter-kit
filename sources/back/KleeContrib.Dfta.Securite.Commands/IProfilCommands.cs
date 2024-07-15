@@ -3,6 +3,9 @@ using KleeContrib.Dfta.Securite.Commands.Models;
 
 namespace KleeContrib.Dfta.Securite.Cosmmands;
 
+/// <summary>
+/// Commandes autour du profil.
+/// </summary>
 [RegisterContract]
 public interface IProfilCommands
 {

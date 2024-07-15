@@ -7,7 +7,6 @@ namespace KleeContrib.Dfta.Securite.Commands.Implementations;
 /// <summary>
 /// Commandes autour de l'utilisateur.
 /// </summary>
-/// <param name="utilisateurMutations">Service injecté.</param>
 [RegisterImpl]
 public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations) : IUtilisateurCommands
 {

@@ -3,6 +3,9 @@ using KleeContrib.Dfta.Securite.Commands.Models;
 
 namespace KleeContrib.Dfta.Securite.Commands.Mutations;
 
+/// <summary>
+/// Profils mutations.
+/// </summary>
 [RegisterContract]
 public interface IProfilMutations
 {

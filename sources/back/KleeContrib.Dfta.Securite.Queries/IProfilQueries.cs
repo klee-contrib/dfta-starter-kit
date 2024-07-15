@@ -3,6 +3,9 @@ using KleeContrib.Dfta.Securite.Queries.Models;
 
 namespace KleeContrib.Dfta.Securite.Queries;
 
+/// <summary>
+/// Profils queries.
+/// </summary>
 [RegisterContract]
 public interface IProfilQueries
 {

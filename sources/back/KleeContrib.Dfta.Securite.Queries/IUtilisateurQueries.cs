@@ -4,6 +4,9 @@ using KleeContrib.Dfta.Securite.Queries.Models;
 
 namespace KleeContrib.Dfta.Securite.Queries;
 
+/// <summary>
+/// Utilisateurs queries.
+/// </summary>
 [RegisterContract]
 public interface IUtilisateurQueries
 {

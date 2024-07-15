@@ -9,7 +9,6 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Profils;
 /// <summary>
 /// Profils queries.
 /// </summary>
-/// <param name="context">DbContext injecté.</param>
 [RegisterImpl]
 public class ProfilQueries(KleeContribDftaDbContext context) : IProfilQueries
 {

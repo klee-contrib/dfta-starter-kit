@@ -8,9 +8,8 @@ using static KleeContrib.Dfta.Clients.Db.Securite.Models.SecuriteMappers;
 namespace KleeContrib.Dfta.Clients.Db.Securite.Utilisateurs;
 
 /// <summary>
-/// Utilisateurs queries.
+/// Implémentation de IUtilisateurQueries.
 /// </summary>
-/// <param name="context">DbContext injecté.</param>
 [RegisterImpl]
 public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateurQueries
 {
