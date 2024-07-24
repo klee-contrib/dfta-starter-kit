@@ -15,7 +15,6 @@ namespace KleeContrib.Dfta.Api.Securite;
 /// </summary>
 /// <param name="commands">Service injecté.</param>
 /// <param name="queries">Service injecté.</param>
-[ApiController]
 public class ProfilController(IProfilCommands commands, IProfilQueries queries) : Controller
 {
     /// <summary>

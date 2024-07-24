@@ -11,9 +11,12 @@ using KleeContrib.Dfta.Api;
 using KleeContrib.Dfta.Clients.Db;
 using KleeContrib.Dfta.Clients.Db.Securite.Profils;
 using KleeContrib.Dfta.Securite.Commands.Implementations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Npgsql;
+
+[assembly: ApiController]
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -67,31 +70,28 @@ services
         .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
 services
-    .AddWeb()
-    .AddControllers(a =>
-    {
-        a.Filters.AddService<CultureFilter>();
-        a.Filters.AddService<ExceptionFilter>();
-        a.Filters.AddService<TransactionFilter>();
-        a.Filters.AddService<UtcDateFilter>();
-    })
-        .AddJsonOptions(j =>
-        {
-            j.ConfigureSerializer();
-            j.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-        });
+    .AddKinetixExceptionHandler()
+    .AddControllers()
+        .ConfigureInvalidModelStateSerialization()
+        .AddJsonOptions(j => j.JsonSerializerOptions
+            .ConfigureSerializerDefaults()
+            .AddConverter<JsonStringEnumConverter>());
 
-services.ConfigureHttpJsonOptions(j =>
-{
-    j.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    j.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});
+services.ConfigureHttpJsonOptions(j => j.SerializerOptions
+    .ConfigureSerializerDefaults()
+    .AddConverter<JsonStringEnumConverter>());
 
 var app = builder.Build();
 
+app.UseExceptionHandler();
+
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers();
+
+app.MapControllers()
+    .AddEndpointFilter<TransactionFilter>()
+    .AddEndpointFilter<UtcDateFilter>();
+
 app.MapReferenceEndpoints("api/references");
 app.MapGet("api/adresses", async (string query) =>
 {
