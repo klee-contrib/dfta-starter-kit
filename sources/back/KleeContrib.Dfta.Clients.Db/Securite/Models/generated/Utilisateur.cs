@@ -68,7 +68,6 @@ public partial record Utilisateur
     /// Nom de l'utilisateur.
     /// </summary>
     [Column("uti_nom")]
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Nom { get; set; }
@@ -77,7 +76,6 @@ public partial record Utilisateur
     /// Nom de l'utilisateur.
     /// </summary>
     [Column("uti_prenom")]
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Prenom { get; set; }
@@ -86,7 +84,6 @@ public partial record Utilisateur
     /// Email de l'utilisateur.
     /// </summary>
     [Column("uti_email")]
-    [Required]
     [Domain(Domains.Email)]
     public required string Email { get; set; }
 
@@ -109,7 +106,6 @@ public partial record Utilisateur
     /// Si l'utilisateur est actif.
     /// </summary>
     [Column("uti_actif")]
-    [Required]
     [Domain(Domains.Booleen)]
     public bool Actif { get; set; } = true;
 
@@ -117,7 +113,6 @@ public partial record Utilisateur
     /// Profil de l'utilisateur.
     /// </summary>
     [Column("pro_id")]
-    [Required]
     [Domain(Domains.Id)]
     public required int ProfilId { get; set; }
 
@@ -125,7 +120,6 @@ public partial record Utilisateur
     /// Type d'utilisateur.
     /// </summary>
     [Column("tut_code")]
-    [Required]
     [ReferencedType(typeof(TypeUtilisateur))]
     [Domain(Domains.Code)]
     public TypeUtilisateur.Codes TypeUtilisateurCode { get; set; } = TypeUtilisateur.Codes.GEST;
@@ -134,7 +128,6 @@ public partial record Utilisateur
     /// Date de création de l'utilisateur.
     /// </summary>
     [Column("uti_date_creation")]
-    [Required]
     [Domain(Domains.DateHeure)]
     public DateTime DateCreation { get; set; } = DateTime.UtcNow;
 

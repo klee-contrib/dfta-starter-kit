@@ -27,7 +27,6 @@ public partial record Profil
     /// Libellé du profil.
     /// </summary>
     [Column("pro_libelle")]
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Libelle { get; set; }
@@ -36,7 +35,6 @@ public partial record Profil
     /// Date de création de l'utilisateur.
     /// </summary>
     [Column("pro_date_creation")]
-    [Required]
     [Domain(Domains.DateHeure)]
     public DateTime DateCreation { get; set; } = DateTime.UtcNow;
 

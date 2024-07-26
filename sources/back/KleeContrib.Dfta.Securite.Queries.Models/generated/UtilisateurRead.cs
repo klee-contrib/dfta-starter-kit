@@ -17,14 +17,12 @@ public partial record UtilisateurRead
     /// <summary>
     /// Id de l'utilisateur.
     /// </summary>
-    [Required]
     [Domain(Domains.Id)]
     public required int Id { get; set; }
 
     /// <summary>
     /// Nom de l'utilisateur.
     /// </summary>
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Nom { get; set; }
@@ -32,7 +30,6 @@ public partial record UtilisateurRead
     /// <summary>
     /// Nom de l'utilisateur.
     /// </summary>
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Prenom { get; set; }
@@ -40,7 +37,6 @@ public partial record UtilisateurRead
     /// <summary>
     /// Email de l'utilisateur.
     /// </summary>
-    [Required]
     [Domain(Domains.Email)]
     public required string Email { get; set; }
 
@@ -60,21 +56,18 @@ public partial record UtilisateurRead
     /// <summary>
     /// Si l'utilisateur est actif.
     /// </summary>
-    [Required]
     [Domain(Domains.Booleen)]
     public bool Actif { get; set; } = true;
 
     /// <summary>
     /// Profil de l'utilisateur.
     /// </summary>
-    [Required]
     [Domain(Domains.Id)]
     public required int ProfilId { get; set; }
 
     /// <summary>
     /// Type d'utilisateur.
     /// </summary>
-    [Required]
     [ReferencedType(typeof(TypeUtilisateur))]
     [Domain(Domains.Code)]
     public TypeUtilisateur.Codes TypeUtilisateurCode { get; set; } = TypeUtilisateur.Codes.GEST;
@@ -82,7 +75,6 @@ public partial record UtilisateurRead
     /// <summary>
     /// Date de création de l'utilisateur.
     /// </summary>
-    [Required]
     [Domain(Domains.DateHeure)]
     public required DateTime DateCreation { get; set; }
 

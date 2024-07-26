@@ -18,14 +18,12 @@ public partial record ProfilRead
     /// <summary>
     /// Id technique.
     /// </summary>
-    [Required]
     [Domain(Domains.Id)]
     public required int Id { get; set; }
 
     /// <summary>
     /// Libellé du profil.
     /// </summary>
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Libelle { get; set; }
@@ -33,7 +31,6 @@ public partial record ProfilRead
     /// <summary>
     /// Date de création de l'utilisateur.
     /// </summary>
-    [Required]
     [Domain(Domains.DateHeure)]
     public required DateTime DateCreation { get; set; }
 
@@ -46,7 +43,6 @@ public partial record ProfilRead
     /// <summary>
     /// Code du droit.
     /// </summary>
-    [Required]
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.CodeListe)]
     public required Droit.Codes[] DroitCodes { get; set; }

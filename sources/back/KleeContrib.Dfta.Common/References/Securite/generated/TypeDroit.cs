@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Kinetix.Modeling.Annotations;
-using KleeContrib.Dfta.Common;
 
 namespace KleeContrib.Dfta.Common.References.Securite;
 
@@ -51,7 +50,6 @@ public partial record TypeDroit
     /// Libellé du type de droit.
     /// </summary>
     [Column("tdr_libelle")]
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Libelle { get; set; }

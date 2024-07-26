@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Kinetix.Modeling.Annotations;
-using KleeContrib.Dfta.Common;
 
 namespace KleeContrib.Dfta.Common.References.Securite;
 
@@ -51,7 +50,6 @@ public partial record TypeUtilisateur
     /// Libellé du type d'utilisateur.
     /// </summary>
     [Column("tut_libelle")]
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Libelle { get; set; }
