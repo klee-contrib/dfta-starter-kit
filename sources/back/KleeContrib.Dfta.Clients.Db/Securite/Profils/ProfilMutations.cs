@@ -21,11 +21,12 @@ public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutation
         await context.Profils.AddAsync(profilDb);
         await context.SaveChangesAsync();
 
-        await context.DroitProfils.AddRangeAsync((profil.DroitCodes ?? []).Select(x => new DroitProfil
-        {
-            DroitCode = x,
-            ProfilId = profilDb.Id
-        }));
+        await context.DroitProfils.AddRangeAsync((profil.DroitCodes ?? [])
+            .Select(droitCode => new DroitProfil
+            {
+                DroitCode = droitCode,
+                ProfilId = profilDb.Id
+            }));
 
         await context.SaveChangesAsync();
 
@@ -35,12 +36,12 @@ public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutation
     /// <inheritdoc cref="IProfilMutations.UpdateProfil" />
     public async Task UpdateProfil(int proId, ProfilWrite profil)
     {
-        var profilDb = await context.Profils.AsTracking().SingleAsync(x => x.Id == proId);
-        profilDb = profil.ToProfil(profilDb);
+        var profilDb = await context.Profils.FindAsync(proId) ?? throw new KeyNotFoundException("Le profil demandé n'existe pas.");
+
+        profil.ToProfil(profilDb);
         profilDb.DateModification = DateTime.UtcNow;
 
-        context.DroitProfils.RemoveRange(context.DroitProfils.Where(x => x.ProfilId == proId));
-
+        await context.DroitProfils.Where(x => x.ProfilId == proId).ExecuteDeleteAsync();
         await context.DroitProfils.AddRangeAsync((profil.DroitCodes ?? []).Select(x => new DroitProfil
         {
             DroitCode = x,

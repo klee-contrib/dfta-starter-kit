@@ -65,9 +65,7 @@ services
         o.AddAssemblies(typeof(ProfilMutations).Assembly);
         o.AddAssemblies(typeof(ProfilCommands).Assembly);
     })
-    .AddEFCore<KleeContribDftaDbContext>(o => o
-        .UseNpgsql(dataSource)
-        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+    .AddEFCore<KleeContribDftaDbContext>(o => o.UseNpgsql(dataSource));
 
 services
     .AddKinetixExceptionHandler()

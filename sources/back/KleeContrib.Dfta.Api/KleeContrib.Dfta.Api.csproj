@@ -14,7 +14,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.30.0.95878">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -28,7 +28,7 @@
 		<PackageReference Include="Kinetix.EFCore" Version="8.0.0" />
 		<PackageReference Include="Kinetix.Monitoring.Insights" Version="8.0.0" />
 		<PackageReference Include="Kinetix.Services" Version="8.0.0" />
-		<PackageReference Include="Kinetix.Web" Version="8.1.0" />
+		<PackageReference Include="Kinetix.Web" Version="8.1.1" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
 		<PackageReference Include="Microsoft.Identity.Web" Version="3.0.1" />
 	</ItemGroup>
