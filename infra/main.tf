@@ -117,6 +117,7 @@ module "agent" {
   devops_organisation = var.devops_organisation
   devops_pat          = var.devops_pat
   devops_project_name = var.devops_project_name
+  ip                  = var.agent_ip
   region              = var.region
   rg_name             = azurerm_resource_group.rg.name
   snet_id             = module.vnet.snet_agent_id

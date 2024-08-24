@@ -39,6 +39,12 @@ variable "agent_size" {
   nullable    = false
 }
 
+variable "agent_ip" {
+  type        = bool
+  description = "Pour déployer une IP publique pour l'agent DevOps afin de s'y connecter en SSH."
+  nullable    = false
+}
+
 variable "app_insights_quota" {
   type        = number
   description = "Quota de logs (en Go) par jour sur Application Insights, pour maîtriser les coûts."

@@ -1,7 +1,8 @@
 app_name = "dfta"
 region   = "francecentral"
 
-agent_size          = "Standard_B1s"
+agent_size          = "Standard_B1ls"
+agent_ip            = false
 app_insights_quota  = 0.5
 back_sku_name       = "B1"
 database_pg_version = 16

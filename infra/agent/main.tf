@@ -53,11 +53,13 @@ data "template_cloudinit_config" "agent" {
 }
 
 resource "azurerm_public_ip" "ip" {
+  count               = var.ip ? 1 : 0
   name                = "${var.app_name}-agent-ip-${terraform.workspace}"
   resource_group_name = var.rg_name
   location            = var.region
   domain_name_label   = "${var.app_name}-agent-${terraform.workspace}"
   allocation_method   = "Static"
+  sku                 = "Standard"
 }
 
 resource "azurerm_network_security_group" "nsg" {
@@ -75,7 +77,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = var.snet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.ip.id
+    public_ip_address_id          = var.ip ? azurerm_public_ip.ip[0].id : null
   }
 }
 

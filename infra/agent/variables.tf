@@ -43,3 +43,7 @@ variable "size" {
   nullable = false
 }
 
+variable "ip" {
+  type     = bool
+  nullable = false
+}
