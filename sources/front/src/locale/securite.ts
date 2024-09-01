@@ -15,6 +15,9 @@ export const securite = {
     profilItem: {
         nombreUtilisateurs: "Nombre d'utilisateurs affectés"
     },
+    profilRead: {
+        utilisateurs: "Utilisateurs"
+    },
     typeDroit: {
         code: "Type de droit",
         libelle: "Libelle"

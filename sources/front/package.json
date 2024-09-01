@@ -13,11 +13,11 @@
         "start": "vite"
     },
     "dependencies": {
-        "@azure/msal-browser": "3.19.0",
-        "focus4": "11.18.2"
+        "@azure/msal-browser": "3.22.0",
+        "focus4": "11.19.0"
     },
     "devDependencies": {
-        "@focus4/tooling": "11.18.0"
+        "@focus4/tooling": "11.19.0"
     },
     "peerDependencies": {
         "@focus4/collections": "*",
@@ -35,8 +35,6 @@
         "mobx-react": "7",
         "numeral": "*",
         "react": "*",
-        "react-dnd": "*",
-        "react-dnd-html5-backend": "*",
         "react-dom": "*"
     },
     "author": "KleeGroup",

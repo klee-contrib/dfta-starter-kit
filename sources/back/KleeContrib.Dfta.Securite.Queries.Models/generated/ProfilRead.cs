@@ -3,7 +3,6 @@
 ////
 
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Kinetix.Modeling.Annotations;
 using KleeContrib.Dfta.Common;
 using KleeContrib.Dfta.Common.References.Securite;
@@ -50,6 +49,5 @@ public partial record ProfilRead
     /// <summary>
     /// Utilisateurs ayant ce profil.
     /// </summary>
-    [NotMapped]
     public ICollection<UtilisateurItem> Utilisateurs { get; set; } = new List<UtilisateurItem>();
 }
