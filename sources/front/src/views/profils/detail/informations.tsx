@@ -32,7 +32,7 @@ export function ProfilInfos() {
             .patch("droitCodes", (f, node) =>
                 f.metadata(() =>
                     node.nombreUtilisateursMax.value! > 12
-                        ? {SelectComponent: SelectChips, selectProps: {hasSelectAll: true}}
+                        ? {SelectComponent: SelectChips<"string-array">, selectProps: {hasSelectAll: true}}
                         : {}
                 )
             )

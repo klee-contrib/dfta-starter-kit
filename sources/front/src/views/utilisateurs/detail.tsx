@@ -40,7 +40,7 @@ export function UtilisateurDetail() {
                     )
                 })
             )
-            .patch("typeUtilisateurCode", f => f.metadata({SelectComponent: SelectRadio}))
+            .patch("typeUtilisateurCode", f => f.metadata({SelectComponent: SelectRadio<"string">}))
     );
 
     useLoad(profilStore.profils, a => a.params().load(getProfils));

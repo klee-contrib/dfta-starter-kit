@@ -12,7 +12,7 @@ export const DO_CODE = domain({
     inputProps: {maxLength: 10},
     validator: {type: "string", maxLength: 10}
 });
-export const DO_CODE_LISTE = domain({type: "string-array", SelectComponent: SelectCheckbox});
+export const DO_CODE_LISTE = domain({type: "string-array", SelectComponent: SelectCheckbox<"string-array">});
 export const DO_DATE = domain({
     type: "string",
     validator: {type: "date"},
