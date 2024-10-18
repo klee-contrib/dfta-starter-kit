@@ -1,5 +1,5 @@
 import {listFor} from "@focus4/collections";
-import {Panel} from "@focus4/forms";
+import {Panel} from "@focus4/layout";
 import {toFlatValues} from "@focus4/stores";
 
 import {profilStore} from "../../../stores/profil";

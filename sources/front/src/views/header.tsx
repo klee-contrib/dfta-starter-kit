@@ -13,7 +13,7 @@ const theme = toBem(css);
 
 export function Header({children}: {children?: ReactNode}) {
     return useObserver(() => (
-        <HeaderScrolling canDeploy={false} theme={{scrolling: theme.header()}}>
+        <HeaderScrolling theme={{scrolling: theme.header()}}>
             <HeaderTopRow>
                 <HeaderItem theme={{item: theme.item()}}>
                     <strong>Starter Kit .NET - Focus - TopModel - Azure</strong>

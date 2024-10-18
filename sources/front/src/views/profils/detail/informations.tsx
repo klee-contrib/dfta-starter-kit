@@ -1,6 +1,7 @@
 import {useObserver} from "mobx-react";
 
-import {fieldFor, Form, Panel, SelectChips, selectFor, useFormActions, useFormNode} from "@focus4/forms";
+import {fieldFor, Form, SelectChips, selectFor, useFormActions, useFormNode} from "@focus4/forms";
+import {Panel} from "@focus4/layout";
 import {Slider} from "@focus4/toolbox";
 
 import {addProfil, getProfil, updateProfil} from "../../../services/securite/profil";
