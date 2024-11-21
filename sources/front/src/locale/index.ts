@@ -6,10 +6,20 @@ import "numeral/locales/fr";
 
 import {common} from "./common";
 import {securite} from "./securite";
+import {router} from "./router";
 
 i18next.init({
     lng: "fr",
-    resources: {fr: {translation: {focus, common, securite}}},
+    resources: {
+        fr: {
+            translation: {
+                focus,
+                common,
+                securite,
+                router
+            }
+        }
+    },
     nsSeparator: "🤷‍♂️"
 });
 numeral.locale("fr");

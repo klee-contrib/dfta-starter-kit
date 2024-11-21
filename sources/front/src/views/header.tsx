@@ -1,17 +1,17 @@
 import {useObserver} from "mobx-react";
-import {ReactNode} from "react";
 
-import {HeaderItem, HeaderScrolling, HeaderTopRow} from "@focus4/layout";
+import {FilAriane, HeaderItem, HeaderScrolling, HeaderTopRow} from "@focus4/layout";
 import {colorScheme, toBem} from "@focus4/styling";
-import {IconButton, Switch} from "@focus4/toolbox";
+import {FontIcon, IconButton, Switch} from "@focus4/toolbox";
 
+import {router} from "../router";
 import {config, signOut, userStore} from "../server";
 
 import css from "./__style__/header.css";
 
 const theme = toBem(css);
 
-export function Header({children}: {children?: ReactNode}) {
+export function Header({icon, paramResolver}: {icon: string; paramResolver?: () => string}) {
     return useObserver(() => (
         <HeaderScrolling theme={{scrolling: theme.header()}}>
             <HeaderTopRow>
@@ -22,7 +22,8 @@ export function Header({children}: {children?: ReactNode}) {
                     </span>
                 </HeaderItem>
                 <HeaderItem fillWidth theme={{item: theme.item()}}>
-                    {children}
+                    <FontIcon>{icon}</FontIcon>
+                    <FilAriane paramResolver={paramResolver} router={router} />
                 </HeaderItem>
                 <HeaderItem theme={{item: theme.item({user: true})}}>
                     <strong>{userStore.login}</strong>

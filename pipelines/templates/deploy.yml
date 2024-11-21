@@ -29,7 +29,7 @@ stages:
               azureSubscription: ${{parameters.azureSub}}
               appType: webAppLinux
               WebAppName: dfta-api-${{parameters.env}}
-              RuntimeStack: DOTNETCORE|8.0
+              RuntimeStack: DOTNETCORE|9.0
               ${{if eq(parameters.pipeline, 'current')}}:
                 packageForLinux: $(Pipeline.Workspace)/API/*.zip
               ${{else}}:

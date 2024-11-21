@@ -5,7 +5,7 @@ import {Header} from "./header";
 export function Home() {
     return (
         <>
-            <Header />
+            <Header icon="home" />
             <Content>
                 Bienvenue sur le starter kit .NET - Focus - TopModel - Azure !<br />
                 <br />

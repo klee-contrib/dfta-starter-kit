@@ -7,7 +7,11 @@
     --button-line-height-delta: -1px;
 
     --header-toprow-background: rgb(var(--palette-purple-400));
-    --header-color: white;
+
+    --input-text-color: white;
+
+    --fil-ariane-item-color: white;
+    --fil-ariane-item-active-color: white;
 
     --main-menu-item-height: 80px;
 }
