@@ -2,11 +2,15 @@
   "profiles": {
     "KleeContrib.Dfta.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "applicationUrl": "http://localhost:2468",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:50578;http://localhost:50579"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+
+        "Database__Server": "localhost",
+        "Database__User_Id": "dfta-api-local",
+        "Database__Password": "local",
+        "Database__Ssl_Mode": "Disable"
+      }
     }
   }
 }

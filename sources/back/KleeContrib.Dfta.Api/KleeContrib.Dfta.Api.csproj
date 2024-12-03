@@ -7,6 +7,7 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<Version>0</Version>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <UserSecretsId>18d07dd5-13ee-4c7f-bbc4-fa5c4b31d895</UserSecretsId>
 	</PropertyGroup>
 
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using KleeContrib.Dfta.Clients.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace KleeContrib.Dfta.Migrations;
 
@@ -21,9 +22,11 @@ public class KleeContribDftaDbContextFactory : IDesignTimeDbContextFactory<KleeC
 
         var connectionString = $"Server={server};Database={database};User Id={userId};Password={password};Port=5432;Ssl Mode={(server == "localhost" ? "Disable" : "VerifyFull")}";
         var optionsBuilder = new DbContextOptionsBuilder<KleeContribDftaDbContext>();
-        optionsBuilder.UseNpgsql(connectionString, o => o
-            .CommandTimeout(120)
-            .MigrationsAssembly("KleeContrib.Dfta.Migrations"));
+        optionsBuilder
+            .UseNpgsql(connectionString, o => o
+                .CommandTimeout(120)
+                .MigrationsAssembly("KleeContrib.Dfta.Migrations"))
+            .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
         return new KleeContribDftaDbContext(optionsBuilder.Options);
     }
 }

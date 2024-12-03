@@ -19,6 +19,9 @@ using Npgsql;
 [assembly: ApiController]
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddUserSecrets<Program>(optional: true);
+
 var services = builder.Services;
 
 services
