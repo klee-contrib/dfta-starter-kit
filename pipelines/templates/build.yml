@@ -24,6 +24,11 @@ stages:
           - script: $(Build.SourcesDirectory)/modgen -f model/topmodel.config --check
             displayName: modgen --check
 
+          - task: UseDotNet@2
+            displayName: .NET 9
+            inputs:
+              version: 9.x
+
           - task: DotNetCoreCLI@2
             displayName: Build API
             inputs:
