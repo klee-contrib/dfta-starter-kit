@@ -13,11 +13,11 @@
         "start": "vite"
     },
     "dependencies": {
-        "@azure/msal-browser": "3.27.0",
-        "focus4": "11.21.3"
+        "@azure/msal-browser": "3.28.0",
+        "focus4": "11.22.1"
     },
     "devDependencies": {
-        "@focus4/tooling": "11.21.2"
+        "@focus4/tooling": "11.22.0"
     },
     "peerDependencies": {
         "@focus4/collections": "*",
@@ -28,14 +28,14 @@
         "@focus4/styling": "*",
         "@focus4/toolbox": "*",
         "framer-motion": "*",
-        "i18next": "*",
+        "i18next": "23",
         "lodash": "*",
         "luxon": "*",
         "mobx": "*",
         "mobx-react": "7",
         "numeral": "*",
-        "react": "*",
-        "react-dom": "*"
+        "react": "18",
+        "react-dom": "18"
     },
     "author": "KleeGroup",
     "license": "MIT"

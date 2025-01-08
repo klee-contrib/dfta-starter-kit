@@ -57,6 +57,7 @@ export function UtilisateurDetail() {
                     return addUtilisateur(uti);
                 }
             })
+            .withConfirmation(router)
     );
 
     return useObserver(() => (

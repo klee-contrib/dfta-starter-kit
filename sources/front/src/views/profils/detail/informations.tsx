@@ -51,6 +51,7 @@ export function ProfilInfos() {
                     return addProfil(pro);
                 }
             })
+            .withConfirmation(router)
     );
 
     return useObserver(() => (

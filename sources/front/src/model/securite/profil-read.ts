@@ -8,14 +8,14 @@ import {DO_CODE_LISTE, DO_DATE_HEURE, DO_ID, DO_LIBELLE} from "../../domains";
 import {DroitCode} from "./references";
 import {UtilisateurItemEntity, UtilisateurItemEntityType} from "./utilisateur-item";
 
-export type ProfilRead = EntityToType<ProfilReadEntityType>
+export type ProfilRead = EntityToType<ProfilReadEntityType>;
 export interface ProfilReadEntityType {
-    id: FieldEntry2<typeof DO_ID, number>,
-    libelle: FieldEntry2<typeof DO_LIBELLE, string>,
-    dateCreation: FieldEntry2<typeof DO_DATE_HEURE, string>,
-    dateModification: FieldEntry2<typeof DO_DATE_HEURE, string>,
-    droitCodes: FieldEntry2<typeof DO_CODE_LISTE, DroitCode[]>,
-    utilisateurs: ListEntry<UtilisateurItemEntityType>
+    id: FieldEntry2<typeof DO_ID, number>;
+    libelle: FieldEntry2<typeof DO_LIBELLE, string>;
+    dateCreation: FieldEntry2<typeof DO_DATE_HEURE, string>;
+    dateModification: FieldEntry2<typeof DO_DATE_HEURE, string>;
+    droitCodes: FieldEntry2<typeof DO_CODE_LISTE, DroitCode[]>;
+    utilisateurs: ListEntry<UtilisateurItemEntityType>;
 }
 
 export const ProfilReadEntity: ProfilReadEntityType = {
@@ -60,4 +60,4 @@ export const ProfilReadEntity: ProfilReadEntityType = {
         isRequired: true,
         label: "securite.profilRead.utilisateurs"
     }
-}
+};

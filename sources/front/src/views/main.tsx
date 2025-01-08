@@ -1,6 +1,6 @@
 import {useObserver} from "mobx-react";
 
-import {Layout} from "@focus4/layout";
+import {Dialog, Layout} from "@focus4/layout";
 
 import {router} from "../router";
 
@@ -24,6 +24,26 @@ export function Main() {
                         return <Home />;
                 }
             })()}
+            <Dialog
+                actions={[
+                    {
+                        color: "primary",
+                        label: "Sauvegarder et quitter",
+                        onClick: () => {
+                            router.confirmation.commit(true);
+                        }
+                    },
+                    {
+                        label: "Quitter sans sauvegarder",
+                        onClick: () => router.confirmation.commit()
+                    },
+                    {label: "Annuler", onClick: () => router.confirmation.cancel()}
+                ]}
+                active={router.confirmation.pending}
+                title="Confirmation"
+            >
+                Êtes-vous sûr de vouloir quitter la page ?
+            </Dialog>
         </Layout>
     ));
 }
