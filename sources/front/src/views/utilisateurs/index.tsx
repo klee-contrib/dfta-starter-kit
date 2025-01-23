@@ -1,6 +1,7 @@
 import {useObserver} from "mobx-react";
+import {useState} from "react";
 
-import {Content} from "@focus4/layout";
+import {Content, HeaderActions, Popin} from "@focus4/layout";
 
 import {utilisateurStore} from "../../stores/utilisateur";
 
@@ -11,6 +12,7 @@ import {UtilisateurDetail} from "./detail";
 import {UtilisateurList} from "./list";
 
 export function Utilisateurs() {
+    const [utiCreation, setUtiCreation] = useState(false);
     return useObserver(() => (
         <>
             <Header
@@ -18,13 +20,36 @@ export function Utilisateurs() {
                 paramResolver={() =>
                     `${utilisateurStore.utilisateur.prenom.value ?? ""} ${utilisateurStore.utilisateur.nom.value ?? ""}`
                 }
-            />
+            >
+                {!router.state.utilisateurs.utiId ? (
+                    <HeaderActions
+                        primary={[
+                            {
+                                icon: "add",
+                                tooltip: {tooltip: "Ajouter un utilisateur"},
+                                onClick: () => setUtiCreation(true)
+                            }
+                        ]}
+                    />
+                ) : null}
+            </Header>
             {router.state.utilisateurs.utiId ? (
                 <Content>
                     <UtilisateurDetail />
                 </Content>
             ) : (
-                <UtilisateurList />
+                <>
+                    <UtilisateurList />
+                    <Popin
+                        closePopin={() => setUtiCreation(false)}
+                        opened={utiCreation}
+                        preventOverlayClick={router.confirmation.active}
+                    >
+                        <Content>
+                            <UtilisateurDetail closePopin={() => setUtiCreation(false)} />
+                        </Content>
+                    </Popin>
+                </>
             )}
         </>
     ));

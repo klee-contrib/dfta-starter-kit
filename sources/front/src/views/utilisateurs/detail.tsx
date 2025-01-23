@@ -26,9 +26,9 @@ import {fetch} from "../../server";
 
 import css from "./__style__/detail.css";
 
-export function UtilisateurDetail() {
+export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
     const entity = useFormNode(utilisateurStore.utilisateur, e =>
-        e
+        (!router.state.utilisateurs.utiId ? e.edit(() => true) : e)
             .remove("id", "dateCreation", "dateModification")
             .patch("profilId", f =>
                 f.metadata({
@@ -47,17 +47,14 @@ export function UtilisateurDetail() {
 
     const actions = useFormActions(entity, a =>
         a
+            .init()
             .params(() => router.state.utilisateurs.utiId)
             .load(getUtilisateur)
-            .save(uti => {
-                const {utiId} = router.state.utilisateurs;
-                if (utiId) {
-                    return updateUtilisateur(utiId, uti);
-                } else {
-                    return addUtilisateur(uti);
-                }
-            })
+            .create(addUtilisateur)
+            .update(updateUtilisateur)
             .withConfirmation(router)
+            .on(["create", "cancel"], () => closePopin?.())
+            .on("create", (_, uti) => router.to(x => x("utilisateurs")(uti.id!)))
     );
 
     return useObserver(() => (

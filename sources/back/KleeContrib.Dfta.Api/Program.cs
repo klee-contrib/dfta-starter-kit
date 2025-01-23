@@ -73,7 +73,6 @@ services
 services
     .AddKinetixExceptionHandler()
     .AddControllers()
-        .ConfigureInvalidModelStateSerialization()
         .AddJsonOptions(j => j.JsonSerializerOptions
             .ConfigureSerializerDefaults()
             .AddConverter<JsonStringEnumConverter>());
@@ -84,6 +83,7 @@ services.ConfigureHttpJsonOptions(j => j.SerializerOptions
 
 var app = builder.Build();
 
+app.UseStatusCodePages();
 app.UseExceptionHandler();
 
 app.UseAuthentication();

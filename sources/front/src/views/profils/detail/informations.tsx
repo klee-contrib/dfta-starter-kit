@@ -4,7 +4,7 @@ import {fieldFor, Form, SelectChips, selectFor, useFormActions, useFormNode} fro
 import {Panel} from "@focus4/layout";
 import {Slider} from "@focus4/toolbox";
 
-import {addProfil, getProfil, updateProfil} from "../../../services/securite/profil";
+import {getProfil, updateProfil} from "../../../services/securite/profil";
 import {profilStore} from "../../../stores/profil";
 import {referenceStore} from "../../../stores/references";
 
@@ -43,14 +43,7 @@ export function ProfilInfos() {
         a
             .params(() => router.state.profils.proId)
             .load(getProfil)
-            .save(pro => {
-                const {proId} = router.state.profils;
-                if (proId) {
-                    return updateProfil(proId, pro);
-                } else {
-                    return addProfil(pro);
-                }
-            })
+            .update(updateProfil)
             .withConfirmation(router)
     );
 

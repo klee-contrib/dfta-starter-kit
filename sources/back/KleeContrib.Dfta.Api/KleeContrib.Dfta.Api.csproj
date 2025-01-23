@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
@@ -15,7 +15,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.4.0.108396">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.5.0.109200">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -29,7 +29,7 @@
 		<PackageReference Include="Kinetix.EFCore" Version="8.0.0" />
 		<PackageReference Include="Kinetix.Monitoring.Insights" Version="8.0.0" />
 		<PackageReference Include="Kinetix.Services" Version="8.0.0" />
-		<PackageReference Include="Kinetix.Web" Version="8.1.1" />
+		<PackageReference Include="Kinetix.Web" Version="8.2.0" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
 		<PackageReference Include="Microsoft.Identity.Web" Version="3.5.0" />
 	</ItemGroup>
@@ -38,9 +38,5 @@
 		<ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />
 		<ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Implementations\KleeContrib.Dfta.Securite.Commands.Implementations.csproj" />
 	</ItemGroup>
-
-	<Target Name="PostBuild" Condition="$(Version) == '0'" AfterTargets="PostBuildEvent">
-		<Exec Command="docker restart kleecontrib-dfta-api-1" IgnoreExitCode="true" />
-	</Target>
 
 </Project>
