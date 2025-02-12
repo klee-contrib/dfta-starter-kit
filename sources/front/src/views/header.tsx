@@ -1,8 +1,9 @@
 import {useObserver} from "mobx-react";
 import {ReactNode} from "react";
 
+import {colorScheme} from "@focus4/core";
 import {FilAriane, HeaderItem, HeaderScrolling, HeaderTopRow} from "@focus4/layout";
-import {colorScheme, toBem} from "@focus4/styling";
+import {toBem} from "@focus4/styling";
 import {FontIcon, IconButton, Switch} from "@focus4/toolbox";
 
 import {router} from "../router";

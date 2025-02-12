@@ -1,6 +1,7 @@
 import {useObserver} from "mobx-react";
 
-import {fieldFor, Form, SelectChips, selectFor, useFormActions, useFormNode} from "@focus4/forms";
+import {SelectChips} from "@focus4/form-toolbox";
+import {fieldFor, Form, selectFor, useFormActions, useFormNode} from "@focus4/forms";
 import {Panel} from "@focus4/layout";
 import {Slider} from "@focus4/toolbox";
 

@@ -1,4 +1,4 @@
-import {upperFirst} from "lodash";
+import {upperFirst} from "es-toolkit";
 
 import {makeReferenceStore} from "@focus4/stores";
 

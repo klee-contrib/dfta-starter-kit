@@ -1,5 +1,4 @@
-import "focus4";
-import {initColorScheme} from "@focus4/styling";
+import {initColorScheme} from "@focus4/core";
 
 import {getProfils} from "./services/securite/profil";
 

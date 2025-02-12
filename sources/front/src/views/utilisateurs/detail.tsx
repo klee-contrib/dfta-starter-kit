@@ -1,16 +1,7 @@
 import {useObserver} from "mobx-react";
 
-import {
-    autocompleteFor,
-    Display,
-    fieldFor,
-    Form,
-    selectFor,
-    SelectRadio,
-    useFormActions,
-    useFormNode,
-    useLoad
-} from "@focus4/forms";
+import {Display, SelectRadio} from "@focus4/form-toolbox";
+import {autocompleteFor, fieldFor, Form, selectFor, useFormActions, useFormNode, useLoad} from "@focus4/forms";
 import {Panel} from "@focus4/layout";
 import {makeReferenceList, toFlatValues} from "@focus4/stores";
 import {FontIcon} from "@focus4/toolbox";
