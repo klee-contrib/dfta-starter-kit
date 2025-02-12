@@ -7,35 +7,31 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "cssgen": "focus4 cssgen src",
-        "eslint": "eslint --ext .ts,.tsx src __style__",
+        "cssgen": "focus4 cssgen src __style__",
+        "eslint": "eslint src",
         "preview": "vite preview",
         "start": "vite"
     },
     "dependencies": {
-        "@azure/msal-browser": "4.0.2",
-        "focus4": "11.23.7"
+        "@azure/msal-browser": "4.3.0",
+        "@focus4/collections": "12.0.0-beta.3",
+        "@focus4/core": "12.0.0-beta.3",
+        "@focus4/form-toolbox": "12.0.0-beta.3",
+        "@focus4/forms": "12.0.0-beta.3",
+        "@focus4/layout": "12.0.0-beta.3",
+        "@focus4/stores": "12.0.0-beta.3",
+        "@focus4/styling": "12.0.0-beta.3",
+        "@focus4/toolbox": "12.0.0-beta.3",
+        "es-toolkit": "1.32.0",
+        "i18next": "24.2.2",
+        "luxon": "3.5.0",
+        "mobx": "6.13.6",
+        "mobx-react": "9.2.0",
+        "react": "19.0.0",
+        "react-dom": "19.0.0"
     },
     "devDependencies": {
-        "@focus4/tooling": "11.23.6"
-    },
-    "peerDependencies": {
-        "@focus4/collections": "*",
-        "@focus4/core": "*",
-        "@focus4/forms": "*",
-        "@focus4/layout": "*",
-        "@focus4/stores": "*",
-        "@focus4/styling": "*",
-        "@focus4/toolbox": "*",
-        "framer-motion": "*",
-        "i18next": "*",
-        "lodash": "*",
-        "luxon": "*",
-        "mobx": "*",
-        "mobx-react": "7",
-        "numeral": "*",
-        "react": "18",
-        "react-dom": "18"
+        "@focus4/tooling": "12.0.0-beta.3"
     },
     "author": "KleeGroup",
     "license": "MIT"
