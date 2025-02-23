@@ -1,0 +1,19 @@
+---
+module: Securite
+tags:
+  - api-commands
+  - front
+uses:
+  - Securite/Commands/Profil
+
+---
+class:
+  name: ProfilWrite
+  comment: Détail d'un profil en écriture.
+  properties:
+    - alias:
+        class: ProfilCommand
+
+  mappers:
+    to:
+      - class: ProfilCommand

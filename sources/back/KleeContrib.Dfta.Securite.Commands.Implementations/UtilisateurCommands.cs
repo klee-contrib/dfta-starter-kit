@@ -11,7 +11,7 @@ namespace KleeContrib.Dfta.Securite.Commands.Implementations;
 public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations) : IUtilisateurCommands
 {
     /// <inheritdoc cref="IUtilisateurCommands.AddUtilisateur" />
-    public async Task<int> AddUtilisateur(UtilisateurWrite utilisateur)
+    public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur)
     {
         return await utilisateurMutations.AddUtilisateur(utilisateur);
     }
@@ -23,7 +23,7 @@ public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations) : I
     }
 
     /// <inheritdoc cref="IUtilisateurCommands.UpdateUtilisateur" />
-    public async Task UpdateUtilisateur(int utiId, UtilisateurWrite utilisateur)
+    public async Task UpdateUtilisateur(int utiId, UtilisateurCommand utilisateur)
     {
         await utilisateurMutations.UpdateUtilisateur(utiId, utilisateur);
     }

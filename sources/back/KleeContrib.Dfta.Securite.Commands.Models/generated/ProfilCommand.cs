@@ -12,21 +12,19 @@ namespace KleeContrib.Dfta.Securite.Commands.Models;
 /// <summary>
 /// Détail d'un profil en écriture.
 /// </summary>
-public partial record ProfilWrite
+public partial record ProfilCommand
 {
     /// <summary>
     /// Libellé du profil.
     /// </summary>
-    [Required]
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public string? Libelle { get; set; }
+    public required string Libelle { get; set; }
 
     /// <summary>
     /// Code du droit.
     /// </summary>
-    [Required]
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.CodeListe)]
-    public Droit.Codes[]? DroitCodes { get; set; }
+    public required Droit.Codes[] DroitCodes { get; set; }
 }

@@ -12,7 +12,7 @@ namespace KleeContrib.Dfta.Securite.Queries.Models;
 /// <summary>
 /// Détail d'un profil en lecture.
 /// </summary>
-public partial record ProfilRead
+public partial record ProfilQuery
 {
     /// <summary>
     /// Id technique.
@@ -49,5 +49,5 @@ public partial record ProfilRead
     /// <summary>
     /// Utilisateurs ayant ce profil.
     /// </summary>
-    public ICollection<UtilisateurItem> Utilisateurs { get; set; } = new List<UtilisateurItem>();
+    public ICollection<UtilisateurItemQuery> Utilisateurs { get; set; } = new List<UtilisateurItemQuery>();
 }

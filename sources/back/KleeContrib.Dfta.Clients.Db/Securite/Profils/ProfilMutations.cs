@@ -14,7 +14,7 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Profils;
 public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutations
 {
     /// <inheritdoc cref="IProfilMutations.AddProfil" />
-    public async Task<int> AddProfil(ProfilWrite profil)
+    public async Task<int> AddProfil(ProfilCommand profil)
     {
         var profilDb = profil.ToProfil();
 
@@ -34,7 +34,7 @@ public class ProfilMutations(KleeContribDftaDbContext context) : IProfilMutation
     }
 
     /// <inheritdoc cref="IProfilMutations.UpdateProfil" />
-    public async Task UpdateProfil(int proId, ProfilWrite profil)
+    public async Task UpdateProfil(int proId, ProfilCommand profil)
     {
         var profilDb = await context.Profils.FindAsync(proId) ?? throw new KeyNotFoundException("Le profil demandé n'existe pas.");
 

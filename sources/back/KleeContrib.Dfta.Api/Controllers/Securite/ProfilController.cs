@@ -2,13 +2,15 @@
 //// ATTENTION, CE FICHIER EST PARTIELLEMENT GENERE AUTOMATIQUEMENT !
 ////
 
-using KleeContrib.Dfta.Securite.Commands.Models;
-using KleeContrib.Dfta.Securite.Cosmmands;
+using KleeContrib.Dfta.Api.Models.Commands;
+using KleeContrib.Dfta.Api.Models.Queries;
+using KleeContrib.Dfta.Securite.Commands;
 using KleeContrib.Dfta.Securite.Queries;
-using KleeContrib.Dfta.Securite.Queries.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KleeContrib.Dfta.Api.Securite;
+
+using static Models.Queries.SecuriteDTOMappers;
 
 /// <summary>
 /// Profil controller
@@ -25,8 +27,9 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     [HttpPost("api/profils")]
     public async Task<ProfilRead> AddProfil([FromBody] ProfilWrite profil)
     {
-        var id = await commands.AddProfil(profil);
-        return await queries.GetProfil(id);
+        var id = await commands.AddProfil(profil.ToProfilCommand());
+        var profilQuery = await queries.GetProfil(id);
+        return CreateProfilRead(profilQuery, profilQuery.Utilisateurs.Select(CreateUtilisateurItem).ToList());
     }
 
     /// <summary>
@@ -37,7 +40,8 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     [HttpGet("api/profils/{proId:int}")]
     public async Task<ProfilRead> GetProfil(int proId)
     {
-        return await queries.GetProfil(proId);
+        var profilQuery = await queries.GetProfil(proId);
+        return CreateProfilRead(profilQuery, profilQuery.Utilisateurs.Select(CreateUtilisateurItem).ToList());
     }
 
     /// <summary>
@@ -47,7 +51,7 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     [HttpGet("api/profils")]
     public async Task<ICollection<ProfilItem>> GetProfils()
     {
-        return await queries.GetProfils();
+        return (await queries.GetProfils()).Select(CreateProfilItem).ToList();
     }
 
     /// <summary>
@@ -59,7 +63,8 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     [HttpPut("api/profils/{proId:int}")]
     public async Task<ProfilRead> UpdateProfil(int proId, [FromBody] ProfilWrite profil)
     {
-        await commands.UpdateProfil(proId, profil);
-        return await queries.GetProfil(proId);
+        await commands.UpdateProfil(proId, profil.ToProfilCommand());
+        var profilQuery = await queries.GetProfil(proId);
+        return CreateProfilRead(profilQuery, profilQuery.Utilisateurs.Select(CreateUtilisateurItem).ToList());
     }
 }

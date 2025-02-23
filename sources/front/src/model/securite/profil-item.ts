@@ -32,6 +32,6 @@ export const ProfilItemEntity: ProfilItemEntityType = {
         name: "nombreUtilisateurs",
         domain: DO_ENTIER,
         isRequired: true,
-        label: "securite.profilItem.nombreUtilisateurs"
+        label: "securite.profilItemQuery.nombreUtilisateurs"
     }
 };

@@ -4,9 +4,9 @@ tags:
   - back
   - front
 uses:
-  - Securite/Commands/Utilisateur
+  - Securite/Api/Commands/Utilisateur
+  - Securite/Api/Queries/Utilisateur
   - Securite/Data/Utilisateur
-  - Securite/Queries/Utilisateur
 
 ---
 endpoint:
@@ -62,6 +62,7 @@ endpoint:
           - DateCreation
           - DateModification
       defaultValue: null
+      required: false
   returns:
     composition: UtilisateurItem
     name: utilisateurList

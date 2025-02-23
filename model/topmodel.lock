@@ -2,17 +2,25 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 2.4.0
+version: 2.4.5
 modules:
   csharp:
-    version: 1.2.0
-    hash: cc3e9c15eda02a9bac21adc09cfca896
+    version: 1.3.0
+    hash: 4061556841213dc35dad82a090bc727f
   javascript:
     version: 1.2.0
     hash: 17bb3fe9b2e2e9e48cdec60ed8e76c89
 generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/ProfilController.cs
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/UtilisateurController.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/generated/ProfilWrite.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/generated/SecuriteDTOMappers.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/generated/UtilisateurWrite.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Queries/generated/ProfilItem.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Queries/generated/ProfilRead.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Queries/generated/SecuriteDTOMappers.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Queries/generated/UtilisateurItem.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Models/Queries/generated/UtilisateurRead.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/generated/KleeContribDftaDbContext.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Reference/generated/ISecuriteReferenceAccessors.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Reference/generated/SecuriteReferenceAccessors.cs
@@ -23,12 +31,12 @@ generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Common/References/Securite/generated/Droit.cs
   - ../sources/back/KleeContrib.Dfta.Common/References/Securite/generated/TypeDroit.cs
   - ../sources/back/KleeContrib.Dfta.Common/References/Securite/generated/TypeUtilisateur.cs
-  - ../sources/back/KleeContrib.Dfta.Securite.Commands.Models/generated/ProfilWrite.cs
-  - ../sources/back/KleeContrib.Dfta.Securite.Commands.Models/generated/UtilisateurWrite.cs
-  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/ProfilItem.cs
-  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/ProfilRead.cs
-  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/UtilisateurItem.cs
-  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/UtilisateurRead.cs
+  - ../sources/back/KleeContrib.Dfta.Securite.Commands.Models/generated/ProfilCommand.cs
+  - ../sources/back/KleeContrib.Dfta.Securite.Commands.Models/generated/UtilisateurCommand.cs
+  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/ProfilItemQuery.cs
+  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/ProfilQuery.cs
+  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/UtilisateurItemQuery.cs
+  - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/UtilisateurQuery.cs
   - ../sources/front/src/locale/common.ts
   - ../sources/front/src/locale/securite.ts
   - ../sources/front/src/model/securite/profil-item.ts

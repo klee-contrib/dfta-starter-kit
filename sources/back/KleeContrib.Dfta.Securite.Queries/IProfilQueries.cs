@@ -14,11 +14,11 @@ public interface IProfilQueries
     /// </summary>
     /// <param name="proId">Id technique</param>
     /// <returns>Le détail de l'Profil</returns>
-    Task<ProfilRead> GetProfil(int proId);
+    Task<ProfilQuery> GetProfil(int proId);
 
     /// <summary>
     /// Liste tous les Profils
     /// </summary>
     /// <returns>Profils matchant les critères</returns>
-    Task<ICollection<ProfilItem>> GetProfils();
+    Task<ICollection<ProfilItemQuery>> GetProfils();
 }

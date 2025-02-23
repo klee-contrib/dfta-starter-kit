@@ -15,7 +15,7 @@ public interface IUtilisateurQueries
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
     /// <returns>Le détail de l'utilisateur</returns>
-    Task<UtilisateurRead> GetUtilisateur(int utiId);
+    Task<UtilisateurQuery> GetUtilisateur(int utiId);
 
     /// <summary>
     /// Recherche des utilisateurs
@@ -28,5 +28,5 @@ public interface IUtilisateurQueries
     /// <param name="profilId">Profil de l'utilisateur</param>
     /// <param name="typeUtilisateurCode">Type d'utilisateur</param>
     /// <returns>Utilisateurs matchant les critères</returns>
-    Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null);
+    Task<ICollection<UtilisateurItemQuery>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null);
 }

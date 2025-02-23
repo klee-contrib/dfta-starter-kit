@@ -1,14 +1,13 @@
 ---
 module: Securite
 tags:
-  - back-commands
-  - front
+  - commands
 uses:
   - Securite/Data/Utilisateur
 
 ---
 class:
-  name: UtilisateurWrite
+  name: UtilisateurCommand
   comment: Détail d'un utilisateur en écriture.
   properties:
     - alias:

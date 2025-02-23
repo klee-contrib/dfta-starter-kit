@@ -14,7 +14,7 @@ public interface IProfilMutations
     /// </summary>
     /// <param name="profil">Profil à sauvegarder</param>
     /// <returns>Profil sauvegardé</returns>
-    Task<int> AddProfil(ProfilWrite profil);
+    Task<int> AddProfil(ProfilCommand profil);
 
     /// <summary>
     /// Sauvegarde un Profil
@@ -22,5 +22,5 @@ public interface IProfilMutations
     /// <param name="proId">Id technique</param>
     /// <param name="profil">Profil à sauvegarder</param>
     /// <returns>Profil sauvegardé</returns>
-    Task UpdateProfil(int proId, ProfilWrite profil);
+    Task UpdateProfil(int proId, ProfilCommand profil);
 }

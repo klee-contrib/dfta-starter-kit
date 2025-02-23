@@ -1,14 +1,13 @@
 ---
 module: Securite
 tags:
-  - back-queries
-  - front
+  - queries
 uses:
   - Securite/Data/Utilisateur
 
 ---
 class:
-  name: UtilisateurItem
+  name: UtilisateurItemQuery
   comment: Détail d'un utilisateur en liste.
 
   properties:
@@ -26,7 +25,7 @@ class:
           - class: Utilisateur
 ---
 class:
-  name: UtilisateurRead
+  name: UtilisateurQuery
   comment: Détail d'un utilisateur en lecture.
 
   properties:

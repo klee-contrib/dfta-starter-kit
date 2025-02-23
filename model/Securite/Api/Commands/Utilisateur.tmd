@@ -1,0 +1,19 @@
+---
+module: Securite
+tags:
+  - api-commands
+  - front
+uses:
+  - Securite/Commands/Utilisateur
+
+---
+class:
+  name: UtilisateurWrite
+  comment: Détail d'un utilisateur en écriture.
+  properties:
+    - alias:
+        class: UtilisateurCommand
+
+  mappers:
+    to:
+      - class: UtilisateurCommand

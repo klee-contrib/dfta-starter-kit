@@ -1,8 +1,7 @@
 ---
 module: Securite
 tags:
-  - back-queries
-  - front
+  - queries
 uses:
   - Securite/Data/Profil
   - Securite/Queries/Utilisateur
@@ -10,7 +9,7 @@ uses:
 
 ---
 class:
-  name: ProfilItem
+  name: ProfilItemQuery
   comment: Détail d'un profil en liste.
 
   properties:
@@ -27,7 +26,7 @@ class:
       comment: Nombre d'utilisateurs affectés au profil.
 ---
 class:
-  name: ProfilRead
+  name: ProfilQuery
   comment: Détail d'un profil en lecture.
 
   properties:
@@ -52,7 +51,7 @@ class:
       prefix: true
       suffix: s
 
-    - composition: UtilisateurItem
+    - composition: UtilisateurItemQuery
       name: Utilisateurs
       domain: DO_LISTE
       comment: Utilisateurs ayant ce profil.

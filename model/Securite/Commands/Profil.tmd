@@ -1,15 +1,14 @@
 ---
 module: Securite
 tags:
-  - back-commands
-  - front
+  - commands
 uses:
   - Securite/Data/Profil
   - Securite/References
 
 ---
 class:
-  name: ProfilWrite
+  name: ProfilCommand
   comment: Détail d'un profil en écriture.
   properties:
     - alias:

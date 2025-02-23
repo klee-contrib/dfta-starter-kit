@@ -14,7 +14,7 @@ public interface IUtilisateurCommands
     /// </summary>
     /// <param name="utilisateur">Utilisateur à sauvegarder</param>
     /// <returns>Utilisateur sauvegardé</returns>
-    Task<int> AddUtilisateur(UtilisateurWrite utilisateur);
+    Task<int> AddUtilisateur(UtilisateurCommand utilisateur);
 
     /// <summary>
     /// Supprime un utilisateur
@@ -29,5 +29,5 @@ public interface IUtilisateurCommands
     /// <param name="utiId">Id de l'utilisateur</param>
     /// <param name="utilisateur">Utilisateur à sauvegarder</param>
     /// <returns>Utilisateur sauvegardé</returns>
-    Task UpdateUtilisateur(int utiId, UtilisateurWrite utilisateur);
+    Task UpdateUtilisateur(int utiId, UtilisateurCommand utilisateur);
 }

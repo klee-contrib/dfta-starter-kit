@@ -2,14 +2,16 @@
 //// ATTENTION, CE FICHIER EST PARTIELLEMENT GENERE AUTOMATIQUEMENT !
 ////
 
+using KleeContrib.Dfta.Api.Models.Commands;
+using KleeContrib.Dfta.Api.Models.Queries;
 using KleeContrib.Dfta.Common.References.Securite;
 using KleeContrib.Dfta.Securite.Commands;
-using KleeContrib.Dfta.Securite.Commands.Models;
 using KleeContrib.Dfta.Securite.Queries;
-using KleeContrib.Dfta.Securite.Queries.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KleeContrib.Dfta.Api.Securite;
+
+using static Models.Queries.SecuriteDTOMappers;
 
 /// <summary>
 /// Contrôleur pour Utilisateur.
@@ -26,8 +28,8 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     [HttpPost("api/utilisateurs")]
     public async Task<UtilisateurRead> AddUtilisateur([FromBody] UtilisateurWrite utilisateur)
     {
-        var id = await commands.AddUtilisateur(utilisateur);
-        return await queries.GetUtilisateur(id);
+        var id = await commands.AddUtilisateur(utilisateur.ToUtilisateurCommand());
+        return CreateUtilisateurRead(await queries.GetUtilisateur(id));
     }
 
     /// <summary>
@@ -49,7 +51,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     [HttpGet("api/utilisateurs/{utiId:int}")]
     public async Task<UtilisateurRead> GetUtilisateur(int utiId)
     {
-        return await queries.GetUtilisateur(utiId);
+        return CreateUtilisateurRead(await queries.GetUtilisateur(utiId));
     }
 
     /// <summary>
@@ -67,7 +69,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     [HttpGet("api/utilisateurs")]
     public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, string? adresse = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
-        return await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode);
+        return (await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode)).Select(CreateUtilisateurItem).ToList();
     }
 
     /// <summary>
@@ -79,7 +81,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     [HttpPut("api/utilisateurs/{utiId:int}")]
     public async Task<UtilisateurRead> UpdateUtilisateur(int utiId, [FromBody] UtilisateurWrite utilisateur)
     {
-        await commands.UpdateUtilisateur(utiId, utilisateur);
-        return await queries.GetUtilisateur(utiId);
+        await commands.UpdateUtilisateur(utiId, utilisateur.ToUtilisateurCommand());
+        return CreateUtilisateurRead(await queries.GetUtilisateur(utiId));
     }
 }

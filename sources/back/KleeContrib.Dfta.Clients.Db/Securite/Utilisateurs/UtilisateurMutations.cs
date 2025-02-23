@@ -14,7 +14,7 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Utilisateurs;
 public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisateurMutations
 {
     /// <inheritdoc cref="IUtilisateurMutations.AddUtilisateur" />
-    public async Task<int> AddUtilisateur(UtilisateurWrite utilisateur)
+    public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur)
     {
         var utilisateurDb = utilisateur.ToUtilisateur();
         await context.Utilisateurs.AddAsync(utilisateurDb);
@@ -29,7 +29,7 @@ public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisate
     }
 
     /// <inheritdoc cref="IUtilisateurMutations.UpdateUtilisateur" />
-    public async Task UpdateUtilisateur(int utiId, UtilisateurWrite utilisateur)
+    public async Task UpdateUtilisateur(int utiId, UtilisateurCommand utilisateur)
     {
         var utilisateurDb = await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas.");
 

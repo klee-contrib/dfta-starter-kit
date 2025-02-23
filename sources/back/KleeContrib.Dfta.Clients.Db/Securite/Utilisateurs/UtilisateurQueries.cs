@@ -3,9 +3,10 @@ using KleeContrib.Dfta.Common.References.Securite;
 using KleeContrib.Dfta.Securite.Queries;
 using KleeContrib.Dfta.Securite.Queries.Models;
 using Microsoft.EntityFrameworkCore;
-using static KleeContrib.Dfta.Clients.Db.Securite.Models.SecuriteMappers;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Utilisateurs;
+
+using static Models.SecuriteMappers;
 
 /// <summary>
 /// Implémentation de IUtilisateurQueries.
@@ -14,13 +15,13 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Utilisateurs;
 public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateurQueries
 {
     /// <inheritdoc cref="IUtilisateurQueries.GetUtilisateur" />
-    public async Task<UtilisateurRead> GetUtilisateur(int utiId)
+    public async Task<UtilisateurQuery> GetUtilisateur(int utiId)
     {
-        return CreateUtilisateurRead(await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas."));
+        return CreateUtilisateurQuery(await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas."));
     }
 
     /// <inheritdoc cref="IUtilisateurQueries.SearchUtilisateur" />
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
+    public async Task<ICollection<UtilisateurItemQuery>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
         return await context.Utilisateurs.AsNoTracking()
             .Where(x =>
@@ -31,7 +32,7 @@ public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateur
                 (!actif.HasValue || x.Actif == actif) &&
                 (!profilId.HasValue || x.ProfilId == profilId) &&
                 (!typeUtilisateurCode.HasValue || x.TypeUtilisateurCode == typeUtilisateurCode))
-            .Select(x => CreateUtilisateurItem(x))
+            .Select(x => CreateUtilisateurItemQuery(x))
             .ToListAsync();
     }
 }
