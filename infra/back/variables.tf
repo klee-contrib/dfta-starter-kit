@@ -42,3 +42,13 @@ variable "snet_id" {
   type     = string
   nullable = false
 }
+
+variable "storage_account_id" {
+  type     = string
+  nullable = false
+}
+
+variable "storage_account_name" {
+  type     = string
+  nullable = false
+}

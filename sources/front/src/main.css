@@ -28,3 +28,7 @@ a {
     color: rgb(var(--color-primary));
     font-weight: 500;
 }
+
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 1;
+}

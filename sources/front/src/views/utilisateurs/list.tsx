@@ -31,6 +31,7 @@ export function UtilisateurList() {
             {advancedSearchFor({
                 store: utilisateurListStore,
                 facetBoxPosition: "none",
+                canRemoveSort: false,
                 hasSelection: true,
                 hasSearchBar: true,
                 orderableColumnList: [

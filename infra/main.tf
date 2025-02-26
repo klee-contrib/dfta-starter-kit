@@ -77,6 +77,14 @@ module "database" {
   zone                = var.database_zone
 }
 
+module "storage" {
+  source = "./storage"
+
+  app_name = var.app_name
+  region   = var.region
+  rg_name  = azurerm_resource_group.rg.name
+}
+
 module "back" {
   source = "./back"
 
@@ -89,6 +97,8 @@ module "back" {
   rg_name              = azurerm_resource_group.rg.name
   sku_name             = var.back_sku_name
   snet_id              = module.vnet.snet_back_id
+  storage_account_name = module.storage.account_name
+  storage_account_id   = module.storage.account_id
 }
 
 module "front" {

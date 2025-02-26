@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "�
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleeContrib.Dfta.Clients.Storage", "KleeContrib.Dfta.Clients.Storage\KleeContrib.Dfta.Clients.Storage.csproj", "{7569D794-87DF-4F7B-A85D-B1586303ED66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{E253001A-BD63-44B3-A229-68B6F4344426}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E253001A-BD63-44B3-A229-68B6F4344426}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E253001A-BD63-44B3-A229-68B6F4344426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7569D794-87DF-4F7B-A85D-B1586303ED66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7569D794-87DF-4F7B-A85D-B1586303ED66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7569D794-87DF-4F7B-A85D-B1586303ED66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7569D794-87DF-4F7B-A85D-B1586303ED66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +99,7 @@ Global
 		{8923EFB5-5BDE-465C-896B-463641E41ADA} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
 		{6424430B-43B6-4CC1-8674-3CE67F28EACE} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
 		{BF727B3F-C097-44D0-8F52-414AD17F7E6E} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
+		{7569D794-87DF-4F7B-A85D-B1586303ED66} = {6D8E2D28-B816-44F1-8E3F-7EF3E589DC03}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00F8DD2E-3462-4641-A665-E581F715D8F5}

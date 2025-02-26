@@ -1,6 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 using Azure.Core;
 using Azure.Identity;
+using Azure.Storage;
+using Azure.Storage.Blobs;
 using Kinetix.EFCore;
 using Kinetix.Monitoring.Core;
 using Kinetix.Monitoring.Insights;
@@ -10,6 +12,7 @@ using Kinetix.Web.Filters;
 using KleeContrib.Dfta.Api;
 using KleeContrib.Dfta.Clients.Db;
 using KleeContrib.Dfta.Clients.Db.Securite.Profils;
+using KleeContrib.Dfta.Clients.Storage;
 using KleeContrib.Dfta.Securite.Commands.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -67,8 +70,16 @@ services
     {
         o.AddAssemblies(typeof(ProfilMutations).Assembly);
         o.AddAssemblies(typeof(ProfilCommands).Assembly);
+        o.AddAssemblies(typeof(StorageClient).Assembly);
     })
     .AddEFCore<KleeContribDftaDbContext>(o => o.UseNpgsql(dataSource));
+
+var storageAccountName = builder.Configuration["Storage:AccountName"];
+var storageAccountKey = builder.Configuration["Storage:AccountKey"];
+var storageUri = new Uri($"https://{storageAccountName}.blob.core.windows.net");
+services.AddSingleton(string.IsNullOrWhiteSpace(storageAccountKey)
+    ? new BlobServiceClient(storageUri, new DefaultAzureCredential())
+    : new BlobServiceClient(storageUri, new StorageSharedKeyCredential(storageAccountName, storageAccountKey)));
 
 services
     .AddKinetixExceptionHandler()

@@ -66,6 +66,11 @@ class:
       defaultValue: GEST
       comment: Type d'utilisateur
 
+    - name: NomFichierPhoto
+      label: Photo
+      domain: DO_LIBELLE
+      comment: Nom du fichier de la photo de l'utilisateur, s'il en a une.
+
   unique:
     - [Email]
   values:

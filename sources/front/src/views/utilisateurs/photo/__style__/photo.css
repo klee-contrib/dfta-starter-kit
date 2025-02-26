@@ -1,0 +1,18 @@
+.display {
+    display: inline-flex;
+    gap: var(--button-spacing);
+
+    & > span {
+        display: inline-flex;
+        flex-direction: column;
+    }
+}
+
+.display img {
+    width: var(--text-field-max-width);
+}
+
+.picker img {
+    margin-top: var(--button-spacing);
+    width: var(--text-field-max-width);
+}

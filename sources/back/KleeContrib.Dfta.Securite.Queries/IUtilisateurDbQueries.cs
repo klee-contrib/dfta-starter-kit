@@ -8,7 +8,7 @@ namespace KleeContrib.Dfta.Securite.Queries;
 /// Utilisateurs queries.
 /// </summary>
 [RegisterContract]
-public interface IUtilisateurQueries
+public interface IUtilisateurDbQueries
 {
     /// <summary>
     /// Charge le détail d'un utilisateur
@@ -16,6 +16,13 @@ public interface IUtilisateurQueries
     /// <param name="utiId">Id de l'utilisateur</param>
     /// <returns>Le détail de l'utilisateur</returns>
     Task<UtilisateurQuery> GetUtilisateur(int utiId);
+
+    /// <summary>
+    /// Charge le nom du fichier de photo de l'utilisateur.
+    /// </summary>
+    /// <param name="utiId">Id de l'utilisateur.</param>
+    /// <returns>Nom du fichier de photo, s'il existe.</returns>
+    Task<string?> GetUtilisateurPhotoFileName(int utiId);
 
     /// <summary>
     /// Recherche des utilisateurs

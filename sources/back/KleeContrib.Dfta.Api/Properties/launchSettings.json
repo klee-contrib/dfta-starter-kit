@@ -9,7 +9,9 @@
         "Database__Server": "localhost",
         "Database__User_Id": "dfta-api-local",
         "Database__Password": "local",
-        "Database__Ssl_Mode": "Disable"
+        "Database__Ssl_Mode": "Disable",
+
+        "Storage__AccountName": "dftastoragedev"
       }
     }
   }

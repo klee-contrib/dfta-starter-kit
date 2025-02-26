@@ -36,6 +36,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />
+    <ProjectReference Include="..\KleeContrib.Dfta.Clients.Storage\KleeContrib.Dfta.Clients.Storage.csproj" />
 		<ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Implementations\KleeContrib.Dfta.Securite.Commands.Implementations.csproj" />
 	</ItemGroup>
 

@@ -86,6 +86,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                     uti_actif = table.Column<bool>(type: "boolean", nullable: false),
                     pro_id = table.Column<int>(type: "integer", nullable: false),
                     tut_code = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    uti_nom_fichier_photo = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     uti_date_creation = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     uti_date_modification = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
@@ -135,10 +136,10 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "pro_id", "pro_date_creation", "pro_date_modification", "pro_libelle" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3860), null, "Profil 1" },
-                    { 2, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3861), null, "Profil 2" },
-                    { 3, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3862), null, "Profil 3" },
-                    { 4, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3863), null, "Profil 4" }
+                    { 1, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6139), null, "Profil 1" },
+                    { 2, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6308), null, "Profil 2" },
+                    { 3, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6310), null, "Profil 3" },
+                    { 4, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6312), null, "Profil 4" }
                 });
 
             migrationBuilder.InsertData(
@@ -174,17 +175,17 @@ namespace KleeContrib.Dfta.Migrations.Migrations
 
             migrationBuilder.InsertData(
                 table: "utilisateurs",
-                columns: new[] { "uti_id", "uti_actif", "uti_adresse", "uti_date_creation", "uti_date_modification", "uti_date_naissance", "uti_email", "uti_nom", "uti_prenom", "pro_id", "tut_code" },
+                columns: new[] { "uti_id", "uti_actif", "uti_adresse", "uti_date_creation", "uti_date_modification", "uti_date_naissance", "uti_email", "uti_nom", "uti_nom_fichier_photo", "uti_prenom", "pro_id", "tut_code" },
                 values: new object[,]
                 {
-                    { 1, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3928), null, null, "test1@test.com", "Jean", "Michel", 1, "ADMIN" },
-                    { 2, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3931), null, null, "test2@test.com", "Gerard", "Jugnos", 2, "GEST" },
-                    { 3, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3933), null, null, "test3@test.com", "Gad", "El", 3, "CLIENT" },
-                    { 4, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3935), null, null, "test4@test.com", "Bernard", "Bruno", 4, "ADMIN" },
-                    { 5, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3937), null, null, "test5@test.com", "Sisi", "Brindacier", 1, "GEST" },
-                    { 6, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3938), null, null, "test6@test.com", "Bibi", "Baba", 2, "CLIENT" },
-                    { 7, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3940), null, null, "test7@test.com", "Dédé", "Dédé", 3, "GEST" },
-                    { 8, true, null, new DateTime(2024, 7, 5, 20, 3, 31, 898, DateTimeKind.Utc).AddTicks(3942), null, null, "test8@test.com", "Ran", "Tanplan", 4, "ADMIN" }
+                    { 1, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8810), null, null, "test1@test.com", "Jean", null, "Michel", 1, "ADMIN" },
+                    { 2, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8966), null, null, "test2@test.com", "Gerard", null, "Jugnos", 2, "GEST" },
+                    { 3, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8972), null, null, "test3@test.com", "Gad", null, "El", 3, "CLIENT" },
+                    { 4, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8978), null, null, "test4@test.com", "Bernard", null, "Bruno", 4, "ADMIN" },
+                    { 5, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8982), null, null, "test5@test.com", "Sisi", null, "Brindacier", 1, "GEST" },
+                    { 6, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8986), null, null, "test6@test.com", "Bibi", null, "Baba", 2, "CLIENT" },
+                    { 7, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8991), null, null, "test7@test.com", "Dédé", null, "Dédé", 3, "GEST" },
+                    { 8, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8993), null, null, "test8@test.com", "Ran", null, "Tanplan", 4, "ADMIN" }
                 });
 
             migrationBuilder.InsertData(

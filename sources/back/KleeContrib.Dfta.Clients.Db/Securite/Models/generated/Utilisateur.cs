@@ -125,6 +125,14 @@ public partial record Utilisateur
     public TypeUtilisateur.Codes TypeUtilisateurCode { get; set; } = TypeUtilisateur.Codes.GEST;
 
     /// <summary>
+    /// Nom du fichier de la photo de l'utilisateur, s'il en a une.
+    /// </summary>
+    [Column("uti_nom_fichier_photo")]
+    [Domain(Domains.Libelle)]
+    [StringLength(100)]
+    public string? NomFichierPhoto { get; set; }
+
+    /// <summary>
     /// Date de création de l'utilisateur.
     /// </summary>
     [Column("uti_date_creation")]

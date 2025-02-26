@@ -38,4 +38,15 @@ public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisate
 
         await context.SaveChangesAsync();
     }
+
+    /// <inheritdoc cref="IUtilisateurMutations.UpdateUtilisateurPhotoFileName" />
+    public async Task UpdateUtilisateurPhotoFileName(int utiId, string? fileName)
+    {
+        var utilisateurDb = await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas.");
+
+        utilisateurDb.NomFichierPhoto = fileName;
+        utilisateurDb.DateModification = DateTime.UtcNow;
+
+        await context.SaveChangesAsync();
+    }
 }

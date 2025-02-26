@@ -10,10 +10,11 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "back" {
-  name                 = "${var.app_name}-snet-back-${terraform.workspace}"
-  resource_group_name  = var.rg_name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [cidrsubnet(var.cidr, 8, 1)]
+  name                              = "${var.app_name}-snet-back-${terraform.workspace}"
+  resource_group_name               = var.rg_name
+  virtual_network_name              = azurerm_virtual_network.vnet.name
+  address_prefixes                  = [cidrsubnet(var.cidr, 8, 1)]
+  private_endpoint_network_policies = "Enabled"
 
   delegation {
     name = "app-service"
@@ -28,15 +29,17 @@ resource "azurerm_subnet" "back" {
 }
 
 resource "azurerm_subnet" "db" {
-  name                 = "${var.app_name}-snet-db-${terraform.workspace}"
-  resource_group_name  = var.rg_name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [cidrsubnet(var.cidr, 8, 2)]
+  name                              = "${var.app_name}-snet-db-${terraform.workspace}"
+  resource_group_name               = var.rg_name
+  virtual_network_name              = azurerm_virtual_network.vnet.name
+  address_prefixes                  = [cidrsubnet(var.cidr, 8, 2)]
+  private_endpoint_network_policies = "Enabled"
 }
 
 resource "azurerm_subnet" "agent" {
-  name                 = "${var.app_name}-snet-agent-${terraform.workspace}"
-  resource_group_name  = var.rg_name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [cidrsubnet(var.cidr, 8, 3)]
+  name                              = "${var.app_name}-snet-agent-${terraform.workspace}"
+  resource_group_name               = var.rg_name
+  virtual_network_name              = azurerm_virtual_network.vnet.name
+  address_prefixes                  = [cidrsubnet(var.cidr, 8, 3)]
+  private_endpoint_network_policies = "Enabled"
 }

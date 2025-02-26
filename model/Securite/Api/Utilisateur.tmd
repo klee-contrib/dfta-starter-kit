@@ -24,10 +24,34 @@ endpoint:
     comment: Utilisateur sauvegardé
 ---
 endpoint:
+  name: AddUtilisateurPhoto
+  method: PUT
+  route: api/utilisateurs/{utiId}/photo
+  description: Ajoute une nouvelle photo pour un utilisateur.
+  params:
+    - alias:
+        class: Utilisateur
+        property: Id
+    - name: Photo
+      domain: DO_FILE_UPLOAD
+      required: true
+      comment: Photo.
+---
+endpoint:
   name: DeleteUtilisateur
   method: DELETE
   route: api/utilisateurs/{utiId}
   description: Supprime un utilisateur
+  params:
+    - alias:
+        class: Utilisateur
+        property: Id
+---
+endpoint:
+  name: DeleteUtilisateurPhoto
+  method: DELETE
+  route: api/utilisateurs/{utiId}/photo
+  description: Supprime la photo d'un utilisateur
   params:
     - alias:
         class: Utilisateur
@@ -50,6 +74,21 @@ endpoint:
     comment: Le détail de l'utilisateur
 ---
 endpoint:
+  name: GetUtilisateurPhoto
+  method: GET
+  route: api/utilisateurs/{utiId}/photo
+  description: Charge la photo d'un utilisateur (si elle existe).
+  params:
+    - alias:
+        class: Utilisateur
+        property: Id
+  returns:
+    name: Photo
+    domain: DO_FILE_DOWNLOAD
+    required: true
+    comment: Photo.
+---
+endpoint:
   name: SearchUtilisateur
   method: GET
   route: api/utilisateurs
@@ -61,6 +100,8 @@ endpoint:
           - Id
           - DateCreation
           - DateModification
+          - NomFichierPhoto
+          - Adresse
       defaultValue: null
       required: false
   returns:

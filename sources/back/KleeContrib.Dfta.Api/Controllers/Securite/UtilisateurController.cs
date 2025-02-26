@@ -2,6 +2,8 @@
 //// ATTENTION, CE FICHIER EST PARTIELLEMENT GENERE AUTOMATIQUEMENT !
 ////
 
+using System.ComponentModel.DataAnnotations;
+using Kinetix.Modeling.Exceptions;
 using KleeContrib.Dfta.Api.Models.Commands;
 using KleeContrib.Dfta.Api.Models.Queries;
 using KleeContrib.Dfta.Common.References.Securite;
@@ -16,9 +18,7 @@ using static Models.Queries.SecuriteDTOMappers;
 /// <summary>
 /// Contrôleur pour Utilisateur.
 /// </summary>
-/// <param name="commands">Service injecté.</param>
-/// <param name="queries">Service injecté.</param>
-public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQueries queries) : Controller
+public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDbQueries dbQueries, IUtilisateurMixedQueries mixedQueries) : Controller
 {
     /// <summary>
     /// Ajoute un utilisateur
@@ -29,7 +29,25 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     public async Task<UtilisateurRead> AddUtilisateur([FromBody] UtilisateurWrite utilisateur)
     {
         var id = await commands.AddUtilisateur(utilisateur.ToUtilisateurCommand());
-        return CreateUtilisateurRead(await queries.GetUtilisateur(id));
+        return CreateUtilisateurRead(await dbQueries.GetUtilisateur(id));
+    }
+
+    /// <summary>
+    /// Ajoute une nouvelle photo pour un utilisateur.
+    /// </summary>
+    /// <param name="utiId">Id de l'utilisateur</param>
+    /// <param name="photo">Photo.</param>
+    /// <returns>Task.</returns>
+    [HttpPut("api/utilisateurs/{utiId:int}/photo")]
+    public async Task AddUtilisateurPhoto(int utiId, [Required] IFormFile? photo = null)
+    {
+        if (photo!.ContentType != "image/jpeg")
+        {
+            throw new BusinessException("Seules les images au format *.jpg sont autorisées.");
+        }
+
+        using var file = photo!.OpenReadStream();
+        await commands.AddUtilisateurPhoto(utiId, photo.FileName, file);
     }
 
     /// <summary>
@@ -44,6 +62,17 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     }
 
     /// <summary>
+    /// Supprime la photo d'un utilisateur
+    /// </summary>
+    /// <param name="utiId">Id de l'utilisateur</param>
+    /// <returns>Task.</returns>
+    [HttpDelete("api/utilisateurs/{utiId:int}/photo")]
+    public async Task DeleteUtilisateurPhoto(int utiId)
+    {
+        await commands.DeleteUtilisateurPhoto(utiId);
+    }
+
+    /// <summary>
     /// Charge le détail d'un utilisateur
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
@@ -51,7 +80,27 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     [HttpGet("api/utilisateurs/{utiId:int}")]
     public async Task<UtilisateurRead> GetUtilisateur(int utiId)
     {
-        return CreateUtilisateurRead(await queries.GetUtilisateur(utiId));
+        return CreateUtilisateurRead(await dbQueries.GetUtilisateur(utiId));
+    }
+
+    /// <summary>
+    /// Charge la photo d'un utilisateur (si elle existe).
+    /// </summary>
+    /// <param name="utiId">Id de l'utilisateur</param>
+    /// <returns>Photo.</returns>
+    [HttpGet("api/utilisateurs/{utiId:int}/photo")]
+    public async Task<FileContentResult> GetUtilisateurPhoto(int utiId)
+    {
+        var file = await mixedQueries.GetUtilisateurPhoto(utiId);
+        if (file == null)
+        {
+            Response.StatusCode = 204;
+            return new FileContentResult([], "image/jpeg");
+        }
+        else
+        {
+            return new FileContentResult(file, "image/jpeg");
+        }
     }
 
     /// <summary>
@@ -61,15 +110,14 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// <param name="prenom">Nom de l'utilisateur</param>
     /// <param name="email">Email de l'utilisateur</param>
     /// <param name="dateNaissance">Age de l'utilisateur</param>
-    /// <param name="adresse">Adresse de l'utilisateur</param>
     /// <param name="actif">Si l'utilisateur est actif</param>
     /// <param name="profilId">Profil de l'utilisateur</param>
     /// <param name="typeUtilisateurCode">Type d'utilisateur</param>
     /// <returns>Utilisateurs matchant les critères</returns>
     [HttpGet("api/utilisateurs")]
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, string? adresse = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
+    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
-        return (await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode)).Select(CreateUtilisateurItem).ToList();
+        return (await dbQueries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode)).Select(CreateUtilisateurItem).ToList();
     }
 
     /// <summary>
@@ -82,6 +130,6 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     public async Task<UtilisateurRead> UpdateUtilisateur(int utiId, [FromBody] UtilisateurWrite utilisateur)
     {
         await commands.UpdateUtilisateur(utiId, utilisateur.ToUtilisateurCommand());
-        return CreateUtilisateurRead(await queries.GetUtilisateur(utiId));
+        return CreateUtilisateurRead(await dbQueries.GetUtilisateur(utiId));
     }
 }
