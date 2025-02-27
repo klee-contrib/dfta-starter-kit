@@ -5,8 +5,8 @@ tags:
   - front
 uses:
   - Securite/Api/Commands/Utilisateur
-  - Securite/Api/Queries/Utilisateur
   - Securite/Data/Utilisateur
+  - Securite/Queries/Utilisateur
 
 ---
 endpoint:

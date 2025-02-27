@@ -3,14 +3,12 @@
 ////
 
 using KleeContrib.Dfta.Api.Models.Commands;
-using KleeContrib.Dfta.Api.Models.Queries;
 using KleeContrib.Dfta.Securite.Commands;
 using KleeContrib.Dfta.Securite.Queries;
+using KleeContrib.Dfta.Securite.Queries.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KleeContrib.Dfta.Api.Securite;
-
-using static Models.Queries.SecuriteDTOMappers;
 
 /// <summary>
 /// Profil controller
@@ -28,8 +26,7 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     public async Task<ProfilRead> AddProfil([FromBody] ProfilWrite profil)
     {
         var id = await commands.AddProfil(profil.ToProfilCommand());
-        var profilQuery = await queries.GetProfil(id);
-        return CreateProfilRead(profilQuery, profilQuery.Utilisateurs.Select(CreateUtilisateurItem).ToList());
+        return await queries.GetProfil(id);
     }
 
     /// <summary>
@@ -40,8 +37,7 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     [HttpGet("api/profils/{proId:int}")]
     public async Task<ProfilRead> GetProfil(int proId)
     {
-        var profilQuery = await queries.GetProfil(proId);
-        return CreateProfilRead(profilQuery, profilQuery.Utilisateurs.Select(CreateUtilisateurItem).ToList());
+        return await queries.GetProfil(proId);
     }
 
     /// <summary>
@@ -51,7 +47,7 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     [HttpGet("api/profils")]
     public async Task<ICollection<ProfilItem>> GetProfils()
     {
-        return (await queries.GetProfils()).Select(CreateProfilItem).ToList();
+        return await queries.GetProfils();
     }
 
     /// <summary>
@@ -64,7 +60,6 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     public async Task<ProfilRead> UpdateProfil(int proId, [FromBody] ProfilWrite profil)
     {
         await commands.UpdateProfil(proId, profil.ToProfilCommand());
-        var profilQuery = await queries.GetProfil(proId);
-        return CreateProfilRead(profilQuery, profilQuery.Utilisateurs.Select(CreateUtilisateurItem).ToList());
+        return await queries.GetProfil(proId);
     }
 }

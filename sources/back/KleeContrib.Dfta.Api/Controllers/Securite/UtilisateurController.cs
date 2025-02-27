@@ -5,15 +5,13 @@
 using System.ComponentModel.DataAnnotations;
 using Kinetix.Modeling.Exceptions;
 using KleeContrib.Dfta.Api.Models.Commands;
-using KleeContrib.Dfta.Api.Models.Queries;
 using KleeContrib.Dfta.Common.References.Securite;
 using KleeContrib.Dfta.Securite.Commands;
 using KleeContrib.Dfta.Securite.Queries;
+using KleeContrib.Dfta.Securite.Queries.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KleeContrib.Dfta.Api.Securite;
-
-using static Models.Queries.SecuriteDTOMappers;
 
 /// <summary>
 /// Contrôleur pour Utilisateur.
@@ -29,7 +27,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     public async Task<UtilisateurRead> AddUtilisateur([FromBody] UtilisateurWrite utilisateur)
     {
         var id = await commands.AddUtilisateur(utilisateur.ToUtilisateurCommand());
-        return CreateUtilisateurRead(await dbQueries.GetUtilisateur(id));
+        return await dbQueries.GetUtilisateur(id);
     }
 
     /// <summary>
@@ -80,7 +78,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     [HttpGet("api/utilisateurs/{utiId:int}")]
     public async Task<UtilisateurRead> GetUtilisateur(int utiId)
     {
-        return CreateUtilisateurRead(await dbQueries.GetUtilisateur(utiId));
+        return await dbQueries.GetUtilisateur(utiId);
     }
 
     /// <summary>
@@ -117,7 +115,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     [HttpGet("api/utilisateurs")]
     public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
-        return (await dbQueries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode)).Select(CreateUtilisateurItem).ToList();
+        return await dbQueries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode);
     }
 
     /// <summary>
@@ -130,6 +128,6 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     public async Task<UtilisateurRead> UpdateUtilisateur(int utiId, [FromBody] UtilisateurWrite utilisateur)
     {
         await commands.UpdateUtilisateur(utiId, utilisateur.ToUtilisateurCommand());
-        return CreateUtilisateurRead(await dbQueries.GetUtilisateur(utiId));
+        return await dbQueries.GetUtilisateur(utiId);
     }
 }

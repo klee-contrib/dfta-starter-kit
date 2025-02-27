@@ -15,7 +15,7 @@ public interface IUtilisateurDbQueries
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
     /// <returns>Le détail de l'utilisateur</returns>
-    Task<UtilisateurQuery> GetUtilisateur(int utiId);
+    Task<UtilisateurRead> GetUtilisateur(int utiId);
 
     /// <summary>
     /// Charge le nom du fichier de photo de l'utilisateur.
@@ -35,5 +35,5 @@ public interface IUtilisateurDbQueries
     /// <param name="profilId">Profil de l'utilisateur</param>
     /// <param name="typeUtilisateurCode">Type d'utilisateur</param>
     /// <returns>Utilisateurs matchant les critères</returns>
-    Task<ICollection<UtilisateurItemQuery>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null);
+    Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null);
 }

@@ -5,8 +5,8 @@ tags:
   - front
 uses:
   - Securite/Api/Commands/Profil
-  - Securite/Api/Queries/Profil
   - Securite/Data/Profil
+  - Securite/Queries/Profil
 
 ---
 endpoint:

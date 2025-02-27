@@ -15,9 +15,9 @@ using static Models.SecuriteMappers;
 public class UtilisateurDbQueries(KleeContribDftaDbContext context) : IUtilisateurDbQueries
 {
     /// <inheritdoc cref="IUtilisateurDbQueries.GetUtilisateur" />
-    public async Task<UtilisateurQuery> GetUtilisateur(int utiId)
+    public async Task<UtilisateurRead> GetUtilisateur(int utiId)
     {
-        return CreateUtilisateurQuery(await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas."));
+        return CreateUtilisateurRead(await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas."));
     }
 
     /// <inheritdoc cref="IUtilisateurDbQueries.GetUtilisateurPhotoFileName" />
@@ -27,7 +27,7 @@ public class UtilisateurDbQueries(KleeContribDftaDbContext context) : IUtilisate
     }
 
     /// <inheritdoc cref="IUtilisateurDbQueries.SearchUtilisateur" />
-    public async Task<ICollection<UtilisateurItemQuery>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
+    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
         return await context.Utilisateurs.AsNoTracking()
             .Where(x =>
@@ -38,7 +38,7 @@ public class UtilisateurDbQueries(KleeContribDftaDbContext context) : IUtilisate
                 (!actif.HasValue || x.Actif == actif) &&
                 (!profilId.HasValue || x.ProfilId == profilId) &&
                 (!typeUtilisateurCode.HasValue || x.TypeUtilisateurCode == typeUtilisateurCode))
-            .Select(x => CreateUtilisateurItemQuery(x))
+            .Select(x => CreateUtilisateurItem(x))
             .ToListAsync();
     }
 }

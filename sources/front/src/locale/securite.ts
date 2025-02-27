@@ -12,7 +12,7 @@ export const securite = {
         id: "Id technique du profil",
         libelle: "Libellé du profil"
     },
-    profilItemQuery: {
+    profilItem: {
         nombreUtilisateurs: "Nombre d'utilisateurs affectés"
     },
     profilRead: {

@@ -11,7 +11,7 @@ namespace KleeContrib.Dfta.Securite.Queries.Models;
 /// <summary>
 /// Détail d'un profil en liste.
 /// </summary>
-public partial record ProfilItemQuery
+public partial record ProfilItem
 {
     /// <summary>
     /// Id technique.

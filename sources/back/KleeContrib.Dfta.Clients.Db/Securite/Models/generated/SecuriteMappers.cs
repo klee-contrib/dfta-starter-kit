@@ -13,15 +13,15 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
 public static class SecuriteMappers
 {
     /// <summary>
-    /// Crée une nouvelle instance de 'UtilisateurItemQuery'.
+    /// Crée une nouvelle instance de 'UtilisateurItem'.
     /// </summary>
     /// <param name="utilisateur">Instance de 'Utilisateur'.</param>
-    /// <returns>Une nouvelle instance de 'UtilisateurItemQuery'.</returns>
-    public static UtilisateurItemQuery CreateUtilisateurItemQuery(Utilisateur utilisateur)
+    /// <returns>Une nouvelle instance de 'UtilisateurItem'.</returns>
+    public static UtilisateurItem CreateUtilisateurItem(Utilisateur utilisateur)
     {
         ArgumentNullException.ThrowIfNull(utilisateur);
 
-        return new UtilisateurItemQuery
+        return new UtilisateurItem
         {
             Id = utilisateur.Id,
             Nom = utilisateur.Nom,
@@ -32,15 +32,15 @@ public static class SecuriteMappers
     }
 
     /// <summary>
-    /// Crée une nouvelle instance de 'UtilisateurQuery'.
+    /// Crée une nouvelle instance de 'UtilisateurRead'.
     /// </summary>
     /// <param name="utilisateur">Instance de 'Utilisateur'.</param>
-    /// <returns>Une nouvelle instance de 'UtilisateurQuery'.</returns>
-    public static UtilisateurQuery CreateUtilisateurQuery(Utilisateur utilisateur)
+    /// <returns>Une nouvelle instance de 'UtilisateurRead'.</returns>
+    public static UtilisateurRead CreateUtilisateurRead(Utilisateur utilisateur)
     {
         ArgumentNullException.ThrowIfNull(utilisateur);
 
-        return new UtilisateurQuery
+        return new UtilisateurRead
         {
             Id = utilisateur.Id,
             Nom = utilisateur.Nom,
