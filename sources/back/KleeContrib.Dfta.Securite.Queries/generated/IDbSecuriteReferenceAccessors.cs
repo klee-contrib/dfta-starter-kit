@@ -5,32 +5,32 @@
 using Kinetix.Services.Annotations;
 using KleeContrib.Dfta.Common.References.Securite;
 
-namespace KleeContrib.Dfta.Clients.Db.Reference;
+namespace KleeContrib.Dfta.Securite.Queries;
 
 /// <summary>
-/// This interface was automatically generated. It contains all the operations to load the reference lists declared in module Securite.
+/// Accesseurs de listes de référence persistées.
 /// </summary>
 [RegisterContract]
-public partial interface ISecuriteReferenceAccessors
+public partial interface IDbSecuriteReferenceAccessors
 {
     /// <summary>
-    /// Reference accessor for type Droit.
+    /// Accesseur de référence pour le type Droit.
     /// </summary>
-    /// <returns>List of Droit.</returns>
+    /// <returns>Liste de Droit.</returns>
     [ReferenceAccessor]
     ICollection<Droit> LoadDroits();
 
     /// <summary>
-    /// Reference accessor for type TypeDroit.
+    /// Accesseur de référence pour le type TypeDroit.
     /// </summary>
-    /// <returns>List of TypeDroit.</returns>
+    /// <returns>Liste de TypeDroit.</returns>
     [ReferenceAccessor]
     ICollection<TypeDroit> LoadTypeDroits();
 
     /// <summary>
-    /// Reference accessor for type TypeUtilisateur.
+    /// Accesseur de référence pour le type TypeUtilisateur.
     /// </summary>
-    /// <returns>List of TypeUtilisateur.</returns>
+    /// <returns>Liste de TypeUtilisateur.</returns>
     [ReferenceAccessor]
     ICollection<TypeUtilisateur> LoadTypeUtilisateurs();
 }

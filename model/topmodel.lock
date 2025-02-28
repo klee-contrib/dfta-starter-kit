@@ -5,8 +5,8 @@
 version: 2.4.5
 modules:
   csharp:
-    version: 1.3.0
-    hash: 4061556841213dc35dad82a090bc727f
+    version: 1.4.0
+    hash: 23980b38d7339e7d13c86acaafac7462
   javascript:
     version: 1.3.1
     hash: 14113e5e0e07a45b548a4574386e4bfb
@@ -17,8 +17,7 @@ generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/generated/SecuriteDTOMappers.cs
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/generated/UtilisateurWrite.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/generated/KleeContribDftaDbContext.cs
-  - ../sources/back/KleeContrib.Dfta.Clients.Db/Reference/generated/ISecuriteReferenceAccessors.cs
-  - ../sources/back/KleeContrib.Dfta.Clients.Db/Reference/generated/SecuriteReferenceAccessors.cs
+  - ../sources/back/KleeContrib.Dfta.Clients.Db/Reference/generated/DbSecuriteReferenceAccessors.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Securite/Models/generated/DroitProfil.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Securite/Models/generated/Profil.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Securite/Models/generated/SecuriteMappers.cs
@@ -32,6 +31,7 @@ generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/ProfilRead.cs
   - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/UtilisateurItem.cs
   - ../sources/back/KleeContrib.Dfta.Securite.Queries.Models/generated/UtilisateurRead.cs
+  - ../sources/back/KleeContrib.Dfta.Securite.Queries/generated/IDbSecuriteReferenceAccessors.cs
   - ../sources/front/src/locale/common.ts
   - ../sources/front/src/locale/securite.ts
   - ../sources/front/src/model/securite/profil-item.ts
