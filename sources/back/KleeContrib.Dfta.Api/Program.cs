@@ -17,7 +17,6 @@ using KleeContrib.Dfta.Securite.Commands.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
-using Npgsql;
 
 [assembly: ApiController]
 
@@ -45,24 +44,7 @@ services
     .AddMicrosoftIdentityWebApi(builder.Configuration);
 
 services
-    .AddAuthorization(options =>
-    {
-        options.FallbackPolicy = options.DefaultPolicy;
-    });
-
-var dataSourceBuilder = new NpgsqlDataSourceBuilder(builder.Configuration.GetDatabaseConnectionString());
-
-if (string.IsNullOrWhiteSpace(builder.Configuration["Database:Password"]))
-{
-    var credential = new DefaultAzureCredential();
-
-    dataSourceBuilder.UsePeriodicPasswordProvider(
-        async (settings, ct) => (await credential.GetTokenAsync(new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct)).Token,
-        TimeSpan.FromMinutes(5),
-        TimeSpan.FromSeconds(5));
-}
-
-await using var dataSource = dataSourceBuilder.Build();
+    .AddAuthorization(o => o.FallbackPolicy = o.DefaultPolicy);
 
 services
     .AddMonitoring()
@@ -72,7 +54,20 @@ services
         o.AddAssemblies(typeof(ProfilCommands).Assembly);
         o.AddAssemblies(typeof(StorageClient).Assembly);
     })
-    .AddEFCore<KleeContribDftaDbContext>(o => o.UseNpgsql(dataSource));
+    .AddEFCore<KleeContribDftaDbContext>(o => o
+        .UseNpgsql(builder.Configuration.GetDatabaseConnectionString(), o => o
+            .ConfigureDataSource(d =>
+            {
+                if (string.IsNullOrWhiteSpace(builder.Configuration["Database:Password"]))
+                {
+                    var credential = new DefaultAzureCredential();
+
+                    d.UsePeriodicPasswordProvider(
+                        async (settings, ct) => (await credential.GetTokenAsync(new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct)).Token,
+                        TimeSpan.FromMinutes(5),
+                        TimeSpan.FromSeconds(5));
+                }
+            })));
 
 var storageAccountName = builder.Configuration["Storage:AccountName"];
 var storageAccountKey = builder.Configuration["Storage:AccountKey"];

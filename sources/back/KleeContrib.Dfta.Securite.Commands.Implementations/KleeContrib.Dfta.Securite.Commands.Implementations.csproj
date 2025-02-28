@@ -8,11 +8,11 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kinetix.Tools.Analyzers" Version="1.0.6">
+    <PackageReference Include="Kinetix.Tools.Analyzers" Version="1.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.5.0.109200">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.6.0.109712">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
