@@ -16,7 +16,7 @@ namespace KleeContrib.Dfta.Api.Securite;
 /// <summary>
 /// Contrôleur pour Utilisateur.
 /// </summary>
-public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDbQueries dbQueries, IUtilisateurMixedQueries mixedQueries) : Controller
+public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQueries queries, IUtilisateurMixedQueries mixedQueries) : Controller
 {
     /// <summary>
     /// Ajoute un utilisateur
@@ -27,7 +27,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     public async Task<UtilisateurRead> AddUtilisateur([FromBody] UtilisateurWrite utilisateur)
     {
         var id = await commands.AddUtilisateur(utilisateur.ToUtilisateurCommand());
-        return await dbQueries.GetUtilisateur(id);
+        return await queries.GetUtilisateur(id);
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     [HttpGet("api/utilisateurs/{utiId:int}")]
     public async Task<UtilisateurRead> GetUtilisateur(int utiId)
     {
-        return await dbQueries.GetUtilisateur(utiId);
+        return await queries.GetUtilisateur(utiId);
     }
 
     /// <summary>
@@ -115,7 +115,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     [HttpGet("api/utilisateurs")]
     public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
-        return await dbQueries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode);
+        return await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode);
     }
 
     /// <summary>
@@ -128,6 +128,6 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurDb
     public async Task<UtilisateurRead> UpdateUtilisateur(int utiId, [FromBody] UtilisateurWrite utilisateur)
     {
         await commands.UpdateUtilisateur(utiId, utilisateur.ToUtilisateurCommand());
-        return await dbQueries.GetUtilisateur(utiId);
+        return await queries.GetUtilisateur(utiId);
     }
 }

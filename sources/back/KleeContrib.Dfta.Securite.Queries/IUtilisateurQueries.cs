@@ -8,7 +8,7 @@ namespace KleeContrib.Dfta.Securite.Queries;
 /// Utilisateurs queries.
 /// </summary>
 [RegisterContract]
-public interface IUtilisateurDbQueries
+public interface IUtilisateurQueries
 {
     /// <summary>
     /// Charge le détail d'un utilisateur

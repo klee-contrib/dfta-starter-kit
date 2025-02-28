@@ -3,38 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Api", "KleeContrib.Dfta.Api\KleeContrib.Dfta.Api.csproj", "{32AE2591-E683-42F5-A439-9EC73A5C3A56}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".common", ".common", "{331AC7F2-2A59-4CB8-AD22-155DD757916B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Common", "KleeContrib.Dfta.Common\KleeContrib.Dfta.Common.csproj", "{9A36BF46-236A-42EB-A30F-2DC287BC1EB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Migrations", "..\..\migrations\KleeContrib.Dfta.Migrations.csproj", "{E253001A-BD63-44B3-A229-68B6F4344426}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{6D8E2D28-B816-44F1-8E3F-7EF3E589DC03}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Clients.Db", "KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj", "{99BE74C4-D8F3-475E-8F8C-DBCEA4BF584B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{76E2E1E8-373D-4281-A533-3817329B0060}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleeContrib.Dfta.Clients.Storage", "KleeContrib.Dfta.Clients.Storage\KleeContrib.Dfta.Clients.Storage.csproj", "{7569D794-87DF-4F7B-A85D-B1586303ED66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Common", "KleeContrib.Dfta.Common\KleeContrib.Dfta.Common.csproj", "{9A36BF46-236A-42EB-A30F-2DC287BC1EB5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Securite.Commands.Models", "KleeContrib.Dfta.Securite.Commands.Models\KleeContrib.Dfta.Securite.Commands.Models.csproj", "{D9BC1A85-1A0D-4651-A5C0-F1B094A0014C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Securite.Queries.Models", "KleeContrib.Dfta.Securite.Queries.Models\KleeContrib.Dfta.Securite.Queries.Models.csproj", "{CFB583EB-9035-4B3A-AD85-F4559E3AA070}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Securite", "Securite", "{E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Securite", "Securite", "{70767722-1B09-4896-88AD-834F84685E5B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Securite.Commands", "KleeContrib.Dfta.Securite.Commands\KleeContrib.Dfta.Securite.Commands.csproj", "{6F6F0379-778C-4C7B-849C-EEE47FA02B9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Securite.Commands.Models", "KleeContrib.Dfta.Securite.Commands.Models\KleeContrib.Dfta.Securite.Commands.Models.csproj", "{D9BC1A85-1A0D-4651-A5C0-F1B094A0014C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Securite.Commands.Implementations", "KleeContrib.Dfta.Securite.Commands.Implementations\KleeContrib.Dfta.Securite.Commands.Implementations.csproj", "{8923EFB5-5BDE-465C-896B-463641E41ADA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Securite.Commands.Mutations", "KleeContrib.Dfta.Securite.Commands.Mutations\KleeContrib.Dfta.Securite.Commands.Mutations.csproj", "{6424430B-43B6-4CC1-8674-3CE67F28EACE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queries", "Queries", "{06428221-62C9-41A3-BB36-6F1CFF06D504}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Securite.Queries", "KleeContrib.Dfta.Securite.Queries\KleeContrib.Dfta.Securite.Queries.csproj", "{BF727B3F-C097-44D0-8F52-414AD17F7E6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Migrations", "..\..\migrations\KleeContrib.Dfta.Migrations.csproj", "{E253001A-BD63-44B3-A229-68B6F4344426}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{331AC7F2-2A59-4CB8-AD22-155DD757916B}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleeContrib.Dfta.Clients.Storage", "KleeContrib.Dfta.Clients.Storage\KleeContrib.Dfta.Clients.Storage.csproj", "{7569D794-87DF-4F7B-A85D-B1586303ED66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleeContrib.Dfta.Api", "KleeContrib.Dfta.Api\KleeContrib.Dfta.Api.csproj", "{32AE2591-E683-42F5-A439-9EC73A5C3A56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,10 +58,6 @@ Global
 		{D9BC1A85-1A0D-4651-A5C0-F1B094A0014C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9BC1A85-1A0D-4651-A5C0-F1B094A0014C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9BC1A85-1A0D-4651-A5C0-F1B094A0014C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CFB583EB-9035-4B3A-AD85-F4559E3AA070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFB583EB-9035-4B3A-AD85-F4559E3AA070}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFB583EB-9035-4B3A-AD85-F4559E3AA070}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFB583EB-9035-4B3A-AD85-F4559E3AA070}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F6F0379-778C-4C7B-849C-EEE47FA02B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F6F0379-778C-4C7B-849C-EEE47FA02B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F6F0379-778C-4C7B-849C-EEE47FA02B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,14 +88,15 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{99BE74C4-D8F3-475E-8F8C-DBCEA4BF584B} = {6D8E2D28-B816-44F1-8E3F-7EF3E589DC03}
-		{9A36BF46-236A-42EB-A30F-2DC287BC1EB5} = {76E2E1E8-373D-4281-A533-3817329B0060}
-		{D9BC1A85-1A0D-4651-A5C0-F1B094A0014C} = {76E2E1E8-373D-4281-A533-3817329B0060}
-		{CFB583EB-9035-4B3A-AD85-F4559E3AA070} = {76E2E1E8-373D-4281-A533-3817329B0060}
-		{6F6F0379-778C-4C7B-849C-EEE47FA02B9E} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
-		{8923EFB5-5BDE-465C-896B-463641E41ADA} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
-		{6424430B-43B6-4CC1-8674-3CE67F28EACE} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
-		{BF727B3F-C097-44D0-8F52-414AD17F7E6E} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
+		{9A36BF46-236A-42EB-A30F-2DC287BC1EB5} = {331AC7F2-2A59-4CB8-AD22-155DD757916B}
+		{D9BC1A85-1A0D-4651-A5C0-F1B094A0014C} = {70767722-1B09-4896-88AD-834F84685E5B}
+		{6F6F0379-778C-4C7B-849C-EEE47FA02B9E} = {70767722-1B09-4896-88AD-834F84685E5B}
+		{8923EFB5-5BDE-465C-896B-463641E41ADA} = {70767722-1B09-4896-88AD-834F84685E5B}
+		{6424430B-43B6-4CC1-8674-3CE67F28EACE} = {70767722-1B09-4896-88AD-834F84685E5B}
+		{BF727B3F-C097-44D0-8F52-414AD17F7E6E} = {06428221-62C9-41A3-BB36-6F1CFF06D504}
+		{E253001A-BD63-44B3-A229-68B6F4344426} = {331AC7F2-2A59-4CB8-AD22-155DD757916B}
 		{7569D794-87DF-4F7B-A85D-B1586303ED66} = {6D8E2D28-B816-44F1-8E3F-7EF3E589DC03}
+		{70767722-1B09-4896-88AD-834F84685E5B} = {E194F385-7BA1-4DB6-B11E-F16DFA4AB6C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00F8DD2E-3462-4641-A665-E581F715D8F5}

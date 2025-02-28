@@ -12,21 +12,21 @@ using static Models.SecuriteMappers;
 /// Implémentation de IUtilisateurQueries.
 /// </summary>
 [RegisterImpl]
-public class UtilisateurDbQueries(KleeContribDftaDbContext context) : IUtilisateurDbQueries
+public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateurQueries
 {
-    /// <inheritdoc cref="IUtilisateurDbQueries.GetUtilisateur" />
+    /// <inheritdoc cref="IUtilisateurQueries.GetUtilisateur" />
     public async Task<UtilisateurRead> GetUtilisateur(int utiId)
     {
         return CreateUtilisateurRead(await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas."));
     }
 
-    /// <inheritdoc cref="IUtilisateurDbQueries.GetUtilisateurPhotoFileName" />
+    /// <inheritdoc cref="IUtilisateurQueries.GetUtilisateurPhotoFileName" />
     public async Task<string?> GetUtilisateurPhotoFileName(int utiId)
     {
         return (await context.Utilisateurs.FindAsync(utiId))?.NomFichierPhoto;
     }
 
-    /// <inheritdoc cref="IUtilisateurDbQueries.SearchUtilisateur" />
+    /// <inheritdoc cref="IUtilisateurQueries.SearchUtilisateur" />
     public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
     {
         return await context.Utilisateurs.AsNoTracking()

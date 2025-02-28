@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-		<ProjectReference Include="..\KleeContrib.Dfta.Securite.Queries.Models\KleeContrib.Dfta.Securite.Queries.Models.csproj" />
-	</ItemGroup>
+    <ProjectReference Include="..\KleeContrib.Dfta.Common\KleeContrib.Dfta.Common.csproj" />
+  </ItemGroup>
 
 </Project>

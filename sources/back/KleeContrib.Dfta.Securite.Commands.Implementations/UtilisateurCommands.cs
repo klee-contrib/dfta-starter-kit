@@ -9,7 +9,7 @@ namespace KleeContrib.Dfta.Securite.Commands.Implementations;
 /// Commandes autour de l'utilisateur.
 /// </summary>
 [RegisterImpl]
-public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations, IUtilisateurDbQueries utilisateurDbQueries, IStorageMutations storageMutations) : IUtilisateurCommands
+public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations, IUtilisateurQueries utilisateurDbQueries, IStorageMutations storageMutations) : IUtilisateurCommands
 {
     /// <inheritdoc cref="IUtilisateurCommands.AddUtilisateur" />
     public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur)
