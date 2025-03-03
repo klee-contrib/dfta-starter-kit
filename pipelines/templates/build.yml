@@ -11,9 +11,9 @@ stages:
 
         steps:
           - task: UseDotNet@2
-            displayName: .NET 8
+            displayName: .NET 9
             inputs:
-              version: 8.x
+              version: 9.x
 
           - script: echo "##vso[task.setvariable variable=modgen_version]$(cat model/topmodel.lock | awk 'NR == 5' | sed 's/\r//g' | cut -c 10-)"
             displayName: Récupération de la version de modgen
@@ -23,11 +23,6 @@ stages:
 
           - script: $(Build.SourcesDirectory)/modgen -f model/topmodel.config --check
             displayName: modgen --check
-
-          - task: UseDotNet@2
-            displayName: .NET 9
-            inputs:
-              version: 9.x
 
           - task: DotNetCoreCLI@2
             displayName: Build API

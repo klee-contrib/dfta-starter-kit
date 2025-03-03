@@ -3,9 +3,10 @@ using KleeContrib.Dfta.Clients.Db.Securite.Models;
 using KleeContrib.Dfta.Securite.Commands.Models;
 using KleeContrib.Dfta.Securite.Commands.Mutations;
 using Microsoft.EntityFrameworkCore;
-using static KleeContrib.Dfta.Clients.Db.Securite.Models.SecuriteMappers;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Profils;
+
+using static Models.SecuriteMappers;
 
 /// <summary>
 /// Implémentation de IProfilMutations.

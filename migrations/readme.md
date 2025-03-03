@@ -15,6 +15,6 @@ Il y a aussi 2 autres scripts bash :
 
 Dans l'idée, puisqu'on reconstruit la base à chaque déploiement, on a pas envie de gérer tout un historique de migrations alors qu'on n'en a pas besoin. De plus, lors du développement d'une fonctionnalité sur une branche dédiée, il n'y aura jamais besoin de faire plusieurs migrations successives. La stratégie employée sera donc de réinitialiser les migrations régulièrement pour n'en conserver d'abord une par branche de fonctionnalité, puis une fois mergée sur `main` une autre réinitialisation sera faite pour la fusionner avec la migration initiale.
 
-La commande `dotnet ef migrations remove` permet de supprimer la dernière migration. S'il est possible de demander à EF de jouer les migrations à l'envers, le plus simple reste Zquand même de réinitialiser la base de données lorsqu'il y a besoin de faire ça (d'où le script dédié).
+La commande `dotnet ef migrations remove` permet de supprimer la dernière migration. S'il est possible de demander à EF de jouer les migrations à l'envers, le plus simple reste quand même de réinitialiser la base de données lorsqu'il y a besoin de faire ça (d'où le script dédié).
 
 La doc complète sur `dotnet-ef` est [disponible ici](https://docs.microsoft.com/en-us/ef/core/cli/dotnet).

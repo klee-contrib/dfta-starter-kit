@@ -6,7 +6,7 @@ set -e
 export PGPASSWORD=$database_admin_secret
 
 function query() {
-    psql --host=$database_server --username=$database_admin_userid -d $1 -Atc "$2"
+    psql --host="$database_server" --username="$database_admin_userid" -d $1 -Atc "$2"
 }
 
 echo "Ensuring Users..."

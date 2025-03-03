@@ -46,6 +46,10 @@ Enfin, pour lancer le terraform, il faudra au préalable se connecter à Azure v
 
 _Remarque : Le tenant choisi doit être celui dans lequel l'abonnement se trouve. Les enregistrements dans Azure AD sont fait dans ce même tenant, mais ce n'est pas obligatoire. Dans ce cas, il faudra spécifier un tenant différent dans la configuration du provider `azuread`._
 
+Il est nécessaire de lancer le module `devops` à part en premier avant un premier lancement, via la commande `terraform apply --target module.devops`.
+
+Il est également possible qu'il y ait quelques problèmes à créer l'ensemble de l'environnement du premier coup avec `terraform apply`, donc il ne faut pas hésiter à le relancer...
+
 ## Utilisation en local
 
 Certaines ressources crées par Terraform pour un environnement de développement/usine peuvent être également utilisées pour un environnement de développement local, par exemple les enregistrements d'application Azure AD. Le script `get-env.sh` permet de récupérer les infos nécessaires depuis le state terraform et renseigne les fichiers correspondant pour que les applications les utilisent (le fichier `sources/.env` pour le back, et `sources/front/public/config.json` pour le front).

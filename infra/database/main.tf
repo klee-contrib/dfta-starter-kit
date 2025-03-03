@@ -67,6 +67,7 @@ resource "azurerm_postgresql_flexible_server_active_directory_administrator" "te
 }
 
 data "azuread_service_principal" "devops" {
+  # Il semblerait que la dernière partie soit désormais l'id de la service connexion et plus celui de l'abonnement...
   display_name = "${var.devops_organisation}-${var.devops_project_name}-${data.azurerm_client_config.current.subscription_id}"
 }
 

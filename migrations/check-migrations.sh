@@ -4,7 +4,7 @@ set -e
 export PGPASSWORD=$database_admin_secret
 
 function query() {
-    psql --host=$database_server --username=$database_admin_userid -d $database_name -t -c "$1"
+    psql --host="$database_server" --username="$database_admin_userid" -d $database_name -t -c "$1"
 }
 
 echo "Base de données '$database_name' sur '$database_server'"
