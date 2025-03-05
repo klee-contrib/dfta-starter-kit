@@ -13,6 +13,7 @@
 }
 
 .picker img {
+    display: block;
     margin-top: var(--button-spacing);
     width: var(--text-field-max-width);
 }

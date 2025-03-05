@@ -2,8 +2,8 @@ import {useObserver} from "mobx-react";
 import {useId, useState} from "react";
 
 import {requestStore} from "@focus4/core";
+import {InputFile} from "@focus4/form-toolbox";
 import {Dialog} from "@focus4/layout";
-import {TextField} from "@focus4/toolbox";
 
 import css from "./__style__/photo.css";
 
@@ -44,12 +44,13 @@ export function PhotoPicker({
             title="Choississez une photo"
         >
             <div className={css.picker}>
-                <TextField
-                    accept="image/jpeg"
-                    onChange={(_, e) => {
-                        const file = (e.target as HTMLInputElement).files?.[0];
+                <InputFile
+                    accept="image/*"
+                    maxFiles={1}
+                    name="file"
+                    onChange={file => {
+                        setPhotoFile(file);
                         if (file) {
-                            setPhotoFile(file);
                             const fileReader = new FileReader();
                             fileReader.readAsDataURL(file);
                             function onLoad() {
@@ -57,9 +58,10 @@ export function PhotoPicker({
                                 fileReader.removeEventListener("load", onLoad);
                             }
                             fileReader.addEventListener("load", onLoad);
+                        } else {
+                            setPhoto(undefined);
                         }
                     }}
-                    type="file"
                 />
                 {photo ? <img src={photo} /> : null}
             </div>

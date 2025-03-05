@@ -7,15 +7,10 @@ L'application est divisée en deux parties :
 
 ## Mise en route
 
-En dev, le back tourne intégralement dans Docker via Docker Compose. 2 services sont configurés :
+En local, il est en premier lieu nécessaire de récupérer la configuration de l'environnement de dev créé par le Terraform du dossier [`infra`](../infra/readme.md), en lançant le script `get-env.sh`. Elle sera utilisée pour récupérer les infos de connexion à Entra ID et au compte de stockage, qui ne seront pas reproductible sur un poste de développeur en local comme le reste des composants.
 
-- L'API, sur le port 2468
-- La base de données, sur le port 5432
+Pour le reste :
 
-Le front se lance directement via un `npm start` dans son répertoire, et sera accessible sur le port 1357. Un proxy est configuré sur le serveur front pour que les appels d'APIs soient redirigés vers le back.
-
-## Configuration
-
-La configuration du back se fait via des variables d'environnement configurées dans le docker compose. La plupart de la configuration n'est également pas sensible (la base de données étant en local, on se fiche pas mal du mot de passe, et ce n'est évidemment pas géré de la même manière en vrai), à l'exception du secret qui permet de se connecter aux enregistrements d'applications dans Azure AD.
-
-Pour récupérer ces secrets, il faut lancer le script `get-secrets.sh` qui se connecte à Azure pour aller chercher les secrets dans le Key Vault de dev. Il faut se connecter avec son propre compte, ce qui nécessite d'avoir été affecté avec les bons droits au préalable.
+- La base de données tourne dans Docker et se lance via Docker Compose (sur le port 5432). Une fois démarée, lancer le script `dev-recreate-db.sh` dans le dossier [`migrations`](../migrations/readme.md) pour l'initialiser.
+- L'API se lance via le bouton "Play" dans Visual Studio sur le projet `sources/back/KleeContrib.Dfta.Api`, ou bien en lançant la commande `dotnet run` dans le dossier de ce projet. Elle est lancée sur le port 2468.
+- Le front se lance directement via un `npm start` dans son répertoire, et sera accessible sur le port 1357. Un proxy est configuré sur le serveur front pour que les appels d'APIs soient redirigés vers le back.

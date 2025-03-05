@@ -2,7 +2,7 @@
 
 ## Application / Language requis
 
-- [Visual Studio 2022 Pro (en incluant l'installation .NET 8)](https://visualstudio.microsoft.com/fr/downloads/)
+- [Visual Studio 2022 Pro (en incluant l'installation .NET 9)](https://visualstudio.microsoft.com/fr/downloads/)
 - [Visual Studio Code](https://code.visualstudio.com/Download)
 - [Installation de Terraform](https://www.terraform.io/downloads)
 - [Installation d'AzureCli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
@@ -44,7 +44,7 @@
    docker compose up -d
    ```
 
-**Dans Docker Desktop, vous devriez maintenant voir 2 containers dans `kleecontrib-dfta`**
+**Dans Docker Desktop, vous devriez maintenant voir 2 containers dans `transavia-edossierpnc`**
 
 ## Debug Front
 

@@ -52,7 +52,9 @@ Il est également possible qu'il y ait quelques problèmes à créer l'ensemble 
 
 ## Utilisation en local
 
-Certaines ressources crées par Terraform pour un environnement de développement/usine peuvent être également utilisées pour un environnement de développement local, par exemple les enregistrements d'application Azure AD. Le script `get-env.sh` permet de récupérer les infos nécessaires depuis le state terraform et renseigne les fichiers correspondant pour que les applications les utilisent (le fichier `sources/.env` pour le back, et `sources/front/public/config.json` pour le front).
+Certaines ressources crées par Terraform pour un environnement de développement/usine peuvent être également utilisées pour un environnement de développement local, par exemple les enregistrements d'application Azure AD. Le script `get-env.sh` permet de récupérer les infos nécessaires depuis le state terraform et renseigne les fichiers correspondant pour que les applications les utilisent (les user-secrets .NET pour le back, et `sources/front/public/config.json` pour le front).
+
+Le script get-env.sh utilise `jq` qu'il est possible d'installer avec la commande `winget install jqlang.jq`.
 
 ## Environnements
 
