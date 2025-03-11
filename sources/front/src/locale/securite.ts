@@ -8,16 +8,6 @@ export const securite = {
         libelle: "Droit",
         typeDroitCode: "TypeDroitCode"
     },
-    profil: {
-        id: "Id technique du profil",
-        libelle: "Libellé du profil"
-    },
-    profilItem: {
-        nombreUtilisateurs: "Nombre d'utilisateurs affectés"
-    },
-    profilRead: {
-        utilisateurs: "Utilisateurs"
-    },
     typeDroit: {
         code: "Type de droit",
         libelle: "Libelle"
@@ -26,15 +16,29 @@ export const securite = {
         code: "Type d'utilisateur",
         libelle: "Libelle"
     },
+    profil: {
+        profil: {
+            id: "Id technique du profil",
+            libelle: "Libellé du profil"
+        },
+        profilItem: {
+            nombreUtilisateurs: "Nombre d'utilisateurs affectés"
+        },
+        profilRead: {
+            utilisateurs: "Utilisateurs"
+        }
+    },
     utilisateur: {
-        actif: "Actif",
-        adresse: "Adresse",
-        dateNaissance: "Date de naissance",
-        email: "Adresse email",
-        id: "Id technique",
-        nom: "Nom",
-        prenom: "Prénom",
-        profilId: "Profil",
-        typeUtilisateurCode: "Type d'utilisateur"
+        utilisateur: {
+            actif: "Actif",
+            adresse: "Adresse",
+            dateNaissance: "Date de naissance",
+            email: "Adresse email",
+            id: "Id technique",
+            nom: "Nom",
+            prenom: "Prénom",
+            profilId: "Profil",
+            typeUtilisateurCode: "Type d'utilisateur"
+        }
     }
 };

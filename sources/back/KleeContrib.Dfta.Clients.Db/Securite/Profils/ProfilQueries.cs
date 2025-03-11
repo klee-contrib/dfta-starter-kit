@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Profils;
 
-using static Models.SecuriteMappers;
+using static Models.SecuriteUtilisateurMappers;
 
 /// <summary>
 /// Profils queries.

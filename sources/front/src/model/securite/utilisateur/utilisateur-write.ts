@@ -3,13 +3,12 @@
 ////
 
 import {EntityToType, FieldEntry2} from "@focus4/stores";
-import {DO_BOOLEEN, DO_CODE, DO_DATE, DO_DATE_HEURE, DO_EMAIL, DO_ID, DO_LIBELLE} from "../../domains";
+import {DO_BOOLEEN, DO_CODE, DO_DATE, DO_EMAIL, DO_ID, DO_LIBELLE} from "../../../domains";
 
-import {TypeUtilisateurCode} from "./references";
+import {TypeUtilisateurCode} from "../references";
 
-export type UtilisateurRead = EntityToType<UtilisateurReadEntityType>;
-export interface UtilisateurReadEntityType {
-    id: FieldEntry2<typeof DO_ID, number>;
+export type UtilisateurWrite = EntityToType<UtilisateurWriteEntityType>;
+export interface UtilisateurWriteEntityType {
     nom: FieldEntry2<typeof DO_LIBELLE, string>;
     prenom: FieldEntry2<typeof DO_LIBELLE, string>;
     email: FieldEntry2<typeof DO_EMAIL, string>;
@@ -18,52 +17,43 @@ export interface UtilisateurReadEntityType {
     actif: FieldEntry2<typeof DO_BOOLEEN, boolean>;
     profilId: FieldEntry2<typeof DO_ID, number>;
     typeUtilisateurCode: FieldEntry2<typeof DO_CODE, TypeUtilisateurCode>;
-    dateCreation: FieldEntry2<typeof DO_DATE_HEURE, string>;
-    dateModification: FieldEntry2<typeof DO_DATE_HEURE, string>;
 }
 
-export const UtilisateurReadEntity: UtilisateurReadEntityType = {
-    id: {
-        type: "field",
-        name: "id",
-        domain: DO_ID,
-        isRequired: false,
-        label: "securite.utilisateur.id"
-    },
+export const UtilisateurWriteEntity: UtilisateurWriteEntityType = {
     nom: {
         type: "field",
         name: "nom",
         domain: DO_LIBELLE,
         isRequired: true,
-        label: "securite.utilisateur.nom"
+        label: "securite.utilisateur.utilisateur.nom"
     },
     prenom: {
         type: "field",
         name: "prenom",
         domain: DO_LIBELLE,
         isRequired: true,
-        label: "securite.utilisateur.prenom"
+        label: "securite.utilisateur.utilisateur.prenom"
     },
     email: {
         type: "field",
         name: "email",
         domain: DO_EMAIL,
         isRequired: true,
-        label: "securite.utilisateur.email"
+        label: "securite.utilisateur.utilisateur.email"
     },
     dateNaissance: {
         type: "field",
         name: "dateNaissance",
         domain: DO_DATE,
         isRequired: false,
-        label: "securite.utilisateur.dateNaissance"
+        label: "securite.utilisateur.utilisateur.dateNaissance"
     },
     adresse: {
         type: "field",
         name: "adresse",
         domain: DO_LIBELLE,
         isRequired: false,
-        label: "securite.utilisateur.adresse"
+        label: "securite.utilisateur.utilisateur.adresse"
     },
     actif: {
         type: "field",
@@ -71,14 +61,14 @@ export const UtilisateurReadEntity: UtilisateurReadEntityType = {
         domain: DO_BOOLEEN,
         defaultValue: true,
         isRequired: true,
-        label: "securite.utilisateur.actif"
+        label: "securite.utilisateur.utilisateur.actif"
     },
     profilId: {
         type: "field",
         name: "profilId",
         domain: DO_ID,
         isRequired: true,
-        label: "securite.utilisateur.profilId"
+        label: "securite.utilisateur.utilisateur.profilId"
     },
     typeUtilisateurCode: {
         type: "field",
@@ -86,20 +76,6 @@ export const UtilisateurReadEntity: UtilisateurReadEntityType = {
         domain: DO_CODE,
         defaultValue: "GEST",
         isRequired: true,
-        label: "securite.utilisateur.typeUtilisateurCode"
-    },
-    dateCreation: {
-        type: "field",
-        name: "dateCreation",
-        domain: DO_DATE_HEURE,
-        isRequired: true,
-        label: "common.entityListeners.dateCreation"
-    },
-    dateModification: {
-        type: "field",
-        name: "dateModification",
-        domain: DO_DATE_HEURE,
-        isRequired: false,
-        label: "common.entityListeners.dateModification"
+        label: "securite.utilisateur.utilisateur.typeUtilisateurCode"
     }
 };

@@ -7,7 +7,7 @@ using Kinetix.Modeling.Annotations;
 using KleeContrib.Dfta.Common;
 using KleeContrib.Dfta.Common.References.Securite;
 
-namespace KleeContrib.Dfta.Api.Models.Commands;
+namespace KleeContrib.Dfta.Api.Models.Commands.Securite;
 
 /// <summary>
 /// Détail d'un utilisateur en écriture.

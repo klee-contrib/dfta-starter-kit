@@ -4,7 +4,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using Kinetix.Modeling.Exceptions;
-using KleeContrib.Dfta.Api.Models.Commands;
+using KleeContrib.Dfta.Api.Models.Commands.Securite;
 using KleeContrib.Dfta.Common.References.Securite;
 using KleeContrib.Dfta.Securite.Commands;
 using KleeContrib.Dfta.Securite.Queries;

@@ -4,7 +4,7 @@ import {advancedSearchFor} from "@focus4/collections";
 import {messageStore} from "@focus4/core";
 import {Dialog} from "@focus4/layout";
 
-import {UtilisateurItem} from "../../model/securite/utilisateur-item";
+import {UtilisateurItem} from "../../model/securite/utilisateur/utilisateur-item";
 import {searchUtilisateur} from "../../services/securite/utilisateur";
 import {utilisateurListStore} from "../../stores/utilisateur";
 

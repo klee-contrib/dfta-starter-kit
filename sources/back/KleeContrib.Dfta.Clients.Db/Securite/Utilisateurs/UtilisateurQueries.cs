@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Utilisateurs;
 
-using static Models.SecuriteMappers;
+using static Models.SecuriteUtilisateurMappers;
 
 /// <summary>
 /// Implémentation de IUtilisateurQueries.

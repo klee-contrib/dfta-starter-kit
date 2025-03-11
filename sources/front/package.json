@@ -1,8 +1,8 @@
 {
-    "name": "transavia-edossierpnc-front",
+    "name": "dfta-starter-kit-front",
     "version": "0.0.0",
     "description": "Adaptation du starter kit Focus pour l'intégrer dans un starter kit full stack.",
-    "repository": "https://github.com/klee-contrib/transavia-edossierpnc",
+    "repository": "https://github.com/klee-contrib/dfta-starter-kit-front",
     "main": "src/index.ts",
     "type": "module",
     "scripts": {

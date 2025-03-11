@@ -3,7 +3,7 @@ import {useObserver} from "mobx-react";
 import {toBem} from "@focus4/styling";
 import {FontIcon, Ripple} from "@focus4/toolbox";
 
-import {UtilisateurItem} from "../../model/securite/utilisateur-item";
+import {UtilisateurItem} from "../../model/securite/utilisateur/utilisateur-item";
 import {referenceStore} from "../../stores/references";
 
 import {router} from "../../router";

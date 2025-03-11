@@ -2,7 +2,7 @@
 //// ATTENTION, CE FICHIER EST PARTIELLEMENT GENERE AUTOMATIQUEMENT !
 ////
 
-using KleeContrib.Dfta.Api.Models.Commands;
+using KleeContrib.Dfta.Api.Models.Commands.Securite;
 using KleeContrib.Dfta.Securite.Commands;
 using KleeContrib.Dfta.Securite.Queries;
 using KleeContrib.Dfta.Securite.Queries.Models;

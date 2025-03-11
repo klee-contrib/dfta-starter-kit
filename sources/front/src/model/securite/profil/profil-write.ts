@@ -3,9 +3,9 @@
 ////
 
 import {EntityToType, FieldEntry2} from "@focus4/stores";
-import {DO_CODE_LISTE, DO_LIBELLE} from "../../domains";
+import {DO_CODE_LISTE, DO_LIBELLE} from "../../../domains";
 
-import {DroitCode} from "./references";
+import {DroitCode} from "../references";
 
 export type ProfilWrite = EntityToType<ProfilWriteEntityType>;
 export interface ProfilWriteEntityType {
@@ -19,7 +19,7 @@ export const ProfilWriteEntity: ProfilWriteEntityType = {
         name: "libelle",
         domain: DO_LIBELLE,
         isRequired: true,
-        label: "securite.profil.libelle"
+        label: "securite.profil.profil.libelle"
     },
     droitCodes: {
         type: "field",

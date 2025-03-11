@@ -3,9 +3,9 @@
 ////
 
 import {EntityToType, FieldEntry2} from "@focus4/stores";
-import {DO_CODE, DO_EMAIL, DO_ID, DO_LIBELLE} from "../../domains";
+import {DO_CODE, DO_EMAIL, DO_ID, DO_LIBELLE} from "../../../domains";
 
-import {TypeUtilisateurCode} from "./references";
+import {TypeUtilisateurCode} from "../references";
 
 export type UtilisateurItem = EntityToType<UtilisateurItemEntityType>;
 export interface UtilisateurItemEntityType {
@@ -22,28 +22,28 @@ export const UtilisateurItemEntity: UtilisateurItemEntityType = {
         name: "id",
         domain: DO_ID,
         isRequired: false,
-        label: "securite.utilisateur.id"
+        label: "securite.utilisateur.utilisateur.id"
     },
     nom: {
         type: "field",
         name: "nom",
         domain: DO_LIBELLE,
         isRequired: true,
-        label: "securite.utilisateur.nom"
+        label: "securite.utilisateur.utilisateur.nom"
     },
     prenom: {
         type: "field",
         name: "prenom",
         domain: DO_LIBELLE,
         isRequired: true,
-        label: "securite.utilisateur.prenom"
+        label: "securite.utilisateur.utilisateur.prenom"
     },
     email: {
         type: "field",
         name: "email",
         domain: DO_EMAIL,
         isRequired: true,
-        label: "securite.utilisateur.email"
+        label: "securite.utilisateur.utilisateur.email"
     },
     typeUtilisateurCode: {
         type: "field",
@@ -51,6 +51,6 @@ export const UtilisateurItemEntity: UtilisateurItemEntityType = {
         domain: DO_CODE,
         defaultValue: "GEST",
         isRequired: true,
-        label: "securite.utilisateur.typeUtilisateurCode"
+        label: "securite.utilisateur.utilisateur.typeUtilisateurCode"
     }
 };

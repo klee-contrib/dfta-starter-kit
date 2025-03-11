@@ -5,9 +5,9 @@
 import {fetch} from "../../server";
 
 import {TypeUtilisateurCode} from "../../model/securite/references";
-import {UtilisateurItem} from "../../model/securite/utilisateur-item";
-import {UtilisateurRead} from "../../model/securite/utilisateur-read";
-import {UtilisateurWrite} from "../../model/securite/utilisateur-write";
+import {UtilisateurItem} from "../../model/securite/utilisateur/utilisateur-item";
+import {UtilisateurRead} from "../../model/securite/utilisateur/utilisateur-read";
+import {UtilisateurWrite} from "../../model/securite/utilisateur/utilisateur-write";
 
 /**
  * Ajoute un utilisateur

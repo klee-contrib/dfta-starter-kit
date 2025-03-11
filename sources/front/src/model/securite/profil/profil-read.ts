@@ -3,10 +3,10 @@
 ////
 
 import {EntityToType, FieldEntry2, ListEntry} from "@focus4/stores";
-import {DO_CODE_LISTE, DO_DATE_HEURE, DO_ID, DO_LIBELLE} from "../../domains";
+import {DO_CODE_LISTE, DO_DATE_HEURE, DO_ID, DO_LIBELLE} from "../../../domains";
 
-import {DroitCode} from "./references";
-import {UtilisateurItemEntity, UtilisateurItemEntityType} from "./utilisateur-item";
+import {DroitCode} from "../references";
+import {UtilisateurItemEntity, UtilisateurItemEntityType} from "../utilisateur/utilisateur-item";
 
 export type ProfilRead = EntityToType<ProfilReadEntityType>;
 export interface ProfilReadEntityType {
@@ -24,14 +24,14 @@ export const ProfilReadEntity: ProfilReadEntityType = {
         name: "id",
         domain: DO_ID,
         isRequired: false,
-        label: "securite.profil.id"
+        label: "securite.profil.profil.id"
     },
     libelle: {
         type: "field",
         name: "libelle",
         domain: DO_LIBELLE,
         isRequired: true,
-        label: "securite.profil.libelle"
+        label: "securite.profil.profil.libelle"
     },
     dateCreation: {
         type: "field",
@@ -58,6 +58,6 @@ export const ProfilReadEntity: ProfilReadEntityType = {
         type: "list",
         entity: UtilisateurItemEntity,
         isRequired: true,
-        label: "securite.profilRead.utilisateurs"
+        label: "securite.profil.profilRead.utilisateurs"
     }
 };

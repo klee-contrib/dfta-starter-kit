@@ -1,5 +1,5 @@
 ---
-module: Securite
+module: Securite.Utilisateur
 tags:
   - queries
   - front

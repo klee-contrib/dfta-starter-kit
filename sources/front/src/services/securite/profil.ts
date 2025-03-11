@@ -4,9 +4,9 @@
 
 import {fetch} from "../../server";
 
-import {ProfilItem} from "../../model/securite/profil-item";
-import {ProfilRead} from "../../model/securite/profil-read";
-import {ProfilWrite} from "../../model/securite/profil-write";
+import {ProfilItem} from "../../model/securite/profil/profil-item";
+import {ProfilRead} from "../../model/securite/profil/profil-read";
+import {ProfilWrite} from "../../model/securite/profil/profil-write";
 
 /**
  * Ajoute un Profil

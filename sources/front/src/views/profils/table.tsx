@@ -2,7 +2,7 @@ import {advancedSearchCss, summaryCss, tableFor} from "@focus4/collections";
 import {useLoad} from "@focus4/forms";
 import {stringFor} from "@focus4/stores";
 
-import {ProfilItemEntity} from "../../model/securite/profil-item";
+import {ProfilItemEntity} from "../../model/securite/profil/profil-item";
 import {getProfils} from "../../services/securite/profil";
 import {profilStore} from "../../stores/profil";
 
