@@ -9,7 +9,7 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
 /// <summary>
 /// Mappers pour le module 'Securite.Profil'.
 /// </summary>
-public static class SecuriteProfilMappers
+public static class ProfilMappers
 {
     /// <summary>
     /// Mappe 'Profil' vers 'Profil'.

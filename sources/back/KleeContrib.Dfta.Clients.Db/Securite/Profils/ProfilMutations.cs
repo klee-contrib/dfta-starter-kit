@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Profils;
 
-using static Models.SecuriteProfilMappers;
+using static Models.ProfilMappers;
 
 /// <summary>
 /// Implémentation de IProfilMutations.

@@ -9,7 +9,7 @@ namespace KleeContrib.Dfta.Api.Models.Commands.Securite;
 /// <summary>
 /// Mappers pour le module 'Securite.Profil'.
 /// </summary>
-public static class SecuriteProfilDTOMappers
+public static class ProfilMappers
 {
     /// <summary>
     /// Mappe 'ProfilWrite' vers 'ProfilCommand'.

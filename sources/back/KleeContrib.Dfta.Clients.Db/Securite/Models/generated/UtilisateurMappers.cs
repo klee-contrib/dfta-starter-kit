@@ -10,7 +10,7 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
 /// <summary>
 /// Mappers pour le module 'Securite.Utilisateur'.
 /// </summary>
-public static class SecuriteUtilisateurMappers
+public static class UtilisateurMappers
 {
     /// <summary>
     /// Crée une nouvelle instance de 'UtilisateurItem'.

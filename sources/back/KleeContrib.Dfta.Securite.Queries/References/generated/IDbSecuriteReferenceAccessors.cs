@@ -5,7 +5,7 @@
 using Kinetix.Services.Annotations;
 using KleeContrib.Dfta.Common.References.Securite;
 
-namespace KleeContrib.Dfta.Securite.Queries;
+namespace KleeContrib.Dfta.Securite.Queries.References;
 
 /// <summary>
 /// Accesseurs de listes de référence persistées.

@@ -4,9 +4,9 @@
 
 using Kinetix.Services.Annotations;
 using KleeContrib.Dfta.Common.References.Securite;
-using KleeContrib.Dfta.Securite.Queries;
+using KleeContrib.Dfta.Securite.Queries.References;
 
-namespace KleeContrib.Dfta.Clients.Db.Reference;
+namespace KleeContrib.Dfta.Clients.Db.Securite.References;
 
 /// <summary>
 /// Implémentation de IDbSecuriteReferenceAccessors.

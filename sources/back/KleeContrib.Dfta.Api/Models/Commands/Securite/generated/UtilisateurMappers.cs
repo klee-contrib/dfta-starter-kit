@@ -9,7 +9,7 @@ namespace KleeContrib.Dfta.Api.Models.Commands.Securite;
 /// <summary>
 /// Mappers pour le module 'Securite.Utilisateur'.
 /// </summary>
-public static class SecuriteUtilisateurDTOMappers
+public static class UtilisateurMappers
 {
     /// <summary>
     /// Mappe 'UtilisateurWrite' vers 'UtilisateurCommand'.
