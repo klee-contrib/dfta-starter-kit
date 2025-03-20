@@ -14,24 +14,24 @@
     },
     "dependencies": {
         "@azure/msal-browser": "4.5.1",
-        "@focus4/collections": "12.0.0-beta.6",
-        "@focus4/core": "12.0.0-beta.6",
-        "@focus4/form-toolbox": "12.0.0-beta.6",
-        "@focus4/forms": "12.0.0-beta.6",
-        "@focus4/layout": "12.0.0-beta.6",
-        "@focus4/stores": "12.0.0-beta.6",
-        "@focus4/styling": "12.0.0-beta.6",
-        "@focus4/toolbox": "12.0.0-beta.6",
+        "@focus4/collections": "12.0.0-rc.0",
+        "@focus4/core": "12.0.0-rc.0",
+        "@focus4/form-toolbox": "12.0.0-rc.0",
+        "@focus4/forms": "12.0.0-rc.0",
+        "@focus4/layout": "12.0.0-rc.0",
+        "@focus4/stores": "12.0.0-rc.0",
+        "@focus4/styling": "12.0.0-rc.0",
+        "@focus4/toolbox": "12.0.0-rc.0",
         "es-toolkit": "1.32.0",
-        "i18next": "24.2.2",
+        "i18next": "24.2.3",
         "luxon": "3.5.0",
-        "mobx": "6.13.6",
+        "mobx": "6.13.7",
         "mobx-react": "9.2.0",
         "react": "19.0.0",
         "react-dom": "19.0.0"
     },
     "devDependencies": {
-        "@focus4/tooling": "12.0.0-beta.6"
+        "@focus4/tooling": "12.0.0-rc.0"
     },
     "author": "KleeGroup",
     "license": "MIT"

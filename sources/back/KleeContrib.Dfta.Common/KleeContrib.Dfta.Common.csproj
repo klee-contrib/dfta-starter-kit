@@ -12,7 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.6.0.109712">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.7.0.110445">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Kinetix.Modeling" Version="8.0.0" />
+		<PackageReference Include="Kinetix.Modeling" Version="8.1.1" />
 		<PackageReference Include="Kinetix.Services.Annotations" Version="8.0.0" />
 	</ItemGroup>
 
