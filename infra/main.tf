@@ -22,14 +22,6 @@ provider "azuredevops" {
   personal_access_token = var.devops_pat
 }
 
-module "devops" {
-  count  = terraform.workspace == "dev" ? 1 : 0
-  source = "./devops"
-
-  organisation = var.devops_organisation
-  project_name = var.devops_project_name
-}
-
 resource "azurerm_resource_group" "rg" {
   name     = terraform.workspace
   location = var.region
@@ -38,11 +30,10 @@ resource "azurerm_resource_group" "rg" {
 module "vault" {
   source = "./vault"
 
-  app_name            = var.app_name
-  devops_organisation = var.devops_organisation
-  devops_project_name = var.devops_project_name
-  region              = var.region
-  rg_name             = azurerm_resource_group.rg.name
+  app_name                      = var.app_name
+  devops_service_connection_spn = data.terraform_remote_state.devops.outputs.service_connection_spn
+  region                        = var.region
+  rg_name                       = azurerm_resource_group.rg.name
 }
 
 module "vnet" {
@@ -66,18 +57,17 @@ module "monitoring" {
 module "database" {
   source = "./database"
 
-  app_name            = var.app_name
-  devops_organisation = var.devops_organisation
-  devops_project_name = var.devops_project_name
-  pg_version          = var.database_pg_version
-  region              = var.region
-  rg_name             = azurerm_resource_group.rg.name
-  sku_name            = var.database_sku_name
-  storage_mb          = var.database_storage_mb
-  snet_id             = module.vnet.snet_db_id
-  vault_id            = module.vault.id
-  vnet_id             = module.vnet.vnet_id
-  zone                = var.database_zone
+  app_name                      = var.app_name
+  devops_service_connection_spn = data.terraform_remote_state.devops.outputs.service_connection_spn
+  pg_version                    = var.database_pg_version
+  region                        = var.region
+  rg_name                       = azurerm_resource_group.rg.name
+  sku_name                      = var.database_sku_name
+  storage_mb                    = var.database_storage_mb
+  snet_id                       = module.vnet.snet_db_id
+  vault_id                      = module.vault.id
+  vnet_id                       = module.vnet.vnet_id
+  zone                          = var.database_zone
 }
 
 module "storage" {

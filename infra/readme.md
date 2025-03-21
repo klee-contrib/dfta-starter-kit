@@ -13,6 +13,8 @@ Ce code Terraform va créer les ressources suivantes :
 - Un VM agent DevOps pour se connecter à la base de données pour les déploiements (et éventuellement servir de rebond pour y accéder).
 - Des enregistrements d'applications pour le front et le back dans Azure AD.
 
+Le projet DevOps est créé dans un Terraform séparé, car il n'est pas décliné par environnement.
+
 ## Prérequis
 
 Pour construire cette infrastructure, il faut au préalable :
@@ -22,7 +24,7 @@ Pour construire cette infrastructure, il faut au préalable :
 
 Un backend Terraform pour stocker son state doit être configuré. Une bonne solution est d'utiliser un compte de stockage (créé manuellement) dans votre abonnement Azure dans un groupe de ressource dédié avec un container pour le state.
 
-Vous pouvez l'ajouter dans un fichier `backend.tf`, qui devrait contenir quelque chose comme
+Puisqu'il y a deux projets Terraform, il faudra créer un fichier `backend.tf` à la racine et un autre dans le dossier `devops`, qui devraient contenir quelque chose comme :
 
 ```tf
 terraform {
@@ -30,15 +32,31 @@ terraform {
     resource_group_name  = "XXXX"
     storage_account_name = "XXXX"
     container_name       = "tfstate"
-    key                  = "terraform.tfstate"
+    key                  = "terraform(-devops).tfstate"
     subscription_id      = "XXXX"
   }
 }
 ```
 
-Pour DevOps, vous aurez aussi besoin de créer un PAT pour que terraform puisse configurer le projet.
+Le projet Terraform principal à besoin de référencer le state du Terraform DevOps, afin de pouvoir affecter des droits à DevOps sur les environnements pour le déploiement. Il faudra donc ajouter une data source vers ce state dans le fichier `backend.tf` du projet racine, qui ressemblera à :
 
-En plus des variables pré-définies dans le fichier `terraform.tfvars` (que vous pouvez modifier), vous devez ajouter un autre fichier de variables (par exemple `config.auto.tfvars`, pour qu'il soit pris automatiquement lors d'un `terraform apply`), dans lequel il faudra renseigner les variables `subscription_id`, `devops_organisation` et `devops_pat`. Attention à ne pas commit la dernière variable 😉
+```tf
+data "terraform_remote_state" "devops" {
+  backend = "azurerm"
+
+  config = {
+    resource_group_name  = "XXXX"
+    storage_account_name = "XXXX"
+    container_name       = "tfstate"
+    key                  = "terraform-devops.tfstate"
+    subscription_id      = "XXXX"
+  }
+}
+```
+
+Pour DevOps, vous aurez aussi besoin de créer un PAT pour que terraform puisse configurer le projet. Il faudra le renseigner dans un fichier `*.auto.tfvars` dans à côté des deux `terraform.tfvars` (le global et celui dans le dossier `devops`). Ces fichiers de variables sont pris en compte automatiquement par Terraform et sont inscrits dans le `.gitignore`.
+
+Il ne faudra pas oublier de renseigner les autres variables demandées dans les deux projets Terraform, qui elles peuvent être ajoutées dans les fichiers `terraform.tfvars` commités car elle ne sont pas secrètes. Pour le projet principal, il s'agit de `subscription_id`, `devops_organisation`, et pour le projet DevOps, `organisation`, `subscription_id` ,`subscription_name` et `tenant_id`.
 
 ## Lancement
 
@@ -46,9 +64,9 @@ Enfin, pour lancer le terraform, il faudra au préalable se connecter à Azure v
 
 _Remarque : Le tenant choisi doit être celui dans lequel l'abonnement se trouve. Les enregistrements dans Azure AD sont fait dans ce même tenant, mais ce n'est pas obligatoire. Dans ce cas, il faudra spécifier un tenant différent dans la configuration du provider `azuread`._
 
-Il est nécessaire de lancer le module `devops` à part en premier avant un premier lancement, via la commande `terraform apply --target module.devops`.
+Le Terraform `devops` doit être lancé en premier avec la commande `terraform apply`. Puisqu'il crée des policies sur la branche principale du repository, il va planter au premier lancement à ce moment-là. Il faudra donc pousser le repository sur le projet nouvellement créé, puis le relancer pour terminer.
 
-Il est également possible qu'il y ait quelques problèmes à créer l'ensemble de l'environnement du premier coup avec `terraform apply`, donc il ne faut pas hésiter à le relancer...
+Ensuite, vous pouvez lancer `terraform apply` sur le répetoire racine pour créer votre environnement. Il est possible qu'il y ait quelques problèmes à créer l'ensemble de l'environnement du premier coup, donc il ne faut pas hésiter à le relancer...
 
 ## Utilisation en local
 

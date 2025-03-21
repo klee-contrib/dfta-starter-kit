@@ -3,12 +3,7 @@ variable "app_name" {
   nullable = false
 }
 
-variable "devops_organisation" {
-  type     = string
-  nullable = false
-}
-
-variable "devops_project_name" {
+variable "devops_service_connection_spn" {
   type     = string
   nullable = false
 }

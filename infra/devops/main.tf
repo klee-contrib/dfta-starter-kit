@@ -7,20 +7,22 @@ terraform {
   }
 }
 
+provider "azuredevops" {
+  org_service_url       = "https://dev.azure.com/${var.organisation}"
+  personal_access_token = var.devops_pat
+}
+
 resource "azuredevops_project" "project" {
   name = var.project_name
 }
-
-data "azurerm_client_config" "current" {}
-data "azurerm_subscription" "current" {}
 
 resource "azuredevops_serviceendpoint_azurerm" "azure" {
   project_id                             = azuredevops_project.project.id
   service_endpoint_name                  = "${var.project_name}-dev"
   service_endpoint_authentication_scheme = "WorkloadIdentityFederation"
-  azurerm_spn_tenantid                   = data.azurerm_client_config.current.tenant_id
-  azurerm_subscription_id                = data.azurerm_client_config.current.subscription_id
-  azurerm_subscription_name              = data.azurerm_subscription.current.display_name
+  azurerm_spn_tenantid                   = var.tenant_id
+  azurerm_subscription_id                = var.subscription_id
+  azurerm_subscription_name              = var.subscription_name
 }
 
 data "azuredevops_git_repository" "default" {
