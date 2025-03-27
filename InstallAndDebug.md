@@ -13,7 +13,7 @@
 - [Installer Git](https://git-scm.com/download/win) (s'il n'est pas déjà installé)
 - [Installer psql](https://www.postgresql.org/download/windows/)
   > Ajouter ensuite dans la variable d'environnement PATH de windows le chemin pour la commande psql
-- [Installer Azure Data Studio Dev](https://www.microsoft.com/fr-fr/sql-server/sql-server-downloads?rtc=1)
+- [Installer Azure Data Studio Dev](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
 - Installer l'extension PostgreSQL sur Azure Data Studio (vous pourrez ainsi vous connecter à la base)
 - Installer TopModel, Prettier & Eslint en extension sur VS Code
 
@@ -44,7 +44,7 @@
    docker compose up -d
    ```
 
-**Dans Docker Desktop, vous devriez maintenant voir 2 containers dans `transavia-edossierpnc`**
+**Dans Docker Desktop, vous devriez maintenant voir un container pour votre base de données**
 
 ## Debug Front
 

@@ -19,6 +19,14 @@ Pour démarrer un projet avec ce starter kit, vous avez besoin :
 
 Vous pouvez ensuite lancer le terraform qui va créer le projet Azure DevOps et un environnement de dev, puis push le code sur votre nouveau repository sur DevOps.
 
+## Initialisation des sources
+
+Renommer le nom du client et du projet dans les sources avec cette commande à la racine du repo : 
+
+```sh
+dotnet fsi .\rename-project.fsx MonClient MonProjet MonAppli
+```
+
 ## Rubriques
 
 - [Installation](./InstallAndDebug.md)
