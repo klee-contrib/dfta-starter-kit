@@ -4,7 +4,7 @@ import {UtilisateurItem} from "../model/securite/utilisateur/utilisateur-item";
 import {UtilisateurReadEntity} from "../model/securite/utilisateur/utilisateur-read";
 
 export const utilisateurListStore = new CollectionStore<UtilisateurItem>({searchFields: ["nom", "prenom", "email"]});
-utilisateurListStore.sortBy = "prenom";
+utilisateurListStore.sort = [{fieldName: "prenom"}];
 
 export const utilisateurStore = makeEntityStore({
     utilisateur: UtilisateurReadEntity

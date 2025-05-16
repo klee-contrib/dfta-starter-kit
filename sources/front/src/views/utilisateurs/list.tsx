@@ -27,10 +27,10 @@ export function UtilisateurList() {
                 hasSelection: true,
                 hasSearchBar: true,
                 orderableColumnList: [
-                    {key: "nom", label: "Nom croissant", order: true},
-                    {key: "nom", label: "Nom décroissant", order: false},
-                    {key: "prenom", label: "Prénom croissant", order: true},
-                    {key: "prenom", label: "Prénom décroissant", order: false}
+                    {label: "Nom croissant", sort: [{fieldName: "nom", sortDesc: false}]},
+                    {label: "Nom décroissant", sort: [{fieldName: "nom", sortDesc: true}]},
+                    {label: "Prénom croissant", sort: [{fieldName: "prenom", sortDesc: false}]},
+                    {label: "Prénom décroissant", sort: [{fieldName: "prenom", sortDesc: true}]}
                 ],
                 operationList: [{action: () => setManyDialogActive(true), label: "Supprimer", icon: "delete"}],
                 listProps: {
