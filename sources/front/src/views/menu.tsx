@@ -7,23 +7,18 @@ import css from "./__style__/menu.css";
 
 export function StarterMenu() {
     return (
-        <MainMenu activeRoute={router.get(x => x)} showOverlay>
+        <MainMenu activeRoute={router.get()} showOverlay>
             <div className={css.logo}>
                 <FontIcon>home_repair_service</FontIcon>
             </div>
-            <MainMenuItem icon="home" label="Accueil" onClick={() => router.to(x => x)} route="" />
+            <MainMenuItem icon="home" label="Accueil" href={router.href()} route="" />
             <MainMenuItem
                 icon="group"
                 label="Utilisateurs"
-                onClick={() => router.to(x => x("utilisateurs"))}
+                href={router.href(x => x("utilisateurs"))}
                 route="utilisateurs"
             />
-            <MainMenuItem
-                icon="settings"
-                label="Profils"
-                onClick={() => router.to(x => x("profils"))}
-                route="profils"
-            />
+            <MainMenuItem icon="settings" label="Profils" href={router.href(x => x("profils"))} route="profils" />
         </MainMenu>
     );
 }

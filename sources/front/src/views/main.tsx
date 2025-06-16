@@ -21,7 +21,7 @@ export function Main() {
     return useObserver(() => (
         <Layout menu={<StarterMenu />}>
             {(() => {
-                switch (router.get(a => a)) {
+                switch (router.get()) {
                     case "utilisateurs":
                         return <Utilisateurs />;
                     case "profils":
