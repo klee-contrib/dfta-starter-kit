@@ -27,12 +27,23 @@ query postgres "DROP DATABASE IF EXISTS $database_name WITH (FORCE)"
 echo "Dropped $database_name"
 
 echo "Creating database $database_name..."
-query postgres "CREATE DATABASE $database_name"
+if [[ $database_app_userid == *-local ]]
+then
+    query postgres "CREATE DATABASE $database_name"
+else
+    query postgres "CREATE DATABASE $database_name with owner azure_pg_admin"
+fi
 echo "Created $database_name"
 
 echo "Fixing default permissions..."
-query $database_name "ALTER DEFAULT PRIVILEGES GRANT USAGE ON SCHEMAS TO \"$database_app_userid\""
-query $database_name "ALTER DEFAULT PRIVILEGES GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO \"$database_app_userid\""
+if [[ $database_app_userid == *-local ]]
+then
+    query $database_name "GRANT USAGE ON SCHEMA public TO \"$database_app_userid\""
+    query $database_name "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO \"$database_app_userid\""
+else
+    query $database_name "SET ROLE azure_pg_admin; GRANT USAGE ON SCHEMA public TO \"$database_app_userid\""
+    query $database_name "SET ROLE azure_pg_admin; ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO \"$database_app_userid\""
+fi
 echo "Permissions fixed"
 
 echo "Creating extensions..."
@@ -40,4 +51,3 @@ query $database_name "CREATE EXTENSION unaccent"
 query $database_name "CREATE TEXT SEARCH CONFIGURATION simple_unaccent ( COPY = simple )"
 query $database_name "ALTER TEXT SEARCH CONFIGURATION simple_unaccent ALTER MAPPING FOR hword, hword_part, word WITH unaccent, simple"
 echo "Extensions created"
-
