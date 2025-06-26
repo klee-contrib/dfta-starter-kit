@@ -8,21 +8,21 @@
     "scripts": {
         "build": "vite build",
         "cssgen": "focus4 cssgen src __style__",
-        "eslint": "eslint src",
+        "oxlint": "oxlint src",
         "preview": "vite preview",
         "start": "vite"
     },
     "dependencies": {
         "@azure/msal-browser": "4.13.1",
-        "@focus4/collections": "12.2.3",
-        "@focus4/core": "12.2.3",
-        "@focus4/form-toolbox": "12.2.3",
-        "@focus4/forms": "12.2.3",
-        "@focus4/layout": "12.2.3",
-        "@focus4/stores": "12.2.3",
-        "@focus4/styling": "12.2.3",
-        "@focus4/toolbox": "12.2.3",
-        "es-toolkit": "1.39.3",
+        "@focus4/collections": "12.3.0",
+        "@focus4/core": "12.3.0",
+        "@focus4/form-toolbox": "12.3.0",
+        "@focus4/forms": "12.3.0",
+        "@focus4/layout": "12.3.0",
+        "@focus4/stores": "12.3.0",
+        "@focus4/styling": "12.3.0",
+        "@focus4/toolbox": "12.3.0",
+        "es-toolkit": "1.39.5",
         "i18next": "25.2.1",
         "luxon": "3.6.1",
         "mobx": "6.13.7",
@@ -32,10 +32,11 @@
         "react-i18next": "15.5.3"
     },
     "devDependencies": {
-        "@focus4/tooling": "12.2.3",
-        "@vitejs/plugin-react": "4.5.2",
+        "@focus4/tooling": "12.3.0",
+        "@vitejs/plugin-react": "4.6.0",
         "vite": "6.3.5",
-        "vite-plugin-checker": "0.9.3"
+        "vite-plugin-checker": "0.9.3",
+        "vite-plugin-oxlint": "1.3.3"
     },
     "author": "KleeGroup",
     "license": "MIT"

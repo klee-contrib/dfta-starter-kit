@@ -63,7 +63,7 @@ export function PhotoPicker({
                         }
                     }}
                 />
-                {photo ? <img src={photo} /> : null}
+                {photo ? <img alt="Profil" src={photo} /> : null}
             </div>
         </Dialog>
     ));

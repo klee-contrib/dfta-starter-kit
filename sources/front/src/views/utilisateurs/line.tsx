@@ -9,6 +9,7 @@ import {referenceStore} from "../../stores/references";
 import {router} from "../../router";
 
 import css from "./__style__/line.css";
+
 const theme = toBem(css);
 
 export function UtilisateurLine({data, profil}: {data: UtilisateurItem; profil?: boolean}) {

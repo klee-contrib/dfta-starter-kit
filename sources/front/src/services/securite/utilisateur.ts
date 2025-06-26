@@ -103,7 +103,9 @@ export function updateUtilisateur(utiId: number, utilisateur: UtilisateurWrite, 
 
 function fillFormData(data: any, formData: FormData, prefix = "") {
     if (Array.isArray(data)) {
-        data.forEach((item, i) => fillFormData(item, formData, prefix + (typeof item === "object" && !(item instanceof File) ? `[${i}]` : "")));
+        for (const [i, item] of data.entries()) {
+            fillFormData(item, formData, prefix + (typeof item === "object" && !(item instanceof File) ? `[${i}]` : ""));
+        }
     } else if (typeof data === "object" && !(data instanceof File)) {
         for (const key in data) {
             fillFormData(data[key], formData, (prefix ? `${prefix}.` : "") + key);

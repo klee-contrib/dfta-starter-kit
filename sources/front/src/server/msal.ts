@@ -42,6 +42,8 @@ export async function ensureSignedIn() {
                             case LogLevel.Warning:
                                 console.warn(message);
                                 return;
+                            default:
+                                return;
                         }
                     }
                 }

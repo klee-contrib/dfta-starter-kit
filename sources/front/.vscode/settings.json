@@ -4,6 +4,6 @@
     "files.trimTrailingWhitespace": true,
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit"
+        "source.fixAll.oxc": "explicit"
     }
 }

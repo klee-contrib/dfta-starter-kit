@@ -1,0 +1,4 @@
+src/model
+src/locale
+src/services
+**/*.css.d.ts

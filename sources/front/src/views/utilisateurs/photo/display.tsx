@@ -14,7 +14,7 @@ export function PhotoDisplay({
 }) {
     return (
         <span className={css.display}>
-            {value ? <img src={value} /> : <Display type="string" value="Pas de photo" />}
+            {value ? <img alt="Profil" src={value} /> : <Display type="string" value="Pas de photo" />}
             <span>
                 {openPicker ? (
                     <Tooltip tooltip="Télécharger une photo">
