@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace KleeContrib.Dfta.Migrations;
 
@@ -27,6 +28,12 @@ public class KleeContribDftaDbContextFactory : IDesignTimeDbContextFactory<KleeC
                 .CommandTimeout(120)
                 .MigrationsAssembly("KleeContrib.Dfta.Migrations"))
             .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
+
+        if (server != "localhost")
+        {
+            optionsBuilder.ReplaceService<IMigrationsSqlGenerator, SetRoleNpgsqlMigrationsSqlGenerator>();
+        }
+
         return new KleeContribDftaDbContext(optionsBuilder.Options);
     }
 }
