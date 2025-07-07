@@ -1,11 +1,11 @@
 import {DateTime} from "luxon";
 
-import {BooleanRadio, domain, InputDate, SelectCheckbox} from "@focus4/form-toolbox";
+import {domain, FormSwitch, InputDate, SelectCheckbox} from "@focus4/form-toolbox";
 
 export const DO_BOOLEEN = domain({
     type: "boolean",
     displayFormatter: value => (value ? "Oui" : "Non"),
-    InputComponent: BooleanRadio
+    InputComponent: FormSwitch
 });
 export const DO_CODE = domain({
     type: "string",

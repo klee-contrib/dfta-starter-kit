@@ -2,14 +2,14 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 2.8.0
+version: 2.8.2
 modules:
   csharp:
     version: 1.6.2
     hash: 6d284e13635b1e3e2af6f74d17159ca7
   javascript:
-    version: 1.4.2
-    hash: f9f741b6afd4a63b5cf8082023d76d90
+    version: 1.4.3
+    hash: d046aaecaf15b04183cb7921a3a777c3
 generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/ProfilController.cs
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/UtilisateurController.cs
