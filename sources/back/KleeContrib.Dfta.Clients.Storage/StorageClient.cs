@@ -15,25 +15,25 @@ public class StorageClient(BlobServiceClient client) : IStorageQueries, IStorage
     private BlobContainerClient Container => client.GetBlobContainerClient("files");
 
     /// <inheritdoc cref="IStorageMutations.AddFile" />
-    public async Task<string> AddFile(string baseFileName, Stream file)
+    public async Task<string> AddFile(string baseFileName, Stream file, CancellationToken ct = default)
     {
         var fileName = $"{baseFileName}-{Guid.NewGuid()}";
-        await Container.UploadBlobAsync(fileName, file);
+        await Container.UploadBlobAsync(fileName, file, ct);
         return fileName;
     }
 
     /// <inheritdoc cref="IStorageMutations.DeleteFile" />
-    public async Task DeleteFile(string fileName)
+    public async Task DeleteFile(string fileName, CancellationToken ct = default)
     {
-        await Container.GetBlobClient(fileName).DeleteIfExistsAsync();
+        await Container.GetBlobClient(fileName).DeleteIfExistsAsync(cancellationToken: ct);
     }
 
     /// <inheritdoc cref="IStorageQueries.GetFile" />
-    public async Task<byte[]?> GetFile(string fileName)
+    public async Task<byte[]?> GetFile(string fileName, CancellationToken ct = default)
     {
         try
         {
-            var content = await Container.GetBlobClient(fileName).DownloadContentAsync();
+            var content = await Container.GetBlobClient(fileName).DownloadContentAsync(ct);
             return content.Value.Content.ToArray();
         }
         catch (RequestFailedException e) when (e.ErrorCode == "BlobNotFound")

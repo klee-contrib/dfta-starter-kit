@@ -12,6 +12,7 @@ public interface IUtilisateurMixedQueries
     /// Charge la photo d'un utilisateur (si elle existe).
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Photo.</returns>
-    Task<byte[]?> GetUtilisateurPhoto(int utiId);
+    Task<byte[]?> GetUtilisateurPhoto(int utiId, CancellationToken ct = default);
 }

@@ -9,14 +9,14 @@ namespace KleeContrib.Dfta.Securite.Queries.Implementations;
 public class UtilisateurMixedQueries(IUtilisateurQueries utilisateurDbQueries, IStorageQueries storageQueries) : IUtilisateurMixedQueries
 {
     /// <inheritdoc cref="IUtilisateurMixedQueries.GetUtilisateurPhoto" />
-    public async Task<byte[]?> GetUtilisateurPhoto(int utiId)
+    public async Task<byte[]?> GetUtilisateurPhoto(int utiId, CancellationToken ct = default)
     {
-        var fileName = await utilisateurDbQueries.GetUtilisateurPhotoFileName(utiId);
+        var fileName = await utilisateurDbQueries.GetUtilisateurPhotoFileName(utiId, ct);
         if (fileName == null)
         {
             return null;
         }
 
-        return await storageQueries.GetFile(fileName);
+        return await storageQueries.GetFile(fileName, ct);
     }
 }

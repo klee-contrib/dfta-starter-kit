@@ -13,13 +13,15 @@ public interface IStorageMutations
     /// </summary>
     /// <param name="baseFileName">Nom du fichier (sera complété par un Id unique).</param>
     /// <param name="file">Fichier.</param>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Nom du fichier dans le storage.</returns>
-    public Task<string> AddFile(string baseFileName, Stream file);
+    public Task<string> AddFile(string baseFileName, Stream file, CancellationToken ct = default);
 
     /// <summary>
     /// Supprime un fichier.
     /// </summary>
     /// <param name="fileName">Nom du fichier à supprimer.</param>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Task.</returns>
-    public Task DeleteFile(string fileName);
+    public Task DeleteFile(string fileName, CancellationToken ct = default);
 }

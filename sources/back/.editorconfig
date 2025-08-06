@@ -74,11 +74,14 @@ dotnet_diagnostic.CA1860.severity = none
 dotnet_diagnostic.CA1861.severity = none
 dotnet_diagnostic.CA1862.severity = none
 dotnet_diagnostic.CA1869.severity = none
+dotnet_diagnostic.CA2016.severity = warning
 dotnet_diagnostic.CA2254.severity = none
 
 dotnet_diagnostic.CS1591.severity = none
 dotnet_diagnostic.CS3001.severity = none
 dotnet_diagnostic.CS3002.severity = none
+
+dotnet_diagnostic.KTA1104.severity = warning
 
 dotnet_diagnostic.S101.severity = none
 dotnet_diagnostic.S112.severity = none

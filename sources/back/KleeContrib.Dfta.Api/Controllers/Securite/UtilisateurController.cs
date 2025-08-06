@@ -22,12 +22,13 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// Ajoute un utilisateur
     /// </summary>
     /// <param name="utilisateur">Utilisateur à sauvegarder</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Utilisateur sauvegardé</returns>
     [HttpPost("api/utilisateurs")]
-    public async Task<UtilisateurRead> AddUtilisateur([FromBody] UtilisateurWrite utilisateur)
+    public async Task<UtilisateurRead> AddUtilisateur([FromBody] UtilisateurWrite utilisateur, CancellationToken ct = default)
     {
-        var id = await commands.AddUtilisateur(utilisateur.ToUtilisateurCommand());
-        return await queries.GetUtilisateur(id);
+        var id = await commands.AddUtilisateur(utilisateur.ToUtilisateurCommand(), ct);
+        return await queries.GetUtilisateur(id, ct);
     }
 
     /// <summary>
@@ -35,9 +36,10 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
     /// <param name="photo">Photo.</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Task.</returns>
     [HttpPut("api/utilisateurs/{utiId:int}/photo")]
-    public async Task AddUtilisateurPhoto(int utiId, [Required] IFormFile? photo = null)
+    public async Task AddUtilisateurPhoto(int utiId, [Required] IFormFile? photo = null, CancellationToken ct = default)
     {
         if (photo!.ContentType != "image/jpeg")
         {
@@ -45,51 +47,55 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
         }
 
         using var file = photo!.OpenReadStream();
-        await commands.AddUtilisateurPhoto(utiId, photo.FileName, file);
+        await commands.AddUtilisateurPhoto(utiId, photo.FileName, file, ct);
     }
 
     /// <summary>
     /// Supprime un utilisateur
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Task.</returns>
     [HttpDelete("api/utilisateurs/{utiId:int}")]
-    public async Task DeleteUtilisateur(int utiId)
+    public async Task DeleteUtilisateur(int utiId, CancellationToken ct = default)
     {
-        await commands.DeleteUtilisateur(utiId);
+        await commands.DeleteUtilisateur(utiId, ct);
     }
 
     /// <summary>
     /// Supprime la photo d'un utilisateur
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Task.</returns>
     [HttpDelete("api/utilisateurs/{utiId:int}/photo")]
-    public async Task DeleteUtilisateurPhoto(int utiId)
+    public async Task DeleteUtilisateurPhoto(int utiId, CancellationToken ct = default)
     {
-        await commands.DeleteUtilisateurPhoto(utiId);
+        await commands.DeleteUtilisateurPhoto(utiId, ct);
     }
 
     /// <summary>
     /// Charge le détail d'un utilisateur
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Le détail de l'utilisateur</returns>
     [HttpGet("api/utilisateurs/{utiId:int}")]
-    public async Task<UtilisateurRead> GetUtilisateur(int utiId)
+    public async Task<UtilisateurRead> GetUtilisateur(int utiId, CancellationToken ct = default)
     {
-        return await queries.GetUtilisateur(utiId);
+        return await queries.GetUtilisateur(utiId, ct);
     }
 
     /// <summary>
     /// Charge la photo d'un utilisateur (si elle existe).
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Photo.</returns>
     [HttpGet("api/utilisateurs/{utiId:int}/photo")]
-    public async Task<FileContentResult> GetUtilisateurPhoto(int utiId)
+    public async Task<FileContentResult> GetUtilisateurPhoto(int utiId, CancellationToken ct = default)
     {
-        var file = await mixedQueries.GetUtilisateurPhoto(utiId);
+        var file = await mixedQueries.GetUtilisateurPhoto(utiId, ct);
         if (file == null)
         {
             Response.StatusCode = 204;
@@ -111,11 +117,12 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// <param name="actif">Si l'utilisateur est actif</param>
     /// <param name="profilId">Profil de l'utilisateur</param>
     /// <param name="typeUtilisateurCode">Type d'utilisateur</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Utilisateurs matchant les critères</returns>
     [HttpGet("api/utilisateurs")]
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
+    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null, CancellationToken ct = default)
     {
-        return await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode);
+        return await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode, ct);
     }
 
     /// <summary>
@@ -123,11 +130,12 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// </summary>
     /// <param name="utiId">Id de l'utilisateur</param>
     /// <param name="utilisateur">Utilisateur à sauvegarder</param>
+    /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Utilisateur sauvegardé</returns>
     [HttpPut("api/utilisateurs/{utiId:int}")]
-    public async Task<UtilisateurRead> UpdateUtilisateur(int utiId, [FromBody] UtilisateurWrite utilisateur)
+    public async Task<UtilisateurRead> UpdateUtilisateur(int utiId, [FromBody] UtilisateurWrite utilisateur, CancellationToken ct = default)
     {
-        await commands.UpdateUtilisateur(utiId, utilisateur.ToUtilisateurCommand());
-        return await queries.GetUtilisateur(utiId);
+        await commands.UpdateUtilisateur(utiId, utilisateur.ToUtilisateurCommand(), ct);
+        return await queries.GetUtilisateur(utiId, ct);
     }
 }

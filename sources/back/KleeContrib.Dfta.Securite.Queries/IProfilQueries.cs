@@ -13,12 +13,14 @@ public interface IProfilQueries
     /// Charge le détail d'un Profil
     /// </summary>
     /// <param name="proId">Id technique</param>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Le détail de l'Profil</returns>
-    Task<ProfilRead> GetProfil(int proId);
+    Task<ProfilRead> GetProfil(int proId, CancellationToken ct = default);
 
     /// <summary>
     /// Liste tous les Profils
     /// </summary>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Profils matchant les critères</returns>
-    Task<ICollection<ProfilItem>> GetProfils();
+    Task<ICollection<ProfilItem>> GetProfils(CancellationToken ct = default);
 }

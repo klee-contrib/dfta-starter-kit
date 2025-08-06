@@ -11,14 +11,14 @@ namespace KleeContrib.Dfta.Securite.Commands.Implementations;
 public class ProfilCommands(IProfilMutations mutations) : IProfilCommands
 {
     /// <inheritdoc cref="IProfilCommands.AddProfil" />
-    public async Task<int> AddProfil(ProfilCommand profil)
+    public async Task<int> AddProfil(ProfilCommand profil, CancellationToken ct = default)
     {
-        return await mutations.AddProfil(profil);
+        return await mutations.AddProfil(profil, ct);
     }
 
     /// <inheritdoc cref="IProfilCommands.UpdateProfil" />
-    public async Task UpdateProfil(int proId, ProfilCommand profil)
+    public async Task UpdateProfil(int proId, ProfilCommand profil, CancellationToken ct = default)
     {
-        await mutations.UpdateProfil(proId, profil);
+        await mutations.UpdateProfil(proId, profil, ct);
     }
 }

@@ -14,39 +14,39 @@ using static Models.UtilisateurMappers;
 public class UtilisateurMutations(KleeContribDftaDbContext context) : IUtilisateurMutations
 {
     /// <inheritdoc cref="IUtilisateurMutations.AddUtilisateur" />
-    public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur)
+    public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur, CancellationToken ct = default)
     {
         var utilisateurDb = utilisateur.ToUtilisateur();
-        await context.Utilisateurs.AddAsync(utilisateurDb);
-        await context.SaveChangesAsync();
+        context.Utilisateurs.Add(utilisateurDb);
+        await context.SaveChangesAsync(ct);
         return utilisateurDb.Id;
     }
 
     /// <inheritdoc cref="IUtilisateurMutations.DeleteUtilisateur" />
-    public async Task DeleteUtilisateur(int utiId)
+    public async Task DeleteUtilisateur(int utiId, CancellationToken ct = default)
     {
-        await context.Utilisateurs.Where(uti => uti.Id == utiId).ExecuteDeleteAsync();
+        await context.Utilisateurs.Where(uti => uti.Id == utiId).ExecuteDeleteAsync(ct);
     }
 
     /// <inheritdoc cref="IUtilisateurMutations.UpdateUtilisateur" />
-    public async Task UpdateUtilisateur(int utiId, UtilisateurCommand utilisateur)
+    public async Task UpdateUtilisateur(int utiId, UtilisateurCommand utilisateur, CancellationToken ct = default)
     {
-        var utilisateurDb = await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas.");
+        var utilisateurDb = await context.Utilisateurs.FindAsync([utiId], ct) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas.");
 
         utilisateur.ToUtilisateur(utilisateurDb);
         utilisateurDb.DateModification = DateTime.UtcNow;
 
-        await context.SaveChangesAsync();
+        await context.SaveChangesAsync(ct);
     }
 
     /// <inheritdoc cref="IUtilisateurMutations.UpdateUtilisateurPhotoFileName" />
-    public async Task UpdateUtilisateurPhotoFileName(int utiId, string? fileName)
+    public async Task UpdateUtilisateurPhotoFileName(int utiId, string? fileName, CancellationToken ct = default)
     {
-        var utilisateurDb = await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas.");
+        var utilisateurDb = await context.Utilisateurs.FindAsync([utiId], ct) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas.");
 
         utilisateurDb.NomFichierPhoto = fileName;
         utilisateurDb.DateModification = DateTime.UtcNow;
 
-        await context.SaveChangesAsync();
+        await context.SaveChangesAsync(ct);
     }
 }

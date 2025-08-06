@@ -12,41 +12,41 @@ namespace KleeContrib.Dfta.Securite.Commands.Implementations;
 public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations, IUtilisateurQueries utilisateurDbQueries, IStorageMutations storageMutations) : IUtilisateurCommands
 {
     /// <inheritdoc cref="IUtilisateurCommands.AddUtilisateur" />
-    public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur)
+    public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur, CancellationToken ct = default)
     {
-        return await utilisateurMutations.AddUtilisateur(utilisateur);
+        return await utilisateurMutations.AddUtilisateur(utilisateur, ct);
     }
 
     /// <inheritdoc cref="IUtilisateurCommands.AddUtilisateurPhoto" />
-    public async Task AddUtilisateurPhoto(int utiId, string uploadedFileName, Stream photo)
+    public async Task AddUtilisateurPhoto(int utiId, string uploadedFileName, Stream photo, CancellationToken ct = default)
     {
-        await DeleteUtilisateurPhoto(utiId);
-        var fileName = await storageMutations.AddFile($"{utiId}-{uploadedFileName}", photo);
-        await utilisateurMutations.UpdateUtilisateurPhotoFileName(utiId, fileName);
+        await DeleteUtilisateurPhoto(utiId, ct);
+        var fileName = await storageMutations.AddFile($"{utiId}-{uploadedFileName}", photo, ct);
+        await utilisateurMutations.UpdateUtilisateurPhotoFileName(utiId, fileName, ct);
     }
 
     /// <inheritdoc cref="IUtilisateurCommands.DeleteUtilisateur" />
-    public async Task DeleteUtilisateur(int utiId)
+    public async Task DeleteUtilisateur(int utiId, CancellationToken ct = default)
     {
-        await utilisateurMutations.DeleteUtilisateur(utiId);
+        await utilisateurMutations.DeleteUtilisateur(utiId, ct);
     }
 
     /// <inheritdoc cref="IUtilisateurCommands.DeleteUtilisateurPhoto" />
-    public async Task DeleteUtilisateurPhoto(int utiId)
+    public async Task DeleteUtilisateurPhoto(int utiId, CancellationToken ct = default)
     {
-        var fileName = await utilisateurDbQueries.GetUtilisateurPhotoFileName(utiId);
+        var fileName = await utilisateurDbQueries.GetUtilisateurPhotoFileName(utiId, ct);
         if (fileName == null)
         {
             return;
         }
 
-        await storageMutations.DeleteFile(fileName);
-        await utilisateurMutations.UpdateUtilisateurPhotoFileName(utiId, null);
+        await storageMutations.DeleteFile(fileName, ct);
+        await utilisateurMutations.UpdateUtilisateurPhotoFileName(utiId, null, ct);
     }
 
     /// <inheritdoc cref="IUtilisateurCommands.UpdateUtilisateur" />
-    public async Task UpdateUtilisateur(int utiId, UtilisateurCommand utilisateur)
+    public async Task UpdateUtilisateur(int utiId, UtilisateurCommand utilisateur, CancellationToken ct = default)
     {
-        await utilisateurMutations.UpdateUtilisateur(utiId, utilisateur);
+        await utilisateurMutations.UpdateUtilisateur(utiId, utilisateur, ct);
     }
 }

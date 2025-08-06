@@ -15,19 +15,19 @@ using static Models.UtilisateurMappers;
 public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateurQueries
 {
     /// <inheritdoc cref="IUtilisateurQueries.GetUtilisateur" />
-    public async Task<UtilisateurRead> GetUtilisateur(int utiId)
+    public async Task<UtilisateurRead> GetUtilisateur(int utiId, CancellationToken ct = default)
     {
-        return CreateUtilisateurRead(await context.Utilisateurs.FindAsync(utiId) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas."));
+        return CreateUtilisateurRead(await context.Utilisateurs.FindAsync([utiId], ct) ?? throw new KeyNotFoundException("L'utilisateur demandé n'existe pas."));
     }
 
     /// <inheritdoc cref="IUtilisateurQueries.GetUtilisateurPhotoFileName" />
-    public async Task<string?> GetUtilisateurPhotoFileName(int utiId)
+    public async Task<string?> GetUtilisateurPhotoFileName(int utiId, CancellationToken ct = default)
     {
-        return (await context.Utilisateurs.FindAsync(utiId))?.NomFichierPhoto;
+        return (await context.Utilisateurs.FindAsync([utiId], ct))?.NomFichierPhoto;
     }
 
     /// <inheritdoc cref="IUtilisateurQueries.SearchUtilisateur" />
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null)
+    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null, CancellationToken ct = default)
     {
         return await context.Utilisateurs.AsNoTracking()
             .Where(x =>
@@ -39,6 +39,6 @@ public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateur
                 (!profilId.HasValue || x.ProfilId == profilId) &&
                 (!typeUtilisateurCode.HasValue || x.TypeUtilisateurCode == typeUtilisateurCode))
             .Select(x => CreateUtilisateurItem(x))
-            .ToListAsync();
+            .ToListAsync(ct);
     }
 }
