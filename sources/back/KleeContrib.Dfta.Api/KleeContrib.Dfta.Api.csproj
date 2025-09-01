@@ -1,17 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
-	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<Version>0</Version>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Version>0</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UserSecretsId>18d07dd5-13ee-4c7f-bbc4-fa5c4b31d895</UserSecretsId>
-	</PropertyGroup>
-
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Kinetix.Tools.Analyzers" Version="1.11.4">
+    <PackageReference Include="Kinetix.Tools.Analyzers" Version="1.11.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.213">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -19,25 +21,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Kinetix.EFCore" Version="8.0.0" />
-		<PackageReference Include="Kinetix.Monitoring.Insights" Version="8.0.0" />
-		<PackageReference Include="Kinetix.Services" Version="8.0.0" />
-		<PackageReference Include="Kinetix.Web" Version="8.2.0" />
-		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
-		<PackageReference Include="Microsoft.Identity.Web" Version="3.12.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />
+  <ItemGroup>
+    <PackageReference Include="Kinetix.EFCore" Version="8.0.1" />
+    <PackageReference Include="Kinetix.Monitoring.Insights" Version="8.0.1" />
+    <PackageReference Include="Kinetix.Services" Version="8.0.1" />
+    <PackageReference Include="Kinetix.Web" Version="8.2.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="3.14.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />
     <ProjectReference Include="..\KleeContrib.Dfta.Clients.Storage\KleeContrib.Dfta.Clients.Storage.csproj" />
-		<ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Implementations\KleeContrib.Dfta.Securite.Commands.Implementations.csproj" />
-	</ItemGroup>
-
+    <ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Implementations\KleeContrib.Dfta.Securite.Commands.Implementations.csproj" />
+  </ItemGroup>
 </Project>

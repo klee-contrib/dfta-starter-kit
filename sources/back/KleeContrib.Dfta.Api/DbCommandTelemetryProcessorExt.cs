@@ -9,6 +9,14 @@ namespace KleeContrib.Dfta.Api;
 /// <param name="next">Processor suivant.</param>
 /// <param name="config">Composant injecté.</param>
 public class DbCommandTelemetryProcessorExt(ITelemetryProcessor next, IConfiguration config)
-    : DbCommandTelemetryProcessor(next, new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>() { ["ConnectionStrings:default"] = config.GetDatabaseConnectionString() }).Build())
-{
-}
+    : DbCommandTelemetryProcessor(
+        next,
+        new ConfigurationBuilder()
+            .AddInMemoryCollection(
+                new Dictionary<string, string?>()
+                {
+                    ["ConnectionStrings:default"] = config.GetDatabaseConnectionString(),
+                }
+            )
+            .Build()
+    ) { }

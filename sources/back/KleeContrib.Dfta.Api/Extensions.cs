@@ -12,6 +12,13 @@ public static class Extensions
     /// <returns>Connection string.</returns>
     public static string GetDatabaseConnectionString(this IConfiguration configuration)
     {
-        return string.Join(";", configuration.GetSection("Database").AsEnumerable().Where(kv => !string.IsNullOrEmpty(kv.Value)).Select(kv => $"{kv.Key.Split(":").Last().Replace("_", " ")}={kv.Value}"));
+        return string.Join(
+            ';',
+            configuration
+                .GetSection("Database")
+                .AsEnumerable()
+                .Where(kv => !string.IsNullOrEmpty(kv.Value))
+                .Select(kv => $"{kv.Key.Split(":")[^1].Replace('_', ' ')}={kv.Value}")
+        );
     }
 }

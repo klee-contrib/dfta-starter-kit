@@ -39,53 +39,64 @@ services
     .AddApplicationInsightsTelemetryProcessor<MonitoringTelemetryFilter>()
     .AddApplicationInsightsTelemetryProcessor<DbCommandTelemetryProcessorExt>();
 
-services
-    .AddAuthentication()
-    .AddMicrosoftIdentityWebApi(builder.Configuration);
+services.AddAuthentication().AddMicrosoftIdentityWebApi(builder.Configuration);
 
-services
-    .AddAuthorization(o => o.FallbackPolicy = o.DefaultPolicy);
+services.AddAuthorization(o => o.FallbackPolicy = o.DefaultPolicy);
 
 services
     .AddMonitoring()
-    .AddServices("KleeContrib.Dfta", o =>
-    {
-        o.AddAssemblies(typeof(ProfilMutations).Assembly);
-        o.AddAssemblies(typeof(ProfilCommands).Assembly);
-        o.AddAssemblies(typeof(StorageClient).Assembly);
-    })
-    .AddEFCore<KleeContribDftaDbContext>(o => o
-        .UseNpgsql(builder.Configuration.GetDatabaseConnectionString(), o => o
-            .ConfigureDataSource(d =>
-            {
-                if (string.IsNullOrWhiteSpace(builder.Configuration["Database:Password"]))
+    .AddServices(
+        "KleeContrib.Dfta",
+        o =>
+        {
+            o.AddAssemblies(typeof(ProfilMutations).Assembly);
+            o.AddAssemblies(typeof(ProfilCommands).Assembly);
+            o.AddAssemblies(typeof(StorageClient).Assembly);
+        }
+    )
+    .AddEFCore<KleeContribDftaDbContext>(o =>
+        o.UseNpgsql(
+            builder.Configuration.GetDatabaseConnectionString(),
+            o =>
+                o.ConfigureDataSource(d =>
                 {
-                    var credential = new DefaultAzureCredential();
+                    if (string.IsNullOrWhiteSpace(builder.Configuration["Database:Password"]))
+                    {
+                        var credential = new DefaultAzureCredential();
 
-                    d.UsePeriodicPasswordProvider(
-                        async (settings, ct) => (await credential.GetTokenAsync(new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct)).Token,
-                        TimeSpan.FromMinutes(5),
-                        TimeSpan.FromSeconds(5));
-                }
-            })));
+                        d.UsePeriodicPasswordProvider(
+                            async (settings, ct) =>
+                                (
+                                    await credential.GetTokenAsync(
+                                        new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]),
+                                        ct
+                                    )
+                                ).Token,
+                            TimeSpan.FromMinutes(5),
+                            TimeSpan.FromSeconds(5)
+                        );
+                    }
+                })
+        )
+    );
 
 var storageAccountName = builder.Configuration["Storage:AccountName"];
 var storageAccountKey = builder.Configuration["Storage:AccountKey"];
 var storageUri = new Uri($"https://{storageAccountName}.blob.core.windows.net");
-services.AddSingleton(string.IsNullOrWhiteSpace(storageAccountKey)
-    ? new BlobServiceClient(storageUri, new DefaultAzureCredential())
-    : new BlobServiceClient(storageUri, new StorageSharedKeyCredential(storageAccountName, storageAccountKey)));
+services.AddSingleton(
+    string.IsNullOrWhiteSpace(storageAccountKey)
+        ? new BlobServiceClient(storageUri, new DefaultAzureCredential())
+        : new BlobServiceClient(storageUri, new StorageSharedKeyCredential(storageAccountName, storageAccountKey))
+);
 
 services
     .AddKinetixExceptionHandler()
     .AddControllers()
-        .AddJsonOptions(j => j.JsonSerializerOptions
-            .ConfigureSerializerDefaults()
-            .AddConverter<JsonStringEnumConverter>());
+    .AddJsonOptions(j => j.JsonSerializerOptions.ConfigureSerializerDefaults().AddConverter<JsonStringEnumConverter>());
 
-services.ConfigureHttpJsonOptions(j => j.SerializerOptions
-    .ConfigureSerializerDefaults()
-    .AddConverter<JsonStringEnumConverter>());
+services.ConfigureHttpJsonOptions(j =>
+    j.SerializerOptions.ConfigureSerializerDefaults().AddConverter<JsonStringEnumConverter>()
+);
 
 var app = builder.Build();
 
@@ -95,22 +106,25 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers()
-    .AddEndpointFilter<TransactionFilter>()
-    .AddEndpointFilter<UtcDateFilter>();
+app.MapControllers().AddEndpointFilter<TransactionFilter>().AddEndpointFilter<UtcDateFilter>();
 
 app.MapReferenceEndpoints("api/references");
-app.MapGet("api/adresses", async (string query) =>
-{
-    if (query.Trim().Length < 3)
+app.MapGet(
+    "api/adresses",
+    async (string query) =>
     {
-        return new List<string>().Select(e => new { Key = e, Label = e });
-    }
+        if (query.Trim().Length < 3)
+        {
+            return new List<string>().Select(e => new { Key = e, Label = e });
+        }
 
-    var client = new HttpClient();
-    var response = await client.GetFromJsonAsync<Result>($"https://api-adresse.data.gouv.fr/search/?q={query}&limit=10");
-    return response!.Features.Select(f => new { Key = f.Properties.Label, f.Properties.Label });
-});
+        var client = new HttpClient();
+        var response = await client.GetFromJsonAsync<Result>(
+            $"https://api-adresse.data.gouv.fr/search/?q={query}&limit=10"
+        );
+        return response!.Features.Select(f => new { Key = f.Properties.Label, f.Properties.Label });
+    }
+);
 await app.RunAsync();
 
 #pragma warning disable

@@ -48,5 +48,5 @@ public enum Domains
     /// <summary>
     /// Entier.
     /// </summary>
-    Entier
+    Entier,
 }

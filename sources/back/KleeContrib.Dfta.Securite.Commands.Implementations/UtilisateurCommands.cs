@@ -9,7 +9,11 @@ namespace KleeContrib.Dfta.Securite.Commands.Implementations;
 /// Commandes autour de l'utilisateur.
 /// </summary>
 [RegisterImpl]
-public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations, IUtilisateurQueries utilisateurDbQueries, IStorageMutations storageMutations) : IUtilisateurCommands
+public class UtilisateurCommands(
+    IUtilisateurMutations utilisateurMutations,
+    IUtilisateurQueries utilisateurDbQueries,
+    IStorageMutations storageMutations
+) : IUtilisateurCommands
 {
     /// <inheritdoc cref="IUtilisateurCommands.AddUtilisateur" />
     public async Task<int> AddUtilisateur(UtilisateurCommand utilisateur, CancellationToken ct = default)
@@ -18,7 +22,12 @@ public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations, IUt
     }
 
     /// <inheritdoc cref="IUtilisateurCommands.AddUtilisateurPhoto" />
-    public async Task AddUtilisateurPhoto(int utiId, string uploadedFileName, Stream photo, CancellationToken ct = default)
+    public async Task AddUtilisateurPhoto(
+        int utiId,
+        string uploadedFileName,
+        Stream photo,
+        CancellationToken ct = default
+    )
     {
         await DeleteUtilisateurPhoto(utiId, ct);
         var fileName = await storageMutations.AddFile($"{utiId}-{uploadedFileName}", photo, ct);
@@ -41,7 +50,7 @@ public class UtilisateurCommands(IUtilisateurMutations utilisateurMutations, IUt
         }
 
         await storageMutations.DeleteFile(fileName, ct);
-        await utilisateurMutations.UpdateUtilisateurPhotoFileName(utiId, null, ct);
+        await utilisateurMutations.UpdateUtilisateurPhotoFileName(utiId, fileName: null, ct);
     }
 
     /// <inheritdoc cref="IUtilisateurCommands.UpdateUtilisateur" />

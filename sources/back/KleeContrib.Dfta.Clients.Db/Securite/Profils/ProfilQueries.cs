@@ -17,17 +17,24 @@ public class ProfilQueries(KleeContribDftaDbContext context) : IProfilQueries
     public async Task<ProfilRead> GetProfil(int proId, CancellationToken ct = default)
     {
         return await (
-            from profil in context.Profils
-            where profil.Id == proId
-            select new ProfilRead
-            {
-                DroitCodes = context.DroitProfils.Where(x => x.ProfilId == proId).Select(d => d.DroitCode).ToArray(),
-                Id = profil.Id,
-                Libelle = profil.Libelle,
-                Utilisateurs = context.Utilisateurs.Where(x => x.ProfilId == proId).Select(x => CreateUtilisateurItem(x)).ToList(),
-                DateCreation = profil.DateCreation,
-                DateModification = profil.DateModification
-            }).SingleOrDefaultAsync(ct) ?? throw new KeyNotFoundException("Le profil demandé n'existe pas.");
+                from profil in context.Profils
+                where profil.Id == proId
+                select new ProfilRead
+                {
+                    DroitCodes = context
+                        .DroitProfils.Where(x => x.ProfilId == proId)
+                        .Select(d => d.DroitCode)
+                        .ToArray(),
+                    Id = profil.Id,
+                    Libelle = profil.Libelle,
+                    Utilisateurs = context
+                        .Utilisateurs.Where(x => x.ProfilId == proId)
+                        .Select(x => CreateUtilisateurItem(x))
+                        .ToList(),
+                    DateCreation = profil.DateCreation,
+                    DateModification = profil.DateModification,
+                }
+            ).SingleOrDefaultAsync(ct) ?? throw new KeyNotFoundException("Le profil demandé n'existe pas.");
     }
 
     /// <inheritdoc cref="IProfilQueries.GetProfils" />
@@ -37,9 +44,10 @@ public class ProfilQueries(KleeContribDftaDbContext context) : IProfilQueries
             from profil in context.Profils.AsNoTracking()
             select new ProfilItem
             {
-                NombreUtilisateurs = context.Utilisateurs.Where(x => x.ProfilId == profil.Id).Count(),
+                NombreUtilisateurs = context.Utilisateurs.Count(x => x.ProfilId == profil.Id),
                 Id = profil.Id,
-                Libelle = profil.Libelle
-            }).ToListAsync(ct);
+                Libelle = profil.Libelle,
+            }
+        ).ToListAsync(ct);
     }
 }
