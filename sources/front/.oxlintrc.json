@@ -1,6 +1,3 @@
 {
-    "extends": ["./node_modules/@focus4/tooling/oxlintrc.json"],
-    "rules": {
-        "react/jsx-handler-names": "off" // A inclure dans Focus
-    }
+    "extends": ["./node_modules/@focus4/tooling/oxlintrc.json"]
 }

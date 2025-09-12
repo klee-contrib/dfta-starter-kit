@@ -1,17 +1,13 @@
 {
     "compilerOptions": {
         // Général
-        "lib": ["es2021", "dom"],
+        "lib": ["es2022", "dom"],
         "jsx": "react-jsx",
         "module": "esnext",
-        "moduleResolution": "node",
-        "target": "es2021",
-        "sourceMap": true,
-
-        // Options obligatoires
-        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "bundler",
+        "target": "es2022",
         "strict": true,
-        "useDefineForClassFields": true,
+        "sourceMap": true,
 
         // Options additionnelles
         "importHelpers": true,
