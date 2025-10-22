@@ -1,5 +1,6 @@
 import {useObserver} from "mobx-react";
 import {useId, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 import {requestStore} from "@focus4/core";
 import {InputFile} from "@focus4/form-toolbox";
@@ -16,6 +17,7 @@ export function PhotoPicker({
     close: () => void;
     onPick: (file: File, photo: string) => Promise<void>;
 }) {
+    const {t} = useTranslation();
     const trackingId = useId();
     const [photoFile, setPhotoFile] = useState<File>();
     const [photo, setPhoto] = useState<string>();
@@ -30,10 +32,10 @@ export function PhotoPicker({
                     },
                     disabled: !photoFile || !photo || requestStore.isLoading(trackingId),
                     loading: requestStore.isLoading(trackingId),
-                    label: "Enregistrer",
+                    label: t("focus.button.save"),
                     color: "primary"
                 },
-                {onClick: close, label: "Annuler", disabled: requestStore.isLoading(trackingId)}
+                {onClick: close, label: t("focus.button.cancel"), disabled: requestStore.isLoading(trackingId)}
             ]}
             active={active}
             onClosed={() => {
@@ -41,7 +43,7 @@ export function PhotoPicker({
                 setPhoto(undefined);
             }}
             onOverlayClick={close}
-            title="Choississez une photo"
+            title={t("app.user.picture.choose")}
         >
             <div className={css.picker}>
                 <InputFile
@@ -63,7 +65,7 @@ export function PhotoPicker({
                         }
                     }}
                 />
-                {photo ? <img alt="Profil" src={photo} /> : null}
+                {photo ? <img alt={t("app.user.picture.title")} src={photo} /> : null}
             </div>
         </Dialog>
     ));

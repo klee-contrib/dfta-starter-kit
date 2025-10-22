@@ -1,4 +1,5 @@
 import {useObserver} from "mobx-react";
+import {useTranslation} from "react-i18next";
 
 import {Dialog, Layout} from "@focus4/layout";
 
@@ -18,6 +19,7 @@ import "@focus4/toolbox/lib/focus4.toolbox.css";
 import "../main.css";
 
 export function Main() {
+    const {t} = useTranslation();
     return useObserver(() => (
         <Layout menu={<StarterMenu />}>
             {(() => {
@@ -34,21 +36,21 @@ export function Main() {
                 actions={[
                     {
                         color: "primary",
-                        label: "Sauvegarder et quitter",
+                        label: t("app.confirm.saveAndQuit"),
                         onClick: () => {
                             router.confirmation.commit(true);
                         }
                     },
                     {
-                        label: "Quitter sans sauvegarder",
+                        label: t("app.confirm.quit"),
                         onClick: () => router.confirmation.commit()
                     },
-                    {label: "Annuler", onClick: () => router.confirmation.cancel()}
+                    {label: t("app.confirm.cancel"), onClick: () => router.confirmation.cancel()}
                 ]}
                 active={router.confirmation.pending}
-                title="Confirmation"
+                title={t("app.confirm.title")}
             >
-                Êtes-vous sûr de vouloir quitter la page ?
+                {t("app.confirm.text")}
             </Dialog>
         </Layout>
     ));

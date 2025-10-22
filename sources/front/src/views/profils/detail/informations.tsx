@@ -1,7 +1,7 @@
 import {useObserver} from "mobx-react";
 
 import {SelectChips} from "@focus4/form-toolbox";
-import {fieldFor, Form, selectFor, useFormActions, useFormNode} from "@focus4/forms";
+import {fieldFor, Form, selectFor, useFormActions, useFormNode, useReferenceTracking} from "@focus4/forms";
 import {Panel} from "@focus4/layout";
 import {Slider} from "@focus4/toolbox";
 
@@ -20,7 +20,7 @@ export function ProfilInfos() {
                 f
                     .domain(DO_ENTIER)
                     .metadata({
-                        label: "Nombre maximal d'utilisateurs",
+                        label: "app.profile.maxUsers",
                         comment:
                             "Ce champ n'est qu'une excuse pour poser un slider, mais si sa valeur dépasse 12 alors le composant de sélection de droits va changer ;)",
                         InputComponent: Slider,
@@ -29,7 +29,7 @@ export function ProfilInfos() {
                             showTooltip: true
                         }
                     })
-                    .value(8)
+                    .value<number>(8)
             )
             .patch("droitCodes", (f, node) =>
                 f.metadata(() =>
@@ -48,9 +48,11 @@ export function ProfilInfos() {
             .withConfirmation(router)
     );
 
+    useReferenceTracking(actions.trackingId, referenceStore, "droit");
+
     return useObserver(() => (
         <Form {...actions.formProps}>
-            <Panel title="Informations" {...actions.panelProps}>
+            <Panel icon="settings" title="app.profile.detail" {...actions.panelProps}>
                 {fieldFor(entity.libelle)}
                 {selectFor(entity.droitCodes, referenceStore.droit)}
                 {fieldFor(entity.nombreUtilisateursMax)}

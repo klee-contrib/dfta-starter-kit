@@ -2,14 +2,17 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 3.0.0
+version: 3.4.1
 modules:
   csharp:
-    version: 3.1.0
-    hash: 2b0e8f287eb41754b88bad0397493029
+    version: 3.3.0
+    hash: d5e05d8d2fe9b6d8a84ddbc6b6f28919
   javascript:
-    version: 3.0.0
-    hash: 359c97fc822489a6161245e44c399ee0
+    version: 3.2.1
+    hash: 3010e45bf65a0d7059a2070d53998907
+  translation:
+    version: 3.2.1
+    hash: cf0fd8aba5a7fd6795444a5bc2e4bdc6
 generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/ProfilController.cs
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/UtilisateurController.cs
@@ -17,7 +20,10 @@ generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/Securite/generated/ProfilWrite.cs
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/Securite/generated/UtilisateurMappers.cs
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/Securite/generated/UtilisateurWrite.cs
+  - ../sources/back/KleeContrib.Dfta.Clients.Db/Common/Models/generated/Traduction.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/generated/KleeContribDftaDbContext.cs
+  - ../sources/back/KleeContrib.Dfta.Clients.Db/generated/KleeContribDftaDbContext.resources.en-US.cs
+  - ../sources/back/KleeContrib.Dfta.Clients.Db/generated/KleeContribDftaDbContext.resources.fr-FR.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Securite/Models/generated/DroitProfil.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Securite/Models/generated/Profil.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Securite/Models/generated/ProfilMappers.cs
@@ -34,8 +40,10 @@ generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Securite.Queries/Models/generated/UtilisateurItem.cs
   - ../sources/back/KleeContrib.Dfta.Securite.Queries/Models/generated/UtilisateurRead.cs
   - ../sources/back/KleeContrib.Dfta.Securite.Queries/References/generated/IDbSecuriteReferenceAccessors.cs
-  - ../sources/front/src/locale/common.ts
-  - ../sources/front/src/locale/securite.ts
+  - ../sources/front/src/locale/en-US/common.ts
+  - ../sources/front/src/locale/en-US/securite.ts
+  - ../sources/front/src/locale/fr-FR/common.ts
+  - ../sources/front/src/locale/fr-FR/securite.ts
   - ../sources/front/src/model/securite/profil/profil-item.ts
   - ../sources/front/src/model/securite/profil/profil-read.ts
   - ../sources/front/src/model/securite/profil/profil-write.ts
@@ -45,3 +53,4 @@ generatedFiles:
   - ../sources/front/src/model/securite/utilisateur/utilisateur-write.ts
   - ../sources/front/src/services/securite/profil.ts
   - ../sources/front/src/services/securite/utilisateur.ts
+  - ./translations/out/en-US/securite_en-US.properties

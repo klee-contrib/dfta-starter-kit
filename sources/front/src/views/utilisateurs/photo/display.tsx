@@ -1,3 +1,5 @@
+import {useTranslation} from "react-i18next";
+
 import {Display} from "@focus4/form-toolbox";
 import {IconButton, Tooltip} from "@focus4/toolbox";
 
@@ -12,17 +14,22 @@ export function PhotoDisplay({
     openPicker?: () => void;
     value?: string;
 }) {
+    const {t} = useTranslation();
     return (
         <span className={css.display}>
-            {value ? <img alt="Profil" src={value} /> : <Display type="string" value="Pas de photo" />}
+            {value ? (
+                <img alt={t("app.user.picture.title")} src={value} />
+            ) : (
+                <Display type="string" value={t("app.user.picture.none")} />
+            )}
             <span>
                 {openPicker ? (
-                    <Tooltip tooltip="Télécharger une photo">
+                    <Tooltip tooltip={t("app.user.picture.upload")}>
                         <IconButton icon="add_a_photo" onClick={openPicker} />
                     </Tooltip>
                 ) : null}
                 {value ? (
-                    <Tooltip tooltip="Supprimer la photo">
+                    <Tooltip tooltip={t("app.user.picture.delete")}>
                         <IconButton icon="delete" onClick={openDelete} />
                     </Tooltip>
                 ) : null}

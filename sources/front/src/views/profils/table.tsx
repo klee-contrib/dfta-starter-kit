@@ -1,5 +1,8 @@
+import {useTranslation} from "react-i18next";
+
 import {advancedSearchCss, summaryCss, tableFor} from "@focus4/collections";
 import {useLoad} from "@focus4/forms";
+import {Content} from "@focus4/layout";
 import {stringFor} from "@focus4/stores";
 
 import {ProfilItemEntity} from "../../model/securite/profil/profil-item";
@@ -11,14 +14,16 @@ import {router} from "../../router";
 import css from "./__style__/table.css";
 
 export function ProfilTable() {
+    const {t} = useTranslation();
+
     const [isLoading] = useLoad(profilStore.profils, a => a.params().load(getProfils));
 
     return (
-        <>
+        <Content>
             <div className={advancedSearchCss.topRow}>
                 <div className={summaryCss.summary}>
                     <span>
-                        <strong>{profilStore.profils.length}</strong> profils
+                        <strong>{profilStore.profils.length}</strong> {t("router.profils.root").toLowerCase()}
                     </span>
                 </div>
             </div>
@@ -38,7 +43,6 @@ export function ProfilTable() {
                     }
                 ]
             })}
-            <br />
-        </>
+        </Content>
     );
 }

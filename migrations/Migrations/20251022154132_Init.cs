@@ -30,6 +30,19 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "traductions",
+                columns: table => new
+                {
+                    trd_resource_key = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    trd_locale = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    trd_label = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_traductions", x => new { x.trd_resource_key, x.trd_locale });
+                });
+
+            migrationBuilder.CreateTable(
                 name: "type_droits",
                 columns: table => new
                 {
@@ -136,10 +149,37 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "pro_id", "pro_date_creation", "pro_date_modification", "pro_libelle" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6139), null, "Profil 1" },
-                    { 2, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6308), null, "Profil 2" },
-                    { 3, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6310), null, "Profil 3" },
-                    { 4, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6312), null, "Profil 4" }
+                    { 1, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7622), null, "Profil 1" },
+                    { 2, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7755), null, "Profil 2" },
+                    { 3, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7756), null, "Profil 3" },
+                    { 4, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7760), null, "Profil 4" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "traductions",
+                columns: new[] { "trd_locale", "trd_resource_key", "trd_label" },
+                values: new object[,]
+                {
+                    { "en-US", "securite.droit.values.Create", "Create" },
+                    { "fr-FR", "securite.droit.values.Create", "Création" },
+                    { "en-US", "securite.droit.values.Delete", "Delete" },
+                    { "fr-FR", "securite.droit.values.Delete", "Suppression" },
+                    { "en-US", "securite.droit.values.Read", "Read" },
+                    { "fr-FR", "securite.droit.values.Read", "Lecture" },
+                    { "en-US", "securite.droit.values.Update", "Update" },
+                    { "fr-FR", "securite.droit.values.Update", "Mise à jour" },
+                    { "en-US", "securite.typeDroit.values.Admin", "Admin" },
+                    { "fr-FR", "securite.typeDroit.values.Admin", "Administration" },
+                    { "en-US", "securite.typeDroit.values.Read", "Read" },
+                    { "fr-FR", "securite.typeDroit.values.Read", "Lecture" },
+                    { "en-US", "securite.typeDroit.values.Write", "Write" },
+                    { "fr-FR", "securite.typeDroit.values.Write", "Ecriture" },
+                    { "en-US", "securite.typeUtilisateur.values.Admin", "Administrator" },
+                    { "fr-FR", "securite.typeUtilisateur.values.Admin", "Administrateur" },
+                    { "en-US", "securite.typeUtilisateur.values.Client", "Client" },
+                    { "fr-FR", "securite.typeUtilisateur.values.Client", "Client" },
+                    { "en-US", "securite.typeUtilisateur.values.Gestionnaire", "Manager" },
+                    { "fr-FR", "securite.typeUtilisateur.values.Gestionnaire", "Gestionnaire" }
                 });
 
             migrationBuilder.InsertData(
@@ -147,9 +187,9 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "tdr_code", "tdr_libelle" },
                 values: new object[,]
                 {
-                    { "ADMIN", "Administration" },
-                    { "READ", "Lecture" },
-                    { "WRITE", "Ecriture" }
+                    { "ADMIN", "securite.typeDroit.values.Admin" },
+                    { "READ", "securite.typeDroit.values.Read" },
+                    { "WRITE", "securite.typeDroit.values.Write" }
                 });
 
             migrationBuilder.InsertData(
@@ -157,9 +197,9 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "tut_code", "tut_libelle" },
                 values: new object[,]
                 {
-                    { "ADMIN", "Administrateur" },
-                    { "CLIENT", "Client" },
-                    { "GEST", "Gestionnaire" }
+                    { "ADMIN", "securite.typeUtilisateur.values.Admin" },
+                    { "CLIENT", "securite.typeUtilisateur.values.Client" },
+                    { "GEST", "securite.typeUtilisateur.values.Gestionnaire" }
                 });
 
             migrationBuilder.InsertData(
@@ -167,10 +207,10 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "dro_code", "dro_libelle", "tdr_code" },
                 values: new object[,]
                 {
-                    { "CREATE", "Création", "WRITE" },
-                    { "DELETE", "Suppression", "ADMIN" },
-                    { "READ", "Lecture", "READ" },
-                    { "UPDATE", "Mise à jour", "WRITE" }
+                    { "CREATE", "securite.droit.values.Create", "WRITE" },
+                    { "DELETE", "securite.droit.values.Delete", "ADMIN" },
+                    { "READ", "securite.droit.values.Read", "READ" },
+                    { "UPDATE", "securite.droit.values.Update", "WRITE" }
                 });
 
             migrationBuilder.InsertData(
@@ -178,14 +218,14 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "uti_id", "uti_actif", "uti_adresse", "uti_date_creation", "uti_date_modification", "uti_date_naissance", "uti_email", "uti_nom", "uti_nom_fichier_photo", "uti_prenom", "pro_id", "tut_code" },
                 values: new object[,]
                 {
-                    { 1, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8810), null, null, "test1@test.com", "Jean", null, "Michel", 1, "ADMIN" },
-                    { 2, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8966), null, null, "test2@test.com", "Gerard", null, "Jugnos", 2, "GEST" },
-                    { 3, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8972), null, null, "test3@test.com", "Gad", null, "El", 3, "CLIENT" },
-                    { 4, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8978), null, null, "test4@test.com", "Bernard", null, "Bruno", 4, "ADMIN" },
-                    { 5, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8982), null, null, "test5@test.com", "Sisi", null, "Brindacier", 1, "GEST" },
-                    { 6, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8986), null, null, "test6@test.com", "Bibi", null, "Baba", 2, "CLIENT" },
-                    { 7, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8991), null, null, "test7@test.com", "Dédé", null, "Dédé", 3, "GEST" },
-                    { 8, true, null, new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8993), null, null, "test8@test.com", "Ran", null, "Tanplan", 4, "ADMIN" }
+                    { 1, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(9945), null, null, "test1@test.com", "Jean", null, "Michel", 1, "ADMIN" },
+                    { 2, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(68), null, null, "test2@test.com", "Gerard", null, "Jugnos", 2, "GEST" },
+                    { 3, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(72), null, null, "test3@test.com", "Gad", null, "El", 3, "CLIENT" },
+                    { 4, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(74), null, null, "test4@test.com", "Bernard", null, "Bruno", 4, "ADMIN" },
+                    { 5, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(76), null, null, "test5@test.com", "Sisi", null, "Brindacier", 1, "GEST" },
+                    { 6, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(78), null, null, "test6@test.com", "Bibi", null, "Baba", 2, "CLIENT" },
+                    { 7, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(80), null, null, "test7@test.com", "Dédé", null, "Dédé", 3, "GEST" },
+                    { 8, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(85), null, null, "test8@test.com", "Ran", null, "Tanplan", 4, "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -205,9 +245,29 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 column: "pro_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_droits_dro_libelle",
+                table: "droits",
+                column: "dro_libelle");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_droits_tdr_code",
                 table: "droits",
                 column: "tdr_code");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_traductions_trd_resource_key",
+                table: "traductions",
+                column: "trd_resource_key");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_type_droits_tdr_libelle",
+                table: "type_droits",
+                column: "tdr_libelle");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_type_utilisateurs_tut_libelle",
+                table: "type_utilisateurs",
+                column: "tut_libelle");
 
             migrationBuilder.CreateIndex(
                 name: "IX_utilisateurs_pro_id",
@@ -231,6 +291,9 @@ namespace KleeContrib.Dfta.Migrations.Migrations
         {
             migrationBuilder.DropTable(
                 name: "droit_profils");
+
+            migrationBuilder.DropTable(
+                name: "traductions");
 
             migrationBuilder.DropTable(
                 name: "utilisateurs");

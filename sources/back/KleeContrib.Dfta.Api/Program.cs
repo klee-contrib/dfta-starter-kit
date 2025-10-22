@@ -98,8 +98,15 @@ services.ConfigureHttpJsonOptions(j =>
     j.SerializerOptions.ConfigureSerializerDefaults().AddConverter<JsonStringEnumConverter>()
 );
 
+services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.SetDefaultCulture("fr-FR");
+    options.AddSupportedCultures("fr-FR", "en-US");
+});
+
 var app = builder.Build();
 
+app.UseRequestLocalization();
 app.UseStatusCodePages();
 app.UseExceptionHandler();
 

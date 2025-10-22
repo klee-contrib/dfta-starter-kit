@@ -116,6 +116,10 @@
           "tags"
         ],
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de cette configuration."
+          },
           "language": {
             "oneOf": [
               {
@@ -141,6 +145,14 @@
             "items": {
               "type": "string",
               "description": "Catégorie de fichier que le générateur doit lire."
+            }
+          },
+          "referencedTags": {
+            "type": "object",
+            "description": "Tags d'autres configs dont les classes peuvent être référencées dans le code généré par les générateurs de ce module.",
+            "additionalProperties": {
+              "type": "string",
+              "description": "Le nom de la config dans laquelle aller chercher le tag."
             }
           },
           "variables": {
@@ -377,6 +389,14 @@
           "useCancellationTokens": {
             "type": "boolean",
             "description": "Ajoute un CancellationToken en paramètre des endpoints générés (client et serveur)."
+          },
+          "referencesResxPath": {
+            "type": "string",
+            "description": "Si renseigné avec `translateReferences`, génère les traductions dans un ResX au lieu de les insérer en base de données."
+          },
+          "propertiesResxPath": {
+            "type": "string",
+            "description": "Si renseigné avec `translateProperties`, génère les traductions dans un ResX au lieu de les insérer en base de données."
           }
         }
       }
@@ -392,6 +412,10 @@
           "tags"
         ],
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de cette configuration."
+          },
           "language": {
             "oneOf": [
               {
@@ -417,6 +441,14 @@
             "items": {
               "type": "string",
               "description": "Catégorie de fichier que le générateur doit lire."
+            }
+          },
+          "referencedTags": {
+            "type": "object",
+            "description": "Tags d'autres configs dont les classes peuvent être référencées dans le code généré par les générateurs de ce module.",
+            "additionalProperties": {
+              "type": "string",
+              "description": "Le nom de la config dans laquelle aller chercher le tag."
             }
           },
           "variables": {
@@ -463,6 +495,11 @@
           "ignoreDefaultValues": {
             "type": "boolean",
             "description": "Désactive la génération des valeurs par défaut des propriétés dans les classes et endpoints générés avec cette configuration."
+          },
+          "rootModule": {
+            "type": "string",
+            "description": "Définition du module racine, pour les différents regroupements à faire dessus (fichiers de traductions...).",
+            "default": "{module:head}"
           },
           "modelRootPath": {
             "type": "string",
@@ -554,6 +591,97 @@
               "values"
             ],
             "default": "definition"
+          }
+        }
+      }
+    },
+    "translation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "outputDirectory",
+          "tags"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de cette configuration."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Précise les tags de fichier que le générateur doit lire",
+            "items": {
+              "type": "string",
+              "description": "Catégorie de fichier que le générateur doit lire."
+            }
+          },
+          "referencedTags": {
+            "type": "object",
+            "description": "Tags d'autres configs dont les classes peuvent être référencées dans le code généré par les générateurs de ce module.",
+            "additionalProperties": {
+              "type": "string",
+              "description": "Le nom de la config dans laquelle aller chercher le tag."
+            }
+          },
+          "variables": {
+            "type": "object",
+            "description": "Définitions de variables à utiliser dans les différents paramètres du générateur.",
+            "patternProperties": {
+              ".+": {
+                "type": "string"
+              }
+            }
+          },
+          "disable": {
+            "type": "array",
+            "description": "Désactive les générateurs demandés",
+            "items": {
+              "type": "string",
+              "enum": [
+                "JTranslationOutGen"
+              ]
+            }
+          },
+          "outputDirectory": {
+            "type": "string",
+            "description": "Racine du répertoire de génération."
+          },
+          "translateReferences": {
+            "type": "boolean",
+            "description": "Si les libellés des listes de références doivent être traduits.",
+            "default": "true"
+          },
+          "translateProperties": {
+            "type": "boolean",
+            "description": "Si les libellés des propriétés doivent être traduits.",
+            "default": "true"
+          },
+          "ignoreDefaultValues": {
+            "type": "boolean",
+            "description": "Désactive la génération des valeurs par défaut des propriétés dans les classes et endpoints générés avec cette configuration."
+          },
+          "rootModule": {
+            "type": "string",
+            "description": "Définition du module racine, pour les différents regroupements à faire dessus (fichiers de traductions...).",
+            "default": "{module:head}"
+          },
+          "rootPath": {
+            "type": "string",
+            "description": "Template du chemin des dossiers de traductions sortants (manquants). Doit contenir le template {lang}",
+            "default": "{lang}"
+          },
+          "defaultLang": {
+            "type": "string",
+            "description": "Langue par défaut (celle dans laquelle sont écris les labels dans les fichiers .tmd"
+          },
+          "langs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Code du angage"
+            }
           }
         }
       }

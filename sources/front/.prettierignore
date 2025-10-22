@@ -1,4 +1,4 @@
 src/model
-src/locale
+src/locale/*/*.ts
 src/services
 **/*.css.d.ts

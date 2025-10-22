@@ -1,5 +1,6 @@
 import {useObserver} from "mobx-react";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 import {Content, HeaderActions, Popin} from "@focus4/layout";
 
@@ -12,6 +13,8 @@ import {UtilisateurDetail} from "./detail";
 import {UtilisateurList} from "./list";
 
 export function Utilisateurs() {
+    const {t} = useTranslation();
+
     const [utiCreation, setUtiCreation] = useState(false);
     return useObserver(() => (
         <>
@@ -26,7 +29,7 @@ export function Utilisateurs() {
                         primary={[
                             {
                                 icon: "add",
-                                tooltip: {tooltip: "Ajouter un utilisateur"},
+                                tooltip: {tooltip: t("app.user.add")},
                                 onClick: () => setUtiCreation(true)
                             }
                         ]}

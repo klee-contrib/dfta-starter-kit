@@ -13,7 +13,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.213">
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.228">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -25,10 +25,10 @@
   <ItemGroup>
     <PackageReference Include="Kinetix.EFCore" Version="8.0.1" />
     <PackageReference Include="Kinetix.Monitoring.Insights" Version="8.0.1" />
-    <PackageReference Include="Kinetix.Services" Version="8.0.1" />
+    <PackageReference Include="Kinetix.Services" Version="8.0.4" />
     <PackageReference Include="Kinetix.Web" Version="8.2.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="3.14.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />

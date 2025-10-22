@@ -1,3 +1,5 @@
+import {useTranslation} from "react-i18next";
+
 import {messageStore} from "@focus4/core";
 import {Dialog} from "@focus4/layout";
 
@@ -13,26 +15,27 @@ export function UtilisateurDelete({
     onDelete: () => void;
     utilisateur?: UtilisateurItem;
 }) {
+    const {t} = useTranslation();
     return (
         <Dialog
             actions={[
                 {
-                    label: "Confirmer",
+                    label: t("app.user.delete.confirm"),
                     color: "primary",
                     variant: "filled",
                     onClick: async () => {
                         await deleteUtilisateur(utilisateur!.id!);
-                        messageStore.addSuccessMessage("L'utilisateur a bien été supprimé");
+                        messageStore.addSuccessMessage("app.user.delete.success");
                         closeDialog();
                         onDelete();
                     }
                 },
-                {label: "Annuler", onClick: closeDialog}
+                {label: t("app.user.delete.cancel"), onClick: closeDialog}
             ]}
             active={!!utilisateur}
-            title="Suppression d'un utilisateur"
+            title={t("app.user.delete.title")}
         >
-            Êtes-vous sûr de vouloir supprimer l'utilisateur {utilisateur?.prenom} {utilisateur?.nom} ?
+            {t("app.user.delete.text", {param: `${utilisateur?.prenom ?? ""} ${utilisateur?.nom ?? ""}`})}
         </Dialog>
     );
 }

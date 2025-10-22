@@ -1,6 +1,7 @@
 import {autorun} from "mobx";
 import {useObserver} from "mobx-react";
 import {useEffect, useId, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 import {messageStore, requestStore} from "@focus4/core";
 import {Display, SelectRadio} from "@focus4/form-toolbox";
@@ -33,6 +34,8 @@ import {getPhoto} from "./photo/utils";
 import css from "./__style__/detail.css";
 
 export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
+    const {t} = useTranslation();
+
     const [photoDialogActive, setPhotoDialogActive] = useState(false);
     const [photoDialogDeleteActive, setPhotoDialogDeleteActive] = useState(false);
     const deletingId = useId();
@@ -56,7 +59,7 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
                     .edit(false)
                     .domain(DO_LIBELLE)
                     .metadata({
-                        label: "Photo",
+                        label: "app.user.picture.title",
                         DisplayComponent: PhotoDisplay,
                         displayProps: {
                             openPicker: () => setPhotoDialogActive(true),
@@ -97,7 +100,10 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
 
     return useObserver(() => (
         <Form {...actions.formProps}>
-            <Panel title="Informations" {...actions.panelProps}>
+            <Panel
+                title={t(actions.params ? "app.user.detail.consult" : "app.user.detail.create")}
+                {...actions.panelProps}
+            >
                 {actions.params ? fieldFor(entity.photo) : null}
                 {fieldFor(entity.nom)}
                 {fieldFor(entity.prenom)}
@@ -124,7 +130,7 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
                 close={() => setPhotoDialogActive(false)}
                 onPick={async (file, photo) => {
                     await addUtilisateurPhoto(...actions.params!, file);
-                    messageStore.addSuccessMessage("La photo a bien été enregistrée");
+                    messageStore.addSuccessMessage("app.user.picture.update");
                     entity.photo.value = photo;
                 }}
             />

@@ -1,7 +1,5 @@
 import {useObserver} from "mobx-react";
 
-import {Content} from "@focus4/layout";
-
 import {profilStore} from "../../stores/profil";
 
 import {router} from "../../router";
@@ -14,7 +12,7 @@ export function Profils() {
     return useObserver(() => (
         <>
             <Header icon="settings" paramResolver={() => profilStore.profil.libelle.value ?? ""} />
-            <Content>{router.state.profils.proId ? <ProfilDetail /> : <ProfilTable />}</Content>
+            {router.state.profils.proId ? <ProfilDetail /> : <ProfilTable />}
         </>
     ));
 }

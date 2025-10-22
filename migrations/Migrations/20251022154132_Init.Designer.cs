@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KleeContrib.Dfta.Migrations.Migrations
 {
     [DbContext(typeof(KleeContribDftaDbContext))]
-    [Migration("20250224160536_Init")]
+    [Migration("20251022154132_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,10 +20,157 @@ namespace KleeContrib.Dfta.Migrations.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("KleeContrib.Dfta.Clients.Db.Common.Models.Traduction", b =>
+                {
+                    b.Property<string>("ResourceKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("trd_resource_key");
+
+                    b.Property<string>("Locale")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("trd_locale");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("trd_label");
+
+                    b.HasKey("ResourceKey", "Locale");
+
+                    b.HasIndex("ResourceKey");
+
+                    b.ToTable("traductions");
+
+                    b.HasData(
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Create",
+                            Locale = "fr-FR",
+                            Label = "Création"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Delete",
+                            Locale = "fr-FR",
+                            Label = "Suppression"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Read",
+                            Locale = "fr-FR",
+                            Label = "Lecture"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Update",
+                            Locale = "fr-FR",
+                            Label = "Mise à jour"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeDroit.values.Admin",
+                            Locale = "fr-FR",
+                            Label = "Administration"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeDroit.values.Read",
+                            Locale = "fr-FR",
+                            Label = "Lecture"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeDroit.values.Write",
+                            Locale = "fr-FR",
+                            Label = "Ecriture"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeUtilisateur.values.Admin",
+                            Locale = "fr-FR",
+                            Label = "Administrateur"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeUtilisateur.values.Client",
+                            Locale = "fr-FR",
+                            Label = "Client"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeUtilisateur.values.Gestionnaire",
+                            Locale = "fr-FR",
+                            Label = "Gestionnaire"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Create",
+                            Locale = "en-US",
+                            Label = "Create"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Delete",
+                            Locale = "en-US",
+                            Label = "Delete"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Read",
+                            Locale = "en-US",
+                            Label = "Read"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.droit.values.Update",
+                            Locale = "en-US",
+                            Label = "Update"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeDroit.values.Admin",
+                            Locale = "en-US",
+                            Label = "Admin"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeDroit.values.Read",
+                            Locale = "en-US",
+                            Label = "Read"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeDroit.values.Write",
+                            Locale = "en-US",
+                            Label = "Write"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeUtilisateur.values.Admin",
+                            Locale = "en-US",
+                            Label = "Administrator"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeUtilisateur.values.Client",
+                            Locale = "en-US",
+                            Label = "Client"
+                        },
+                        new
+                        {
+                            ResourceKey = "securite.typeUtilisateur.values.Gestionnaire",
+                            Locale = "en-US",
+                            Label = "Manager"
+                        });
+                });
 
             modelBuilder.Entity("KleeContrib.Dfta.Clients.Db.Securite.Models.DroitProfil", b =>
                 {
@@ -96,25 +243,25 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6139),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7622),
                             Libelle = "Profil 1"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6308),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7755),
                             Libelle = "Profil 2"
                         },
                         new
                         {
                             Id = 3,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6310),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7756),
                             Libelle = "Profil 3"
                         },
                         new
                         {
                             Id = 4,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(6312),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7760),
                             Libelle = "Profil 4"
                         });
                 });
@@ -197,7 +344,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 1,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8810),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(9945),
                             Email = "test1@test.com",
                             Nom = "Jean",
                             Prenom = "Michel",
@@ -208,7 +355,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 2,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8966),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(68),
                             Email = "test2@test.com",
                             Nom = "Gerard",
                             Prenom = "Jugnos",
@@ -219,7 +366,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 3,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8972),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(72),
                             Email = "test3@test.com",
                             Nom = "Gad",
                             Prenom = "El",
@@ -230,7 +377,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 4,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8978),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(74),
                             Email = "test4@test.com",
                             Nom = "Bernard",
                             Prenom = "Bruno",
@@ -241,7 +388,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 5,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8982),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(76),
                             Email = "test5@test.com",
                             Nom = "Sisi",
                             Prenom = "Brindacier",
@@ -252,7 +399,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 6,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8986),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(78),
                             Email = "test6@test.com",
                             Nom = "Bibi",
                             Prenom = "Baba",
@@ -263,7 +410,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 7,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8991),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(80),
                             Email = "test7@test.com",
                             Nom = "Dédé",
                             Prenom = "Dédé",
@@ -274,7 +421,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 8,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 2, 24, 16, 5, 35, 310, DateTimeKind.Utc).AddTicks(8993),
+                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(85),
                             Email = "test8@test.com",
                             Nom = "Ran",
                             Prenom = "Tanplan",
@@ -304,6 +451,8 @@ namespace KleeContrib.Dfta.Migrations.Migrations
 
                     b.HasKey("Code");
 
+                    b.HasIndex("Libelle");
+
                     b.HasIndex("TypeDroitCode");
 
                     b.ToTable("droits");
@@ -312,25 +461,25 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         new
                         {
                             Code = "CREATE",
-                            Libelle = "Création",
+                            Libelle = "securite.droit.values.Create",
                             TypeDroitCode = "WRITE"
                         },
                         new
                         {
                             Code = "READ",
-                            Libelle = "Lecture",
+                            Libelle = "securite.droit.values.Read",
                             TypeDroitCode = "READ"
                         },
                         new
                         {
                             Code = "UPDATE",
-                            Libelle = "Mise à jour",
+                            Libelle = "securite.droit.values.Update",
                             TypeDroitCode = "WRITE"
                         },
                         new
                         {
                             Code = "DELETE",
-                            Libelle = "Suppression",
+                            Libelle = "securite.droit.values.Delete",
                             TypeDroitCode = "ADMIN"
                         });
                 });
@@ -350,23 +499,25 @@ namespace KleeContrib.Dfta.Migrations.Migrations
 
                     b.HasKey("Code");
 
+                    b.HasIndex("Libelle");
+
                     b.ToTable("type_droits");
 
                     b.HasData(
                         new
                         {
                             Code = "READ",
-                            Libelle = "Lecture"
+                            Libelle = "securite.typeDroit.values.Read"
                         },
                         new
                         {
                             Code = "WRITE",
-                            Libelle = "Ecriture"
+                            Libelle = "securite.typeDroit.values.Write"
                         },
                         new
                         {
                             Code = "ADMIN",
-                            Libelle = "Administration"
+                            Libelle = "securite.typeDroit.values.Admin"
                         });
                 });
 
@@ -385,23 +536,25 @@ namespace KleeContrib.Dfta.Migrations.Migrations
 
                     b.HasKey("Code");
 
+                    b.HasIndex("Libelle");
+
                     b.ToTable("type_utilisateurs");
 
                     b.HasData(
                         new
                         {
                             Code = "ADMIN",
-                            Libelle = "Administrateur"
+                            Libelle = "securite.typeUtilisateur.values.Admin"
                         },
                         new
                         {
                             Code = "GEST",
-                            Libelle = "Gestionnaire"
+                            Libelle = "securite.typeUtilisateur.values.Gestionnaire"
                         },
                         new
                         {
                             Code = "CLIENT",
-                            Libelle = "Client"
+                            Libelle = "securite.typeUtilisateur.values.Client"
                         });
                 });
 
