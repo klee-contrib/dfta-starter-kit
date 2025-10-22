@@ -1,4 +1,5 @@
 import {useTranslation} from "react-i18next";
+import z from "zod";
 
 import {Display} from "@focus4/form-toolbox";
 import {IconButton, Tooltip} from "@focus4/toolbox";
@@ -20,7 +21,7 @@ export function PhotoDisplay({
             {value ? (
                 <img alt={t("app.user.picture.title")} src={value} />
             ) : (
-                <Display type="string" value={t("app.user.picture.none")} />
+                <Display schema={z.string()} value={t("app.user.picture.none")} />
             )}
             <span>
                 {openPicker ? (

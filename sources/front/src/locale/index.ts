@@ -1,5 +1,6 @@
 import i18next from "i18next";
 import {initReactI18next} from "react-i18next";
+import z from "zod";
 
 import {i18nCollections} from "@focus4/collections";
 import {baseI18nextConfig, coreConfig} from "@focus4/core";
@@ -19,3 +20,5 @@ i18next.use(initReactI18next).init({
     lng: localStorage.getItem("lng") ?? "fr-FR",
     fallbackLng: "fr-FR"
 });
+
+z.config(z.locales[i18next.language.split("-")[0] as "fr"]());

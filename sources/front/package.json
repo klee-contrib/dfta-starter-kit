@@ -1,43 +1,44 @@
 {
-  "name": "dfta-starter-kit-front",
-  "version": "0.0.0",
-  "description": "Adaptation du starter kit Focus pour l'intégrer dans un starter kit full stack.",
-  "repository": "https://github.com/klee-contrib/dfta-starter-kit-front",
-  "main": "src/index.ts",
-  "type": "module",
-  "scripts": {
-    "build": "vite build",
-    "cssgen": "focus4 cssgen src __style__",
-    "oxlint": "oxlint src",
-    "preview": "vite preview",
-    "start": "vite"
-  },
-  "dependencies": {
-    "@azure/msal-browser": "4.22.1",
-    "@focus4/collections": "12.4.0",
-    "@focus4/core": "12.4.0",
-    "@focus4/form-toolbox": "12.4.0",
-    "@focus4/forms": "12.4.0",
-    "@focus4/layout": "12.4.0",
-    "@focus4/stores": "12.4.0",
-    "@focus4/styling": "12.4.0",
-    "@focus4/toolbox": "12.4.0",
-    "es-toolkit": "1.39.10",
-    "i18next": "25.5.2",
-    "luxon": "3.7.2",
-    "mobx": "6.13.7",
-    "mobx-react": "9.2.0",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
-    "react-i18next": "15.7.3"
-  },
-  "devDependencies": {
-    "@focus4/tooling": "12.4.0",
-    "@vitejs/plugin-react": "5.0.2",
-    "oxlint": "1.15.0",
-    "vite": "7.1.5",
-    "vite-plugin-checker": "0.10.3"
-  },
-  "author": "KleeGroup",
-  "license": "MIT"
+    "name": "dfta-starter-kit-front",
+    "version": "0.0.0",
+    "description": "Adaptation du starter kit Focus pour l'intégrer dans un starter kit full stack.",
+    "repository": "https://github.com/klee-contrib/dfta-starter-kit-front",
+    "main": "src/index.ts",
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "cssgen": "focus4 cssgen src __style__",
+        "oxlint": "oxlint src",
+        "preview": "vite preview",
+        "start": "vite"
+    },
+    "dependencies": {
+        "@azure/msal-browser": "4.25.1",
+        "@focus4/collections": "12.5.0",
+        "@focus4/core": "12.5.0-rc.0",
+        "@focus4/form-toolbox": "12.5.0",
+        "@focus4/forms": "12.5.0",
+        "@focus4/layout": "12.5.0",
+        "@focus4/stores": "12.5.0",
+        "@focus4/styling": "12.5.0",
+        "@focus4/toolbox": "12.5.0",
+        "es-toolkit": "1.40.0",
+        "i18next": "25.6.0",
+        "luxon": "3.7.2",
+        "mobx": "6.15.0",
+        "mobx-react": "9.2.1",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "react-i18next": "16.1.5",
+        "zod": "4.1.12"
+    },
+    "devDependencies": {
+        "@focus4/tooling": "12.5.0",
+        "@vitejs/plugin-react": "5.0.4",
+        "oxlint": "1.24.0",
+        "vite": "7.1.11",
+        "vite-plugin-checker": "0.11.0"
+    },
+    "author": "KleeGroup",
+    "license": "MIT"
 }

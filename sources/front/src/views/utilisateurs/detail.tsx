@@ -2,6 +2,7 @@ import {autorun} from "mobx";
 import {useObserver} from "mobx-react";
 import {useEffect, useId, useState} from "react";
 import {useTranslation} from "react-i18next";
+import {ZodString} from "zod";
 
 import {messageStore, requestStore} from "@focus4/core";
 import {Display, SelectRadio} from "@focus4/form-toolbox";
@@ -53,7 +54,7 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
                     )
                 })
             )
-            .patch("typeUtilisateurCode", f => f.metadata({SelectComponent: SelectRadio<"string">}))
+            .patch("typeUtilisateurCode", f => f.metadata({SelectComponent: SelectRadio<ZodString>}))
             .add("photo", f =>
                 f
                     .edit(false)
