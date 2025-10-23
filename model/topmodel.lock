@@ -5,8 +5,8 @@
 version: 3.4.1
 modules:
   csharp:
-    version: 3.3.0
-    hash: d5e05d8d2fe9b6d8a84ddbc6b6f28919
+    version: 3.3.1
+    hash: 26e3cfee1801187a61b3ce84159b5ba6
   javascript:
     version: 3.2.1
     hash: 3010e45bf65a0d7059a2070d53998907
@@ -20,6 +20,10 @@ generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/Securite/generated/ProfilWrite.cs
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/Securite/generated/UtilisateurMappers.cs
   - ../sources/back/KleeContrib.Dfta.Api/Models/Commands/Securite/generated/UtilisateurWrite.cs
+  - ../sources/back/KleeContrib.Dfta.Api/Resources/Common.en-US.resx
+  - ../sources/back/KleeContrib.Dfta.Api/Resources/Common.fr-FR.resx
+  - ../sources/back/KleeContrib.Dfta.Api/Resources/Securite.en-US.resx
+  - ../sources/back/KleeContrib.Dfta.Api/Resources/Securite.fr-FR.resx
   - ../sources/back/KleeContrib.Dfta.Clients.Db/Common/Models/generated/Traduction.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/generated/KleeContribDftaDbContext.cs
   - ../sources/back/KleeContrib.Dfta.Clients.Db/generated/KleeContribDftaDbContext.resources.en-US.cs

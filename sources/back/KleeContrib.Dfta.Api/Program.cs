@@ -97,12 +97,14 @@ services
 services.ConfigureHttpJsonOptions(j =>
     j.SerializerOptions.ConfigureSerializerDefaults().AddConverter<JsonStringEnumConverter>()
 );
-
-services.Configure<RequestLocalizationOptions>(options =>
-{
-    options.SetDefaultCulture("fr-FR");
-    options.AddSupportedCultures("fr-FR", "en-US");
-});
+services
+    .AddLocalization()
+    .Configure<RequestLocalizationOptions>(options =>
+    {
+        options.SetDefaultCulture("fr-FR");
+        options.AddSupportedCultures("fr-FR", "en-US");
+        options.AddSupportedUICultures("fr-FR", "en-US");
+    });
 
 var app = builder.Build();
 

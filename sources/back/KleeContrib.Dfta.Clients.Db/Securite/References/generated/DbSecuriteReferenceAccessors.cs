@@ -21,7 +21,7 @@ public partial class DbSecuriteReferenceAccessors(KleeContribDftaDbContext dbCon
     {
         return (
             from row in dbContext.Droits
-            join tra in dbContext.Traductions on new { ResourceKey = row.Libelle, Locale = CultureInfo.CurrentCulture.Name } equals new { tra.ResourceKey, tra.Locale }
+            join tra in dbContext.Traductions on new { ResourceKey = row.Libelle, Locale = CultureInfo.CurrentUICulture.Name } equals new { tra.ResourceKey, tra.Locale }
             orderby row.Code
             select new Droit
             {
@@ -37,7 +37,7 @@ public partial class DbSecuriteReferenceAccessors(KleeContribDftaDbContext dbCon
     {
         return (
             from row in dbContext.TypeDroits
-            join tra in dbContext.Traductions on new { ResourceKey = row.Libelle, Locale = CultureInfo.CurrentCulture.Name } equals new { tra.ResourceKey, tra.Locale }
+            join tra in dbContext.Traductions on new { ResourceKey = row.Libelle, Locale = CultureInfo.CurrentUICulture.Name } equals new { tra.ResourceKey, tra.Locale }
             orderby row.Libelle
             select new TypeDroit
             {
@@ -52,7 +52,7 @@ public partial class DbSecuriteReferenceAccessors(KleeContribDftaDbContext dbCon
     {
         return (
             from row in dbContext.TypeUtilisateurs
-            join tra in dbContext.Traductions on new { ResourceKey = row.Libelle, Locale = CultureInfo.CurrentCulture.Name } equals new { tra.ResourceKey, tra.Locale }
+            join tra in dbContext.Traductions on new { ResourceKey = row.Libelle, Locale = CultureInfo.CurrentUICulture.Name } equals new { tra.ResourceKey, tra.Locale }
             orderby row.Libelle
             select new TypeUtilisateur
             {

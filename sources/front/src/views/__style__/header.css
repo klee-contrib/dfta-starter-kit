@@ -15,9 +15,9 @@
     align-items: center;
 }
 
-.item--user strong {
+.item strong {
     font-weight: 600;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .button:not([disabled]) {
