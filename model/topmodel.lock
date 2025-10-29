@@ -8,8 +8,8 @@ modules:
     version: 3.3.1
     hash: 26e3cfee1801187a61b3ce84159b5ba6
   javascript:
-    version: 3.2.1
-    hash: 3010e45bf65a0d7059a2070d53998907
+    version: 3.3.0
+    hash: ddfbed12f63017d29a3079634f608fd7
   translation:
     version: 3.2.1
     hash: cf0fd8aba5a7fd6795444a5bc2e4bdc6
