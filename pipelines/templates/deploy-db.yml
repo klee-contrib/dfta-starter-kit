@@ -20,6 +20,11 @@ jobs:
     steps:
       - checkout: none
 
+      - task: UseDotNet@2
+        displayName: .NET 10
+        inputs:
+          version: 10.x
+
       - task: AzureCLI@2
         displayName: Get Azure PGSQL Credentials
         inputs:

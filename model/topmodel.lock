@@ -2,17 +2,17 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 3.4.1
+version: 3.6.1
 modules:
   csharp:
-    version: 3.3.1
-    hash: 26e3cfee1801187a61b3ce84159b5ba6
+    version: 3.4.4
+    hash: 84c56183b7c398eae778f3a2d8a5a14c
   javascript:
-    version: 3.3.0
-    hash: ddfbed12f63017d29a3079634f608fd7
+    version: 3.4.1
+    hash: 5cb3e1debc6695fca64a3e698c7543f6
   translation:
-    version: 3.2.1
-    hash: cf0fd8aba5a7fd6795444a5bc2e4bdc6
+    version: 3.2.2
+    hash: b6fb8a53fe077a206c1b321096e0675c
 generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/ProfilController.cs
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/UtilisateurController.cs
@@ -57,4 +57,3 @@ generatedFiles:
   - ../sources/front/src/model/securite/utilisateur/utilisateur-write.ts
   - ../sources/front/src/services/securite/profil.ts
   - ../sources/front/src/services/securite/utilisateur.ts
-  - ./translations/out/en-US/securite_en-US.properties

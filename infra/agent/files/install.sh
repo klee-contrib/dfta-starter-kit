@@ -29,7 +29,5 @@ curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearm
 sudo apt-get update
 sudo apt-get install -y apt-transport-https
 sudo apt-get update
-sudo add-apt-repository -y ppa:dotnet/backports
-sudo apt-get install -y dotnet-sdk-9.0
-sudo apt-get install -y postgresql-client-17
+sudo apt-get install -y postgresql-client-18
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash

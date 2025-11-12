@@ -24,7 +24,7 @@ Vous pouvez ensuite lancer le terraform qui va créer le projet Azure DevOps et 
 Renommer le nom du client et du projet dans les sources avec cette commande à la racine du repo : 
 
 ```sh
-dotnet fsi .\rename-project.fsx MonClient MonProjet MonAppli
+dotnet run rename-project.cs MonClient MonProjet MonAppli
 ```
 
 ## Rubriques

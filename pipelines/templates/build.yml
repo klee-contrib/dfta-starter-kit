@@ -11,9 +11,9 @@ stages:
 
         steps:
           - task: UseDotNet@2
-            displayName: .NET 9
+            displayName: .NET 10
             inputs:
-              version: 9.x
+              version: 10.x
 
           - script: echo "##vso[task.setvariable variable=modgen_version]$(cat model/topmodel.lock | awk 'NR == 5' | sed 's/\r//g' | cut -c 10-)"
             displayName: Récupération de la version de modgen
@@ -28,7 +28,8 @@ stages:
             displayName: Build API
             inputs:
               command: build
-              projects: sources/back/KleeContrib.Dfta.Api/KleeContrib.Dfta.Api.csproj
+              projects: sources/back/KleeContrib.Dfta.sln
+              arguments: -c Release
 
           - ${{if eq(parameters.publish, true)}}:
               - task: DotNetCoreCLI@2
@@ -44,10 +45,10 @@ stages:
                 displayName: Publish Artifact
                 artifact: API
 
-          - script: dotnet tool install --tool-path $(Build.SourcesDirectory) dotnet-ef
+          - script: dotnet tool install -g dotnet-ef
             displayName: dotnet install dotnet-ef
 
-          - script: $(Build.SourcesDirectory)/dotnet-ef migrations bundle -o $(Build.ArtifactStagingDirectory)/DB/efbundle
+          - script: dotnet ef migrations bundle --no-build --configuration Release -o $(Build.ArtifactStagingDirectory)/DB/efbundle 
             displayName: Migration Bundle
             workingDirectory: migrations
 
@@ -78,9 +79,9 @@ stages:
                 artifact: DB
 
           - task: UseNode@1
-            displayName: Use Node 20
+            displayName: Use Node 22
             inputs:
-              version: 20.x
+              version: 22.x
 
           - task: Npm@1
             displayName: npm install

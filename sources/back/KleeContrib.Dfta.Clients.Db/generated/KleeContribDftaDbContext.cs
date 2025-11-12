@@ -12,17 +12,8 @@ namespace KleeContrib.Dfta.Clients.Db;
 /// <summary>
 /// DbContext généré pour Entity Framework Core.
 /// </summary>
-public partial class KleeContribDftaDbContext : DbContext
+public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDbContext> options) : DbContext(options)
 {
-    /// <summary>
-    /// Constructeur par défaut.
-    /// </summary>
-    /// <param name="options">Options du DbContext.</param>
-    public KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDbContext> options)
-        : base(options)
-    {
-    }
-
     /// <summary>
     /// Accès à l'entité Droit.
     /// </summary>
@@ -125,9 +116,9 @@ public partial class KleeContribDftaDbContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
-    partial void AddFrFRResources(ModelBuilder modelBuilder);
-
     partial void AddEnUSResources(ModelBuilder modelBuilder);
+
+    partial void AddFrFRResources(ModelBuilder modelBuilder);
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
