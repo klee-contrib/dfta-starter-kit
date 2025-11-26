@@ -16,21 +16,24 @@ public partial interface IDbSecuriteReferenceAccessors
     /// <summary>
     /// Accesseur de référence pour le type Droit.
     /// </summary>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Liste de Droit.</returns>
     [ReferenceAccessor]
-    ICollection<Droit> LoadDroits();
+    Task<ICollection<Droit>> LoadDroits(CancellationToken ct = default);
 
     /// <summary>
     /// Accesseur de référence pour le type TypeDroit.
     /// </summary>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Liste de TypeDroit.</returns>
     [ReferenceAccessor]
-    ICollection<TypeDroit> LoadTypeDroits();
+    Task<ICollection<TypeDroit>> LoadTypeDroits(CancellationToken ct = default);
 
     /// <summary>
     /// Accesseur de référence pour le type TypeUtilisateur.
     /// </summary>
+    /// <param name="ct">CancellationToken.</param>
     /// <returns>Liste de TypeUtilisateur.</returns>
     [ReferenceAccessor]
-    ICollection<TypeUtilisateur> LoadTypeUtilisateurs();
+    Task<ICollection<TypeUtilisateur>> LoadTypeUtilisateurs(CancellationToken ct = default);
 }

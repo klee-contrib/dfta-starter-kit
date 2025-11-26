@@ -14,13 +14,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.16.0.128591">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Kinetix.Modeling" Version="8.1.2" />
-    <PackageReference Include="Kinetix.Services.Annotations" Version="8.0.1" />
+    <PackageReference Include="Kinetix.Modeling" Version="10.0.0-beta" />
+    <PackageReference Include="Kinetix.Services.Annotations" Version="10.0.0-beta" />
   </ItemGroup>
 </Project>

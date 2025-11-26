@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=root5432
       - POSTGRES_DB=kleecontrib_dfta
     volumes:
-      - bdd-data:/var/lib/postgresql/data
+      - bdd-data:/var/lib/postgresql
 
 volumes:
   bdd-data:
