@@ -85,7 +85,6 @@ endpoint:
   returns:
     name: Photo
     domain: DO_FILE_DOWNLOAD
-    required: true
     comment: Photo.
 ---
 endpoint:

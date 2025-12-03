@@ -2,7 +2,7 @@
 //// ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 ////
 
-import {fetch} from "../../server";
+import fetch from "../../server";
 
 import {TypeUtilisateurCode} from "../../model/securite/references";
 import {UtilisateurItem} from "../../model/securite/utilisateur/utilisateur-item";
@@ -15,8 +15,14 @@ import {UtilisateurWrite} from "../../model/securite/utilisateur/utilisateur-wri
  * @param options Options pour 'fetch'.
  * @returns Utilisateur sauvegardé
  */
-export function addUtilisateur(utilisateur: UtilisateurWrite, options: RequestInit = {}): Promise<UtilisateurRead> {
-    return fetch("POST", `./api/utilisateurs`, {body: utilisateur}, options);
+export async function addUtilisateur(utilisateur: UtilisateurWrite, options: RequestInit = {}): Promise<UtilisateurRead> {
+    const response = await fetch(`./api/utilisateurs`, {
+        ...options,
+        method: "POST",
+        body: JSON.stringify(utilisateur),
+        headers: {...options.headers, "Content-Type": "application/json"}
+    });
+    return await response.json();
 }
 
 /**
@@ -25,7 +31,7 @@ export function addUtilisateur(utilisateur: UtilisateurWrite, options: RequestIn
  * @param photo Photo.
  * @param options Options pour 'fetch'.
  */
-export function addUtilisateurPhoto(utiId: number, photo: File, options: RequestInit = {}): Promise<void> {
+export async function addUtilisateurPhoto(utiId: number, photo: File, options: RequestInit = {}): Promise<void> {
     const body = new FormData();
     fillFormData(
         {
@@ -33,7 +39,11 @@ export function addUtilisateurPhoto(utiId: number, photo: File, options: Request
         },
         body
     );
-    return fetch("PUT", `./api/utilisateurs/${utiId}/photo`, {body}, options);
+    await fetch(`./api/utilisateurs/${utiId}/photo`, {
+        ...options,
+        method: "PUT",
+        body
+    });
 }
 
 /**
@@ -41,8 +51,11 @@ export function addUtilisateurPhoto(utiId: number, photo: File, options: Request
  * @param utiId Id de l'utilisateur
  * @param options Options pour 'fetch'.
  */
-export function deleteUtilisateur(utiId: number, options: RequestInit = {}): Promise<void> {
-    return fetch("DELETE", `./api/utilisateurs/${utiId}`, {}, options);
+export async function deleteUtilisateur(utiId: number, options: RequestInit = {}): Promise<void> {
+    await fetch(`./api/utilisateurs/${utiId}`, {
+        ...options,
+        method: "DELETE"
+    });
 }
 
 /**
@@ -50,8 +63,11 @@ export function deleteUtilisateur(utiId: number, options: RequestInit = {}): Pro
  * @param utiId Id de l'utilisateur
  * @param options Options pour 'fetch'.
  */
-export function deleteUtilisateurPhoto(utiId: number, options: RequestInit = {}): Promise<void> {
-    return fetch("DELETE", `./api/utilisateurs/${utiId}/photo`, {}, options);
+export async function deleteUtilisateurPhoto(utiId: number, options: RequestInit = {}): Promise<void> {
+    await fetch(`./api/utilisateurs/${utiId}/photo`, {
+        ...options,
+        method: "DELETE"
+    });
 }
 
 /**
@@ -60,8 +76,12 @@ export function deleteUtilisateurPhoto(utiId: number, options: RequestInit = {})
  * @param options Options pour 'fetch'.
  * @returns Le détail de l'utilisateur
  */
-export function getUtilisateur(utiId: number, options: RequestInit = {}): Promise<UtilisateurRead> {
-    return fetch("GET", `./api/utilisateurs/${utiId}`, {}, options);
+export async function getUtilisateur(utiId: number, options: RequestInit = {}): Promise<UtilisateurRead> {
+    const response = await fetch(`./api/utilisateurs/${utiId}`, {
+        ...options,
+        method: "GET"
+    });
+    return await response.json();
 }
 
 /**
@@ -70,8 +90,15 @@ export function getUtilisateur(utiId: number, options: RequestInit = {}): Promis
  * @param options Options pour 'fetch'.
  * @returns Photo.
  */
-export function getUtilisateurPhoto(utiId: number, options: RequestInit = {}): Promise<Response> {
-    return fetch("GET", `./api/utilisateurs/${utiId}/photo`, {}, options);
+export async function getUtilisateurPhoto(utiId: number, options: RequestInit = {}): Promise<Response | undefined> {
+    const response = await fetch(`./api/utilisateurs/${utiId}/photo`, {
+        ...options,
+        method: "GET"
+    });
+    if (response.status === 204) {
+        return undefined;
+    }
+    return response;
 }
 
 /**
@@ -86,8 +113,34 @@ export function getUtilisateurPhoto(utiId: number, options: RequestInit = {}): P
  * @param options Options pour 'fetch'.
  * @returns Utilisateurs matchant les critères
  */
-export function searchUtilisateur(nom?: string, prenom?: string, email?: string, dateNaissance?: string, actif?: boolean, profilId?: number, typeUtilisateurCode?: TypeUtilisateurCode, options: RequestInit = {}): Promise<UtilisateurItem[]> {
-    return fetch("GET", `./api/utilisateurs`, {query: {nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode}}, options);
+export async function searchUtilisateur(nom?: string, prenom?: string, email?: string, dateNaissance?: string, actif?: boolean, profilId?: number, typeUtilisateurCode?: TypeUtilisateurCode, options: RequestInit = {}): Promise<UtilisateurItem[]> {
+    const query = new URLSearchParams();
+    if (nom !== undefined) {
+        query.append("nom", nom)
+    }
+    if (prenom !== undefined) {
+        query.append("prenom", prenom)
+    }
+    if (email !== undefined) {
+        query.append("email", email)
+    }
+    if (dateNaissance !== undefined) {
+        query.append("dateNaissance", dateNaissance)
+    }
+    if (actif !== undefined) {
+        query.append("actif", `${actif}`)
+    }
+    if (profilId !== undefined) {
+        query.append("profilId", `${profilId}`)
+    }
+    if (typeUtilisateurCode !== undefined) {
+        query.append("typeUtilisateurCode", typeUtilisateurCode)
+    }
+    const response = await fetch(`./api/utilisateurs?${query}`, {
+        ...options,
+        method: "GET"
+    });
+    return await response.json();
 }
 
 /**
@@ -97,8 +150,14 @@ export function searchUtilisateur(nom?: string, prenom?: string, email?: string,
  * @param options Options pour 'fetch'.
  * @returns Utilisateur sauvegardé
  */
-export function updateUtilisateur(utiId: number, utilisateur: UtilisateurWrite, options: RequestInit = {}): Promise<UtilisateurRead> {
-    return fetch("PUT", `./api/utilisateurs/${utiId}`, {body: utilisateur}, options);
+export async function updateUtilisateur(utiId: number, utilisateur: UtilisateurWrite, options: RequestInit = {}): Promise<UtilisateurRead> {
+    const response = await fetch(`./api/utilisateurs/${utiId}`, {
+        ...options,
+        method: "PUT",
+        body: JSON.stringify(utilisateur),
+        headers: {...options.headers, "Content-Type": "application/json"}
+    });
+    return await response.json();
 }
 
 function fillFormData(data: any, formData: FormData, prefix = "") {

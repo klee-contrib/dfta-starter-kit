@@ -26,7 +26,7 @@ import {utilisateurStore} from "../../stores/utilisateur";
 
 import {DO_LIBELLE} from "../../domains";
 import {router} from "../../router";
-import {fetch} from "../../server";
+import fetch from "../../server";
 
 import {PhotoDisplay} from "./photo/display";
 import {PhotoPicker} from "./photo/picker";
@@ -165,5 +165,5 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
 }
 
 function searchAdresse(query: string): Promise<{key: string; label: string}[]> {
-    return fetch("GET", `./api/adresses?query=${encodeURIComponent(query)}`);
+    return fetch(`./api/adresses?query=${encodeURIComponent(query)}`).json();
 }

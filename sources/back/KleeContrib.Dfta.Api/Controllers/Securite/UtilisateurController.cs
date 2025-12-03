@@ -93,7 +93,7 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Photo.</returns>
     [HttpGet("api/utilisateurs/{utiId:int}/photo")]
-    public async Task<FileContentResult> GetUtilisateurPhoto(int utiId, CancellationToken ct = default)
+    public async Task<FileContentResult?> GetUtilisateurPhoto(int utiId, CancellationToken ct = default)
     {
         var file = await mixedQueries.GetUtilisateurPhoto(utiId, ct);
         if (file == null)
