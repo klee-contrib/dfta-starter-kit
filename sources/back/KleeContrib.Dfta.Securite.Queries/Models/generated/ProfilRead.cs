@@ -49,5 +49,5 @@ public partial record ProfilRead
     /// <summary>
     /// Utilisateurs ayant ce profil.
     /// </summary>
-    public ICollection<UtilisateurItem> Utilisateurs { get; set; } = new List<UtilisateurItem>();
+    public ICollection<UtilisateurItem> Utilisateurs { get; set; } = [];
 }

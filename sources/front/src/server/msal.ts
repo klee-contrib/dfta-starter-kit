@@ -77,6 +77,7 @@ export function signOut() {
 }
 
 class UserStore extends FocusUserStore {
+    // oxlint-disable-next-line class-methods-use-this
     get account(): AccountInfo | undefined {
         return msal.getAllAccounts()[0];
     }

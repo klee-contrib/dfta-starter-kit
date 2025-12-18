@@ -2,14 +2,14 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 3.7.0
+version: 3.8.4
 modules:
   csharp:
-    version: 3.5.1
-    hash: b7bca7a5fc0f767117f912a338006e37
+    version: 3.7.0
+    hash: 77129808d828700a4b6a9ab2a11c3dcb
   javascript:
-    version: 3.5.0
-    hash: 722393f55791d8a3625296a2098a3cc6
+    version: 3.6.1
+    hash: 821902636c343def4026124769a2e22b
   translation:
     version: 3.2.2
     hash: b6fb8a53fe077a206c1b321096e0675c
