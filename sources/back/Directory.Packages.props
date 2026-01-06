@@ -1,0 +1,20 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Azure.Storage.Blobs" Version="12.26.0" />
+    <PackageVersion Include="Kinetix.EFCore" Version="10.0.0-beta" />
+    <PackageVersion Include="Kinetix.Modeling" Version="10.0.0-beta" />
+    <PackageVersion Include="Kinetix.Monitoring.Insights" Version="10.0.0-beta" />
+    <PackageVersion Include="Kinetix.Services" Version="10.0.0-beta" />
+    <PackageVersion Include="Kinetix.Services.Annotations" Version="10.0.0-beta" />
+    <PackageVersion Include="Kinetix.Tools.Analyzers" Version="1.11.5" />
+    <PackageVersion Include="Kinetix.Web" Version="10.0.0-beta" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.267" />
+    <PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+    <PackageVersion Include="Microsoft.Identity.Web" Version="4.2.0" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.17.0.131074" />
+  </ItemGroup>
+</Project>

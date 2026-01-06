@@ -1,29 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Kinetix.Tools.Analyzers" Version="1.11.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.263">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.17.0.131074">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.26.0" />
+    <PackageReference Include="Azure.Storage.Blobs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Mutations\KleeContrib.Dfta.Securite.Commands.Mutations.csproj" />
     <ProjectReference Include="..\KleeContrib.Dfta.Securite.Queries\KleeContrib.Dfta.Securite.Queries.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageVersion Update="Kinetix.Tools.Analyzers" Version="1.11.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Kinetix.Tools.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

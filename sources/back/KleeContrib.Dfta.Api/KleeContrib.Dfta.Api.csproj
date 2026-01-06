@@ -1,38 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <Version>0</Version>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UserSecretsId>18d07dd5-13ee-4c7f-bbc4-fa5c4b31d895</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Kinetix.Tools.Analyzers" Version="1.11.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.263">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.17.0.131074">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Kinetix.EFCore" Version="10.0.0-beta" />
-    <PackageReference Include="Kinetix.Monitoring.Insights" Version="10.0.0-beta" />
-    <PackageReference Include="Kinetix.Services" Version="10.0.0-beta" />
-    <PackageReference Include="Kinetix.Web" Version="10.0.0-beta" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="4.2.0" />
+    <PackageReference Include="Kinetix.EFCore" />
+    <PackageReference Include="Kinetix.Monitoring.Insights" />
+    <PackageReference Include="Kinetix.Services" />
+    <PackageReference Include="Kinetix.Web" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
+    <PackageReference Include="Microsoft.Identity.Web" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />
     <ProjectReference Include="..\KleeContrib.Dfta.Clients.Storage\KleeContrib.Dfta.Clients.Storage.csproj" />
     <ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Implementations\KleeContrib.Dfta.Securite.Commands.Implementations.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageVersion Update="Kinetix.Tools.Analyzers" Version="1.11.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Kinetix.Tools.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

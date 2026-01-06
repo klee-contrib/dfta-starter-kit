@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/.common/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <Project Path="../../migrations/KleeContrib.Dfta.Migrations.csproj" />
+    <Project Path="KleeContrib.Dfta.Common/KleeContrib.Dfta.Common.csproj" />
+  </Folder>
+  <Folder Name="/Clients/">
+    <Project Path="KleeContrib.Dfta.Clients.Db/KleeContrib.Dfta.Clients.Db.csproj" />
+    <Project Path="KleeContrib.Dfta.Clients.Storage/KleeContrib.Dfta.Clients.Storage.csproj" />
+  </Folder>
+  <Folder Name="/Commands/Securite/">
+    <Project Path="KleeContrib.Dfta.Securite.Commands/KleeContrib.Dfta.Securite.Commands.csproj" />
+    <Project Path="KleeContrib.Dfta.Securite.Commands.Implementations/KleeContrib.Dfta.Securite.Commands.Implementations.csproj" />
+    <Project Path="KleeContrib.Dfta.Securite.Commands.Models/KleeContrib.Dfta.Securite.Commands.Models.csproj" />
+    <Project Path="KleeContrib.Dfta.Securite.Commands.Mutations/KleeContrib.Dfta.Securite.Commands.Mutations.csproj" />
+  </Folder>
+  <Folder Name="/Queries/">
+    <Project Path="KleeContrib.Dfta.Securite.Queries/KleeContrib.Dfta.Securite.Queries.csproj" />
+  </Folder>
+  <Project Path="KleeContrib.Dfta.Api/KleeContrib.Dfta.Api.csproj" />
+</Solution>
