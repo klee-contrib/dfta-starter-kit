@@ -2,13 +2,4 @@
   <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Models\KleeContrib.Dfta.Securite.Commands.Models.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageVersion Update="Kinetix.Tools.Analyzers" Version="1.11.6" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Kinetix.Tools.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
 </Project>

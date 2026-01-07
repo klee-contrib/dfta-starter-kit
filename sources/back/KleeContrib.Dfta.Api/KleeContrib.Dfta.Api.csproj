@@ -15,13 +15,4 @@
     <ProjectReference Include="..\KleeContrib.Dfta.Clients.Storage\KleeContrib.Dfta.Clients.Storage.csproj" />
     <ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Implementations\KleeContrib.Dfta.Securite.Commands.Implementations.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageVersion Update="Kinetix.Tools.Analyzers" Version="1.11.6" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Kinetix.Tools.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
 </Project>

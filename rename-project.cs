@@ -64,7 +64,7 @@ foreach (
         Directory.EnumerateFiles("./infra", "*.tf*", SearchOption.AllDirectories),
         Directory.EnumerateFiles("./pipelines", "*.yml", SearchOption.AllDirectories),
         Directory.EnumerateFiles("./sources", "docker-compose.yml", SearchOption.TopDirectoryOnly),
-        Directory.EnumerateFiles("./sources/back", "*.sln", SearchOption.TopDirectoryOnly),
+        Directory.EnumerateFiles("./sources/back", "*.slnx", SearchOption.TopDirectoryOnly),
         Directory.EnumerateFiles("./sources/back", "*.json", SearchOption.AllDirectories),
     }.SelectMany(x => x)
 )
