@@ -28,7 +28,7 @@ stages:
             displayName: Build API
             inputs:
               command: build
-              projects: sources/back/KleeContrib.Dfta.sln
+              projects: sources/back/KleeContrib.Dfta.slnx
               arguments: -c Release
 
           - ${{if eq(parameters.publish, true)}}:
