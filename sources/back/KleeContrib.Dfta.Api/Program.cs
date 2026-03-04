@@ -118,22 +118,37 @@ app.UseAuthorization();
 app.MapControllers().AddEndpointFilter<TransactionFilter>().AddEndpointFilter<UtcDateFilter>();
 
 app.MapReferenceEndpoints("api/references");
+
 app.MapGet(
     "api/adresses",
     async (string query) =>
     {
         if (query.Trim().Length < 3)
         {
-            return new List<string>().Select(e => new { Key = e, Label = e });
+            return [];
         }
 
-        var client = new HttpClient();
-        var response = await client.GetFromJsonAsync<Result>(
-            $"https://api-adresse.data.gouv.fr/search/?q={query}&limit=10"
+        var response = await new HttpClient().GetFromJsonAsync<Result>(
+            $"https://api-adresse.data.gouv.fr/search/?q={query}&limit=1"
         );
-        return response!.Features.Select(f => new { Key = f.Properties.Label, f.Properties.Label });
+        return response!.Features.Select(f => new
+        {
+            Key = $"{f.Properties.Housenumber ?? string.Empty}||{f.Properties.Street ?? string.Empty}||{f.Properties.PostCode ?? string.Empty}||{f.Properties.City ?? string.Empty}",
+            f.Properties.Label,
+        });
     }
 );
+app.MapGet(
+    "api/adresse",
+    async (string key) =>
+    {
+        var response = await new HttpClient().GetFromJsonAsync<Result>(
+            $"https://api-adresse.data.gouv.fr/search/?q={key.Replace("||", " ")}&limit=10"
+        );
+        return response!.Features.Select(f => f.Properties.Label).FirstOrDefault();
+    }
+);
+
 await app.RunAsync();
 
 #pragma warning disable
@@ -142,4 +157,4 @@ record Result(Feature[] Features);
 
 record Feature(Properties Properties);
 
-record Properties(string Label);
+record Properties(string Label, string? Housenumber, string? Street, string? PostCode, string? City);

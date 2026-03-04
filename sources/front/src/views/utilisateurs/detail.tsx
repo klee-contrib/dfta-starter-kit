@@ -11,6 +11,7 @@ import {Dialog, Panel} from "@focus4/layout";
 import {makeReferenceList, toFlatValues} from "@focus4/stores";
 import {FontIcon} from "@focus4/toolbox";
 
+import {getAdresseLabel, searchAdresse} from "../../services/adresse";
 import {getProfils} from "../../services/securite/profil";
 import {
     addUtilisateur,
@@ -26,7 +27,6 @@ import {utilisateurStore} from "../../stores/utilisateur";
 
 import {DO_LIBELLE} from "../../domains";
 import {router} from "../../router";
-import fetch from "../../server";
 
 import {PhotoDisplay} from "./photo/display";
 import {PhotoPicker} from "./photo/picker";
@@ -111,8 +111,8 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
                 {fieldFor(entity.email)}
                 {fieldFor(entity.dateNaissance)}
                 {autocompleteFor(entity.adresse, {
-                    keyResolver: async label => label,
-                    querySearcher: query => searchAdresse(query),
+                    keyResolver: getAdresseLabel,
+                    querySearcher: searchAdresse,
                     autocompleteProps: {icon: "place"}
                 })}
                 {fieldFor(entity.actif)}
@@ -162,8 +162,4 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
             </Dialog>
         </Form>
     ));
-}
-
-function searchAdresse(query: string): Promise<{key: string; label: string}[]> {
-    return fetch(`./api/adresses?query=${encodeURIComponent(query)}`).json();
 }

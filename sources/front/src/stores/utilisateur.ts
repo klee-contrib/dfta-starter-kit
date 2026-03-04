@@ -11,7 +11,13 @@ export const utilisateurSearchStore = new CollectionStore(searchUtilisateur, Uti
     sort: [{fieldName: "Prenom"}],
     top: 20,
     criteriaMode: "debounced",
-    criteriaBuilder: c => c.patch("typeUtilisateurCode", f => f.metadata({SelectComponent: SelectRadio<ZodString>}))
+    criteriaBuilder: c =>
+        c.patch("typeUtilisateurCode", f =>
+            f.metadata({
+                SelectComponent: SelectRadio<ZodString>,
+                selectProps: {hasUndefined: "first-option", undefinedLabel: "Tous"}
+            })
+        )
 });
 
 export const utilisateurStore = makeEntityStore({

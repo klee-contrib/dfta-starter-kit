@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
 import {ActionBar, listFor, Summary} from "@focus4/collections";
@@ -26,6 +26,10 @@ export function UtilisateurList() {
         {label: t("app.user.ordering.surnameAsc"), sort: [{fieldName: "Prenom", sortDesc: false}]},
         {label: t("app.user.ordering.surnameDesc"), sort: [{fieldName: "Prenom", sortDesc: true}]}
     ];
+
+    useEffect(() => {
+        utilisateurSearchStore.search();
+    }, []);
 
     return (
         <Content>
