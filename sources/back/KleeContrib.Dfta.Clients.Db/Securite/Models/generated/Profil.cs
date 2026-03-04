@@ -16,6 +16,26 @@ namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
 public partial record Profil
 {
     /// <summary>
+    /// Profil 1.
+    /// </summary>
+    public const int Profil1Id = 1;
+
+    /// <summary>
+    /// Profil 2.
+    /// </summary>
+    public const int Profil2Id = 2;
+
+    /// <summary>
+    /// Profil 3.
+    /// </summary>
+    public const int Profil3Id = 3;
+
+    /// <summary>
+    /// Profil 4.
+    /// </summary>
+    public const int Profil4Id = 4;
+
+    /// <summary>
     /// Id technique.
     /// </summary>
     [Column("pro_id")]

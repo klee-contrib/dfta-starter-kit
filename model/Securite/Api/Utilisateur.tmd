@@ -89,24 +89,18 @@ endpoint:
 ---
 endpoint:
   name: SearchUtilisateur
-  method: GET
-  route: api/utilisateurs
+  method: POST
+  route: api/utilisateurs/search
   description: Recherche des utilisateurs
   params:
-    - alias:
-        class: Utilisateur
-        exclude:
-          - Id
-          - DateCreation
-          - DateModification
-          - NomFichierPhoto
-          - Adresse
-      defaultValue: null
-      required: false
+    - composition: UtilisateurCriteria
+      name: queryInput
+      domain: DO_QUERY_INPUT
+      comment: Critères de recherche
   returns:
     composition: UtilisateurItem
-    name: utilisateurList
-    domain: DO_LISTE
+    name: output
+    domain: DO_QUERY_OUTPUT
     comment: Utilisateurs matchant les critères
 ---
 endpoint:

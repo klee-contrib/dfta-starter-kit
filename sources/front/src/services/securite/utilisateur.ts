@@ -4,7 +4,8 @@
 
 import fetch from "../../server";
 
-import {TypeUtilisateurCode} from "../../model/securite/references";
+import {QueryInput, QueryOutput} from "@focus4/stores";
+import {UtilisateurCriteria} from "../../model/securite/utilisateur/utilisateur-criteria";
 import {UtilisateurItem} from "../../model/securite/utilisateur/utilisateur-item";
 import {UtilisateurRead} from "../../model/securite/utilisateur/utilisateur-read";
 import {UtilisateurWrite} from "../../model/securite/utilisateur/utilisateur-write";
@@ -103,42 +104,16 @@ export async function getUtilisateurPhoto(utiId: number, options: RequestInit = 
 
 /**
  * Recherche des utilisateurs
- * @param nom Nom de l'utilisateur
- * @param prenom Nom de l'utilisateur
- * @param email Email de l'utilisateur
- * @param dateNaissance Age de l'utilisateur
- * @param actif Si l'utilisateur est actif
- * @param profilId Profil de l'utilisateur
- * @param typeUtilisateurCode Type d'utilisateur
+ * @param queryInput Critères de recherche
  * @param options Options pour 'fetch'.
  * @returns Utilisateurs matchant les critères
  */
-export async function searchUtilisateur(nom?: string, prenom?: string, email?: string, dateNaissance?: string, actif?: boolean, profilId?: number, typeUtilisateurCode?: TypeUtilisateurCode, options: RequestInit = {}): Promise<UtilisateurItem[]> {
-    const query = new URLSearchParams();
-    if (nom !== undefined) {
-        query.append("nom", nom)
-    }
-    if (prenom !== undefined) {
-        query.append("prenom", prenom)
-    }
-    if (email !== undefined) {
-        query.append("email", email)
-    }
-    if (dateNaissance !== undefined) {
-        query.append("dateNaissance", dateNaissance)
-    }
-    if (actif !== undefined) {
-        query.append("actif", `${actif}`)
-    }
-    if (profilId !== undefined) {
-        query.append("profilId", `${profilId}`)
-    }
-    if (typeUtilisateurCode !== undefined) {
-        query.append("typeUtilisateurCode", typeUtilisateurCode)
-    }
-    const response = await fetch(`./api/utilisateurs?${query}`, {
+export async function searchUtilisateur(queryInput: QueryInput<UtilisateurCriteria>, options: RequestInit = {}): Promise<QueryOutput<UtilisateurItem>> {
+    const response = await fetch(`./api/utilisateurs/search`, {
         ...options,
-        method: "GET"
+        method: "POST",
+        body: JSON.stringify(queryInput),
+        headers: {...options.headers, "Content-Type": "application/json"}
     });
     return await response.json();
 }

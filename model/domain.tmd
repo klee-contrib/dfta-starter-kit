@@ -30,8 +30,8 @@ domain:
     type: string[]
     genericType: "{T}[]"
   csharp:
-    type: string[]
-    genericType: "{T}[]"
+    type: IList<string>
+    genericType: IList<{T}>
 ---
 domain:
   name: DO_DATE
@@ -121,3 +121,27 @@ domain:
     genericType: ICollection<{T}>
   ts:
     genericType: "{T}[]"
+---
+domain:
+  name: DO_QUERY_INPUT
+  label: Critères de recherche.
+  csharp:
+    genericType: QueryInput<{T}>
+    imports:
+      - Kinetix.Search.Models
+  ts:
+    genericType: QueryInput<{T}>
+    imports:
+      - "@focus4/stores/QueryInput"
+---
+domain:
+  name: DO_QUERY_OUTPUT
+  label: Résultat d'une recherche.
+  csharp:
+    genericType: QueryOutput<{T}>
+    imports:
+      - Kinetix.Search.Models
+  ts:
+    genericType: QueryOutput<{T}>
+    imports:
+      - "@focus4/stores/QueryOutput"

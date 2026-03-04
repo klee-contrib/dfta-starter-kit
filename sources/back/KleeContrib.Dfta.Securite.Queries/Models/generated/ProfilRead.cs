@@ -44,7 +44,7 @@ public partial record ProfilRead
     /// </summary>
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.CodeListe)]
-    public required Droit.Codes[] DroitCodes { get; set; }
+    public required IList<Droit.Codes> DroitCodes { get; set; }
 
     /// <summary>
     /// Utilisateurs ayant ce profil.

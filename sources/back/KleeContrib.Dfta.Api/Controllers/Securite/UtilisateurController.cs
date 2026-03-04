@@ -4,8 +4,8 @@
 
 using System.ComponentModel.DataAnnotations;
 using Kinetix.Modeling.Exceptions;
+using Kinetix.Search.Models;
 using KleeContrib.Dfta.Api.Models.Commands.Securite;
-using KleeContrib.Dfta.Common.References.Securite;
 using KleeContrib.Dfta.Securite.Commands;
 using KleeContrib.Dfta.Securite.Queries;
 using KleeContrib.Dfta.Securite.Queries.Models;
@@ -110,19 +110,13 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// <summary>
     /// Recherche des utilisateurs
     /// </summary>
-    /// <param name="nom">Nom de l'utilisateur</param>
-    /// <param name="prenom">Nom de l'utilisateur</param>
-    /// <param name="email">Email de l'utilisateur</param>
-    /// <param name="dateNaissance">Age de l'utilisateur</param>
-    /// <param name="actif">Si l'utilisateur est actif</param>
-    /// <param name="profilId">Profil de l'utilisateur</param>
-    /// <param name="typeUtilisateurCode">Type d'utilisateur</param>
+    /// <param name="queryInput">Critères de recherche</param>
     /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Utilisateurs matchant les critères</returns>
-    [HttpGet("api/utilisateurs")]
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(string? nom = null, string? prenom = null, string? email = null, DateOnly? dateNaissance = null, bool? actif = null, int? profilId = null, TypeUtilisateur.Codes? typeUtilisateurCode = null, CancellationToken ct = default)
+    [HttpPost("api/utilisateurs/search")]
+    public async Task<QueryOutput<UtilisateurItem>> SearchUtilisateur([FromBody] QueryInput<UtilisateurCriteria> queryInput, CancellationToken ct = default)
     {
-        return await queries.SearchUtilisateur(nom, prenom, email, dateNaissance, actif, profilId, typeUtilisateurCode, ct);
+        return await queries.SearchUtilisateur(queryInput, ct);
     }
 
     /// <summary>

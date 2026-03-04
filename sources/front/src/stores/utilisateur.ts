@@ -1,10 +1,18 @@
+import {ZodString} from "zod";
+
+import {SelectRadio} from "@focus4/form-toolbox";
 import {CollectionStore, makeEntityStore} from "@focus4/stores";
 
-import {UtilisateurItem} from "../model/securite/utilisateur/utilisateur-item";
+import {UtilisateurCriteriaEntity} from "../model/securite/utilisateur/utilisateur-criteria";
 import {UtilisateurReadEntity} from "../model/securite/utilisateur/utilisateur-read";
+import {searchUtilisateur} from "../services/securite/utilisateur";
 
-export const utilisateurListStore = new CollectionStore<UtilisateurItem>({searchFields: ["nom", "prenom", "email"]});
-utilisateurListStore.sort = [{fieldName: "prenom"}];
+export const utilisateurSearchStore = new CollectionStore(searchUtilisateur, UtilisateurCriteriaEntity, {
+    sort: [{fieldName: "Prenom"}],
+    top: 20,
+    criteriaMode: "debounced",
+    criteriaBuilder: c => c.patch("typeUtilisateurCode", f => f.metadata({SelectComponent: SelectRadio<ZodString>}))
+});
 
 export const utilisateurStore = makeEntityStore({
     utilisateur: UtilisateurReadEntity

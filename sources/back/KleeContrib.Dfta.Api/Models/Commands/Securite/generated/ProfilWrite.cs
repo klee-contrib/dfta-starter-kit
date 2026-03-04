@@ -28,5 +28,5 @@ public partial record ProfilWrite
     [Required]
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.CodeListe)]
-    public Droit.Codes[]? DroitCodes { get; set; }
+    public IList<Droit.Codes>? DroitCodes { get; set; }
 }

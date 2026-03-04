@@ -1,5 +1,6 @@
-﻿using Kinetix.Services.Annotations;
-using KleeContrib.Dfta.Common.References.Securite;
+﻿using Kinetix.Search.Models;
+using Kinetix.Services.Annotations;
+using KleeContrib.Dfta.Clients.Db.Securite.Models;
 using KleeContrib.Dfta.Securite.Queries;
 using KleeContrib.Dfta.Securite.Queries.Models;
 using Microsoft.EntityFrameworkCore;
@@ -30,29 +31,44 @@ public class UtilisateurQueries(KleeContribDftaDbContext context) : IUtilisateur
     }
 
     /// <inheritdoc cref="IUtilisateurQueries.SearchUtilisateur" />
-    public async Task<ICollection<UtilisateurItem>> SearchUtilisateur(
-        string? nom = null,
-        string? prenom = null,
-        string? email = null,
-        DateOnly? dateNaissance = null,
-        bool? actif = null,
-        int? profilId = null,
-        TypeUtilisateur.Codes? typeUtilisateurCode = null,
+    public async Task<QueryOutput<UtilisateurItem>> SearchUtilisateur(
+        QueryInput<UtilisateurCriteria> queryInput,
         CancellationToken ct = default
     )
     {
-        return await context
+        var crt = queryInput.Criteria ?? new();
+
+        var query = context
             .Utilisateurs.AsNoTracking()
-            .Where(x =>
-                (string.IsNullOrEmpty(nom) || x.Nom == nom)
-                && (string.IsNullOrEmpty(prenom) || x.Prenom == prenom)
-                && (string.IsNullOrEmpty(email) || x.Email == email)
-                && (!dateNaissance.HasValue || x.DateNaissance == dateNaissance)
-                && (!actif.HasValue || x.Actif == actif)
-                && (!profilId.HasValue || x.ProfilId == profilId)
-                && (!typeUtilisateurCode.HasValue || x.TypeUtilisateurCode == typeUtilisateurCode)
-            )
-            .Select(x => CreateUtilisateurItem(x))
-            .ToListAsync(ct);
+            .Where(uti =>
+                (string.IsNullOrEmpty(crt.Nom) || EF.Functions.ILike(uti.Nom, $"%{crt.Nom}%"))
+                && (string.IsNullOrEmpty(crt.Prenom) || EF.Functions.ILike(uti.Nom, $"%{crt.Prenom}%"))
+                && (string.IsNullOrEmpty(crt.Email) || EF.Functions.ILike(uti.Nom, $"%{crt.Email}%"))
+                && (!crt.DateNaissance.HasValue || uti.DateNaissance == crt.DateNaissance)
+                && (!crt.Actif.HasValue || uti.Actif == crt.Actif)
+                && (!crt.ProfilId.HasValue || uti.ProfilId == crt.ProfilId)
+                && (!crt.TypeUtilisateurCode.HasValue || uti.TypeUtilisateurCode == crt.TypeUtilisateurCode)
+            );
+
+        if (queryInput.Sort.Any())
+        {
+            query = queryInput.Sort[0] switch
+            {
+                { SortDesc: false, FieldName: var field } => query.OrderBy(uti => EF.Property<Utilisateur>(uti, field)),
+                { SortDesc: true, FieldName: var field } => query.OrderByDescending(uti =>
+                    EF.Property<Utilisateur>(uti, field)
+                ),
+            };
+        }
+
+        return new QueryOutput<UtilisateurItem>
+        {
+            List = await query
+                .Skip(queryInput.Skip)
+                .Take(queryInput.Top ?? 20)
+                .Select(x => CreateUtilisateurItem(x))
+                .ToListAsync(ct),
+            TotalCount = await query.CountAsync(ct),
+        };
     }
 }

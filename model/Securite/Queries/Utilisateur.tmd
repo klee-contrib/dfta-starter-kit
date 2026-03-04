@@ -4,6 +4,7 @@ tags:
   - queries
   - front
 uses:
+  - decorators
   - Securite/Data/Utilisateur
 
 ---
@@ -48,3 +49,20 @@ class:
     from:
       - params:
           - class: Utilisateur
+---
+class:
+  name: UtilisateurCriteria
+  comment: Critère de recherche pour les utilisateurs.
+  decorators:
+    - Criteria
+  properties:
+    - alias:
+        class: Utilisateur
+        exclude:
+          - Id
+          - DateCreation
+          - DateModification
+          - NomFichierPhoto
+          - Adresse
+      defaultValue: null
+      required: false

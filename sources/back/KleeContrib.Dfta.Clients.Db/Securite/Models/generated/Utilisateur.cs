@@ -22,9 +22,19 @@ public partial record Utilisateur
     public const string User1Email = "test1@test.com";
 
     /// <summary>
+    /// user1.
+    /// </summary>
+    public const int User1Id = 1;
+
+    /// <summary>
     /// user2.
     /// </summary>
     public const string User2Email = "test2@test.com";
+
+    /// <summary>
+    /// user2.
+    /// </summary>
+    public const int User2Id = 2;
 
     /// <summary>
     /// user3.
@@ -32,9 +42,19 @@ public partial record Utilisateur
     public const string User3Email = "test3@test.com";
 
     /// <summary>
+    /// user3.
+    /// </summary>
+    public const int User3Id = 3;
+
+    /// <summary>
     /// user4.
     /// </summary>
     public const string User4Email = "test4@test.com";
+
+    /// <summary>
+    /// user4.
+    /// </summary>
+    public const int User4Id = 4;
 
     /// <summary>
     /// user5.
@@ -42,9 +62,19 @@ public partial record Utilisateur
     public const string User5Email = "test5@test.com";
 
     /// <summary>
+    /// user5.
+    /// </summary>
+    public const int User5Id = 5;
+
+    /// <summary>
     /// user6.
     /// </summary>
     public const string User6Email = "test6@test.com";
+
+    /// <summary>
+    /// user6.
+    /// </summary>
+    public const int User6Id = 6;
 
     /// <summary>
     /// user7.
@@ -52,9 +82,19 @@ public partial record Utilisateur
     public const string User7Email = "test7@test.com";
 
     /// <summary>
+    /// user7.
+    /// </summary>
+    public const int User7Id = 7;
+
+    /// <summary>
     /// user8.
     /// </summary>
     public const string User8Email = "test8@test.com";
+
+    /// <summary>
+    /// user8.
+    /// </summary>
+    public const int User8Id = 8;
 
     /// <summary>
     /// Id de l'utilisateur.

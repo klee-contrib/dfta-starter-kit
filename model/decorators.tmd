@@ -19,3 +19,22 @@ decorator:
       label: Date de modification
       domain: DO_DATE_HEURE
       comment: Date de modification de l'utilisateur.
+---
+decorator:
+  name: Criteria
+  description: Pour critère de recherche.
+  csharp:
+    implements:
+      - ICriteria
+    imports:
+      - Kinetix.Search.Models
+  properties:
+    - name: Query
+      domain: DO_LIBELLE
+      comment: Critère de recherche.
+    - name: SearchFields
+      domain: DO_CODE_LISTE
+      comment: Liste des champs sur lesquels rechercher.
+    - name: SourceFields
+      domain: DO_CODE_LISTE
+      comment: "Liste des champs à inclure dans la recherche (si non renseigné (ou vide) : tous les champs seront inclus)"

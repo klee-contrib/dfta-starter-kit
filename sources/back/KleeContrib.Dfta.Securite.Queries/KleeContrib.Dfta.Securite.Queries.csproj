@@ -1,5 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <PackageReference Include="Kinetix.Search.Models" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Common\KleeContrib.Dfta.Common.csproj" />
   </ItemGroup>
 </Project>

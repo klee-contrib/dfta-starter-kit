@@ -62,14 +62,14 @@ public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDb
         modelBuilder.Entity<TypeUtilisateur>().Property(p => p.Code).HasConversion<string>().HasMaxLength(10);
         modelBuilder.Entity<Utilisateur>().Property(p => p.TypeUtilisateurCode).HasConversion<string>().HasMaxLength(10);
 
-        modelBuilder.Entity<DroitProfil>().HasKey(p => new { p.DroitCode, p.ProfilId });
-        modelBuilder.Entity<Traduction>().HasKey(p => new { p.ResourceKey, p.Locale });
-
         modelBuilder.Entity<Droit>().HasOne<TypeDroit>().WithMany().HasForeignKey(p => p.TypeDroitCode).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<DroitProfil>().HasOne<Droit>().WithMany().HasForeignKey(p => p.DroitCode).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<DroitProfil>().HasOne<Profil>().WithMany().HasForeignKey(p => p.ProfilId).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<Utilisateur>().HasOne<Profil>().WithMany().HasForeignKey(p => p.ProfilId).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<Utilisateur>().HasOne<TypeUtilisateur>().WithMany().HasForeignKey(p => p.TypeUtilisateurCode).OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<DroitProfil>().HasKey(p => new { p.DroitCode, p.ProfilId });
+        modelBuilder.Entity<Traduction>().HasKey(p => new { p.ResourceKey, p.Locale });
 
         modelBuilder.Entity<Utilisateur>().HasIndex(p => p.Email).IsUnique();
 
@@ -84,15 +84,15 @@ public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDb
             new Droit { Code = Droit.Codes.UPDATE, Libelle = "securite.droit.values.Update", TypeDroitCode = TypeDroit.Codes.WRITE },
             new Droit { Code = Droit.Codes.DELETE, Libelle = "securite.droit.values.Delete", TypeDroitCode = TypeDroit.Codes.ADMIN });
         modelBuilder.Entity<DroitProfil>().HasData(
-            new DroitProfil { DroitCode = Droit.Codes.CREATE, ProfilId = 1 },
-            new DroitProfil { DroitCode = Droit.Codes.READ, ProfilId = 2 },
-            new DroitProfil { DroitCode = Droit.Codes.UPDATE, ProfilId = 3 },
-            new DroitProfil { DroitCode = Droit.Codes.DELETE, ProfilId = 4 });
+            new DroitProfil { DroitCode = Droit.Codes.CREATE, ProfilId = Profil.Profil1Id },
+            new DroitProfil { DroitCode = Droit.Codes.READ, ProfilId = Profil.Profil2Id },
+            new DroitProfil { DroitCode = Droit.Codes.UPDATE, ProfilId = Profil.Profil3Id },
+            new DroitProfil { DroitCode = Droit.Codes.DELETE, ProfilId = Profil.Profil4Id });
         modelBuilder.Entity<Profil>().HasData(
-            new Profil { Id = 1, Libelle = "Profil 1", DateCreation = DateTime.UtcNow },
-            new Profil { Id = 2, Libelle = "Profil 2", DateCreation = DateTime.UtcNow },
-            new Profil { Id = 3, Libelle = "Profil 3", DateCreation = DateTime.UtcNow },
-            new Profil { Id = 4, Libelle = "Profil 4", DateCreation = DateTime.UtcNow });
+            new Profil { Id = Profil.Profil1Id, Libelle = "Profil 1", DateCreation = DateTime.UtcNow },
+            new Profil { Id = Profil.Profil2Id, Libelle = "Profil 2", DateCreation = DateTime.UtcNow },
+            new Profil { Id = Profil.Profil3Id, Libelle = "Profil 3", DateCreation = DateTime.UtcNow },
+            new Profil { Id = Profil.Profil4Id, Libelle = "Profil 4", DateCreation = DateTime.UtcNow });
         modelBuilder.Entity<TypeDroit>().HasData(
             new TypeDroit { Code = TypeDroit.Codes.READ, Libelle = "securite.typeDroit.values.Read" },
             new TypeDroit { Code = TypeDroit.Codes.WRITE, Libelle = "securite.typeDroit.values.Write" },
@@ -102,14 +102,14 @@ public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDb
             new TypeUtilisateur { Code = TypeUtilisateur.Codes.GEST, Libelle = "securite.typeUtilisateur.values.Gestionnaire" },
             new TypeUtilisateur { Code = TypeUtilisateur.Codes.CLIENT, Libelle = "securite.typeUtilisateur.values.Client" });
         modelBuilder.Entity<Utilisateur>().HasData(
-            new Utilisateur { Id = 1, Nom = "Jean", Prenom = "Michel", Actif = true, ProfilId = 1, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = "test1@test.com", DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = 2, Nom = "Gerard", Prenom = "Jugnos", Actif = true, ProfilId = 2, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = "test2@test.com", DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = 3, Nom = "Gad", Prenom = "El", Actif = true, ProfilId = 3, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = "test3@test.com", DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = 4, Nom = "Bernard", Prenom = "Bruno", Actif = true, ProfilId = 4, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = "test4@test.com", DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = 5, Nom = "Sisi", Prenom = "Brindacier", Actif = true, ProfilId = 1, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = "test5@test.com", DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = 6, Nom = "Bibi", Prenom = "Baba", Actif = true, ProfilId = 2, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = "test6@test.com", DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = 7, Nom = "Dédé", Prenom = "Dédé", Actif = true, ProfilId = 3, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = "test7@test.com", DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = 8, Nom = "Ran", Prenom = "Tanplan", Actif = true, ProfilId = 4, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = "test8@test.com", DateCreation = DateTime.UtcNow });
+            new Utilisateur { Id = Utilisateur.User1Id, Nom = "Jean", Prenom = "Michel", Actif = true, ProfilId = Profil.Profil1Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User1Email, DateCreation = DateTime.UtcNow },
+            new Utilisateur { Id = Utilisateur.User2Id, Nom = "Gerard", Prenom = "Jugnos", Actif = true, ProfilId = Profil.Profil2Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User2Email, DateCreation = DateTime.UtcNow },
+            new Utilisateur { Id = Utilisateur.User3Id, Nom = "Gad", Prenom = "El", Actif = true, ProfilId = Profil.Profil3Id, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = Utilisateur.User3Email, DateCreation = DateTime.UtcNow },
+            new Utilisateur { Id = Utilisateur.User4Id, Nom = "Bernard", Prenom = "Bruno", Actif = true, ProfilId = Profil.Profil4Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User4Email, DateCreation = DateTime.UtcNow },
+            new Utilisateur { Id = Utilisateur.User5Id, Nom = "Sisi", Prenom = "Brindacier", Actif = true, ProfilId = Profil.Profil1Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User5Email, DateCreation = DateTime.UtcNow },
+            new Utilisateur { Id = Utilisateur.User6Id, Nom = "Bibi", Prenom = "Baba", Actif = true, ProfilId = Profil.Profil2Id, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = Utilisateur.User6Email, DateCreation = DateTime.UtcNow },
+            new Utilisateur { Id = Utilisateur.User7Id, Nom = "Dédé", Prenom = "Dédé", Actif = true, ProfilId = Profil.Profil3Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User7Email, DateCreation = DateTime.UtcNow },
+            new Utilisateur { Id = Utilisateur.User8Id, Nom = "Ran", Prenom = "Tanplan", Actif = true, ProfilId = Profil.Profil4Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User8Email, DateCreation = DateTime.UtcNow });
 
         AddFrFRResources(modelBuilder);
         AddEnUSResources(modelBuilder);
