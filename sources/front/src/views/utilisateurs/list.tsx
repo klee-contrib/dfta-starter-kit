@@ -33,7 +33,7 @@ export function UtilisateurList() {
 
     return (
         <Content>
-            <Panel title="Critères de recherche">
+            <Panel collapsible initiallyCollapsed title="Critères de recherche">
                 {fieldFor(utilisateurSearchStore.criteria.nom)}
                 {fieldFor(utilisateurSearchStore.criteria.prenom)}
                 {selectFor(utilisateurSearchStore.criteria.typeUtilisateurCode, referenceStore.typeUtilisateur)}

@@ -6,6 +6,7 @@ import {fieldFor, Form, selectFor, useFormActions, useFormNode, useReferenceTrac
 import {Panel} from "@focus4/layout";
 import {Slider} from "@focus4/toolbox";
 
+import {ProfilWriteEntity} from "../../../model/securite/profil/profil-write";
 import {getProfil, updateProfil} from "../../../services/securite/profil";
 import {profilStore} from "../../../stores/profil";
 import {referenceStore} from "../../../stores/references";
@@ -16,7 +17,7 @@ import {router} from "../../../router";
 export function ProfilInfos() {
     const entity = useFormNode(profilStore.profil, e =>
         e
-            .remove("id", "dateCreation", "dateModification", "utilisateurs")
+            .patchAllTo(ProfilWriteEntity)
             .add("nombreUtilisateursMax", f =>
                 f
                     .domain(DO_ENTIER)

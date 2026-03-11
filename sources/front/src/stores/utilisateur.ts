@@ -1,13 +1,13 @@
 import {ZodString} from "zod";
 
 import {SelectRadio} from "@focus4/form-toolbox";
-import {CollectionStore, makeEntityStore} from "@focus4/stores";
+import {makeServerCollectionStore, makeStoreNode} from "@focus4/stores";
 
 import {UtilisateurCriteriaEntity} from "../model/securite/utilisateur/utilisateur-criteria";
 import {UtilisateurReadEntity} from "../model/securite/utilisateur/utilisateur-read";
 import {searchUtilisateur} from "../services/securite/utilisateur";
 
-export const utilisateurSearchStore = new CollectionStore(searchUtilisateur, UtilisateurCriteriaEntity, {
+export const utilisateurSearchStore = makeServerCollectionStore(searchUtilisateur, UtilisateurCriteriaEntity, {
     sort: [{fieldName: "Prenom"}],
     top: 20,
     criteriaMode: "debounced",
@@ -20,6 +20,6 @@ export const utilisateurSearchStore = new CollectionStore(searchUtilisateur, Uti
         )
 });
 
-export const utilisateurStore = makeEntityStore({
+export const utilisateurStore = makeStoreNode({
     utilisateur: UtilisateurReadEntity
 });

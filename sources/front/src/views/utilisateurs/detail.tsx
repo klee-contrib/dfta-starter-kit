@@ -11,6 +11,7 @@ import {Dialog, Panel} from "@focus4/layout";
 import {makeReferenceList, toFlatValues} from "@focus4/stores";
 import {FontIcon} from "@focus4/toolbox";
 
+import {UtilisateurWriteEntity} from "../../model/securite/utilisateur/utilisateur-write";
 import {getAdresseLabel, searchAdresse} from "../../services/adresse";
 import {getProfils} from "../../services/securite/profil";
 import {
@@ -43,7 +44,7 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
 
     const entity = useFormNode(utilisateurStore.utilisateur, e =>
         (!router.state.utilisateurs.utiId ? e.edit(() => true) : e)
-            .remove("id", "dateCreation", "dateModification")
+            .patchAllTo(UtilisateurWriteEntity)
             .patch("profilId", f =>
                 f.metadata({
                     DisplayComponent: props => (
@@ -57,8 +58,8 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
             .patch("typeUtilisateurCode", f => f.metadata({SelectComponent: SelectRadio<ZodString>}))
             .add("photo", f =>
                 f
-                    .edit(false)
                     .domain(DO_LIBELLE)
+                    .edit(false)
                     .metadata({
                         label: "app.user.picture.title",
                         DisplayComponent: PhotoDisplay,
