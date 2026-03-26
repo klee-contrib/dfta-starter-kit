@@ -1,17 +1,16 @@
 {
     "compilerOptions": {
         // Général
-        "lib": ["es2022", "dom"],
+        "lib": ["es2023", "dom"],
         "jsx": "react-jsx",
-        "module": "esnext",
         "moduleResolution": "bundler",
-        "target": "es2022",
-        "strict": true,
+        "target": "es2023",
         "sourceMap": true,
 
         // Options additionnelles
         "importHelpers": true,
         "noFallthroughCasesInSwitch": true,
+        "noUncheckedSideEffectImports": false,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
 
