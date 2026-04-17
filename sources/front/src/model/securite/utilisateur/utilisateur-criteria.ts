@@ -5,7 +5,7 @@
 import {e, entity, EntityToType} from "@focus4/entities";
 import {DO_BOOLEEN, DO_CODE, DO_CODE_LISTE, DO_DATE, DO_EMAIL, DO_ID, DO_LIBELLE} from "../../../domains";
 
-import {TypeUtilisateurCode} from "../references";
+import {TypeUtilisateurCode} from "../enums";
 
 export type UtilisateurCriteria = EntityToType<UtilisateurCriteriaEntityType>;
 export type UtilisateurCriteriaEntityType = typeof UtilisateurCriteriaEntity;

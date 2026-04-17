@@ -3,7 +3,7 @@ import {initReactI18next} from "react-i18next";
 import z from "zod";
 
 import {i18nCollections} from "@focus4/collections";
-import {baseI18nextConfig, coreConfig} from "@focus4/core";
+import {addValueFormatters, baseI18nextConfig, coreConfig} from "@focus4/core";
 import {i18nFormToolbox} from "@focus4/form-toolbox";
 import {i18nLayout} from "@focus4/layout";
 import {i18nStores} from "@focus4/stores";
@@ -20,5 +20,7 @@ i18next.use(initReactI18next).init({
     lng: localStorage.getItem("lng") ?? "fr-FR",
     fallbackLng: "fr-FR"
 });
+
+addValueFormatters(i18next);
 
 z.config(z.locales[i18next.language.split("-")[0] as "fr"]());

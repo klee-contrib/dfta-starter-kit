@@ -2,17 +2,17 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 4.0.0-rc.1
+version: 4.1.2
 modules:
   csharp:
-    version: 4.0.0-rc.0
-    hash: 3d9808df71641bd218c8d02b9419f11b
+    version: 4.1.1
+    hash: 053b2cc63c216b74534e15dd9a6df22a
   javascript:
-    version: 4.0.0-rc.0
-    hash: 0ae94ff05942e33896fa14f2c68b33d5
+    version: 4.2.0
+    hash: 406856dfd18b8a12161573a53c8c2c15
   translation:
-    version: 4.0.0-rc.0
-    hash: 75296ce76d24c7869ae77fa2b5517e12
+    version: 4.0.0
+    hash: dbcafbde1bbad53f2de5c796751fd9c2
 generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/ProfilController.cs
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/UtilisateurController.cs
@@ -49,10 +49,10 @@ generatedFiles:
   - ../sources/front/src/locale/en-US/securite.ts
   - ../sources/front/src/locale/fr-FR/common.ts
   - ../sources/front/src/locale/fr-FR/securite.ts
+  - ../sources/front/src/model/securite/enums.ts
   - ../sources/front/src/model/securite/profil/profil-item.ts
   - ../sources/front/src/model/securite/profil/profil-read.ts
   - ../sources/front/src/model/securite/profil/profil-write.ts
-  - ../sources/front/src/model/securite/references.ts
   - ../sources/front/src/model/securite/utilisateur/utilisateur-criteria.ts
   - ../sources/front/src/model/securite/utilisateur/utilisateur-item.ts
   - ../sources/front/src/model/securite/utilisateur/utilisateur-read.ts

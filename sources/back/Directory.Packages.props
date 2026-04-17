@@ -12,10 +12,10 @@
     <PackageVersion Include="Kinetix.Services.Annotations" Version="10.0.0-beta" />
     <PackageVersion Include="Kinetix.Tools.Analyzers" Version="1.11.6" />
     <PackageVersion Include="Kinetix.Web" Version="10.0.0-beta" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.19" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.48" />
     <PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
-    <PackageVersion Include="Microsoft.Identity.Web" Version="4.4.0" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.20.0.135146" />
+    <PackageVersion Include="Microsoft.Identity.Web" Version="4.7.0" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.23.0.137933" />
   </ItemGroup>
 </Project>

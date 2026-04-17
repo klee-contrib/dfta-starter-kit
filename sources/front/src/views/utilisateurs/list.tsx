@@ -6,7 +6,7 @@ import {messageStore} from "@focus4/core";
 import {fieldFor, selectFor} from "@focus4/forms";
 import {Content, Dialog, Panel} from "@focus4/layout";
 
-import {TypeUtilisateurCode} from "../../model/securite/references";
+import {TypeUtilisateurCode} from "../../model/securite/enums";
 import {UtilisateurItem} from "../../model/securite/utilisateur/utilisateur-item";
 import {referenceStore} from "../../stores/references";
 import {utilisateurSearchStore} from "../../stores/utilisateur";

@@ -2,7 +2,7 @@ import {upperFirst} from "es-toolkit";
 
 import {makeReferenceStore} from "@focus4/stores";
 
-import * as refs from "../model/securite/references";
+import * as refs from "../model/securite/enums";
 
 import fetch from "../server";
 
