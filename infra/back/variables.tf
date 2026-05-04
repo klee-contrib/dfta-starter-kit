@@ -8,7 +8,7 @@ variable "aad_audience" {
   nullable = false
 }
 
-variable "ai_key" {
+variable "ai_connection_string" {
   type     = string
   nullable = false
 }

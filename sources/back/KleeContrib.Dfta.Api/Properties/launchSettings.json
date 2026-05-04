@@ -6,6 +6,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
 
+        "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+
         "Database__Server": "localhost",
         "Database__User_Id": "dfta-api-local",
         "Database__Password": "local",

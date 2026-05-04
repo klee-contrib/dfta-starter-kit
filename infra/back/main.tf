@@ -32,7 +32,7 @@ resource "azurerm_linux_web_app" "back" {
   app_settings = {
     ASPNETCORE_ENVIRONMENT = title(terraform.workspace)
 
-    ApplicationInsights__InstrumentationKey = var.ai_key
+    APPLICATIONINSIGHTS_CONNECTION_STRING = var.ai_connection_string
 
     AzureAd__Audience = var.aad_audience
     AzureAd__ClientId = var.aad_client_id

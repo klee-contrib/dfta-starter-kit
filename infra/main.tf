@@ -83,7 +83,7 @@ module "back" {
 
   aad_client_id        = module.aad.back_client_id
   aad_audience         = module.aad.audience
-  ai_key               = module.monitoring.instrumentation_key
+  ai_connection_string = module.monitoring.connection_string
   app_name             = var.app_name
   database_server_name = module.database.server_name
   region               = var.region

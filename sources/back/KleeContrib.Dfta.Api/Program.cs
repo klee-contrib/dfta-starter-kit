@@ -1,11 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 using Azure.Core;
 using Azure.Identity;
+using Azure.Monitor.OpenTelemetry.AspNetCore;
 using Azure.Storage;
 using Azure.Storage.Blobs;
 using Kinetix.EFCore;
+using Kinetix.EFCore.Npgsql;
 using Kinetix.Monitoring.Core;
-using Kinetix.Monitoring.Insights;
 using Kinetix.Services;
 using Kinetix.Web;
 using Kinetix.Web.Filters;
@@ -17,6 +18,7 @@ using KleeContrib.Dfta.Securite.Commands.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
+using Npgsql;
 
 [assembly: ApiController]
 
@@ -28,16 +30,10 @@ var services = builder.Services;
 
 services
     .AddLogging(l => l.AddSimpleConsole())
-    .AddApplicationInsightsTelemetry(o =>
-    {
-        o.AddAutoCollectedMetricExtractor = false;
-        o.EnableDiagnosticsTelemetryModule = false;
-        o.EnableEventCounterCollectionModule = false;
-        o.EnablePerformanceCounterCollectionModule = false;
-        o.EnableQuickPulseMetricStream = false;
-    })
-    .AddApplicationInsightsTelemetryProcessor<MonitoringTelemetryFilter>()
-    .AddApplicationInsightsTelemetryProcessor<DbCommandTelemetryProcessorExt>();
+    .AddOpenTelemetry()
+    .WithTracing(b => b.AddActivityFilterProcessor(p => p.AddFilteredGetRoutes("api/references")).AddNpgsql())
+    .UseAzureMonitor();
+services.ConfigureOpenTelemetryService(env => new() { Name = $"[{env.EnvironmentName}] KleeContrib Dfta" });
 
 services.AddAuthentication().AddMicrosoftIdentityWebApi(builder.Configuration);
 
@@ -60,6 +56,8 @@ services
             o =>
                 o.ConfigureDataSource(d =>
                 {
+                    d.ConfigureOpenTelemetry();
+
                     if (string.IsNullOrWhiteSpace(builder.Configuration["Database:Password"]))
                     {
                         var credential = new DefaultAzureCredential();
@@ -115,7 +113,10 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers().AddEndpointFilter<TransactionFilter>().AddEndpointFilter<UtcDateFilter>();
+app.MapControllers()
+    .AddEndpointFilter<TransactionFilter>()
+    .AddEndpointFilter<UtcDateFilter>()
+    .AddEndpointFilter<ControllerActionFilter>();
 
 app.MapReferenceEndpoints("api/references");
 

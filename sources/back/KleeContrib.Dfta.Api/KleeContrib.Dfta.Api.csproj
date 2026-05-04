@@ -3,11 +3,10 @@
     <UserSecretsId>18d07dd5-13ee-4c7f-bbc4-fa5c4b31d895</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Kinetix.EFCore" />
-    <PackageReference Include="Kinetix.Monitoring.Insights" />
+    <PackageReference Include="Azure.Identity" />
+    <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" />
     <PackageReference Include="Kinetix.Services" />
     <PackageReference Include="Kinetix.Web" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
     <PackageReference Include="Microsoft.Identity.Web" />
   </ItemGroup>
   <ItemGroup>
