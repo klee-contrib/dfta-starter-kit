@@ -8,6 +8,11 @@ variable "devops_service_connection_spn" {
   nullable = false
 }
 
+variable "devops_vnet_id" {
+  type     = string
+  nullable = false
+}
+
 variable "pg_version" {
   type     = number
   nullable = false

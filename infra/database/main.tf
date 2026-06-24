@@ -18,6 +18,14 @@ resource "azurerm_private_dns_zone_virtual_network_link" "link" {
   registration_enabled  = true
 }
 
+resource "azurerm_private_dns_zone_virtual_network_link" "devops_link" {
+  name                  = "devops-vnet"
+  private_dns_zone_name = azurerm_private_dns_zone.dns_zone.name
+  virtual_network_id    = var.devops_vnet_id
+  resource_group_name   = var.rg_name
+  registration_enabled  = true
+}
+
 resource "azurerm_postgresql_flexible_server" "database" {
   resource_group_name = var.rg_name
   name                = "${var.app_name}-db-${terraform.workspace}"

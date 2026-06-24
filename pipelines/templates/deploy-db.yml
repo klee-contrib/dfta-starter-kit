@@ -13,7 +13,7 @@ jobs:
       database-server: dfta-db-${{parameters.env}}.postgres.database.azure.com
       database-name: kleecontrib_dfta
 
-    pool: DFTA-${{parameters.env}}
+    pool: klee-focus-dfta-pool
     workspace:
       clean: all
 

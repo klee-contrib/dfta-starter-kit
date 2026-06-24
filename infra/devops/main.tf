@@ -7,6 +7,16 @@ terraform {
   }
 }
 
+provider "azurerm" {
+  subscription_id = var.subscription_id
+
+  resource_provider_registrations = "none"
+
+  features {}
+}
+
+provider "azuread" {}
+
 provider "azuredevops" {
   org_service_url       = "https://dev.azure.com/${var.organisation}"
   personal_access_token = var.devops_pat

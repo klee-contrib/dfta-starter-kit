@@ -12,8 +12,3 @@ output "snet_db_id" {
   value       = azurerm_subnet.db.id
   description = "Database Subnet ID"
 }
-
-output "snet_agent_id" {
-  value       = azurerm_subnet.agent.id
-  description = "Agent Subnet id"
-}

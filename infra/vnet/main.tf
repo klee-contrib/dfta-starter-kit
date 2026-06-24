@@ -36,10 +36,17 @@ resource "azurerm_subnet" "db" {
   private_endpoint_network_policies = "Enabled"
 }
 
-resource "azurerm_subnet" "agent" {
-  name                              = "${var.app_name}-snet-agent-${terraform.workspace}"
-  resource_group_name               = var.rg_name
-  virtual_network_name              = azurerm_virtual_network.vnet.name
-  address_prefixes                  = [cidrsubnet(var.cidr, 8, 3)]
-  private_endpoint_network_policies = "Enabled"
+resource "azurerm_virtual_network_peering" "from_devops" {
+  name                      = "devops-to-${terraform.workspace}"
+  resource_group_name       = var.devops_rg_name
+  virtual_network_name      = var.devops_vnet_name
+  remote_virtual_network_id = azurerm_virtual_network.vnet.id
+}
+
+resource "azurerm_virtual_network_peering" "to_devops" {
+  name                         = "${terraform.workspace}-to-devops"
+  resource_group_name          = var.rg_name
+  virtual_network_name         = azurerm_virtual_network.vnet.name
+  remote_virtual_network_id    = var.devops_vnet_id
+  allow_virtual_network_access = false
 }

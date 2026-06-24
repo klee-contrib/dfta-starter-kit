@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    azuredevops = {
-      source  = "microsoft/azuredevops"
-      version = ">= 0.1.0"
-    }
-  }
-}
-
 provider "azurerm" {
   subscription_id = var.subscription_id
 
@@ -17,10 +8,6 @@ provider "azurerm" {
 
 provider "azuread" {}
 
-provider "azuredevops" {
-  org_service_url       = "https://dev.azure.com/${var.devops_organisation}"
-  personal_access_token = var.devops_pat
-}
 
 resource "azurerm_resource_group" "rg" {
   name     = terraform.workspace
@@ -39,10 +26,13 @@ module "vault" {
 module "vnet" {
   source = "./vnet"
 
-  app_name = var.app_name
-  cidr     = var.vnet_cidr
-  region   = var.region
-  rg_name  = azurerm_resource_group.rg.name
+  app_name         = var.app_name
+  cidr             = var.vnet_cidr
+  devops_vnet_id   = data.terraform_remote_state.devops.outputs.vnet_id
+  devops_vnet_name = data.terraform_remote_state.devops.outputs.vnet_name
+  devops_rg_name   = data.terraform_remote_state.devops.outputs.rg_name
+  region           = var.region
+  rg_name          = azurerm_resource_group.rg.name
 }
 
 module "monitoring" {
@@ -59,6 +49,7 @@ module "database" {
 
   app_name                      = var.app_name
   devops_service_connection_spn = data.terraform_remote_state.devops.outputs.service_connection_spn
+  devops_vnet_id                = data.terraform_remote_state.devops.outputs.vnet_id
   pg_version                    = var.database_pg_version
   region                        = var.region
   rg_name                       = azurerm_resource_group.rg.name
@@ -111,19 +102,4 @@ module "aad" {
   app_name  = var.app_name
   front_url = module.front.url
   vault_id  = module.vault.id
-}
-
-module "agent" {
-  source = "./agent"
-
-  app_name            = var.app_name
-  devops_organisation = var.devops_organisation
-  devops_pat          = var.devops_pat
-  devops_project_name = var.devops_project_name
-  ip                  = var.agent_ip
-  region              = var.region
-  rg_name             = azurerm_resource_group.rg.name
-  snet_id             = module.vnet.snet_agent_id
-  size                = var.agent_size
-  vault_id            = module.vault.id
 }

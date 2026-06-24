@@ -1,21 +1,8 @@
-## Ces trois variables doivent être renseignées dans un fichier de variables terraform (terraform.tfvars ou *.auto.tfvars).
+## Cette variable doit être renseignée dans un fichier de variables terraform (terraform.tfvars ou *.auto.tfvars).
 
 variable "subscription_id" {
   type        = string
   description = "Id de l'abonnement Azure dans lequel créer les ressources."
-  nullable    = false
-}
-
-variable "devops_organisation" {
-  type        = string
-  description = "Nom de l'organisation Azure DevOps."
-  nullable    = false
-}
-
-## Seule cette variable est un secret qui ne devrait pas être commit. Les fichiers *.auto.tfvars sont dans le .gitignore de ce repository.
-variable "devops_pat" {
-  type        = string
-  description = "Personal Access Token pour se connecter à Azure DevOps."
   nullable    = false
 }
 
@@ -30,18 +17,6 @@ variable "app_name" {
 variable "region" {
   type        = string
   description = "Région Azure dans laquelle déployer les ressources."
-  nullable    = false
-}
-
-variable "agent_size" {
-  type        = string
-  description = "Nom du SKU pour la VM de l'agent pour DevOps."
-  nullable    = false
-}
-
-variable "agent_ip" {
-  type        = bool
-  description = "Pour déployer une IP publique pour l'agent DevOps afin de s'y connecter en SSH."
   nullable    = false
 }
 
@@ -78,12 +53,6 @@ variable "database_pg_version" {
 variable "database_zone" {
   type        = number
   description = "Availability zone de la base de données."
-  nullable    = false
-}
-
-variable "devops_project_name" {
-  type        = string
-  description = "Nom du projet Azure DevOps."
   nullable    = false
 }
 

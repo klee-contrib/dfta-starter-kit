@@ -3,9 +3,25 @@ variable "organisation" {
   nullable = false
 }
 
+variable "pool_sku_name" {
+  type     = string
+  nullable = false
+}
+
 variable "project_name" {
   type     = string
   nullable = false
+}
+
+variable "region" {
+  type     = string
+  nullable = false
+}
+
+variable "vnet_cidr" {
+  type        = string
+  description = "CIDR pour le VNET pour le pool DevOps."
+  nullable    = false
 }
 
 ## Ces quatre variables doivent être renseignées dans un fichier de variables terraform (terraform.tfvars ou *.auto.tfvars).
