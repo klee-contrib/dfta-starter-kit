@@ -3,7 +3,6 @@ import {useTranslation} from "react-i18next";
 
 import {listFor} from "@focus4/collections";
 import {Panel} from "@focus4/layout";
-import {toFlatValues} from "@focus4/stores";
 
 import {profilStore} from "../../../stores/profil";
 
@@ -15,7 +14,7 @@ export function ProfilUtilisateurs() {
     return useObserver(() => (
         <Panel icon="group" title={t("app.profile.users", {param: profilStore.profil.utilisateurs.length})}>
             {listFor({
-                data: toFlatValues(profilStore.profil.utilisateurs),
+                data: profilStore.profil.utilisateurs.getValues(),
                 itemKey: uti => uti.id,
                 LineComponent: props => <UtilisateurLine {...props} profil />
             })}

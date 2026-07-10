@@ -3,7 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Azure.Core" Version="1.59.0" />
+    <PackageVersion Include="Azure.Core" Version="1.60.0" />
     <PackageVersion Include="Azure.Identity" Version="1.21.0" />
     <PackageVersion Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.5.0" />
     <PackageVersion Include="Azure.Storage.Blobs" Version="12.29.1" />
@@ -15,8 +15,8 @@
     <PackageVersion Include="Kinetix.Services.Annotations" Version="10.0.0" />
     <PackageVersion Include="Kinetix.Tools.Analyzers" Version="1.11.6" />
     <PackageVersion Include="Kinetix.Web" Version="10.0.2" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.112" />
-    <PackageVersion Include="Microsoft.Identity.Web" Version="4.11.0" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.27.0.140913" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.122" />
+    <PackageVersion Include="Microsoft.Identity.Web" Version="4.13.0" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.29.0.143774" />
   </ItemGroup>
 </Project>
