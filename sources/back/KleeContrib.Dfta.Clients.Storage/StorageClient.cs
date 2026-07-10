@@ -17,7 +17,8 @@ public class StorageClient(BlobServiceClient client) : IStorageQueries, IStorage
     /// <inheritdoc cref="IStorageMutations.AddFile" />
     public async Task<string> AddFile(string baseFileName, Stream file, CancellationToken ct = default)
     {
-        var fileName = $"{baseFileName}-{Guid.NewGuid()}";
+        var fileName =
+            $"{Path.GetFileNameWithoutExtension(baseFileName)}-{Guid.NewGuid()}{Path.GetExtension(baseFileName)}";
         await Container.UploadBlobAsync(fileName, file, ct);
         return fileName;
     }

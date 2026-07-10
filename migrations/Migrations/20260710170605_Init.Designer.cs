@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KleeContrib.Dfta.Migrations.Migrations
 {
     [DbContext(typeof(KleeContribDftaDbContext))]
-    [Migration("20251022154132_Init")]
+    [Migration("20260710170605_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.10")
+                .HasAnnotation("ProductVersion", "10.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -243,25 +243,25 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7622),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Libelle = "Profil 1"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7755),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Libelle = "Profil 2"
                         },
                         new
                         {
                             Id = 3,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7756),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Libelle = "Profil 3"
                         },
                         new
                         {
                             Id = 4,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7760),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Libelle = "Profil 4"
                         });
                 });
@@ -344,7 +344,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 1,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(9945),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test1@test.com",
                             Nom = "Jean",
                             Prenom = "Michel",
@@ -355,7 +355,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 2,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(68),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test2@test.com",
                             Nom = "Gerard",
                             Prenom = "Jugnos",
@@ -366,7 +366,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 3,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(72),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test3@test.com",
                             Nom = "Gad",
                             Prenom = "El",
@@ -377,7 +377,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 4,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(74),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test4@test.com",
                             Nom = "Bernard",
                             Prenom = "Bruno",
@@ -388,7 +388,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 5,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(76),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test5@test.com",
                             Nom = "Sisi",
                             Prenom = "Brindacier",
@@ -399,7 +399,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 6,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(78),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test6@test.com",
                             Nom = "Bibi",
                             Prenom = "Baba",
@@ -410,7 +410,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 7,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(80),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test7@test.com",
                             Nom = "Dédé",
                             Prenom = "Dédé",
@@ -421,7 +421,7 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                         {
                             Id = 8,
                             Actif = true,
-                            DateCreation = new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(85),
+                            DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "test8@test.com",
                             Nom = "Ran",
                             Prenom = "Tanplan",

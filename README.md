@@ -4,7 +4,7 @@ Ce starter kit permet d'initialiser une application fullstack avec gestion des s
 
 Il utilise :
 
-- Une API .NET 9, qui utilise quelques modules de [kinetix](https://github.com/klee-contrib/kinetix), avec une base de données PostgreSQL
+- Une API .NET 10, qui utilise quelques modules de [kinetix](https://github.com/klee-contrib/kinetix), avec une base de données PostgreSQL
 - Une application front [focus4](https://github.com/klee-contrib/focus4)
 - Un modèle géré avec [topmodel](https://github.com/klee-contrib/topmodel)
 - Une infrastructure Azure gérée avec Terraform

@@ -2,7 +2,7 @@
 
 ## Application / Language requis
 
-- [Visual Studio 2022 Pro (en incluant l'installation .NET 9)](https://visualstudio.microsoft.com/fr/downloads/)
+- [Visual Studio 2026 (en incluant l'installation .NET 10)](https://visualstudio.microsoft.com/fr/downloads/)
 - [Visual Studio Code](https://code.visualstudio.com/Download)
 - [Installation de Terraform](https://www.terraform.io/downloads)
 - [Installation d'AzureCli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
@@ -13,9 +13,7 @@
 - [Installer Git](https://git-scm.com/download/win) (s'il n'est pas déjà installé)
 - [Installer psql](https://www.postgresql.org/download/windows/)
   > Ajouter ensuite dans la variable d'environnement PATH de windows le chemin pour la commande psql
-- [Installer Azure Data Studio Dev](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
-- Installer l'extension PostgreSQL sur Azure Data Studio (vous pourrez ainsi vous connecter à la base)
-- Installer TopModel, Prettier & Eslint en extension sur VS Code
+- Installer TopModel, Prettier & Oxlint en extension sur VS Code
 
 **Redémarrer le pc**
 

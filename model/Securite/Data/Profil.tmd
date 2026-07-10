@@ -36,10 +36,10 @@ class:
           DateCreation: false
           DateModification: false
   values:
-    Profil1: { Id: 1, Libelle: "Profil 1", DateCreation: now }
-    Profil2: { Id: 2, Libelle: "Profil 2", DateCreation: now }
-    Profil3: { Id: 3, Libelle: "Profil 3", DateCreation: now }
-    Profil4: { Id: 4, Libelle: "Profil 4", DateCreation: now }
+    Profil1: { Id: 1, Libelle: "Profil 1", DateCreation: init }
+    Profil2: { Id: 2, Libelle: "Profil 2", DateCreation: init }
+    Profil3: { Id: 3, Libelle: "Profil 3", DateCreation: init }
+    Profil4: { Id: 4, Libelle: "Profil 4", DateCreation: init }
 ---
 class:
   name: DroitProfil

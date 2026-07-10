@@ -149,10 +149,10 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "pro_id", "pro_date_creation", "pro_date_modification", "pro_libelle" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7622), null, "Profil 1" },
-                    { 2, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7755), null, "Profil 2" },
-                    { 3, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7756), null, "Profil 3" },
-                    { 4, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(7760), null, "Profil 4" }
+                    { 1, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Profil 1" },
+                    { 2, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Profil 2" },
+                    { 3, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Profil 3" },
+                    { 4, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Profil 4" }
                 });
 
             migrationBuilder.InsertData(
@@ -218,14 +218,14 @@ namespace KleeContrib.Dfta.Migrations.Migrations
                 columns: new[] { "uti_id", "uti_actif", "uti_adresse", "uti_date_creation", "uti_date_modification", "uti_date_naissance", "uti_email", "uti_nom", "uti_nom_fichier_photo", "uti_prenom", "pro_id", "tut_code" },
                 values: new object[,]
                 {
-                    { 1, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 631, DateTimeKind.Utc).AddTicks(9945), null, null, "test1@test.com", "Jean", null, "Michel", 1, "ADMIN" },
-                    { 2, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(68), null, null, "test2@test.com", "Gerard", null, "Jugnos", 2, "GEST" },
-                    { 3, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(72), null, null, "test3@test.com", "Gad", null, "El", 3, "CLIENT" },
-                    { 4, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(74), null, null, "test4@test.com", "Bernard", null, "Bruno", 4, "ADMIN" },
-                    { 5, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(76), null, null, "test5@test.com", "Sisi", null, "Brindacier", 1, "GEST" },
-                    { 6, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(78), null, null, "test6@test.com", "Bibi", null, "Baba", 2, "CLIENT" },
-                    { 7, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(80), null, null, "test7@test.com", "Dédé", null, "Dédé", 3, "GEST" },
-                    { 8, true, null, new DateTime(2025, 10, 22, 15, 41, 30, 632, DateTimeKind.Utc).AddTicks(85), null, null, "test8@test.com", "Ran", null, "Tanplan", 4, "ADMIN" }
+                    { 1, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test1@test.com", "Jean", null, "Michel", 1, "ADMIN" },
+                    { 2, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test2@test.com", "Gerard", null, "Jugnos", 2, "GEST" },
+                    { 3, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test3@test.com", "Gad", null, "El", 3, "CLIENT" },
+                    { 4, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test4@test.com", "Bernard", null, "Bruno", 4, "ADMIN" },
+                    { 5, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test5@test.com", "Sisi", null, "Brindacier", 1, "GEST" },
+                    { 6, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test6@test.com", "Bibi", null, "Baba", 2, "CLIENT" },
+                    { 7, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test7@test.com", "Dédé", null, "Dédé", 3, "GEST" },
+                    { 8, true, null, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "test8@test.com", "Ran", null, "Tanplan", 4, "ADMIN" }
                 });
 
             migrationBuilder.InsertData(

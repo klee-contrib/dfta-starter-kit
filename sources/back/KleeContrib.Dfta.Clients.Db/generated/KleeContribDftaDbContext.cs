@@ -12,7 +12,8 @@ namespace KleeContrib.Dfta.Clients.Db;
 /// <summary>
 /// DbContext généré pour Entity Framework Core.
 /// </summary>
-public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDbContext> options) : DbContext(options)
+public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDbContext> options)
+     : DbContext(options)
 {
     /// <summary>
     /// Accès à l'entité Droit.
@@ -89,10 +90,10 @@ public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDb
             new DroitProfil { DroitCode = Droit.Codes.UPDATE, ProfilId = Profil.Profil3Id },
             new DroitProfil { DroitCode = Droit.Codes.DELETE, ProfilId = Profil.Profil4Id });
         modelBuilder.Entity<Profil>().HasData(
-            new Profil { Id = Profil.Profil1Id, Libelle = "Profil 1", DateCreation = DateTime.UtcNow },
-            new Profil { Id = Profil.Profil2Id, Libelle = "Profil 2", DateCreation = DateTime.UtcNow },
-            new Profil { Id = Profil.Profil3Id, Libelle = "Profil 3", DateCreation = DateTime.UtcNow },
-            new Profil { Id = Profil.Profil4Id, Libelle = "Profil 4", DateCreation = DateTime.UtcNow });
+            new Profil { Id = Profil.Profil1Id, Libelle = "Profil 1", DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Profil { Id = Profil.Profil2Id, Libelle = "Profil 2", DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Profil { Id = Profil.Profil3Id, Libelle = "Profil 3", DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Profil { Id = Profil.Profil4Id, Libelle = "Profil 4", DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) });
         modelBuilder.Entity<TypeDroit>().HasData(
             new TypeDroit { Code = TypeDroit.Codes.READ, Libelle = "securite.typeDroit.values.Read" },
             new TypeDroit { Code = TypeDroit.Codes.WRITE, Libelle = "securite.typeDroit.values.Write" },
@@ -102,14 +103,14 @@ public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDb
             new TypeUtilisateur { Code = TypeUtilisateur.Codes.GEST, Libelle = "securite.typeUtilisateur.values.Gestionnaire" },
             new TypeUtilisateur { Code = TypeUtilisateur.Codes.CLIENT, Libelle = "securite.typeUtilisateur.values.Client" });
         modelBuilder.Entity<Utilisateur>().HasData(
-            new Utilisateur { Id = Utilisateur.User1Id, Nom = "Jean", Prenom = "Michel", Actif = true, ProfilId = Profil.Profil1Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User1Email, DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = Utilisateur.User2Id, Nom = "Gerard", Prenom = "Jugnos", Actif = true, ProfilId = Profil.Profil2Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User2Email, DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = Utilisateur.User3Id, Nom = "Gad", Prenom = "El", Actif = true, ProfilId = Profil.Profil3Id, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = Utilisateur.User3Email, DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = Utilisateur.User4Id, Nom = "Bernard", Prenom = "Bruno", Actif = true, ProfilId = Profil.Profil4Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User4Email, DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = Utilisateur.User5Id, Nom = "Sisi", Prenom = "Brindacier", Actif = true, ProfilId = Profil.Profil1Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User5Email, DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = Utilisateur.User6Id, Nom = "Bibi", Prenom = "Baba", Actif = true, ProfilId = Profil.Profil2Id, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = Utilisateur.User6Email, DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = Utilisateur.User7Id, Nom = "Dédé", Prenom = "Dédé", Actif = true, ProfilId = Profil.Profil3Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User7Email, DateCreation = DateTime.UtcNow },
-            new Utilisateur { Id = Utilisateur.User8Id, Nom = "Ran", Prenom = "Tanplan", Actif = true, ProfilId = Profil.Profil4Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User8Email, DateCreation = DateTime.UtcNow });
+            new Utilisateur { Id = Utilisateur.User1Id, Nom = "Jean", Prenom = "Michel", Actif = true, ProfilId = Profil.Profil1Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User1Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Utilisateur { Id = Utilisateur.User2Id, Nom = "Gerard", Prenom = "Jugnos", Actif = true, ProfilId = Profil.Profil2Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User2Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Utilisateur { Id = Utilisateur.User3Id, Nom = "Gad", Prenom = "El", Actif = true, ProfilId = Profil.Profil3Id, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = Utilisateur.User3Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Utilisateur { Id = Utilisateur.User4Id, Nom = "Bernard", Prenom = "Bruno", Actif = true, ProfilId = Profil.Profil4Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User4Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Utilisateur { Id = Utilisateur.User5Id, Nom = "Sisi", Prenom = "Brindacier", Actif = true, ProfilId = Profil.Profil1Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User5Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Utilisateur { Id = Utilisateur.User6Id, Nom = "Bibi", Prenom = "Baba", Actif = true, ProfilId = Profil.Profil2Id, TypeUtilisateurCode = TypeUtilisateur.Codes.CLIENT, Email = Utilisateur.User6Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Utilisateur { Id = Utilisateur.User7Id, Nom = "Dédé", Prenom = "Dédé", Actif = true, ProfilId = Profil.Profil3Id, TypeUtilisateurCode = TypeUtilisateur.Codes.GEST, Email = Utilisateur.User7Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) },
+            new Utilisateur { Id = Utilisateur.User8Id, Nom = "Ran", Prenom = "Tanplan", Actif = true, ProfilId = Profil.Profil4Id, TypeUtilisateurCode = TypeUtilisateur.Codes.ADMIN, Email = Utilisateur.User8Email, DateCreation = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc) });
 
         AddFrFRResources(modelBuilder);
         AddEnUSResources(modelBuilder);

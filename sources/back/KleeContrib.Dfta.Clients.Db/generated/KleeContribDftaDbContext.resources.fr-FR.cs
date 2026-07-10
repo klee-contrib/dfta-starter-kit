@@ -10,7 +10,7 @@ namespace KleeContrib.Dfta.Clients.Db;
 /// <summary>
 /// Partial pour ajouter les traductions dans EF.
 /// </summary>
-public partial class KleeContribDftaDbContext : DbContext
+public partial class KleeContribDftaDbContext
 {
     partial void AddFrFRResources(ModelBuilder modelBuilder)
     {

@@ -62,6 +62,7 @@ domain:
       template: DateTime.Parse("{value}")
       overrides:
         now: DateTime.UtcNow
+        init: new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc)
 ---
 domain:
   name: DO_EMAIL
