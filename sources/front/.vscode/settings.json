@@ -1,9 +1,38 @@
 {
-    "js/ts.tsdk.path": "./node_modules/typescript7",
-    "editor.snippetSuggestions": "bottom",
-    "files.trimTrailingWhitespace": true,
-    "editor.formatOnSave": true,
+    "css.lint.emptyRules": "ignore",
     "editor.codeActionsOnSave": {
         "source.fixAll.oxc": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.snippetSuggestions": "bottom",
+    "files.trimTrailingWhitespace": true,
+    "js/ts.tsdk.path": "./node_modules/typescript",
+
+    "[css]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
     }
 }

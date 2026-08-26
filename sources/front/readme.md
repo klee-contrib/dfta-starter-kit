@@ -4,5 +4,5 @@ Cette application reprend le [starter kit Focus v4](https://github.com/klee-cont
 
 Liens utiles :
 
--   [Doc Focus](https://klee-contrib.github.io/focus4)
--   [Github Focus](https://github.com/klee-contrib/focus4)
+- [Doc Focus](https://klee-contrib.github.io/focus4)
+- [Github Focus](https://github.com/klee-contrib/focus4)

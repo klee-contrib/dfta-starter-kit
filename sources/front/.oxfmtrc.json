@@ -1,0 +1,37 @@
+{
+    "bracketSpacing": false,
+    "trailingComma": "none",
+    "arrowParens": "avoid",
+    "endOfLine": "crlf",
+    "tabWidth": 4,
+    "printWidth": 120,
+    "ignorePatterns": ["src/model", "src/locale/*/*.ts", "src/services", "**/*.css.d.ts"],
+    "sortImports": {
+        "customGroups": [
+            {
+                "groupName": "focus",
+                "elementNamePattern": ["@focus4/*"]
+            },
+            {
+                "groupName": "common",
+                "elementNamePattern": ["**/model/**", "**/services/**", "**/stores/**"]
+            },
+            {
+                "groupName": "css",
+                "elementNamePattern": ["**/*.css", "**/*.css.d.ts"]
+            }
+        ],
+        "groups": [
+            ["builtin", "external"],
+            "focus",
+            "common",
+            ["internal", "subpath"],
+            "parent",
+            ["sibling", "index"],
+            "css"
+        ]
+    },
+    "sortPackageJson": {
+        "sortScripts": true
+    }
+}

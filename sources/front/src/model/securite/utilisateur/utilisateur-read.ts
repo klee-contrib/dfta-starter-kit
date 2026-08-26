@@ -11,7 +11,7 @@ export type UtilisateurRead = EntityToType<UtilisateurReadEntityType>;
 export type UtilisateurReadEntityType = typeof UtilisateurReadEntity;
 
 export const UtilisateurReadEntity = entity({
-    id: e.field(DO_ID, f => f.optional()
+    id: e.field(DO_ID, f => f
         .label("securite.utilisateur.utilisateur.id")
     ),
     nom: e.field(DO_LIBELLE, f => f

@@ -12,7 +12,7 @@ export type ProfilRead = EntityToType<ProfilReadEntityType>;
 export type ProfilReadEntityType = typeof ProfilReadEntity;
 
 export const ProfilReadEntity = entity({
-    id: e.field(DO_ID, f => f.optional()
+    id: e.field(DO_ID, f => f
         .label("securite.profil.profil.id")
     ),
     libelle: e.field(DO_LIBELLE, f => f

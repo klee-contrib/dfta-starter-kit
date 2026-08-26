@@ -39,14 +39,14 @@ public class UtilisateurController(IUtilisateurCommands commands, IUtilisateurQu
     /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Task.</returns>
     [HttpPut("api/utilisateurs/{utiId:int}/photo")]
-    public async Task AddUtilisateurPhoto(int utiId, [Required] IFormFile? photo = null, CancellationToken ct = default)
+    public async Task AddUtilisateurPhoto(int utiId, [Required] IFormFile? photo, CancellationToken ct = default)
     {
         if (photo!.ContentType != "image/jpeg")
         {
             throw new BusinessException("Seules les images au format *.jpg sont autorisées.");
         }
 
-        using var file = photo!.OpenReadStream();
+        await using var file = photo.OpenReadStream();
         await commands.AddUtilisateurPhoto(utiId, photo.FileName, file, ct);
     }
 

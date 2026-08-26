@@ -9,7 +9,7 @@ export type ProfilItem = EntityToType<ProfilItemEntityType>;
 export type ProfilItemEntityType = typeof ProfilItemEntity;
 
 export const ProfilItemEntity = entity({
-    id: e.field(DO_ID, f => f.optional()
+    id: e.field(DO_ID, f => f
         .label("securite.profil.profil.id")
     ),
     libelle: e.field(DO_LIBELLE, f => f

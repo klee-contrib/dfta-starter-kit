@@ -11,7 +11,7 @@ export type UtilisateurItem = EntityToType<UtilisateurItemEntityType>;
 export type UtilisateurItemEntityType = typeof UtilisateurItemEntity;
 
 export const UtilisateurItemEntity = entity({
-    id: e.field(DO_ID, f => f.optional()
+    id: e.field(DO_ID, f => f
         .label("securite.utilisateur.utilisateur.id")
     ),
     nom: e.field(DO_LIBELLE, f => f
