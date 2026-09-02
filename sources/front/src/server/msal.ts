@@ -18,13 +18,16 @@ export const config = {
 
 let msal: PublicClientApplication;
 
+const redirectUri = `${window.location.origin}${window.location.pathname}redirect`;
+
 export async function ensureSignedIn() {
     if (!msal) {
         msal = new PublicClientApplication({
             auth: {
                 clientId: config.clientId,
                 authority: `https://login.microsoftonline.com/${config.tenantId}`,
-                redirectUri: window.location.origin + window.location.pathname
+                redirectUri,
+                postLogoutRedirectUri: redirectUri
             },
             cache: {
                 cacheLocation: "localStorage"

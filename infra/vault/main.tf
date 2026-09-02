@@ -5,8 +5,9 @@ resource "azurerm_key_vault" "vault" {
   name                = "${var.app_name}-vault-${terraform.workspace}"
   location            = var.region
 
-  sku_name  = "standard"
-  tenant_id = data.azurerm_client_config.current.tenant_id
+  sku_name                   = "standard"
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  rbac_authorization_enabled = false
 }
 
 resource "azurerm_key_vault_access_policy" "terraform" {

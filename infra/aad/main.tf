@@ -41,7 +41,7 @@ resource "azuread_application" "front" {
   }
 
   single_page_application {
-    redirect_uris = ["http://localhost/", "https://${var.front_url}/"]
+    redirect_uris = ["http://localhost/redirect", "https://${var.front_url}/redirect"]
   }
 
   required_resource_access {

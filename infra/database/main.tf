@@ -11,19 +11,17 @@ resource "azurerm_private_dns_zone" "dns_zone" {
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "link" {
-  name                  = "vnet"
-  private_dns_zone_name = azurerm_private_dns_zone.dns_zone.name
-  virtual_network_id    = var.vnet_id
-  resource_group_name   = var.rg_name
-  registration_enabled  = true
+  name                 = "vnet"
+  private_dns_zone_id  = azurerm_private_dns_zone.dns_zone.id
+  virtual_network_id   = var.vnet_id
+  registration_enabled = true
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "devops_link" {
-  name                  = "devops-vnet"
-  private_dns_zone_name = azurerm_private_dns_zone.dns_zone.name
-  virtual_network_id    = var.devops_vnet_id
-  resource_group_name   = var.rg_name
-  registration_enabled  = true
+  name                 = "devops-vnet"
+  private_dns_zone_id  = azurerm_private_dns_zone.dns_zone.id
+  virtual_network_id   = var.devops_vnet_id
+  registration_enabled = true
 }
 
 resource "azurerm_postgresql_flexible_server" "database" {

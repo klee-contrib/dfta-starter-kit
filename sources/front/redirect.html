@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Connexion en cours...</title>
+    </head>
+    <body>
+        <script type="module">
+            import {broadcastResponseToMainFrame} from "@azure/msal-browser/redirect-bridge";
+
+            broadcastResponseToMainFrame().catch(error => {
+                console.error("Error broadcasting response:", error);
+            });
+        </script>
+    </body>
+</html>
