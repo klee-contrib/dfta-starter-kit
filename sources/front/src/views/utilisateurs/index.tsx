@@ -1,4 +1,4 @@
-import {useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
@@ -12,11 +12,11 @@ import {Header} from "../header";
 import {UtilisateurDetail} from "./detail";
 import {UtilisateurList} from "./list";
 
-export function Utilisateurs() {
+export const Utilisateurs = observer(function Utilisateurs() {
     const {t} = useTranslation();
 
     const [utiCreation, setUtiCreation] = useState(false);
-    return useObserver(() => (
+    return (
         <>
             <Header
                 icon="group"
@@ -55,5 +55,5 @@ export function Utilisateurs() {
                 </>
             )}
         </>
-    ));
-}
+    );
+});

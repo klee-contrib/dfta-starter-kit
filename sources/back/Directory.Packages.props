@@ -15,8 +15,8 @@
     <PackageVersion Include="Kinetix.Services.Annotations" Version="10.0.0" />
     <PackageVersion Include="Kinetix.Tools.Analyzers" Version="1.11.6" />
     <PackageVersion Include="Kinetix.Web" Version="10.0.3" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.200" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.259" />
     <PackageVersion Include="Microsoft.Identity.Web" Version="4.14.2" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.33.0.1635" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.34.0.3385" />
   </ItemGroup>
 </Project>

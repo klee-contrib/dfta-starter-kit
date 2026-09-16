@@ -1,4 +1,4 @@
-import {useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 
 import {toBem} from "@focus4/styling";
 import {FontIcon, Ripple} from "@focus4/toolbox";
@@ -12,8 +12,14 @@ import css from "./__style__/line.css";
 
 const theme = toBem(css);
 
-export function UtilisateurLine({data, profil}: {data: UtilisateurItem; profil?: boolean}) {
-    return useObserver(() => (
+export const UtilisateurLine = observer(function UtilisateurLine({
+    data,
+    profil
+}: {
+    data: UtilisateurItem;
+    profil?: boolean;
+}) {
+    return (
         <Ripple>
             <a className={theme.line({profil})} href={router.href(x => x("utilisateurs")(data.id!))}>
                 <FontIcon className={theme.icon()}>person</FontIcon>
@@ -28,5 +34,5 @@ export function UtilisateurLine({data, profil}: {data: UtilisateurItem; profil?:
                 </div>
             </a>
         </Ripple>
-    ));
-}
+    );
+});

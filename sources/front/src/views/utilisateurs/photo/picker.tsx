@@ -1,4 +1,4 @@
-import {useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 import {useId, useState} from "react";
 import {useTranslation} from "react-i18next";
 
@@ -8,7 +8,7 @@ import {Dialog} from "@focus4/layout";
 
 import css from "./__style__/photo.css";
 
-export function PhotoPicker({
+export const PhotoPicker = observer(function PhotoPicker({
     active,
     close,
     onPick
@@ -22,7 +22,7 @@ export function PhotoPicker({
     const [photoFile, setPhotoFile] = useState<File>();
     const [photo, setPhoto] = useState<string>();
 
-    return useObserver(() => (
+    return (
         <Dialog
             actions={[
                 {
@@ -68,5 +68,5 @@ export function PhotoPicker({
                 {photo ? <img alt={t("app.user.picture.title")} src={photo} /> : null}
             </div>
         </Dialog>
-    ));
-}
+    );
+});

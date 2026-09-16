@@ -1,4 +1,4 @@
-import {useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 import {useTranslation} from "react-i18next";
 
 import {Dialog, Layout} from "@focus4/layout";
@@ -17,9 +17,9 @@ import "@focus4/styling/lib/focus4.styling.css";
 import "@focus4/toolbox/lib/focus4.toolbox.css";
 import "../main.css";
 
-export function Main() {
+export const Main = observer(function Main() {
     const {t} = useTranslation();
-    return useObserver(() => (
+    return (
         <Layout menu={<StarterMenu />}>
             {(() => {
                 switch (router.get()) {
@@ -52,5 +52,5 @@ export function Main() {
                 {t("app.confirm.text")}
             </Dialog>
         </Layout>
-    ));
-}
+    );
+});

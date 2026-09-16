@@ -1,4 +1,4 @@
-import {useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 import {ReactNode} from "react";
 import {useTranslation} from "react-i18next";
 import z from "zod";
@@ -17,7 +17,7 @@ import css from "./__style__/header.css";
 
 const theme = toBem(css);
 
-export function Header({
+export const Header = observer(function Header({
     children,
     icon,
     paramResolver
@@ -28,7 +28,7 @@ export function Header({
 }) {
     const {i18n} = useTranslation();
 
-    return useObserver(() => (
+    return (
         <HeaderScrolling theme={{scrolling: theme.header()}}>
             <HeaderTopRow>
                 <HeaderItem theme={{item: theme.item()}}>
@@ -69,5 +69,5 @@ export function Header({
             </HeaderTopRow>
             {children}
         </HeaderScrolling>
-    ));
-}
+    );
+});

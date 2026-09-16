@@ -1,4 +1,4 @@
-import {useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 import {ZodArray, ZodString} from "zod";
 
 import {SelectChips} from "@focus4/form-toolbox";
@@ -14,7 +14,7 @@ import {referenceStore} from "../../../stores/references";
 import {DO_ENTIER} from "../../../domains";
 import {router} from "../../../router";
 
-export function ProfilInfos() {
+export const ProfilInfos = observer(function ProfilInfos() {
     const entity = useFormNode(profilStore.profil, e =>
         e
             .patchAllTo(ProfilWriteEntity)
@@ -52,7 +52,7 @@ export function ProfilInfos() {
 
     useReferenceTracking(actions.trackingId, referenceStore, "droit");
 
-    return useObserver(() => (
+    return (
         <Form {...actions.formProps}>
             <Panel icon="settings" title="app.profile.detail" {...actions.panelProps}>
                 {fieldFor(entity.libelle)}
@@ -64,5 +64,5 @@ export function ProfilInfos() {
                     : null}
             </Panel>
         </Form>
-    ));
-}
+    );
+});

@@ -1,5 +1,5 @@
 import {autorun} from "mobx";
-import {useObserver} from "mobx-react";
+import {observer} from "mobx-react";
 import {useEffect, useId, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {ZodString} from "zod";
@@ -35,7 +35,7 @@ import {getPhoto} from "./photo/utils";
 
 import css from "./__style__/detail.css";
 
-export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
+export const UtilisateurDetail = observer(function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
     const {t} = useTranslation();
 
     const [photoDialogActive, setPhotoDialogActive] = useState(false);
@@ -100,7 +100,7 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
         []
     );
 
-    return useObserver(() => (
+    return (
         <Form {...actions.formProps}>
             <Panel
                 title={t(actions.params ? "app.user.detail.consult" : "app.user.detail.create")}
@@ -162,5 +162,5 @@ export function UtilisateurDetail({closePopin}: {closePopin?: () => void}) {
                 Vous pourrez en re-télécharger une par la suite.
             </Dialog>
         </Form>
-    ));
-}
+    );
+});
