@@ -1,5 +1,4 @@
-organisation = "klee-focus"
 pool_sku_name = "Standard_B1s"
-project_name = "DFTA"
-region       = "francecentral"
-vnet_cidr    = "10.1.1.0/24"
+project_name  = "DFTA"
+region        = "francecentral"
+vnet_cidr     = "10.1.1.0/24"
