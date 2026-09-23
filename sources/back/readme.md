@@ -1,7 +1,6 @@
 # Applicatif back
 
-Il s'agit d'une application ASP.NET Core (10) avec Entity Framework Core (10).
+Le back est une API ASP.NET Core utilisant Entity Framework Core et PostgreSQL.
 
-Quelques modules utilitaires open-source développés en interne (Kinetix) peuvent être utilisés pour certaines fonctionnalités précises en plus.
+Elle utilise également des modules de [Kinetix](https://github.com/klee-contrib/kinetix) pour certaines fonctionnalités.
 
-[Kinetix](https://github.com/klee-contrib/kinetix)
