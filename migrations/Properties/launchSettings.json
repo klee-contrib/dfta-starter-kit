@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Migrations": {
+      "commandName": "Project",
+      "commandLineArgs": "--reset if-impossible",
+      "environmentVariables": {
+        "Database__Server": "localhost",
+        "Database__User_Id": "root",
+        "Database__Password": "root5432",
+        "Database__Ssl_Mode": "Disable",
+
+        "AppUserId": "dfta-api-local"
+      }
+    }
+  }
+}

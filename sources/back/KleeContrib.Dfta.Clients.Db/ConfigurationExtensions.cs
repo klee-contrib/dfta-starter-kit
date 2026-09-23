@@ -1,9 +1,11 @@
-﻿namespace KleeContrib.Dfta.Api;
+﻿using Microsoft.Extensions.Configuration;
+
+namespace KleeContrib.Dfta.Clients.Db;
 
 /// <summary>
-/// Cool.
+/// Extensions de configuration pour construire le connection string de la base de données.
 /// </summary>
-public static class Extensions
+public static class ConfigurationExtensions
 {
     /// <summary>
     /// Reconstruit le connection string à partir de la config dans "Database".

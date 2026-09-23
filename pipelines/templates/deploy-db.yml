@@ -12,6 +12,10 @@ jobs:
     variables:
       database-server: dfta-db-${{parameters.env}}.postgres.database.azure.com
       database-name: kleecontrib_dfta
+      ${{if eq(parameters.pipeline, 'current')}}:
+        workingDirectory: $(Pipeline.Workspace)/DB
+      ${{else}}:
+        workingDirectory: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB
 
     pool: klee-focus-dfta-pool
     workspace:
@@ -40,46 +44,12 @@ jobs:
         displayName: Download DB
         artifact: DB
 
-      - ${{if ne(parameters.reset_db, 'yes')}}:
-          - task: ShellScript@2
-            displayName: Check migrations
-            continueOnError: ${{eq(parameters.reset_db, 'optional')}}
-            env:
-              database_server: $(database-server)
-              database_name: $(database-name)
-              database_admin_userid: $(database-admin-userid)
-              database_admin_secret: $(database-admin-secret)
-            inputs:
-              ${{if eq(parameters.pipeline, 'current')}}:
-                scriptPath: $(Pipeline.Workspace)/DB/check-migrations.sh
-                workingDirectory: $(Pipeline.Workspace)/DB
-              ${{else}}:
-                scriptPath: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB/check-migrations.sh
-                workingDirectory: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB
-
-      - task: ShellScript@2
-        displayName: Recreate ${{parameters.env}}
-        condition: or(eq(variables['Agent.JobStatus'], 'SucceededWithIssues'), ${{eq(parameters.reset_db, 'yes')}})
+      - script: chmod u+x KleeContrib.Dfta.Migrations && ./KleeContrib.Dfta.Migrations --reset ${{parameters.reset_db}}
+        displayName: Run Migrations
+        workingDirectory: $(workingDirectory)
         env:
-          database_server: $(database-server)
-          database_name: $(database-name)
-          database_admin_userid: $(database-admin-userid)
-          database_admin_secret: $(database-admin-secret)
-          database_app_userid: dfta-api-${{parameters.env}}
-        inputs:
-          ${{if eq(parameters.pipeline, 'current')}}:
-            scriptPath: $(Pipeline.Workspace)/DB/recreate-db.sh
-          ${{else}}:
-            scriptPath: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB/recreate-db.sh
-
-      - script: chmod u+x efbundle && ./efbundle
-        displayName: Update ${{parameters.env}}
-        ${{if eq(parameters.pipeline, 'current')}}:
-          workingDirectory: $(Pipeline.Workspace)/DB
-        ${{else}}:
-          workingDirectory: $(Pipeline.Workspace)/${{parameters.pipeline}}/DB
-        env:
-          database_server: $(database-server)
-          database_name: $(database-name)
-          database_admin_userid: $(database-admin-userid)
-          database_admin_secret: $(database-admin-secret)
+          Database__Server: $(database-server)
+          Database__Database: $(database-name)
+          Database__User_Id: $(database-admin-userid)
+          Database__Password: $(database-admin-secret)
+          AppUserId: dfta-api-${{parameters.env}}

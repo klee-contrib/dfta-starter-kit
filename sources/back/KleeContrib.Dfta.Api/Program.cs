@@ -10,7 +10,6 @@ using Kinetix.Monitoring.Core;
 using Kinetix.Services;
 using Kinetix.Web;
 using Kinetix.Web.Filters;
-using KleeContrib.Dfta.Api;
 using KleeContrib.Dfta.Clients.Db;
 using KleeContrib.Dfta.Clients.Db.Securite.Profils;
 using KleeContrib.Dfta.Clients.Storage;

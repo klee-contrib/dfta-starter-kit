@@ -22,4 +22,4 @@ jobs:
       env: ${{parameters.env}}
       version: $(resources.pipeline.CI.runName)
       pipeline: CI
-      reset_db: yes
+      reset_db: true

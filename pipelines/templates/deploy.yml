@@ -42,7 +42,7 @@ stages:
           pipeline: ${{parameters.pipeline}}
           version: ${{parameters.version}}
           ${{if eq(parameters.env, 'dev')}}:
-            reset_db: optional
+            reset_db: if-impossible
           ${{else}}:
             reset_db: no
 

@@ -37,7 +37,6 @@ stages:
                 inputs:
                   command: publish
                   publishWebProjects: false
-                  zipAfterPublish: true
                   projects: sources/back/KleeContrib.Dfta.Api/KleeContrib.Dfta.Api.csproj
                   arguments: -o $(Build.ArtifactStagingDirectory)/API /p:Version=$(Build.BuildNumber)
 
@@ -45,43 +44,23 @@ stages:
                 displayName: Publish Artifact
                 artifact: API
 
-          - script: dotnet tool install -g dotnet-ef
-            displayName: dotnet install dotnet-ef
-
-          - script: dotnet ef migrations bundle --no-build --configuration Release -o $(Build.ArtifactStagingDirectory)/DB/efbundle 
-            displayName: Migration Bundle
-            workingDirectory: migrations
-
-          - ${{if eq(parameters.publish, true)}}:
-              - task: CopyFiles@2
-                displayName: Copy recreate script
+              - task: DotNetCoreCLI@2
+                displayName: Publish Migrations
                 inputs:
-                  Contents: migrations/recreate-db.sh
-                  TargetFolder: $(Build.ArtifactStagingDirectory)/DB
-                  flattenFolders: true
+                  command: publish
+                  publishWebProjects: false
+                  zipAfterPublish: false
+                  projects: migrations/KleeContrib.Dfta.Migrations.csproj
+                  arguments: -o $(Build.ArtifactStagingDirectory)/DB
 
-              - task: CopyFiles@2
-                displayName: Copy check script
-                inputs:
-                  Contents: migrations/check-migrations.sh
-                  TargetFolder: $(Build.ArtifactStagingDirectory)/DB
-                  flattenFolders: true
-
-              - task: CopyFiles@2
-                displayName: Copy migration files
-                inputs:
-                  Contents: migrations/Migrations/**
-                  TargetFolder: $(Build.ArtifactStagingDirectory)/DB/Migrations
-                  flattenFolders: true
-
-              - publish: $(Build.ArtifactStagingDirectory)/DB
+              - publish: $(Build.ArtifactStagingDirectory)/DB/migrations
                 displayName: Publish DB Artifact
                 artifact: DB
 
           - task: UseNode@1
-            displayName: Use Node 22
+            displayName: Use Node 26
             inputs:
-              version: 22.x
+              version: 26.x
 
           - task: Npm@1
             displayName: npm install
