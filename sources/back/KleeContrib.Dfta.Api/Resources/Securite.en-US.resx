@@ -123,6 +123,15 @@
   <data name="securite.droit.libelle" xml:space="preserve">
     <value>Droit</value>
   </data>
+  <data name="securite.droit.typeDroitCode" xml:space="preserve">
+    <value>TypeDroitCode</value>
+  </data>
+  <data name="securite.profil.droitProfil.droitCode" xml:space="preserve">
+    <value>DroitCode</value>
+  </data>
+  <data name="securite.profil.droitProfil.profilId" xml:space="preserve">
+    <value>ProfilId</value>
+  </data>
   <data name="securite.profil.profil.id" xml:space="preserve">
     <value>Profile technical ID</value>
   </data>
@@ -132,11 +141,23 @@
   <data name="securite.profil.profilItem.nombreUtilisateurs" xml:space="preserve">
     <value>Affected users</value>
   </data>
+  <data name="securite.profil.profilRead.utilisateurs" xml:space="preserve">
+    <value>Utilisateurs</value>
+  </data>
   <data name="securite.typeDroit.code" xml:space="preserve">
     <value>Right type</value>
   </data>
+  <data name="securite.typeDroit.libelle" xml:space="preserve">
+    <value>Libelle</value>
+  </data>
   <data name="securite.typeUtilisateur.code" xml:space="preserve">
     <value>User type</value>
+  </data>
+  <data name="securite.typeUtilisateur.libelle" xml:space="preserve">
+    <value>Libelle</value>
+  </data>
+  <data name="securite.utilisateur.utilisateur.actif" xml:space="preserve">
+    <value>Actif</value>
   </data>
   <data name="securite.utilisateur.utilisateur.adresse" xml:space="preserve">
     <value>Address</value>
@@ -149,6 +170,9 @@
   </data>
   <data name="securite.utilisateur.utilisateur.id" xml:space="preserve">
     <value>echnical ID</value>
+  </data>
+  <data name="securite.utilisateur.utilisateur.nom" xml:space="preserve">
+    <value>Nom</value>
   </data>
   <data name="securite.utilisateur.utilisateur.nomFichierPhoto" xml:space="preserve">
     <value>Picture</value>

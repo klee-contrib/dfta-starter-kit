@@ -56,6 +56,8 @@ public partial class KleeContribDftaDbContext(DbContextOptions<KleeContribDftaDb
     /// <param name="modelBuilder">L'objet de construction du modèle.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Droit>().Property(p => p.Code).HasConversion<string>().HasMaxLength(10);
         modelBuilder.Entity<Droit>().Property(p => p.TypeDroitCode).HasConversion<string>().HasMaxLength(10);
         modelBuilder.Entity<DroitProfil>().Property(p => p.DroitCode).HasConversion<string>().HasMaxLength(10);

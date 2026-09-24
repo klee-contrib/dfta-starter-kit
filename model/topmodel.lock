@@ -5,11 +5,11 @@
 version: 4.8.3
 modules:
   csharp:
-    version: 4.4.0
-    hash: 4c29977b3d98aa655d6fe2386e66ff45
-  javascript:
     version: 4.5.0
-    hash: bbaba0202fa35c36f93d5b49a2c9e68f
+    hash: 5eefb9d574ca4e82652b20f0cfa8e52b
+  javascript:
+    version: 4.5.1
+    hash: 29712f607b12d2d17e6aab7b948c7166
   translation:
     version: 4.0.0
     hash: dbcafbde1bbad53f2de5c796751fd9c2

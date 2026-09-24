@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="common.criteria.query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="common.criteria.searchFields" xml:space="preserve">
+    <value>SearchFields</value>
+  </data>
+  <data name="common.criteria.sourceFields" xml:space="preserve">
+    <value>SourceFields</value>
+  </data>
   <data name="common.entityListeners.dateCreation" xml:space="preserve">
     <value>Date de création</value>
   </data>
   <data name="common.entityListeners.dateModification" xml:space="preserve">
     <value>Date de modification</value>
+  </data>
+  <data name="common.traduction.label" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="common.traduction.locale" xml:space="preserve">
+    <value>Locale</value>
+  </data>
+  <data name="common.traduction.resourceKey" xml:space="preserve">
+    <value>ResourceKey</value>
   </data>
 </root>
