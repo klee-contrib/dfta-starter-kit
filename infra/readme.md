@@ -7,6 +7,7 @@ Ce code Terraform crée les ressources suivantes :
 - Un Azure App Service pour le back
 - Une Azure Static Web App pour le front (avec l'App Service configuré comme API)
 - Une base de données Azure Database for PostgreSQL avec accès privé depuis l'App Service
+- Un compte de stockage Azure Storage pour la gestion documentaire de l'application
 - Un Azure Key Vault pour les secrets
 - Un Azure Application Insights pour les logs applicatifs
 - Un projet Azure DevOps et une connexion de service pour accéder aux ressources Azure
