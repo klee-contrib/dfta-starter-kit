@@ -85,7 +85,11 @@ resource "azurerm_managed_devops_pool" "pool" {
     os_disk_storage_account_type = "StandardSSD"
 
     image {
-      well_known_image_name = "ubuntu-24.04-g2/latest"
+      aliases = [
+        "ubuntu-24.04-g2/latest",
+        "ubuntu-24.04-g2"
+      ]
+      well_known_image_name = "ubuntu-24.04-g2"
     }
 
     storage {

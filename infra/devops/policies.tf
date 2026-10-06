@@ -56,7 +56,7 @@ resource "azuredevops_branch_policy_build_validation" "main" {
     display_name        = "PR"
     build_definition_id = azuredevops_build_definition.pipelines["PR"].id
     valid_duration      = 720
-    filename_patterns   = ["/sources", "/migrations"]
+    filename_patterns   = ["/sources/**", "/migrations/**"]
 
     scope {
       repository_id  = data.azuredevops_git_repository.default.id
