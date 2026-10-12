@@ -41,7 +41,7 @@ export const Header = observer(function Header({
                     <FontIcon>{icon}</FontIcon>
                     <FilAriane paramResolver={paramResolver} router={router} />
                 </HeaderItem>
-                <HeaderItem theme={{item: theme.item({user: true})}}>
+                <HeaderItem theme={{item: theme.item()}}>
                     <strong>{userStore.login}</strong>
                     <IconButton className={css.button} icon="account_circle" onClick={signOut} />
                     <Dropdown

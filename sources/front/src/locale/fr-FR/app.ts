@@ -43,7 +43,11 @@ export const app = {
     },
     profile: {
         maxUsers: "Nombre d'utilisateurs maximal",
+        budget: "Budget",
         detail: "Informations",
         users: "Utilisateurs ({{param}})"
+    },
+    validation: {
+        amount: "Montant invalide"
     }
 };

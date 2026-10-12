@@ -15,33 +15,33 @@
         "start": "vite"
     },
     "dependencies": {
-        "@azure/msal-browser": "5.22.0",
-        "@focus4/collections": "12.13.3",
+        "@azure/msal-browser": "5.25.0",
+        "@focus4/collections": "12.14.0",
         "@focus4/core": "12.11.3",
         "@focus4/entities": "12.13.0",
-        "@focus4/form-toolbox": "12.13.3",
-        "@focus4/forms": "12.13.2",
-        "@focus4/layout": "12.11.10",
-        "@focus4/stores": "12.13.2",
+        "@focus4/form-toolbox": "12.14.0",
+        "@focus4/forms": "12.14.0",
+        "@focus4/layout": "12.11.13",
+        "@focus4/stores": "12.14.0",
         "@focus4/styling": "12.11.2",
-        "@focus4/toolbox": "12.11.5",
+        "@focus4/toolbox": "12.11.7",
         "es-toolkit": "1.52.0",
-        "i18next": "26.4.2",
+        "i18next": "26.4.4",
         "luxon": "3.7.2",
         "mobx": "6.16.1",
         "mobx-react": "9.2.2",
         "react": "19.3.0",
         "react-dom": "19.3.0",
-        "react-i18next": "17.0.14",
-        "zod": "4.6.5"
+        "react-i18next": "17.0.16",
+        "zod": "4.6.6"
     },
     "devDependencies": {
         "@focus4/tooling": "12.13.2",
-        "@vitejs/plugin-react": "6.1.1",
-        "oxfmt": "0.68.0",
-        "oxlint": "1.83.0",
+        "@vitejs/plugin-react": "6.1.2",
+        "oxfmt": "0.72.0",
+        "oxlint": "1.87.0",
         "typescript": "7.0.2",
-        "vite": "8.3.0",
+        "vite": "8.3.4",
         "vite-plugin-checker": "0.14.5"
     }
 }

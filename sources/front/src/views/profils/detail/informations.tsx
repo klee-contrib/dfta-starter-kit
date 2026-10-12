@@ -11,7 +11,7 @@ import {getProfil, updateProfil} from "../../../services/securite/profil";
 import {profilStore} from "../../../stores/profil";
 import {referenceStore} from "../../../stores/references";
 
-import {DO_ENTIER} from "../../../domains";
+import {DO_ENTIER, DO_MONTANT} from "../../../domains";
 import {router} from "../../../router";
 
 export const ProfilInfos = observer(function ProfilInfos() {
@@ -24,18 +24,30 @@ export const ProfilInfos = observer(function ProfilInfos() {
                     .metadata({
                         label: "app.profile.maxUsers",
                         comment:
-                            "Ce champ n'est qu'une excuse pour poser un slider, mais si sa valeur dépasse 12 alors le composant de sélection de droits va changer ;)",
+                            "Ce champ n'est qu'une excuse pour poser un slider, mais si sa valeur est inférieure à 1000 alors le composant de sélection de droits va changer ;)",
                         InputComponent: Slider,
-                        inputProps: {labeled: true, ticks: true, max: 20},
+                        inputProps: {labeled: true, max: 2000, step: 5},
                         labelProps: {
                             showTooltip: true
                         }
                     })
-                    .value<number>(8)
+                    .value<number>(1200)
+            )
+            .add("budget", f =>
+                f
+                    .domain(DO_MONTANT)
+                    .metadata({
+                        label: "app.profile.budget",
+                        comment: "Ce champ sert à démontrer la saisie d'un montant",
+                        labelProps: {
+                            showTooltip: true
+                        }
+                    })
+                    .value<number>(123_456.7)
             )
             .patch("droitCodes", (f, node) =>
                 f.metadata(() =>
-                    node.nombreUtilisateursMax.value! > 12
+                    node.nombreUtilisateursMax.value! < 1000
                         ? {SelectComponent: SelectChips<ZodArray<ZodString>>, selectProps: {hasSelectAll: true}}
                         : {}
                 )
@@ -58,6 +70,7 @@ export const ProfilInfos = observer(function ProfilInfos() {
                 {fieldFor(entity.libelle)}
                 {selectFor(entity.droitCodes, referenceStore.droit)}
                 {fieldFor(entity.nombreUtilisateursMax)}
+                {fieldFor(entity.budget)}
                 {!entity.form.isEdit ? fieldFor(entity.sourceNode.dateCreation) : null}
                 {!entity.form.isEdit && entity.sourceNode.dateModification.value
                     ? fieldFor(entity.sourceNode.dateModification)
