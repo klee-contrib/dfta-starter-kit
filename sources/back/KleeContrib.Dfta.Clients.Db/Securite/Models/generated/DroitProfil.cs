@@ -20,7 +20,6 @@ public partial record DroitProfil
     /// Droit.
     /// </summary>
     [Column("dro_code")]
-    [Required]
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.Code)]
     public required Droit.Codes DroitCode { get; set; }
@@ -29,7 +28,6 @@ public partial record DroitProfil
     /// Profil.
     /// </summary>
     [Column("pro_id")]
-    [Required]
     [Domain(Domains.Id)]
     public required int ProfilId { get; set; }
 }

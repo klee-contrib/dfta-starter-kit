@@ -2,11 +2,11 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 4.8.3
+version: 4.8.6
 modules:
   csharp:
-    version: 4.5.0
-    hash: 5eefb9d574ca4e82652b20f0cfa8e52b
+    version: 4.5.7
+    hash: 6e38da03f00a61302dda13699e0c8c51
   javascript:
     version: 4.5.1
     hash: 29712f607b12d2d17e6aab7b948c7166

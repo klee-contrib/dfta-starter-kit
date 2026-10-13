@@ -119,6 +119,7 @@ domain:
 domain:
   name: DO_LISTE
   label: Liste pour composition
+  collection: true
   csharp:
     genericType: ICollection<{T}>
   ts:
