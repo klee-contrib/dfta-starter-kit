@@ -8,7 +8,7 @@ import {messageStore, requestStore} from "@focus4/core";
 import {Display, SelectRadio} from "@focus4/form-toolbox";
 import {autocompleteFor, fieldFor, Form, selectFor, useFormActions, useFormNode, useLoad} from "@focus4/forms";
 import {Dialog, Panel} from "@focus4/layout";
-import {makeReferenceList, toFlatValues} from "@focus4/stores";
+import {makeReferenceList} from "@focus4/stores";
 import {FontIcon} from "@focus4/toolbox";
 
 import {UtilisateurWriteEntity} from "../../model/securite/utilisateur/utilisateur-write";
@@ -120,7 +120,7 @@ export const UtilisateurDetail = observer(function UtilisateurDetail({closePopin
                 {selectFor(entity.typeUtilisateurCode, referenceStore.typeUtilisateur)}
                 {selectFor(
                     entity.profilId,
-                    makeReferenceList(toFlatValues(profilStore.profils), {valueKey: "id", labelKey: "libelle"})
+                    makeReferenceList(profilStore.profils.getValues(), {valueKey: "id", labelKey: "libelle"})
                 )}
                 {!entity.form.isEdit ? fieldFor(entity.sourceNode.dateCreation) : null}
                 {!entity.form.isEdit && entity.sourceNode.dateModification.value
