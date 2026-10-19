@@ -17,18 +17,18 @@ public partial record ProfilItem
     /// Id technique.
     /// </summary>
     [Domain(Domains.Id)]
-    public required int Id { get; set; }
+    public required int Id { get; init; }
 
     /// <summary>
     /// Libellé du profil.
     /// </summary>
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public required string Libelle { get; set; }
+    public required string Libelle { get; init; }
 
     /// <summary>
     /// Nombre d'utilisateurs affectés au profil.
     /// </summary>
     [Domain(Domains.Entier)]
-    public required long NombreUtilisateurs { get; set; }
+    public required long NombreUtilisateurs { get; init; }
 }

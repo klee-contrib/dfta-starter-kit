@@ -8,6 +8,7 @@
     <PackageReference Include="Kinetix.Services" />
     <PackageReference Include="Kinetix.Web" />
     <PackageReference Include="Microsoft.Identity.Web" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />

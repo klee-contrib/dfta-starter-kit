@@ -10,6 +10,7 @@ uses:
 ---
 class:
   name: UtilisateurItem
+  readonly: true
   comment: Détail d'un utilisateur en liste.
 
   properties:
@@ -28,6 +29,7 @@ class:
 ---
 class:
   name: UtilisateurRead
+  readonly: true
   comment: Détail d'un utilisateur en lecture.
 
   properties:

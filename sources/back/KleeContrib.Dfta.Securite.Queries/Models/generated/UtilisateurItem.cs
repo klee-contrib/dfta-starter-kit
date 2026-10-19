@@ -18,32 +18,32 @@ public partial record UtilisateurItem
     /// Id de l'utilisateur.
     /// </summary>
     [Domain(Domains.Id)]
-    public required int Id { get; set; }
+    public required int Id { get; init; }
 
     /// <summary>
     /// Nom de l'utilisateur.
     /// </summary>
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public required string Nom { get; set; }
+    public required string Nom { get; init; }
 
     /// <summary>
     /// Nom de l'utilisateur.
     /// </summary>
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public required string Prenom { get; set; }
+    public required string Prenom { get; init; }
 
     /// <summary>
     /// Email de l'utilisateur.
     /// </summary>
     [Domain(Domains.Email)]
-    public required string Email { get; set; }
+    public required string Email { get; init; }
 
     /// <summary>
     /// Type d'utilisateur.
     /// </summary>
     [ReferencedType(typeof(TypeUtilisateur))]
     [Domain(Domains.Code)]
-    public TypeUtilisateur.Codes TypeUtilisateurCode { get; set; } = TypeUtilisateur.Codes.GEST;
+    public TypeUtilisateur.Codes TypeUtilisateurCode { get; init; } = TypeUtilisateur.Codes.GEST;
 }

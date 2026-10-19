@@ -3,10 +3,10 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Azure.Core" Version="1.62.0" />
+    <PackageVersion Include="Azure.Core" Version="1.63.0" />
     <PackageVersion Include="Azure.Identity" Version="1.21.0" />
     <PackageVersion Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.6.0" />
-    <PackageVersion Include="Azure.Storage.Blobs" Version="12.29.2" />
+    <PackageVersion Include="Azure.Storage.Blobs" Version="12.30.1" />
     <PackageVersion Include="Kinetix.EFCore.Npgsql" Version="10.0.2" />
     <PackageVersion Include="Kinetix.Modeling" Version="10.0.1" />
     <PackageVersion Include="Kinetix.Monitoring.Insights" Version="10.0.0" />
@@ -15,8 +15,9 @@
     <PackageVersion Include="Kinetix.Services.Annotations" Version="10.0.0" />
     <PackageVersion Include="Kinetix.Tools.Analyzers" Version="1.11.6" />
     <PackageVersion Include="Kinetix.Web" Version="10.0.3" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.259" />
-    <PackageVersion Include="Microsoft.Identity.Web" Version="4.14.2" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.34.0.3385" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.312" />
+    <PackageVersion Include="Microsoft.Identity.Web" Version="4.16.1" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.35.0.4138" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
 </Project>

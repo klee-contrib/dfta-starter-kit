@@ -11,6 +11,7 @@ uses:
 ---
 class:
   name: ProfilItem
+  readonly: true
   comment: Détail d'un profil en liste.
 
   properties:
@@ -28,6 +29,7 @@ class:
 ---
 class:
   name: ProfilRead
+  readonly: true
   comment: Détail d'un profil en lecture.
 
   properties:

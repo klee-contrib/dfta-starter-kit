@@ -18,36 +18,36 @@ public partial record ProfilRead
     /// Id technique.
     /// </summary>
     [Domain(Domains.Id)]
-    public required int Id { get; set; }
+    public required int Id { get; init; }
 
     /// <summary>
     /// Libellé du profil.
     /// </summary>
     [Domain(Domains.Libelle)]
     [StringLength(100)]
-    public required string Libelle { get; set; }
+    public required string Libelle { get; init; }
 
     /// <summary>
     /// Date de création de l'utilisateur.
     /// </summary>
     [Domain(Domains.DateHeure)]
-    public required DateTime DateCreation { get; set; }
+    public required DateTime DateCreation { get; init; }
 
     /// <summary>
     /// Date de modification de l'utilisateur.
     /// </summary>
     [Domain(Domains.DateHeure)]
-    public DateTime? DateModification { get; set; }
+    public DateTime? DateModification { get; init; }
 
     /// <summary>
     /// Code du droit.
     /// </summary>
     [ReferencedType(typeof(Droit))]
     [Domain(Domains.CodeListe)]
-    public required IList<Droit.Codes> DroitCodes { get; set; }
+    public required IList<Droit.Codes> DroitCodes { get; init; }
 
     /// <summary>
     /// Utilisateurs ayant ce profil.
     /// </summary>
-    public ICollection<UtilisateurItem> Utilisateurs { get; set; } = [];
+    public ICollection<UtilisateurItem> Utilisateurs { get; init; } = [];
 }
