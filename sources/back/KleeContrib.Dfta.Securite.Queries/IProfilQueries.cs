@@ -22,5 +22,5 @@ public interface IProfilQueries
     /// </summary>
     /// <param name="ct">CancellationToken.</param>
     /// <returns>Profils matchant les critères</returns>
-    Task<ICollection<ProfilItem>> GetProfils(CancellationToken ct = default);
+    Task<IList<ProfilItem>> GetProfils(CancellationToken ct = default);
 }

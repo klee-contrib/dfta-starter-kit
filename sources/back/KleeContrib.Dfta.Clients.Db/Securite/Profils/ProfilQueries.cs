@@ -38,7 +38,7 @@ public class ProfilQueries(KleeContribDftaDbContext context) : IProfilQueries
     }
 
     /// <inheritdoc cref="IProfilQueries.GetProfils" />
-    public async Task<ICollection<ProfilItem>> GetProfils(CancellationToken ct = default)
+    public async Task<IList<ProfilItem>> GetProfils(CancellationToken ct = default)
     {
         return await (
             from profil in context.Profils.AsNoTracking()

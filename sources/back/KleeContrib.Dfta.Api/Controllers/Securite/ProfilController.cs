@@ -48,7 +48,7 @@ public class ProfilController(IProfilCommands commands, IProfilQueries queries) 
     /// <param name="ct">CancellationToken (HttpContext.RequestAborted).</param>
     /// <returns>Profils matchant les critères</returns>
     [HttpGet("api/profils")]
-    public async Task<ICollection<ProfilItem>> GetProfils(CancellationToken ct = default)
+    public async Task<IList<ProfilItem>> GetProfils(CancellationToken ct = default)
     {
         return await queries.GetProfils(ct);
     }

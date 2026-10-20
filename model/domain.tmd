@@ -121,7 +121,8 @@ domain:
   label: Liste pour composition
   collection: true
   csharp:
-    genericType: ICollection<{T}>
+    genericType: IList<{T}>
+    collector: ToList()
   ts:
     genericType: "{T}[]"
 ---
