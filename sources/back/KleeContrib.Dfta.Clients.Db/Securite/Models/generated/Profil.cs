@@ -4,8 +4,6 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Kinetix.Modeling.Annotations;
-using KleeContrib.Dfta.Common;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
 
@@ -39,7 +37,6 @@ public partial record Profil
     /// Id technique.
     /// </summary>
     [Column("pro_id")]
-    [Domain(Domains.Id)]
     [Key]
     public int Id { get; set; }
 
@@ -47,7 +44,6 @@ public partial record Profil
     /// Libellé du profil.
     /// </summary>
     [Column("pro_libelle")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Libelle { get; set; }
 
@@ -55,13 +51,11 @@ public partial record Profil
     /// Date de création de l'utilisateur.
     /// </summary>
     [Column("pro_date_creation")]
-    [Domain(Domains.DateHeure)]
     public DateTime DateCreation { get; set; } = DateTime.UtcNow;
 
     /// <summary>
     /// Date de modification de l'utilisateur.
     /// </summary>
     [Column("pro_date_modification")]
-    [Domain(Domains.DateHeure)]
     public DateTime? DateModification { get; set; }
 }

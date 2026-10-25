@@ -5,7 +5,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Kinetix.Modeling.Annotations;
-using KleeContrib.Dfta.Common;
 using KleeContrib.Dfta.Common.References.Securite;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
@@ -100,7 +99,6 @@ public partial record Utilisateur
     /// Id de l'utilisateur.
     /// </summary>
     [Column("uti_id")]
-    [Domain(Domains.Id)]
     [Key]
     public int Id { get; set; }
 
@@ -108,7 +106,6 @@ public partial record Utilisateur
     /// Nom de l'utilisateur.
     /// </summary>
     [Column("uti_nom")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Nom { get; set; }
 
@@ -116,7 +113,6 @@ public partial record Utilisateur
     /// Nom de l'utilisateur.
     /// </summary>
     [Column("uti_prenom")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Prenom { get; set; }
 
@@ -124,21 +120,18 @@ public partial record Utilisateur
     /// Email de l'utilisateur.
     /// </summary>
     [Column("uti_email")]
-    [Domain(Domains.Email)]
     public required string Email { get; set; }
 
     /// <summary>
     /// Age de l'utilisateur.
     /// </summary>
     [Column("uti_date_naissance")]
-    [Domain(Domains.Date)]
     public DateOnly? DateNaissance { get; set; }
 
     /// <summary>
     /// Adresse de l'utilisateur.
     /// </summary>
     [Column("uti_adresse")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public string? Adresse { get; set; }
 
@@ -146,14 +139,12 @@ public partial record Utilisateur
     /// Si l'utilisateur est actif.
     /// </summary>
     [Column("uti_actif")]
-    [Domain(Domains.Booleen)]
     public bool Actif { get; set; } = true;
 
     /// <summary>
     /// Profil de l'utilisateur.
     /// </summary>
     [Column("pro_id")]
-    [Domain(Domains.Id)]
     public required int ProfilId { get; set; }
 
     /// <summary>
@@ -161,14 +152,12 @@ public partial record Utilisateur
     /// </summary>
     [Column("tut_code")]
     [ReferencedType(typeof(TypeUtilisateur))]
-    [Domain(Domains.Code)]
     public TypeUtilisateur.Codes TypeUtilisateurCode { get; set; } = TypeUtilisateur.Codes.GEST;
 
     /// <summary>
     /// Nom du fichier de la photo de l'utilisateur, s'il en a une.
     /// </summary>
     [Column("uti_nom_fichier_photo")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public string? NomFichierPhoto { get; set; }
 
@@ -176,13 +165,11 @@ public partial record Utilisateur
     /// Date de création de l'utilisateur.
     /// </summary>
     [Column("uti_date_creation")]
-    [Domain(Domains.DateHeure)]
     public DateTime DateCreation { get; set; } = DateTime.UtcNow;
 
     /// <summary>
     /// Date de modification de l'utilisateur.
     /// </summary>
     [Column("uti_date_modification")]
-    [Domain(Domains.DateHeure)]
     public DateTime? DateModification { get; set; }
 }

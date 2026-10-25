@@ -4,7 +4,6 @@
 
 using System.ComponentModel.DataAnnotations;
 using Kinetix.Modeling.Annotations;
-using KleeContrib.Dfta.Common;
 using KleeContrib.Dfta.Common.References.Securite;
 
 namespace KleeContrib.Dfta.Api.Models.Commands.Securite;
@@ -18,7 +17,6 @@ public partial record ProfilWrite
     /// Libellé du profil.
     /// </summary>
     [Required]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public string? Libelle { get; set; }
 
@@ -27,6 +25,5 @@ public partial record ProfilWrite
     /// </summary>
     [Required]
     [ReferencedType(typeof(Droit))]
-    [Domain(Domains.CodeListe)]
     public IList<Droit.Codes>? DroitCodes { get; set; }
 }

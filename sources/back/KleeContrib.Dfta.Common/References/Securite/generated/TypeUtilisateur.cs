@@ -12,7 +12,7 @@ namespace KleeContrib.Dfta.Common.References.Securite;
 /// <summary>
 /// Type d'utilisateur.
 /// </summary>
-[Reference(true)]
+[Reference]
 [DefaultProperty(nameof(Libelle))]
 [Table("type_utilisateurs")]
 public partial record TypeUtilisateur
@@ -42,7 +42,6 @@ public partial record TypeUtilisateur
     /// Code du type d'utilisateur.
     /// </summary>
     [Column("tut_code")]
-    [Domain(Domains.Code)]
     [Key]
     public required Codes Code { get; set; }
 
@@ -50,7 +49,6 @@ public partial record TypeUtilisateur
     /// Libellé du type d'utilisateur.
     /// </summary>
     [Column("tut_libelle")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Libelle { get; set; }
 }
