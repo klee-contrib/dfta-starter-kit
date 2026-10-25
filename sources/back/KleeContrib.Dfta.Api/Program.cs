@@ -6,10 +6,10 @@ using Azure.Storage;
 using Azure.Storage.Blobs;
 using Kinetix.EFCore;
 using Kinetix.EFCore.Npgsql;
-using Kinetix.Monitoring.Core;
 using Kinetix.Services;
 using Kinetix.Web;
 using Kinetix.Web.Filters;
+using Kinetix.Web.OpenTelemetry;
 using KleeContrib.Dfta.Clients.Db;
 using KleeContrib.Dfta.Clients.Db.Securite.Profils;
 using KleeContrib.Dfta.Clients.Storage;
@@ -30,7 +30,7 @@ var services = builder.Services;
 services
     .AddLogging(l => l.AddSimpleConsole())
     .AddOpenTelemetry()
-    .WithTracing(b => b.AddActivityFilterProcessor(p => p.AddFilteredGetRoutes("api/references")).AddNpgsql())
+    .WithTracing(b => b.AddActivityProcessors(p => p.AddFilteredGetRoutes("api/references")).AddNpgsql())
     .UseAzureMonitor();
 services.ConfigureOpenTelemetryService(env => new() { Name = $"[{env.EnvironmentName}] KleeContrib Dfta" });
 
@@ -39,7 +39,6 @@ services.AddAuthentication().AddMicrosoftIdentityWebApi(builder.Configuration);
 services.AddAuthorization(o => o.FallbackPolicy = o.DefaultPolicy);
 
 services
-    .AddMonitoring()
     .AddServices(
         "KleeContrib.Dfta",
         o =>

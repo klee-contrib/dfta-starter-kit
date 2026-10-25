@@ -12,7 +12,7 @@ namespace KleeContrib.Dfta.Common.References.Securite;
 /// <summary>
 /// Type de droit.
 /// </summary>
-[Reference(true)]
+[Reference]
 [DefaultProperty(nameof(Libelle))]
 [Table("type_droits")]
 public partial record TypeDroit
@@ -42,7 +42,6 @@ public partial record TypeDroit
     /// Code du type de droit.
     /// </summary>
     [Column("tdr_code")]
-    [Domain(Domains.Code)]
     [Key]
     public required Codes Code { get; set; }
 
@@ -50,7 +49,6 @@ public partial record TypeDroit
     /// Libellé du type de droit.
     /// </summary>
     [Column("tdr_libelle")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Libelle { get; set; }
 }

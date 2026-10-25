@@ -4,8 +4,6 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Kinetix.Modeling.Annotations;
-using KleeContrib.Dfta.Common;
 
 namespace KleeContrib.Dfta.Clients.Db.Common.Models;
 
@@ -19,7 +17,6 @@ public partial record Traduction
     /// Clé de traduction.
     /// </summary>
     [Column("trd_resource_key")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string ResourceKey { get; set; }
 
@@ -27,7 +24,6 @@ public partial record Traduction
     /// Locale.
     /// </summary>
     [Column("trd_locale")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Locale { get; set; }
 
@@ -35,7 +31,6 @@ public partial record Traduction
     /// Valeur.
     /// </summary>
     [Column("trd_label")]
-    [Domain(Domains.Libelle)]
     [StringLength(100)]
     public required string Label { get; set; }
 }

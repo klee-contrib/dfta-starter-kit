@@ -2,10 +2,8 @@
 //// ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 ////
 
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Kinetix.Modeling.Annotations;
-using KleeContrib.Dfta.Common;
 using KleeContrib.Dfta.Common.References.Securite;
 
 namespace KleeContrib.Dfta.Clients.Db.Securite.Models;
@@ -21,13 +19,11 @@ public partial record DroitProfil
     /// </summary>
     [Column("dro_code")]
     [ReferencedType(typeof(Droit))]
-    [Domain(Domains.Code)]
     public required Droit.Codes DroitCode { get; set; }
 
     /// <summary>
     /// Profil.
     /// </summary>
     [Column("pro_id")]
-    [Domain(Domains.Id)]
     public required int ProfilId { get; set; }
 }
