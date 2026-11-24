@@ -25,9 +25,9 @@ jobs:
       - checkout: none
 
       - task: UseDotNet@2
-        displayName: .NET 10
+        displayName: .NET 11
         inputs:
-          version: 10.x
+          version: 11.x
 
       - task: AzureCLI@2
         displayName: Get Azure PGSQL Credentials

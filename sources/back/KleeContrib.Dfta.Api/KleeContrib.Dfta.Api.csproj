@@ -9,7 +9,6 @@
     <PackageReference Include="Kinetix.Web" />
     <PackageReference Include="Kinetix.Web.OpenTelemetry" />
     <PackageReference Include="Microsoft.Identity.Web" />
-    <PackageReference Include="System.Security.Cryptography.Pkcs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Clients.Db\KleeContrib.Dfta.Clients.Db.csproj" />

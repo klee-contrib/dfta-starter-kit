@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <PackageReference Include="Kinetix.EFCore.Npgsql" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KleeContrib.Dfta.Securite.Commands.Mutations\KleeContrib.Dfta.Securite.Commands.Mutations.csproj" />

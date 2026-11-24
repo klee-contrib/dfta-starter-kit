@@ -2,17 +2,17 @@
 # ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
 #
 
-version: 4.8.8
+version: 5.0.2
 modules:
   csharp:
-    version: 4.6.0
-    hash: c5d71f5297aa904d9a6e08749818e690
+    version: 5.0.0
+    hash: 860fd609707bdae2b8b27b91b18e10f1
   javascript:
-    version: 4.5.1
-    hash: 29712f607b12d2d17e6aab7b948c7166
+    version: 5.0.0
+    hash: 75f21d860748c80cdebc35ff61764006
   translation:
-    version: 4.0.0
-    hash: dbcafbde1bbad53f2de5c796751fd9c2
+    version: 5.0.0
+    hash: a61ec75e2c52e1cd3c609715db133cc8
 generatedFiles:
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/ProfilController.cs
   - ../sources/back/KleeContrib.Dfta.Api/Controllers/Securite/UtilisateurController.cs

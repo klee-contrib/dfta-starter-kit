@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Microsoft.EntityFrameworkCore.Query;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Migrations;
 
@@ -14,8 +15,9 @@ namespace KleeContrib.Dfta.Migrations.Utils;
 /// </summary>
 public class SetRoleNpgsqlMigrationsSqlGenerator(
     MigrationsSqlGeneratorDependencies dependencies,
-    INpgsqlSingletonOptions npgsqlSingletonOptions
-) : NpgsqlMigrationsSqlGenerator(dependencies, npgsqlSingletonOptions)
+    INpgsqlSingletonOptions npgsqlSingletonOptions,
+    IQuerySqlGeneratorFactory querySqlGeneratorFactory
+) : NpgsqlMigrationsSqlGenerator(dependencies, npgsqlSingletonOptions, querySqlGeneratorFactory)
 {
     protected override void Generate(
         CreateTableOperation operation,

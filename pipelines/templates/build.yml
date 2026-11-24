@@ -11,9 +11,9 @@ stages:
 
         steps:
           - task: UseDotNet@2
-            displayName: .NET 10
+            displayName: .NET 11
             inputs:
-              version: 10.x
+              version: 11.x
 
           - script: echo "##vso[task.setvariable variable=modgen_version]$(cat model/topmodel.lock | awk 'NR == 5' | sed 's/\r//g' | cut -c 10-)"
             displayName: Récupération de la version de modgen
